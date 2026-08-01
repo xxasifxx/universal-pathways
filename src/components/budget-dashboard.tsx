@@ -194,9 +194,17 @@ export function BudgetDashboard() {
           </ul>
         </div>
 
-        <p className="mt-8 max-w-3xl text-xs leading-relaxed text-muted-foreground">
-          {t("budget.disclaimer")}
-        </p>
+        <div className="mt-8 max-w-3xl">
+          <Link
+            to="/cost-calculator"
+            className="inline-flex rounded-md bg-primary px-5 py-2.5 font-display text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            Now do it for your own kid
+          </Link>
+          <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
+            {t("budget.disclaimer")}
+          </p>
+        </div>
       </div>
     </section>
   );
