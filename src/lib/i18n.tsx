@@ -30,6 +30,7 @@ const en = {
   "nav.home": "Home",
   "nav.about": "About",
   "nav.priorities": "Priorities",
+  "nav.calculator": "Cost per child",
   "nav.volunteer": "Volunteer",
   "nav.contact": "Contact",
   "nav.donate": "Donate",

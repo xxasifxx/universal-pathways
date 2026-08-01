@@ -135,6 +135,17 @@ export const PRIORITIES: Priority[] = [
       "On hate, I'd rather be specific than sound noble. Islamophobia and antisemitism both show up here, usually in a group chat before they show up in a hallway. What families ask me for isn't a stronger values statement. It's knowing which adult handles it, how fast, and what the parent hears back.",
     ],
   },
+  {
+    id: "cost-dashboard",
+    title: "A Budget Dashboard for Your Actual Kid",
+    short:
+      "Show a parent what the district spends on their child, and let them run the numbers while the board is still debating.",
+    body: [
+      "The budget hearing is the one night a year when parents are told the numbers matter, and it gets held in a language nobody outside the central office speaks. A line moves by 1.4 percent, somebody says the word efficiencies, and the room nods because what else is it going to do.",
+      "I want the district to publish a dashboard where a parent picks their kid's grade and the services their kid actually uses and gets a real number back: this is what East Brunswick spends on your child this year, and here's what it buys. Then, when something's on the agenda, the same tool takes the proposed change and shows both halves. What it does to that number, and what it does to the room. Ten fewer aides isn't a percentage. It's about twenty-eight classrooms losing their second adult, and the kids who needed someone sitting beside them notice first.",
+      "I built a working version so nobody has to take my word that it's feasible. Mine runs off the published budget, so the figures are modeled. The district has the real per-pupil detail and could do it properly, which is the whole reason to ask.",
+    ],
+  },
 ];
 
 export type JourneyNode = {
