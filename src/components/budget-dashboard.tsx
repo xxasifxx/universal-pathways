@@ -84,6 +84,7 @@ export function BudgetDashboard() {
                     paddingAngle={2}
                     stroke="none"
                     isAnimationActive={false}
+                    rootTabIndex={-1}
                     onMouseEnter={(_, i) => setActive(data[i]?.id ?? null)}
                     onMouseLeave={() => setActive(null)}
                   >
