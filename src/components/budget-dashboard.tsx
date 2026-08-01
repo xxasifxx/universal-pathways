@@ -38,7 +38,7 @@ export function BudgetDashboard() {
     };
     apply();
     const observer = new MutationObserver(apply);
-    observer.observe(root, { childList: true, subtree: true, attributes: true });
+    observer.observe(root, { childList: true, subtree: true });
     return () => observer.disconnect();
   }, []);
 
