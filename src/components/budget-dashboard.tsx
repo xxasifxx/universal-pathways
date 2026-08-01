@@ -17,20 +17,30 @@ export function BudgetDashboard() {
   const [active, setActive] = useState<string | null>(null);
   const chartRef = useRef<HTMLDivElement>(null);
 
-  // Recharts renders a bare <svg>; give it a text alternative since the same
-  // figures are listed as real text in the legend beside it.
+  // Recharts renders its <svg> asynchronously and marks each sector role="img"
+  // with no label. Expose one label on the chart and mute the sectors — the
+  // legend beside the chart lists every figure as real text.
   useEffect(() => {
-    const svg = chartRef.current?.querySelector("svg");
-    if (!svg) return;
-    svg.setAttribute("role", "img");
-    svg
-      .querySelectorAll('[role="img"]')
-      .forEach((el) => el.setAttribute("role", "presentation"));
-    svg.setAttribute(
-      "aria-label",
-      "Donut chart of the district budget. The same figures are listed in the breakdown beside this chart.",
-    );
-  });
+    const root = chartRef.current;
+    if (!root) return;
+    const apply = () => {
+      const svg = root.querySelector("svg");
+      if (!svg) return;
+      svg.setAttribute("role", "img");
+      svg.setAttribute(
+        "aria-label",
+        "Donut chart of the district budget; every figure is also listed in the breakdown beside this chart.",
+      );
+      svg.querySelectorAll('[role="img"]').forEach((el) => {
+        if (el !== svg) el.setAttribute("role", "presentation");
+      });
+      root.querySelectorAll("[tabindex]").forEach((el) => el.setAttribute("tabindex", "-1"));
+    };
+    apply();
+    const observer = new MutationObserver(apply);
+    observer.observe(root, { childList: true, subtree: true, attributes: true });
+    return () => observer.disconnect();
+  }, []);
 
   const data = useMemo(
     () =>
