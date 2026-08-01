@@ -144,18 +144,6 @@ export type JourneyNode = {
   text: string;
 };
 
-export const COST_DASHBOARD_PRIORITY: Priority = {
-  id: "cost-dashboard",
-  title: "A Budget Dashboard for Your Actual Kid",
-  short:
-    "Show a parent what the district spends on their child, and let them run the numbers while the board is still debating.",
-  body: [
-    "The budget hearing is the one night a year when parents are told the numbers matter, and it's held in a language nobody outside the central office speaks. A line moves by 1.4 percent, somebody says the word efficiencies, and the room nods because what else is it going to do.",
-    "I want the district to publish a dashboard where a parent picks their kid's grade and the services their kid actually uses, and gets a real number back: this is what East Brunswick spends on your child this year, and here's what it buys. Then, when a proposal is on the agenda, the same tool takes the proposed change and shows two things side by side. What it does to that number, and what it does to the room. Ten fewer aides isn't a percentage. It's roughly twenty-eight classrooms that lose their second adult, and the kids who needed someone sitting next to them are the ones who notice first.",
-    "I built a working version of it so nobody has to take my word that it's feasible. Mine runs off the published budget, so the figures are modeled. The district has the real per-pupil detail and could do it properly, which is the whole point of asking.",
-  ],
-};
-
 export const JOURNEY: JourneyNode[] = [
   {
     id: "label",
