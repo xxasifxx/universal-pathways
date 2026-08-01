@@ -23,6 +23,9 @@ export function BudgetDashboard() {
     const svg = chartRef.current?.querySelector("svg");
     if (!svg) return;
     svg.setAttribute("role", "img");
+    svg
+      .querySelectorAll('[role="img"]')
+      .forEach((el) => el.setAttribute("role", "presentation"));
     svg.setAttribute(
       "aria-label",
       "Donut chart of the district budget. The same figures are listed in the breakdown beside this chart.",
