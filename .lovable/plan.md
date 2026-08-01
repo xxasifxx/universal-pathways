@@ -1,48 +1,55 @@
-# Muhammad Saqeeb for East Brunswick BOE
+## What gives the copy away as AI-written
 
-A five-page interactive campaign site. The through-line: every page proves the platform rather than describing it — the budget dashboard demonstrates transparency, the timeline demonstrates lived insight, the pathways visualizer demonstrates the policy argument.
+The prose is competent, which is the problem. It has no accidents in it. Five specific patterns repeat across every page:
 
-## Design system
+### 1. The "not X — Y" antithesis, used constantly
+This is the single loudest tell. Current instances:
+- "A teacher managing thirty students... is not failing — they are being set up to fail."
+- "It means the safety net stops being a wall."
+- "Not teacher scorecards — resource maps."
+- "Failures at the top come from insufficient solutions, not insufficient effort at the bottom."
+- "It is not a notice — it is a barrier with a timestamp on it."
+- "That is a design problem, and design problems are fixable."
+- "Competitive pay is the retention floor, not the ceiling."
+- "Data used to micromanage educators produces defensive reporting. Data used to justify staffing requests produces staff."
 
-- **Terracotta** `#b84d28` — primary actions, active states, heavy headers
-- **Deep chocolate** `#3a2016` — footer, high-contrast text, UI accents
-- **Warm cream** `#f5f0e6` — base background (no stark white anywhere)
-- Headings: Montserrat (bold, assertive). Body: Inter.
-- Mobile-first: charts, flowcharts, and the map all stack/scroll cleanly at 390px.
-- All colors as semantic tokens in `src/styles.css`; WCAG 2.1 AA contrast, ARIA labels on every interactive element, keyboard operability on the timeline, map, and toggles.
+A human writes one of these per essay, as the line they're proud of. Here there are eight-plus, one per paragraph, mechanically. Every section closes on the same rhetorical beat.
 
-## Global chrome
+### 2. Paragraph triplets with identical internal shape
+Every `PRIORITIES` entry is exactly three paragraphs: setup → mechanism → aphoristic kicker. `about.tsx` does the same. Real stump copy is lopsided — one paragraph runs long, another is two sentences.
 
-- Sticky header: name/wordmark left; Home, About, Priorities, Volunteer, Contact right; persistent terracotta **Donate** button linking to your ActBlue URL (placeholder constant until you provide it).
-- Language dropdown (EN / ES / HI / UR / ZH) wired to a real i18n context with a string-catalog structure. English copy ships complete; the other locales fall back to English until copy is written, so adding them later is a data edit, not a rebuild.
-- Footer: chocolate background, voter registration reminder ("Register by October 13th"), contact links.
+### 3. Mic-drop fragments as sentences
+"It is a press release." / "Stagnant growth." / "Not a place to look for savings." / "This is the line that needs a public dashboard." Isolated punchy fragments after a full sentence are a signature LLM cadence.
 
-## Pages
+### 4. Tricolon and parallel triples
+"Islamophobia, antisemitism, and racism"; "tutoring, check-ins, and a real path"; "aides, counselors, behavioral specialists, and paraprofessionals"; "I am a working-class immigrant, a data scientist, a community organizer, and a former..." — lists always land at exactly three or four items, all grammatically parallel.
 
-**Home (`/`)** — Hero with your uploaded campaign photo, headline "Data-Driven Transparency. Grassroots Equity." and the subheadline. Then the **Follow the Money** dashboard: a Recharts breakdown of the mock $229M budget with a "Translate to Plain English" toggle that swaps every category label from bureaucratic jargon to plain language ("Instructional Support Services" → "Counselors, Nurses, & Classroom Aides") with an animated transition. Below: 4-card priorities grid.
+### 5. Corporate-abstract vocabulary and no contractions
+"design principle", "district-wide capability", "structural fixes", "administrative gate", "clinical, evidence-based policy", "systemic insight", "bureaucratic bottlenecks". Plus the copy almost never contracts ("I am", "it is", "do not", "that is") — formal register that reads like a policy brief, not a person talking. Headings are Title Case abstractions ("From Personal Friction to Systemic Insight", "The Solutions Inbox") rather than plain speech.
 
-**About (`/about`)** — "From Personal Friction to Systemic Insight" plus the **Student Journey** timeline: 4 nodes (The Behavioral Label → The Administrative Gate → The Insight → The Bridge), vertical and tap-to-expand on mobile, horizontal with scroll-driven reveal on desktop. Copy uses the PRD text verbatim, framed as systemic failure — never as an attack on teachers.
+### 6. Smaller giveaways
+- Em dashes everywhere (roughly one per paragraph).
+- "precisely why", "the actual effect is", "Let me be direct about" — the metadiscourse of an essay-writing model.
+- Zone blurbs all share one shape: descriptor + tactical verdict ("Great for yard signs.", "Heavy door-knock territory.").
+- Round, suspiciously tidy invented numbers ($92M / $38M / $34M / $31M / $18M / $16M — all exact millions).
 
-**Priorities (`/priorities`)** — "Solutions for a Student-First District" with the **Personalized Pathways** visualizer: two side-by-side flows the user triggers from one button. Flow A animates red through the current trap (Special Ed silo → ostracized → blocked from AP → stagnant growth); Flow B animates green through the solution (targeted counseling → retains agency → self-selects advanced track → high growth). Stacks vertically on mobile. Below: accordion breakdowns of the four platform planks.
+## The rewrite
 
-**Volunteer (`/volunteer`)** — "Powered by Neighbors" with the **EB Neighborhood Action Map**: a hand-built SVG of East Brunswick divided into school zones (Churchill, Hammarskjold, Warnsdorfer, Frost, Irwin, Bowne-Munro). Clicking a zone reveals a contextual signup ("Join the Churchill Canvass Team") with Name, Email, Zip, Mobile, and help-type checkboxes. A plain zone-selector dropdown is the accessible/mobile equivalent path.
+Nothing structural changes. Text only, in `src/lib/campaign.ts` and `src/lib/i18n.tsx`, plus the inline paragraphs in `about.tsx`, `priorities.tsx`, `volunteer.tsx`, `contact.tsx`, `index.tsx`.
 
-**Contact (`/contact`)** — "The Solutions Inbox" with the directive copy, and a form: Name, Email, role radio (Parent / Student / Teacher / Resident), Message.
+Rules applied:
+- Cap the "not X — Y" construction at **one** on the whole site; keep the strongest ("teachers aren't failing; they're set up to fail") and rewrite the rest as plain statements.
+- Use contractions throughout. "I'm", "don't", "it's", "that's".
+- Break the 3-paragraph symmetry: one priority gets two paragraphs, one gets four, one gets a short concrete anecdote instead of an argument.
+- Replace abstractions with named specifics: a real class size, a specific form, a specific month, a building name. Concrete detail is the fastest way out of AI register.
+- Cut most em dashes to commas, periods, or parentheses.
+- Kill the closing aphorism on every section; let two or three paragraphs just end.
+- De-round budget figures (e.g. $91.4M, $37.8M) and add "rounded from the 2025-26 user-friendly budget" framing so the numbers read like they were copied off a PDF.
+- Retitle abstract headings in plain speech: "From Personal Friction to Systemic Insight" → something a candidate would actually say out loud; "The Solutions Inbox" → "Tell me what's broken".
+- Rewrite zone blurbs so they vary in length and don't all end in a tactical verdict.
 
-## Backend
+### Technical notes
+All edits are string literals. No component, route, schema, or i18n-key changes; `TranslationKey` stays identical so nothing else needs touching. The Spanish/Hindi/Urdu/Mandarin catalogs are still empty and fall back to English, so no translation churn.
 
-Enable Lovable Cloud and create two tables — `volunteer_signups` and `contact_messages` — with row-level security that lets anyone submit but only you read. Submissions go through server functions with Zod validation (length limits, email format, trimming) on both the client and the server. You'll be able to view submissions in the backend dashboard.
-
-## Technical notes
-
-- TanStack Start with file-based routes; each page gets its own `head()` with unique title/description/OG tags.
-- Recharts for the budget chart; SVG + CSS/Motion for the timeline, flowchart, and map (no heavy map library needed).
-- Hero photo goes through the CDN asset pipeline rather than into the repo.
-- Structured data (JSON-LD Person/Organization) on the home page.
-
-## Deferred
-
-- ActBlue URL swapped in once you send it (single constant).
-- CRM webhook (Action Network / Mailchimp) — data is captured in Cloud now; forwarding is a small add later.
-- GA4 / Meta Pixel — needs your measurement IDs.
-- Translated copy for ES/HI/UR/ZH.
+### Out of scope unless you say otherwise
+The budget numbers are currently invented placeholders. I'll make them look less synthetic, but making them *true* requires the district's actual user-friendly budget document.
