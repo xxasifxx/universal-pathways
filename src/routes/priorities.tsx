@@ -10,9 +10,9 @@ import {
 import { PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
-const TITLE = "Priorities — Solutions for a Student-First District";
+const TITLE = "Priorities — What I'd Change in East Brunswick";
 const DESCRIPTION =
-  "Universal Individualization, student agency, data for support instead of surveillance, and safe, inclusive East Brunswick schools.";
+  "Individual learning plans without a classification, open access to advanced courses, staffed classrooms, and a budget parents can read.";
 
 export const Route = createFileRoute("/priorities")({
   head: () => ({
@@ -35,11 +35,11 @@ function Priorities() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="eyebrow text-primary">{t("priorities.eyebrow")}</p>
           <h1 className="mt-3 max-w-4xl text-4xl leading-[1.05] sm:text-6xl">
-            Solutions for a Student-First District
+            What I&apos;d change
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Everything here maps back to one idea: East Brunswick already has the expertise to
-            individualize learning. It just keeps that expertise locked in a silo.
+            All of this comes back to one thing. East Brunswick already knows how to teach kids
+            one at a time. It just keeps that skill locked in one department.
           </p>
         </div>
       </section>
@@ -51,8 +51,8 @@ function Priorities() {
             {t("pathways.title")}
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            One student walks into a counselor&apos;s office after a bad week. Press play and
-            watch how the two systems diverge from that identical starting point.
+            Same kid, same bad week, same counselor&apos;s office. Press play and watch the two
+            versions come apart.
           </p>
           <div className="mt-8">
             <PathwaysVisualizer />
@@ -63,7 +63,7 @@ function Priorities() {
       <section aria-labelledby="planks-heading" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 id="planks-heading" className="text-3xl sm:text-4xl">
-            The platform, in detail
+            The long version
           </h2>
           <Accordion type="multiple" className="mt-8 max-w-4xl">
             {PRIORITIES.map((p, i) => (
