@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
 import { BUDGET_SLICES, BUDGET_TOTAL } from "@/lib/campaign";
@@ -15,6 +15,15 @@ export function BudgetDashboard() {
   const { t } = useI18n();
   const [plain, setPlain] = useState(false);
   const [active, setActive] = useState<string | null>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  // Recharts marks its wrapper focusable; the chart is decorative here because
+  // the legend list below exposes every value as real text.
+  useEffect(() => {
+    chartRef.current
+      ?.querySelectorAll<HTMLElement>("[tabindex]")
+      .forEach((el) => el.setAttribute("tabindex", "-1"));
+  });
 
   const data = useMemo(
     () =>
@@ -63,9 +72,9 @@ export function BudgetDashboard() {
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:items-start">
           <div className="relative mx-auto w-full max-w-[320px]">
-            <div className="h-[280px] w-full">
+            <div ref={chartRef} aria-hidden="true" className="h-[280px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
+                <PieChart tabIndex={-1}>
                   <Pie
                     data={data}
                     dataKey="amount"
@@ -115,7 +124,7 @@ export function BudgetDashboard() {
               <li key={s.id}>
                 <button
                   type="button"
-                  aria-expanded={active === s.id}
+                  aria-pressed={active === s.id}
                   onMouseEnter={() => setActive(s.id)}
                   onMouseLeave={() => setActive(null)}
                   onFocus={() => setActive(s.id)}

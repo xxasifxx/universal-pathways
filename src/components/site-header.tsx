@@ -92,7 +92,7 @@ export function SiteHeader() {
             aria-controls="mobile-nav"
             aria-label={open ? t("nav.close") : t("nav.menu")}
             onClick={() => setOpen((v) => !v)}
-            className="grid size-9 place-items-center rounded-md border border-border text-foreground lg:hidden"
+            className="grid size-11 place-items-center rounded-md border border-border text-foreground lg:hidden"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>

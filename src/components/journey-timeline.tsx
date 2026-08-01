@@ -6,13 +6,15 @@ import { cn } from "@/lib/utils";
 export function JourneyTimeline() {
   const [open, setOpen] = useState<string>(JOURNEY[0]!.id);
 
+  const headingId = (id: string) => `journey-title-${id}`;
+
   return (
     <ol className="relative flex flex-col gap-3 border-l-2 border-border pl-6 sm:pl-10">
       {JOURNEY.map((node, i) => {
         const expanded = open === node.id;
         const last = i === JOURNEY.length - 1;
         return (
-          <li key={node.id} className="relative">
+          <li key={node.id} className="relative" aria-labelledby={headingId(node.id)}>
             <span
               aria-hidden="true"
               className={cn(
@@ -27,6 +29,7 @@ export function JourneyTimeline() {
             <button
               type="button"
               aria-expanded={expanded}
+              aria-controls={`journey-panel-${node.id}`}
               onClick={() => setOpen(expanded ? "" : node.id)}
               className={cn(
                 "w-full rounded-lg border p-5 text-left transition-colors",
@@ -36,20 +39,20 @@ export function JourneyTimeline() {
               )}
             >
               <span className="eyebrow text-primary">{node.label}</span>
-              <h3 className="mt-1.5 font-display text-xl font-extrabold sm:text-2xl">
-                {node.title}
-              </h3>
-              <div
-                className={cn(
-                  "grid transition-all duration-300",
-                  expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
-                )}
+              <span
+                id={headingId(node.id)}
+                className="mt-1.5 block font-display text-xl font-extrabold sm:text-2xl"
               >
-                <p className="overflow-hidden text-base leading-relaxed text-muted-foreground">
-                  <span className="mt-3 block">{node.text}</span>
-                </p>
-              </div>
+                {node.title}
+              </span>
             </button>
+            <div
+              id={`journey-panel-${node.id}`}
+              hidden={!expanded}
+              className="rounded-b-lg border-x border-b border-primary bg-card px-5 pb-5 pt-1"
+            >
+              <p className="text-base leading-relaxed text-muted-foreground">{node.text}</p>
+            </div>
           </li>
         );
       })}

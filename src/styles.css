@@ -71,7 +71,7 @@
   --popover-foreground: oklch(0.275 0.044 41.7);
 
   /* Terracotta / rust orange */
-  --primary: oklch(0.555 0.148 38.8);
+  --primary: oklch(0.510 0.148 38.8);
   --primary-foreground: oklch(0.994 0.007 88.6);
 
   --secondary: oklch(0.918 0.025 83.4);
@@ -88,7 +88,7 @@
 
   --border: oklch(0.870 0.024 79.0);
   --input: oklch(0.870 0.024 79.0);
-  --ring: oklch(0.555 0.148 38.8);
+  --ring: oklch(0.510 0.148 38.8);
 
   /* Deep chocolate — footers, high-contrast panels */
   --ink: oklch(0.275 0.044 41.7);
@@ -96,9 +96,9 @@
 
   /* Flowchart states */
   --trap: oklch(0.514 0.167 32.0);
-  --solution: oklch(0.518 0.107 153.9);
+  --solution: oklch(0.470 0.107 153.9);
 
-  --chart-1: oklch(0.555 0.148 38.8);
+  --chart-1: oklch(0.510 0.148 38.8);
   --chart-2: oklch(0.460 0.123 39.0);
   --chart-3: oklch(0.692 0.120 44.0);
   --chart-4: oklch(0.600 0.055 60.0);
@@ -107,12 +107,12 @@
 
   --sidebar: oklch(0.918 0.025 83.4);
   --sidebar-foreground: oklch(0.275 0.044 41.7);
-  --sidebar-primary: oklch(0.555 0.148 38.8);
+  --sidebar-primary: oklch(0.510 0.148 38.8);
   --sidebar-primary-foreground: oklch(0.994 0.007 88.6);
   --sidebar-accent: oklch(0.956 0.014 84.6);
   --sidebar-accent-foreground: oklch(0.275 0.044 41.7);
   --sidebar-border: oklch(0.870 0.024 79.0);
-  --sidebar-ring: oklch(0.555 0.148 38.8);
+  --sidebar-ring: oklch(0.510 0.148 38.8);
 }
 
 @layer base {

@@ -99,7 +99,7 @@ function Index() {
           {DISTRICT_STATS.map((s) => (
             <div key={s.label}>
               <p className="font-display text-3xl font-black sm:text-4xl">{s.value}</p>
-              <p className="mt-1 text-sm text-ink-foreground/70">{s.label}</p>
+              <p className="mt-1 text-sm text-ink-foreground/85">{s.label}</p>
             </div>
           ))}
         </div>
