@@ -45,6 +45,9 @@ export function SiteFooter() {
             <Link to="/priorities" className="w-fit hover:text-[oklch(0.75_0.13_45)]">
               {t("nav.priorities")}
             </Link>
+            <Link to="/cost-calculator" className="w-fit hover:text-[oklch(0.75_0.13_45)]">
+              {t("nav.calculator")}
+            </Link>
             <Link to="/volunteer" className="w-fit hover:text-[oklch(0.75_0.13_45)]">
               {t("nav.volunteer")}
             </Link>
