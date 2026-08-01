@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CostCalculatorRouteImport } from './routes/cost-calculator'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
 
@@ -30,6 +31,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CostCalculatorRoute = CostCalculatorRouteImport.update({
+  id: '/cost-calculator',
+  path: '/cost-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrioritiesRoute = PrioritiesRouteImport.update({
   id: '/priorities',
   path: '/priorities',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
 }
@@ -60,21 +68,42 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/priorities' | '/volunteer'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/cost-calculator'
+    | '/priorities'
+    | '/volunteer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/priorities' | '/volunteer'
-  id: '__root__' | '/' | '/about' | '/contact' | '/priorities' | '/volunteer'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/cost-calculator'
+    | '/priorities'
+    | '/volunteer'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/cost-calculator'
+    | '/priorities'
+    | '/volunteer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  CostCalculatorRoute: typeof CostCalculatorRoute
   PrioritiesRoute: typeof PrioritiesRoute
   VolunteerRoute: typeof VolunteerRoute
 }
@@ -102,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cost-calculator': {
+      id: '/cost-calculator'
+      path: '/cost-calculator'
+      fullPath: '/cost-calculator'
+      preLoaderRoute: typeof CostCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/priorities': {
       id: '/priorities'
       path: '/priorities'
@@ -123,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  CostCalculatorRoute: CostCalculatorRoute,
   PrioritiesRoute: PrioritiesRoute,
   VolunteerRoute: VolunteerRoute,
 }
