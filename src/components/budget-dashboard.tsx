@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
 import { BUDGET_SLICES, BUDGET_TOTAL } from "@/lib/campaign";
@@ -15,6 +15,32 @@ export function BudgetDashboard() {
   const { t } = useI18n();
   const [plain, setPlain] = useState(false);
   const [active, setActive] = useState<string | null>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  // Recharts renders its <svg> asynchronously and marks each sector role="img"
+  // with no label. Expose one label on the chart and mute the sectors — the
+  // legend beside the chart lists every figure as real text.
+  useEffect(() => {
+    const root = chartRef.current;
+    if (!root) return;
+    const apply = () => {
+      const svg = root.querySelector("svg");
+      if (!svg) return;
+      svg.setAttribute("role", "img");
+      svg.setAttribute(
+        "aria-label",
+        "Donut chart of the district budget; every figure is also listed in the breakdown beside this chart.",
+      );
+      svg.querySelectorAll('[role="img"]').forEach((el) => {
+        if (el !== svg) el.setAttribute("role", "presentation");
+      });
+      root.querySelectorAll("[tabindex]").forEach((el) => el.setAttribute("tabindex", "-1"));
+    };
+    apply();
+    const observer = new MutationObserver(apply);
+    observer.observe(root, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
 
   const data = useMemo(
     () =>
@@ -63,9 +89,9 @@ export function BudgetDashboard() {
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:items-start">
           <div className="relative mx-auto w-full max-w-[320px]">
-            <div className="h-[280px] w-full">
+            <div ref={chartRef} className="h-[280px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
+                <PieChart tabIndex={-1}>
                   <Pie
                     data={data}
                     dataKey="amount"
@@ -75,6 +101,7 @@ export function BudgetDashboard() {
                     paddingAngle={2}
                     stroke="none"
                     isAnimationActive={false}
+                    rootTabIndex={-1}
                     onMouseEnter={(_, i) => setActive(data[i]?.id ?? null)}
                     onMouseLeave={() => setActive(null)}
                   >
@@ -115,7 +142,7 @@ export function BudgetDashboard() {
               <li key={s.id}>
                 <button
                   type="button"
-                  aria-expanded={active === s.id}
+                  aria-pressed={active === s.id}
                   onMouseEnter={() => setActive(s.id)}
                   onMouseLeave={() => setActive(null)}
                   onFocus={() => setActive(s.id)}

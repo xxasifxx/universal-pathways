@@ -56,7 +56,7 @@ export function VolunteerActionMap() {
   }
 
   const inputClass =
-    "mt-1.5 w-full rounded-md border border-input bg-card px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground/70 focus:border-primary";
+    "mt-1.5 w-full rounded-md border border-input bg-card px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus:border-primary";
 
   return (
     <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
@@ -95,8 +95,9 @@ export function VolunteerActionMap() {
                   className="cursor-pointer transition-all duration-200"
                   style={{
                     fill: lit ? "var(--primary)" : "var(--secondary)",
-                    stroke: selected ? "var(--ink)" : "var(--border)",
-                    strokeWidth: selected ? 3 : 1.5,
+                    stroke: selected || hovered === z.id ? "var(--ink)" : "var(--border)",
+                    strokeWidth: selected ? 3 : hovered === z.id ? 2.5 : 1.5,
+                    strokeDasharray: !selected && hovered === z.id ? "5 3" : undefined,
                   }}
                 />
                 <text
@@ -114,6 +115,9 @@ export function VolunteerActionMap() {
         </svg>
         <p className="mt-2 text-xs text-muted-foreground">
           Schematic zone map — not to scale.
+        </p>
+        <p aria-live="polite" className="sr-only">
+          {`${zone.name} zone selected — ${zone.team}`}
         </p>
 
         <label className="mt-6 block">
@@ -153,10 +157,13 @@ export function VolunteerActionMap() {
                 maxLength={100}
                 autoComplete="name"
                 aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? "vol-name-error" : undefined}
                 className={inputClass}
               />
               {errors.name ? (
-                <span className="mt-1 block text-sm text-destructive">{errors.name}</span>
+                <span id="vol-name-error" role="alert" className="mt-1 block text-sm text-destructive">
+                  {errors.name}
+                </span>
               ) : null}
             </label>
 
@@ -168,10 +175,13 @@ export function VolunteerActionMap() {
                 maxLength={255}
                 autoComplete="email"
                 aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "vol-email-error" : undefined}
                 className={inputClass}
               />
               {errors.email ? (
-                <span className="mt-1 block text-sm text-destructive">{errors.email}</span>
+                <span id="vol-email-error" role="alert" className="mt-1 block text-sm text-destructive">
+                  {errors.email}
+                </span>
               ) : null}
             </label>
 
@@ -185,10 +195,13 @@ export function VolunteerActionMap() {
                   autoComplete="postal-code"
                   placeholder="08816"
                   aria-invalid={Boolean(errors.zipCode)}
+                  aria-describedby={errors.zipCode ? "vol-zip-error" : undefined}
                   className={inputClass}
                 />
                 {errors.zipCode ? (
-                  <span className="mt-1 block text-sm text-destructive">{errors.zipCode}</span>
+                  <span id="vol-zip-error" role="alert" className="mt-1 block text-sm text-destructive">
+                    {errors.zipCode}
+                  </span>
                 ) : null}
               </label>
               <label>
@@ -215,7 +228,7 @@ export function VolunteerActionMap() {
                       aria-pressed={on}
                       onClick={() => toggleHelp(opt.label)}
                       className={cn(
-                        "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                        "min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
                         on
                           ? "border-primary bg-primary text-primary-foreground"
                           : "border-border bg-background hover:border-primary",

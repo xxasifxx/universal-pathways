@@ -16,7 +16,7 @@ export function ContactForm() {
   const [done, setDone] = useState(false);
 
   const inputClass =
-    "mt-1.5 w-full rounded-md border border-input bg-card px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground/70 focus:border-primary";
+    "mt-1.5 w-full rounded-md border border-input bg-card px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus:border-primary";
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -73,10 +73,13 @@ export function ContactForm() {
             maxLength={100}
             autoComplete="name"
             aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? "contact-name-error" : undefined}
             className={inputClass}
           />
           {errors.name ? (
-            <span className="mt-1 block text-sm text-destructive">{errors.name}</span>
+            <span id="contact-name-error" role="alert" className="mt-1 block text-sm text-destructive">
+              {errors.name}
+            </span>
           ) : null}
         </label>
         <label>
@@ -87,10 +90,13 @@ export function ContactForm() {
             maxLength={255}
             autoComplete="email"
             aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "contact-email-error" : undefined}
             className={inputClass}
           />
           {errors.email ? (
-            <span className="mt-1 block text-sm text-destructive">{errors.email}</span>
+            <span id="contact-email-error" role="alert" className="mt-1 block text-sm text-destructive">
+              {errors.email}
+            </span>
           ) : null}
         </label>
       </div>
@@ -105,7 +111,7 @@ export function ContactForm() {
               aria-pressed={role === r}
               onClick={() => setRole(r)}
               className={cn(
-                "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                "min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
                 role === r
                   ? "border-primary bg-primary text-primary-foreground"
                   : "border-border bg-background hover:border-primary",
@@ -124,11 +130,14 @@ export function ContactForm() {
           rows={7}
           maxLength={2000}
           aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? "contact-message-error" : undefined}
           placeholder="What bottleneck are you running into?"
           className={inputClass}
         />
         {errors.message ? (
-          <span className="mt-1 block text-sm text-destructive">{errors.message}</span>
+          <span id="contact-message-error" role="alert" className="mt-1 block text-sm text-destructive">
+            {errors.message}
+          </span>
         ) : null}
       </label>
 

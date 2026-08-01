@@ -36,7 +36,7 @@ export function SiteFooter() {
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
           <div>
             <p className="font-display text-lg font-extrabold">{CANDIDATE_NAME}</p>
-            <p className="mt-2 text-sm text-ink-foreground/70">{t("footer.tagline")}</p>
+            <p className="mt-2 text-sm text-ink-foreground/85">{t("footer.tagline")}</p>
           </div>
           <nav aria-label="Footer" className="flex flex-col gap-2 text-sm font-semibold">
             <Link to="/about" className="w-fit hover:text-[oklch(0.75_0.13_45)]">
@@ -67,7 +67,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <p className="mt-10 border-t border-ink-foreground/15 pt-6 text-xs text-ink-foreground/50">
+        <p className="mt-10 border-t border-ink-foreground/20 pt-6 text-xs text-ink-foreground/80">
           {t("footer.rights")}
         </p>
       </div>

@@ -43,14 +43,14 @@ function Flow({
               <div
                 className={cn(
                   "rounded-lg border px-4 py-3 text-sm font-semibold transition-all duration-500",
-                  on ? "translate-y-0 opacity-100" : "translate-y-1 opacity-35",
+                  on ? "translate-y-0" : "translate-y-1",
                 )}
                 style={{
                   borderColor: on ? color : "var(--border)",
                   backgroundColor: on
                     ? `color-mix(in oklab, ${color} 12%, var(--card))`
                     : "var(--card)",
-                  color: on ? color : "var(--muted-foreground)",
+                  color: on ? color : "var(--foreground)",
                 }}
               >
                 {step}
