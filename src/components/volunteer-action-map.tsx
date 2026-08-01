@@ -114,7 +114,7 @@ export function VolunteerActionMap() {
           })}
         </svg>
         <p className="mt-2 text-xs text-muted-foreground">
-          Schematic zone map — not to scale.
+          Rough zone map, not to scale.
         </p>
         <p aria-live="polite" className="sr-only">
           {`${zone.name} zone selected — ${zone.team}`}

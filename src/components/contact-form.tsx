@@ -131,7 +131,7 @@ export function ContactForm() {
           maxLength={2000}
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? "contact-message-error" : undefined}
-          placeholder="What bottleneck are you running into?"
+          placeholder="What happened, and at which school?"
           className={inputClass}
         />
         {errors.message ? (

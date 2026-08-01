@@ -45,7 +45,7 @@ const en = {
     "An independent campaign for the East Brunswick Board of Education. No party line, no consultants.",
   "footer.rights": "Paid for by Saqeeb for East Brunswick.",
 
-  "home.hero.headline": "Data-Driven Transparency. Grassroots Equity.",
+  "home.hero.headline": "Show the numbers. Open the doors.",
   "home.hero.sub":
     "I'm running for the East Brunswick Board of Education because this district already knows how to teach kids one at a time. It just reserves that for the ones with a file.",
   "home.hero.cta.primary": "Read the platform",
