@@ -17,12 +17,16 @@ export function BudgetDashboard() {
   const [active, setActive] = useState<string | null>(null);
   const chartRef = useRef<HTMLDivElement>(null);
 
-  // Recharts marks its wrapper focusable; the chart is decorative here because
-  // the legend list below exposes every value as real text.
+  // Recharts renders a bare <svg>; give it a text alternative since the same
+  // figures are listed as real text in the legend beside it.
   useEffect(() => {
-    chartRef.current
-      ?.querySelectorAll<HTMLElement>("[tabindex]")
-      .forEach((el) => el.setAttribute("tabindex", "-1"));
+    const svg = chartRef.current?.querySelector("svg");
+    if (!svg) return;
+    svg.setAttribute("role", "img");
+    svg.setAttribute(
+      "aria-label",
+      "Donut chart of the district budget. The same figures are listed in the breakdown beside this chart.",
+    );
   });
 
   const data = useMemo(
@@ -72,7 +76,7 @@ export function BudgetDashboard() {
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:items-start">
           <div className="relative mx-auto w-full max-w-[320px]">
-            <div ref={chartRef} aria-hidden="true" className="h-[280px] w-full">
+            <div ref={chartRef} className="h-[280px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart tabIndex={-1}>
                   <Pie
