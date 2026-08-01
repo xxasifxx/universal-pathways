@@ -84,55 +84,55 @@ export const PRIORITIES: Priority[] = [
     id: "pathways",
     title: "Universal Pathways",
     short:
-      "End the caste system. Personalized learning plans belong in general education, not in a silo.",
+      "Individual learning plans shouldn't require a classification first.",
     body: [
-      "East Brunswick already knows how to write an individualized plan — it does it thousands of times a year inside Special Education. The problem is that we treat individualization as a legal obligation for some students instead of a design principle for all of them.",
-      "Universal Individualization means the district stops asking \"which bucket does this kid belong in?\" and starts asking \"what does this kid need this semester?\" A student who needs reading support in September and an accelerated math placement in January should get both, without a classification following them for six years.",
-      "This is not a spending increase. It is the same $34M of Special Education expertise, plus the counselors already on payroll, deployed as a district-wide capability instead of a separate track.",
+      "East Brunswick writes individualized learning plans all the time. It just does it inside Special Education, where federal law requires it, and almost nowhere else. So a kid who needs something specific has to be classified before anyone will write it down.",
+      "What I want instead is pretty boring in practice. A student who's behind in reading in September gets reading help in September. If that same student is ready for accelerated math in January, they move in January. Nobody has to carry a label through middle school to make either of those things happen.",
+      "This isn't a spending increase. It's the $34.3 million of Special Education expertise we already pay for, plus counselors already on payroll, working across the whole district instead of one track.",
     ],
   },
   {
     id: "agency",
     title: "Empowered Students",
     short:
-      "The right to fail. Students self-select into rigorous coursework. High expectations, high support.",
+      "Let students opt into the hard class, and put real support around them when they do.",
     body: [
-      "Right now, a student can be blocked from an AP or honors course by an administrative gate — a prior classification, a prerequisite grade, a counselor's judgment call. The stated reason is protecting the student. The actual effect is protecting the district's passing metrics.",
-      "Students and families should be able to opt into rigor. If a student wants the harder class and understands the risk, that is their decision to make. The district's job is to surround that choice with support: tutoring, check-ins, and a real path to recover from a bad marking period.",
-      "Removing the gate does not mean removing the safety net. It means the safety net stops being a wall.",
+      "A student can be kept out of an AP or honors course by a prerequisite grade, an old classification, or one counselor's read of whether they're ready. Everyone involved means well. But a district that never lets marginal students try also never has to report that any of them struggled, and that's a convenient thing for the numbers.",
+      "If a family wants the harder class and understands what they're signing up for, that should be their call. The district's job starts after the yes: tutoring that's scheduled rather than offered, a check-in halfway through the marking period, and a way back if the first quarter goes badly.",
+      "I'm not proposing we take away support. I'm proposing we stop using it as a reason to say no.",
     ],
   },
   {
     id: "staff",
     title: "Better Paid, Better Supported Staff",
     short:
-      "Teachers are not the problem. Understaffed rooms and unfunded mandates are.",
+      "Understaffed rooms and unfunded mandates, not the people in front of the kids.",
     body: [
-      "Every conversation about student outcomes in East Brunswick eventually lands on the same thing: there are not enough adults in the building. A teacher managing thirty students across five ability levels with no aide is not failing — they are being set up to fail.",
-      "Competitive pay is the retention floor, not the ceiling. The bigger lever is staffing the support roles: aides, counselors, behavioral specialists, and paraprofessionals who make individualization physically possible in a general education classroom.",
-      "Any proposal that adds responsibility to a teacher's plate without adding capacity to the room is not a solution. It is a press release.",
+      "Almost every conversation I have about outcomes ends up in the same place: there aren't enough adults in the building. A teacher with twenty-eight kids at five different levels and no aide isn't failing. They're being set up to fail.",
+      "Pay matters, and we should stop losing good people to neighboring districts over a few thousand dollars. But the bigger lever is the support roles. Aides and paraprofessionals are what make it physically possible to give one kid something different from the kid next to him.",
+      "So my test for any new initiative is simple. Does it add work to a teacher's day? Then it has to add a person to the room, or it isn't ready.",
     ],
   },
   {
     id: "dashboards",
     title: "Clear Dashboards",
     short:
-      "Data for support, not surveillance. Track where resources are needed — not just test scores.",
+      "Publish where the resources are thin, not scorecards on teachers.",
     body: [
-      "The district publishes budgets that are technically public and practically unreadable. \"Instructional Support Services\" is a real line item covering counselors, nurses, and aides. Almost nobody outside the central office knows that.",
-      "I will push for a public dashboard that maps resources to need: which buildings are short on aides, where counselor caseloads exceed recommended ratios, where referral rates spike. Not teacher scorecards — resource maps.",
-      "Data used to micromanage educators produces defensive reporting. Data used to justify staffing requests produces staff. I have spent my career on the difference.",
+      "The budget is public in the sense that a PDF exists. Ask ten parents what \"Instructional Support Services\" pays for and you'll get ten shrugs, even though it's the line covering their kid's counselor and nurse.",
+      "I'd like the district to publish something a parent can actually use: which buildings are short on aides, which counselors are carrying caseloads above the recommended ratio, where referrals are spiking. That's a map of where help is needed. It isn't an evaluation of anybody.",
+      "I do this for a living, and the pattern is consistent. Measure people to catch them and the reporting gets defensive. Measure conditions to fix them and you get honest numbers.",
     ],
   },
   {
     id: "safe",
     title: "Safe & Inclusive Schools",
     short:
-      "Protect vulnerable students, and make district communication reach every immigrant family.",
+      "Reach every family in a language they read, and name what we do when hate shows up.",
     body: [
-      "East Brunswick students speak more than 90 languages at home. A district notice that only exists in English is not a notice — it is a barrier with a timestamp on it.",
-      "I will push for translated, plain-language communication as a baseline requirement for anything time-sensitive: registration, discipline, IEP meetings, budget votes.",
-      "Islamophobia, antisemitism, and racism are not abstract policy categories in this district. They show up in hallways and group chats. Protecting students from them requires named procedures and adults who know what to do, not a values statement in a handbook.",
+      "More than 90 languages are spoken in the homes of East Brunswick students. An English-only notice with a Friday deadline isn't really a notice for a lot of those families.",
+      "Anything with a deadline attached should go out translated and in plain language: registration, discipline letters, IEP meeting invitations, budget votes. Not the whole website. The things that cost you something if you miss them.",
+      "On hate, I'd rather be specific than sound noble. Islamophobia and antisemitism both show up here, usually in a group chat before they show up in a hallway. What families ask me for isn't a stronger values statement. It's knowing which adult handles it, how fast, and what the parent hears back.",
     ],
   },
 ];
