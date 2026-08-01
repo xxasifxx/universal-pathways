@@ -18,6 +18,9 @@ export const SCHOOL_TAX_SHARE = 0.54;
 
 export const BASE_PER_PUPIL = BUDGET_TOTAL / STUDENT_COUNT;
 
+/** Human-readable baseline used in disclaimers. */
+export const BUDGET_TOTAL_DISPLAY = "$229 million";
+
 export type LevelId = "elementary" | "middle" | "high";
 
 export const LEVELS: { id: LevelId; label: string; note: string; weight: number }[] = [
