@@ -3,9 +3,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { VolunteerActionMap } from "@/components/volunteer-action-map";
 import { useI18n } from "@/lib/i18n";
 
-const TITLE = "Volunteer — Powered by Neighbors";
+const TITLE = "Volunteer — Knock Doors in Your Own Neighborhood";
 const DESCRIPTION =
-  "Join the canvass, phone bank, or host a yard sign in your East Brunswick school zone.";
+  "Canvass, phone bank, or put a sign in your yard. Pick your East Brunswick school zone and we'll pair you with neighbors.";
 
 export const Route = createFileRoute("/volunteer")({
   head: () => ({
@@ -29,8 +29,8 @@ function Volunteer() {
           <p className="eyebrow text-primary">Get involved</p>
           <h1 className="mt-3 text-4xl leading-[1.05] sm:text-6xl">{t("volunteer.title")}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            No consultants, no direct-mail firm. School board races are won by neighbors who
-            knock on the doors of neighbors. Two hours makes a measurable difference.
+            There&apos;s no consultant and no mail firm. School board races here are decided by
+            a few hundred votes, so two hours on a Saturday genuinely moves it.
           </p>
         </div>
       </section>
