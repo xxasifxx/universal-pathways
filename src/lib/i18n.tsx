@@ -42,12 +42,12 @@ const en = {
     "Register to vote by October 13th to have a say in who runs East Brunswick's schools.",
   "footer.register.cta": "Register to vote in New Jersey",
   "footer.tagline":
-    "An independent campaign for the East Brunswick Board of Education.",
+    "An independent campaign for the East Brunswick Board of Education. No party line, no consultants.",
   "footer.rights": "Paid for by Saqeeb for East Brunswick.",
 
   "home.hero.headline": "Data-Driven Transparency. Grassroots Equity.",
   "home.hero.sub":
-    "Running for East Brunswick Board of Education to build a district where every student has a personalized pathway to succeed.",
+    "I'm running for the East Brunswick Board of Education because this district already knows how to teach kids one at a time. It just reserves that for the ones with a file.",
   "home.hero.cta.primary": "Read the platform",
   "home.hero.cta.secondary": "Volunteer",
   "home.hero.badge": "East Brunswick Board of Education · 2026",
@@ -55,36 +55,36 @@ const en = {
   "budget.eyebrow": "Follow the money",
   "budget.title": "Where East Brunswick's $229 million actually goes",
   "budget.intro":
-    "This is the kind of dashboard the district should publish itself. Flip the switch and watch the jargon turn into something a parent can act on.",
+    "The district publishes these numbers, technically. Here they are with the accounting language switched off. Flip the toggle.",
   "budget.toggle": "Translate to Plain English",
   "budget.total": "Total operating budget",
   "budget.share": "share of budget",
   "budget.disclaimer":
-    "Illustrative breakdown built from publicly reported district figures. Exact line items vary year to year — which is precisely why a live dashboard should exist.",
+    "Illustrative breakdown based on publicly reported district figures. Line items shift from year to year, so treat these as approximate until the district publishes something better. I'd like it to.",
 
   "priorities.eyebrow": "The platform",
-  "priorities.title": "Four structural fixes",
+  "priorities.title": "What I'd work on first",
 
-  "about.title": "From Personal Friction to Systemic Insight",
+  "about.title": "I was one of the kids this district sorted",
   "about.timeline.eyebrow": "The student journey",
-  "about.timeline.title": "How one student's file became a policy platform",
+  "about.timeline.title": "How I got here",
 
   "pathways.eyebrow": "Personalized pathways",
   "pathways.title": "Same student. Two systems.",
-  "pathways.start": "Start: a student shows behavioral friction",
+  "pathways.start": "Start: a seventh grader has a bad week",
   "pathways.replay": "Replay both paths",
-  "pathways.trap": "The current trap",
-  "pathways.solution": "The Saqeeb solution",
+  "pathways.trap": "What happens now",
+  "pathways.solution": "What I'd rather happen",
 
   "volunteer.title": "Powered by Neighbors",
   "volunteer.map.title": "Find your neighborhood",
   "volunteer.map.help":
-    "Pick your school zone to join the team working your streets.",
+    "Pick your school zone and you'll be working your own streets.",
   "volunteer.select": "Or choose your zone from the list",
 
-  "contact.title": "The Solutions Inbox",
+  "contact.title": "Tell me what's broken",
   "contact.body":
-    "Failures at the top come from insufficient solutions. Tell me about the bureaucratic bottlenecks you face in your classroom or with your child, so we can build better solutions together.",
+    "If something in this district isn't working for your kid or your classroom, I want the details. I read all of it, and the specific complaints are the ones that turn into policy.",
 
   "form.name": "Name",
   "form.email": "Email",
@@ -98,9 +98,9 @@ const en = {
   "form.submit.contact": "Send it",
   "form.submitting": "Sending…",
   "form.success.volunteer":
-    "You're on the list. Someone from the team will reach out this week.",
-  "form.success.contact": "Message received. Thank you for writing.",
-  "form.error": "Something went wrong. Please try again.",
+    "You're on the list. Someone will reach out this week, probably in the evening.",
+  "form.success.contact": "Got it. Thanks for writing.",
+  "form.error": "That didn't go through. Try again?",
 } as const;
 
 export type TranslationKey = keyof typeof en;
