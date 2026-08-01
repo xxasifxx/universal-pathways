@@ -4,9 +4,9 @@ import { ContactForm } from "@/components/contact-form";
 import { CONTACT_EMAIL } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
-const TITLE = "Contact — The Solutions Inbox";
+const TITLE = "Contact Muhammad Saqeeb — Tell Me What's Broken";
 const DESCRIPTION =
-  "Tell me about the bureaucratic bottlenecks you face in your classroom or with your child.";
+  "Email or write directly about what isn't working in your kid's school or your classroom.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -33,11 +33,12 @@ function Contact() {
             {t("contact.body")}
           </p>
           <div className="mt-8 rounded-xl border border-border bg-secondary/60 p-6">
-            <p className="font-display text-base font-bold">What actually gets read</p>
+            <p className="font-display text-base font-bold">What&apos;s most useful to send</p>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Specifics beat sentiment. The form your kid&apos;s school made you fill out twice.
-              The aide position that has been open since September. The notice that only came in
-              English. Those are the details that turn into policy.
+              Specifics. The form the school made you fill out twice. The aide position
+              that&apos;s been open since September. The notice that only came in English. I
+              can do something with those in a way I can&apos;t do with &ldquo;the district needs
+              to do better.&rdquo;
             </p>
             <p className="mt-4 text-sm">
               Prefer email?{" "}

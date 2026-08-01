@@ -8,7 +8,7 @@ import { useI18n } from "@/lib/i18n";
 
 const TITLE = "Muhammad Saqeeb for East Brunswick Board of Education";
 const DESCRIPTION =
-  "Data-driven transparency and grassroots equity for East Brunswick schools. See where the district's $229M actually goes.";
+  "A school board campaign built on plain numbers and open access. See where the district's $229M goes, and what I'd change.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,8 +56,8 @@ function Index() {
               {t("home.hero.badge")}
             </p>
             <h1 className="mt-5 text-4xl leading-[1.05] sm:text-6xl">
-              Data-Driven Transparency.
-              <span className="block text-primary">Grassroots Equity.</span>
+              Show the numbers.
+              <span className="block text-primary">Open the doors.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
               {t("home.hero.sub")}
@@ -88,7 +88,8 @@ function Index() {
               className="w-full rounded-xl border-4 border-ink object-cover shadow-lg"
             />
             <figcaption className="mt-3 text-xs text-muted-foreground">
-              Out with neighbors — the campaign runs on conversations, not consultants.
+              Outside Queen City Coffee, talking with neighbors. That&apos;s most of what this
+              campaign is.
             </figcaption>
           </figure>
         </div>
@@ -132,7 +133,7 @@ function Index() {
                   {p.short}
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">
-                  Read the detail
+                  Read more
                   <ArrowRight
                     aria-hidden="true"
                     className="size-4 transition-transform group-hover:translate-x-1"
