@@ -148,41 +148,41 @@ export const JOURNEY: JourneyNode[] = [
   {
     id: "label",
     label: "01",
-    title: "The Behavioral Label",
-    text: "Placed in Special Education due to behavioral friction, not academic inability.",
+    title: "The file gets opened",
+    text: "I was an angry kid, and I was loud about it. That got me into Special Education. Nobody ever suggested I couldn't do the work.",
   },
   {
     id: "gate",
     label: "02",
-    title: "The Administrative Gate",
-    text: "Locked out of advanced classes because bureaucratic policies prioritize passing metrics over a student's right to challenge themselves.",
+    title: "The classes close",
+    text: "By high school the file was making my schedule. I asked about advanced courses more than once and got some version of let's be realistic. That was the whole conversation.",
   },
   {
     id: "insight",
     label: "03",
-    title: "The Insight",
-    text: "Realized the system bundles kids with behavioral issues and academic needs together to save administrative effort, leaving both groups neglected.",
+    title: "Figuring out why",
+    text: "It took me years to see it wasn't personal. Kids with behavior problems and kids with learning needs get run through one program because that's cheaper to administer. Both groups get a watered-down version of what they came for.",
   },
   {
     id: "bridge",
     label: "04",
-    title: "The Bridge",
-    text: "Using graduate-level data science and psychology to dismantle this caste system and implement Universal Individualization.",
+    title: "Why I'm running",
+    text: "I got out through independent study and ended up doing graduate work in data science and psychology. Now I spend my days finding where systems quietly sort people. I'd like to point that at the district that sorted me.",
   },
 ];
 
 export const FLOW_TRAP = [
-  "Placed in the Special Education silo",
-  "Socially ostracized from peers",
-  "Administratively blocked from AP courses",
-  "Stagnant growth",
+  "Referred, classified, moved out of the general track",
+  "Separated from the friends he had in September",
+  "Told he isn't eligible for AP",
+  "Coasts. Nobody notices.",
 ];
 
 export const FLOW_SOLUTION = [
-  "Provided targeted counseling",
-  "Retains full academic agency",
-  "Self-selects into the advanced track",
-  "High engagement & growth",
+  "Gets counseling for the thing that actually happened",
+  "Stays in his classes with his friends",
+  "Signs up for AP because he wants to",
+  "Works harder than he has in two years",
 ];
 
 export type Zone = {
