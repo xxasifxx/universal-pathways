@@ -49,25 +49,25 @@ function About() {
       </section>
 
       <section aria-labelledby="timeline-heading" className="bg-secondary/50 py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="eyebrow text-primary">{t("about.timeline.eyebrow")}</p>
           <h2 id="timeline-heading" className="mt-3 text-3xl sm:text-4xl">
             {t("about.timeline.title")}
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-base text-muted-foreground">
             Tap any step to read it. This is one student&apos;s path — and it is the same path
             the district still runs kids through today.
           </p>
-          <div className="mt-10">
+          <div className="mt-10 max-w-3xl">
             <JourneyTimeline />
           </div>
         </div>
       </section>
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 className="text-3xl sm:text-4xl">This is not a campaign against teachers</h2>
-          <div className="mt-6 flex flex-col gap-5 text-base leading-relaxed text-muted-foreground">
+          <div className="mt-6 flex max-w-3xl flex-col gap-5 text-base leading-relaxed text-muted-foreground">
             <p>
               Let me be direct about the thing political campaigns usually blur. Nothing that
               happened to me was a teacher&apos;s fault. The teachers in that building were

@@ -89,20 +89,20 @@ export function BudgetDashboard() {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
+            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-20 text-center">
               {focused ? (
                 <>
                   <p className="font-display text-2xl font-black">
                     {focused.pct.toFixed(1)}%
                   </p>
-                  <p className="mt-1 max-w-[9rem] text-xs font-semibold text-muted-foreground">
+                  <p className="mt-1 text-[11px] font-semibold leading-tight text-muted-foreground">
                     {plain ? focused.plain : focused.jargon}
                   </p>
                 </>
               ) : (
                 <>
                   <p className="font-display text-3xl font-black">$229M</p>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  <p className="mt-1 text-[11px] font-semibold uppercase leading-tight tracking-wide text-muted-foreground">
                     {t("budget.total")}
                   </p>
                 </>

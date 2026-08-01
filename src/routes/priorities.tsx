@@ -61,11 +61,11 @@ function Priorities() {
       </section>
 
       <section aria-labelledby="planks-heading" className="py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 id="planks-heading" className="text-3xl sm:text-4xl">
             The platform, in detail
           </h2>
-          <Accordion type="multiple" className="mt-8">
+          <Accordion type="multiple" className="mt-8 max-w-4xl">
             {PRIORITIES.map((p, i) => (
               <AccordionItem key={p.id} value={p.id} id={p.id} className="scroll-mt-24">
                 <AccordionTrigger className="text-left">
