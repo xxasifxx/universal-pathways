@@ -214,7 +214,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
   });
 
   if (detail.isLoading) return <p className="text-sm text-muted-foreground">Loading person…</p>;
-  const d = detail.data;
+  const d = detail.data as any;
   if (!d) return null;
   const v = d.visitor as Record<string, unknown> | null;
 
@@ -223,10 +223,22 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="font-display text-lg font-extrabold">
-            {String(v?.["name"] ?? "") || `anon ${String(v?.["anon_id"] ?? "").slice(0, 8)}`}
+            {d.display_name}
           </h2>
+          <p className="mt-1 text-sm text-foreground">
+            <span className="font-semibold capitalize">{d.intent?.stage}</span> — {d.intent?.headline}
+          </p>
+          {d.intent?.child_profile ? (
+            <p className="text-xs text-muted-foreground">
+              Priced a {String(d.intent.child_profile.level ?? "student")} child
+              {d.intent.child_profile.services.length > 0
+                ? ` with ${d.intent.child_profile.services.join(", ")}`
+                : ""}
+            </p>
+          ) : null}
           <p className="text-xs text-muted-foreground">
             {String(v?.["email"] ?? "")} {String(v?.["phone"] ?? "")} · {String(v?.["last_ip"] ?? "")}
+            {d.merged_from?.length ? ` · merged from ${d.merged_from.length} other record(s)` : ""}
           </p>
           <p className="mt-1 text-sm">
             {formatMs(d.total_active_ms)} active across {d.sessions.length} sessions
