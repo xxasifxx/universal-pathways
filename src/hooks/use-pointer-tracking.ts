@@ -16,6 +16,7 @@ type Sample = { x: number; y: number; t: number };
 export function usePointerTracking() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const pathRef = useRef(pathname);
+  const flushRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     if (isTrackingDisabled()) return;
