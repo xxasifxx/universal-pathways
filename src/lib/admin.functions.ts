@@ -143,7 +143,7 @@ export const readReplayChunks = createServerFn({ method: "POST" })
       .order("seq", { ascending: true })
       .limit(500);
     return ((rows ?? []) as Array<Record<string, unknown>>).flatMap(
-      (row) => (row["events"] as unknown[]) ?? [],
+      (row) => (row["events"] as Record<string, unknown>[]) ?? [],
     );
   });
 
