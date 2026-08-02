@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
           name: CANDIDATE_NAME,
           jobTitle: "Candidate, East Brunswick Board of Education",
           description:
-            "Data scientist, community organizer, and East Brunswick Public Schools alumnus running for the Board of Education.",
+            "East Brunswick Public Schools graduate and community advocate running for the East Brunswick Board of Education.",
           homeLocation: {
             "@type": "Place",
             address: {
