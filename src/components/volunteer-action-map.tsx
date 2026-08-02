@@ -2,8 +2,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { HELP_OPTIONS, ZONES } from "@/lib/campaign";
+import { getFingerprintSync } from "@/lib/fingerprint";
 import { useI18n } from "@/lib/i18n";
 import { submitVolunteer } from "@/lib/submissions.functions";
+import { getAnonId } from "@/lib/visitor";
 import { cn } from "@/lib/utils";
 
 type Errors = Partial<Record<"name" | "email" | "zipCode", string>>;
