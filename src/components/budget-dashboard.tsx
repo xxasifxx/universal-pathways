@@ -205,6 +205,7 @@ export function BudgetDashboard() {
           <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
             {t("budget.disclaimer")}
           </p>
+          <SourcesNote className="mt-3" />
         </div>
       </div>
     </section>
