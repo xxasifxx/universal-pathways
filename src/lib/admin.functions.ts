@@ -63,9 +63,9 @@ export const updatePerson = createServerFn({ method: "POST" })
     const { assertAdmin } = await import("./admin.server");
     await assertAdmin(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const patch: Record<string, unknown> = {};
-    if (data.label !== undefined) patch["label"] = data.label || null;
-    if (data.isStaff !== undefined) patch["is_staff"] = data.isStaff;
+    const patch: { label?: string | null; is_staff?: boolean } = {};
+    if (data.label !== undefined) patch.label = data.label || null;
+    if (data.isStaff !== undefined) patch.is_staff = data.isStaff;
     if (Object.keys(patch).length > 0) {
       await supabaseAdmin.from("visitors").update(patch).eq("id", data.visitorId);
     }
