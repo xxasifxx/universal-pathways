@@ -277,6 +277,17 @@ export async function buildVisitorDetail(supabase: DB, visitorId: string) {
 
   const signals = (raw ?? []) as SignalRow[];
   const sessions = groupSessions(signals);
+  const intent = buildIntentProfile(signals, Boolean((visitor as any)?.identified_at));
+
+  const { data: aliases } = await supabase
+    .from("visitor_aliases")
+    .select("anon_id, fp_hash, created_at")
+    .eq("visitor_id", visitorId);
+
+  const { data: merged } = await supabase
+    .from("visitors")
+    .select("id, anon_id, fp_hash, last_ua, last_seen")
+    .eq("merged_into", visitorId);
 
   // Per-page breakdown
   const pageMap = new Map<
@@ -328,6 +339,10 @@ export async function buildVisitorDetail(supabase: DB, visitorId: string) {
 
   return {
     visitor,
+    display_name: personLabel((visitor ?? {}) as Record<string, any>, sessions.length),
+    intent,
+    aliases: aliases ?? [],
+    merged_from: merged ?? [],
     sessions,
     pages: [...pageMap.values()].sort((a, b) => b.active_ms - a.active_ms),
     hovers: [...hovers.entries()].map(([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count).slice(0, 25),
