@@ -3,7 +3,9 @@ import { useState } from "react";
 
 import { BudgetScenarioLab } from "@/components/budget-scenario-lab";
 import { PerChildCalculator } from "@/components/per-child-calculator";
+import { SourcesNote } from "@/components/sources-note";
 import { BUDGET_TOTAL_DISPLAY, STUDENT_COUNT, type ChildInput } from "@/lib/cost-model";
+import { BUDGET_YEAR } from "@/lib/sources";
 
 const TITLE = "What does the district spend on my kid? — Saqeeb for East Brunswick";
 const DESCRIPTION =
@@ -40,14 +42,15 @@ function CostCalculator() {
             yours, and what a proposal on the agenda tonight would do to it.
           </p>
           <p className="mt-4 max-w-2xl rounded-lg border border-border bg-card/60 p-4 text-sm leading-relaxed text-muted-foreground">
-            Everything here is modeled from the district&apos;s published operating budget, not from
-            district per-pupil data. Only the district has that, which is exactly why I want them
-            publishing this instead of me.{" "}
+            Everything here is modeled from the district&apos;s adopted {BUDGET_YEAR} operating
+            budget, not from district per-pupil data. Only the district has that, which is exactly
+            why I want them publishing this instead of me.{" "}
             <Link to="/priorities" hash="cost-dashboard" className="font-semibold text-primary underline">
               That&apos;s the promise
             </Link>
             .
           </p>
+          <SourcesNote className="mt-4 max-w-2xl" />
         </div>
       </section>
 
@@ -81,6 +84,7 @@ function CostCalculator() {
           <div className="mt-10">
             <BudgetScenarioLab child={child} />
           </div>
+          <SourcesNote className="mt-8 max-w-2xl" />
         </div>
       </section>
     </>
