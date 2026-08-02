@@ -65,7 +65,7 @@ function Index() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 to="/priorities"
-                className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 font-display text-base font-bold text-primary-foreground transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-md bg-gold px-6 py-3.5 font-display text-base font-bold text-gold-foreground transition-opacity hover:opacity-90"
               >
                 {t("home.hero.cta.primary")}
                 <ArrowRight aria-hidden="true" className="size-4" />

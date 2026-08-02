@@ -89,7 +89,7 @@ export function SiteHeader() {
             href={DONATE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md bg-primary px-4 py-2 font-display text-base tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
+            className="rounded-md bg-gold px-4 py-2 font-display text-base tracking-wide text-gold-foreground transition-opacity hover:opacity-90"
           >
             {t("nav.donate")}
           </a>

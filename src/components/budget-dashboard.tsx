@@ -199,7 +199,7 @@ export function BudgetDashboard() {
         <div className="mt-8 max-w-3xl">
           <Link
             to="/cost-calculator"
-            className="inline-flex rounded-md bg-primary px-5 py-2.5 font-display text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
+            className="inline-flex rounded-md bg-gold px-5 py-2.5 font-display text-sm font-bold text-gold-foreground transition-opacity hover:opacity-90"
           >
             Now do it for your own kid
           </Link>

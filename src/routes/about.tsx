@@ -90,7 +90,7 @@ function About() {
           </div>
           <Link
             to="/priorities"
-            className="mt-8 inline-flex rounded-md bg-primary px-6 py-3.5 font-display text-base font-bold text-primary-foreground transition-opacity hover:opacity-90"
+            className="mt-8 inline-flex rounded-md bg-gold px-6 py-3.5 font-display text-base font-bold text-gold-foreground transition-opacity hover:opacity-90"
           >
             See what I&apos;d change
           </Link>
