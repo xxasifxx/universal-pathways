@@ -121,7 +121,7 @@ export const PRIORITIES: Priority[] = [
     body: [
       "The budget is public in the sense that a PDF exists. Ask ten parents what \"Instructional Support Services\" pays for and you'll get ten shrugs, even though it's the line covering their kid's counselor and nurse.",
       "I'd like the district to publish something a parent can actually use: which buildings are short on aides, which counselors are carrying caseloads above the recommended ratio, where referrals are spiking. That's a map of where help is needed. It isn't an evaluation of anybody.",
-      "I do this for a living, and the pattern is consistent. Measure people to catch them and the reporting gets defensive. Measure conditions to fix them and you get honest numbers.",
+      "The pattern is consistent wherever this gets tried. Measure people to catch them and the reporting gets defensive. Measure conditions to fix them and you get honest numbers.",
     ],
   },
   {
@@ -159,26 +159,26 @@ export const JOURNEY: JourneyNode[] = [
   {
     id: "label",
     label: "01",
-    title: "The file gets opened",
-    text: "I was an angry kid, and I was loud about it. That got me into Special Education. Nobody ever suggested I couldn't do the work.",
+    title: "The bet my parents made",
+    text: "My parents came to East Brunswick believing its public schools would create opportunities they never had. They were right about that. It's the reason my family is here at all.",
   },
   {
     id: "gate",
     label: "02",
-    title: "The classes close",
-    text: "By high school the file was making my schedule. I asked about advanced courses more than once and got some version of let's be realistic. That was the whole conversation.",
+    title: "Learning the rules alongside the coursework",
+    text: "Navigating the school system wasn't always straightforward. Placement requirements, graduation pathways, eligibility rules — understanding those became part of my education, because those decisions determined which opportunities were available to me.",
   },
   {
     id: "insight",
     label: "03",
-    title: "Figuring out why",
-    text: "It took me years to see it wasn't personal. Kids with behavior problems and kids with learning needs get run through one program because that's cheaper to administer. Both groups get a watered-down version of what they came for.",
+    title: "Sitting through the meetings",
+    text: "That experience never really left. Long after graduating I found myself at Board of Education meetings, reading policies, budgets, and agendas. Not because I planned to run for office, but because I wanted to understand how decisions affecting thousands of students were actually made.",
   },
   {
     id: "bridge",
     label: "04",
     title: "Why I'm running",
-    text: "I got out through independent study and ended up doing graduate work in data science and psychology. Now I spend my days finding where systems quietly sort people. I'd like to point that at the district that sorted me.",
+    text: "When hate incidents began affecting students in our schools, paying attention was no longer enough. The conversations that followed introduced me to parents, educators, and students whose experiences were different from mine but kept arriving at the same conclusion: the people most affected by school policies don't always have the strongest voice in creating them.",
   },
 ];
 
