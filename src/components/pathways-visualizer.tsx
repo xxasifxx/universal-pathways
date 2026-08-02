@@ -98,7 +98,7 @@ export function PathwaysVisualizer() {
       <button
         type="button"
         onClick={run}
-        className="inline-flex items-center gap-2 rounded-md bg-ink px-5 py-3 font-display text-sm font-bold text-ink-foreground transition-opacity hover:opacity-90"
+        className="inline-flex items-center gap-2 rounded-md bg-gold px-5 py-3 font-display text-sm font-bold text-gold-foreground transition-opacity hover:opacity-90"
       >
         <Play aria-hidden="true" className="size-4" />
         {revealed === 0 ? t("pathways.start") : t("pathways.replay")}

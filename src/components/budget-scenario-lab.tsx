@@ -225,7 +225,7 @@ export function BudgetScenarioLab({ child }: { child: ChildInput }) {
             type="button"
             onClick={copy}
             disabled={!dirty}
-            className="mt-6 w-full rounded-md bg-primary px-4 py-2.5 font-display text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
+            className="mt-6 w-full rounded-md bg-gold px-4 py-2.5 font-display text-sm font-bold text-gold-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
           >
             Copy these numbers for public comment
           </button>
