@@ -7,9 +7,9 @@ import { SourcesNote } from "@/components/sources-note";
 import { BUDGET_TOTAL_DISPLAY, STUDENT_COUNT, type ChildInput } from "@/lib/cost-model";
 import { BUDGET_YEAR } from "@/lib/sources";
 
-const TITLE = "What does the district spend on my kid? — Saqeeb for East Brunswick";
+const TITLE = "Cost per child calculator — Saqeeb for East Brunswick";
 const DESCRIPTION =
-  "Work out what East Brunswick spends on one student, then move the budget lines a board proposal would move and see what it does to your child and your tax bill.";
+  "See what East Brunswick spends on one student, then move the budget lines a board proposal would move and watch the effect on your child.";
 
 export const Route = createFileRoute("/cost-calculator")({
   head: () => ({

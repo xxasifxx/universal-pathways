@@ -5,7 +5,7 @@ import { ASSUMPTIONS, BUDGET_YEAR, SOURCES } from "@/lib/sources";
 
 const TITLE = "Where these numbers come from — Saqeeb for East Brunswick";
 const DESCRIPTION =
-  "Every figure on this site, its source, and the assumptions layered on top: the East Brunswick 2024–2025 adopted operating budget, state finance filings, and modeled per-student math.";
+  "Every figure on this site and its source: the East Brunswick 2024–2025 adopted budget, state filings, and the assumptions behind the per-student math.";
 
 const usd = new Intl.NumberFormat("en-US", {
   style: "currency",
