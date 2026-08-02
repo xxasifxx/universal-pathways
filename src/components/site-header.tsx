@@ -45,20 +45,26 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link to="/" className="group flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span
-            aria-hidden="true"
-            className="grid size-9 shrink-0 place-items-center rounded-md bg-primary font-display text-base font-black text-primary-foreground"
-          >
-            MS
-          </span>
-          <span className="min-w-0 leading-tight">
-            <span className="block truncate font-display text-sm font-extrabold tracking-tight">
-              {CANDIDATE_NAME}
+          <span className="flex min-w-0 flex-col items-center rounded-md bg-gold px-3 py-1 text-center leading-none">
+            <span className="block text-[8px] font-bold uppercase tracking-[0.28em] text-gold-foreground">
+              Muhammad
             </span>
-            <span className="block truncate text-[11px] font-medium text-muted-foreground">
-              for EB Board of Education
+            <span className="block truncate font-display text-xl tracking-[0.02em] text-gold-foreground">
+              Saqeeb
+            </span>
+            <span
+              aria-hidden="true"
+              className="mb-0.5 flex w-full items-center gap-1.5"
+            >
+              <span className="h-px flex-1 bg-gold-foreground/70" />
+              <span className="text-[7px] text-gold-foreground">★</span>
+              <span className="h-px flex-1 bg-gold-foreground/70" />
+            </span>
+            <span className="block truncate text-[8px] font-bold uppercase tracking-[0.16em] text-gold-foreground">
+              EB Board of Education
             </span>
           </span>
+          <span className="sr-only">{CANDIDATE_NAME} for East Brunswick Board of Education</span>
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
@@ -83,7 +89,7 @@ export function SiteHeader() {
             href={DONATE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md bg-primary px-4 py-2 font-display text-sm font-bold text-primary-foreground transition-colors hover:bg-accent-foreground"
+            className="rounded-md bg-primary px-4 py-2 font-display text-base tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
           >
             {t("nav.donate")}
           </a>

@@ -1,43 +1,44 @@
 ## Goal
 
-Two deliverables: (1) the site is genuinely launch-ready so the candidate can publish without hitting anything broken, and (2) a defensible fair-market-value document for the work done.
+Bring the live site in line with the campaign brand kit in the uploaded sheet: **Burgundy #5A0B00**, **Gold #F28705**, **White**, with the "MUHAMMAD SAQEEB / EB BOARD OF EDUCATION" lockup and its typography.
 
-## What I verified before writing this
+## What changes
 
-- `lead_signals` is healthy: 206 rows, most recent 17:20 today. Page views, clicks, calculator/scenario outcomes are all landing.
-- `replay_events` has **0 rows**. `pointer_samples` has **4 rows**, last written 16:04. So heatmaps and session replay in the admin area currently show nothing.
-- Likely causes, to confirm during the fix: pointer batches only flush on `pagehide`, `visibilitychange`, or after 200 samples — an SPA route change never flushes, and touch devices barely fire `pointermove`. Replay is gated behind a 25% session sample and 150 KB chunks, so with low traffic and `sendBeacon`'s ~64 KB per-payload ceiling the chunks may never make it.
-- Forms (`contact_messages`, `volunteer_signups`) were confirmed writing correctly in earlier testing; they'll be re-tested as part of the launch pass.
+**1. Palette swap in `src/styles.css` (the single source of truth)**
 
-## Part 1 — Make it work
+All colors are already semantic tokens, so the recolor happens in one place and every page follows.
 
-**Fix the tracking pipeline (the only actually broken subsystem)**
-- Flush pointer batches on route change and on a short timer, not just on page unload; record touch/tap points so mobile visitors register at all.
-- Drop replay chunk size below the beacon ceiling and raise the sample rate temporarily to confirm end-to-end writes, then set it back down.
-- Verify in the browser that a real session produces rows in both tables, and that the admin Heatmaps and Replay tabs render them.
+| Token | Now | New |
+| --- | --- | --- |
+| `--primary` | terracotta | burgundy #5A0B00 |
+| `--accent` / highlight | warm tan | gold #F28705 |
+| `--ink` (footer, dark panels) | deep chocolate | burgundy #5A0B00 |
+| `--background` | warm cream | soft cream-white matching the sheet's off-white field |
+| `--card` | near-white | white |
+| chart-1…6 | terracotta ramp | burgundy → gold ramp so the budget dashboard, calculator and scenario lab reread on-brand |
 
-**Cost control, so a live campaign site doesn't run up credits**
-- Lower pointer sampling from 10 Hz to ~4 Hz and cap samples per page.
-- Keep replay at a low session sample rate and shorten retention (replay 14 days, pointer 14 days) via the existing purge function.
-- These land with the fix, so the pipeline goes live already tuned.
+Gold becomes the call-to-action / emphasis color (Donate button, deadline highlight, active states), burgundy the structural color (header lockup, footer, headings, section rules) — same relationship the yard signs and flyer use.
 
-**Launch readiness pass across all 10 public routes and 5 admin routes**
-- Click through every page and every interactive tool at desktop and mobile widths, capture anything visually broken or dead.
-- Submit both forms live and confirm the rows arrive.
-- Confirm admin sign-in works for both admin accounts and each tab loads data.
-- Check every page has its own title/description, `robots.txt` still blocks `/admin`, and no console errors on any route.
-- Run the security scan and resolve anything critical before publishing.
-- Publish, then load the live URL and re-verify the homepage, one form, and one tracking write against production.
+**2. Header lockup**
 
-## Part 2 — Fair market value document
+Rework the "MS" square into the brand lockup: burgundy-on-gold wordmark with the star divider and "EB BOARD OF EDUCATION" subline, sized down for the nav bar. Mobile keeps the compact mark.
 
-A PDF written to survive scrutiny (including ELEC review), containing:
-- Scope inventory: routes, components, database tables, migrations, lines of code — measured, not estimated.
-- Named deliverables: budget dashboard, per-child cost calculator, board-meeting scenario lab, journey timeline, policy flowchart, zone map, methodology/sources page, WCAG 2.1 AA accessibility work, five-language i18n scaffolding, and the admin intent-tracking platform.
-- FMV benchmarked two ways: (a) comparable US agency/freelance market rate for equivalent scope, showing what this would ordinarily cost, and (b) actual cost basis at the $30/hr solo-operator rate plus pass-through infrastructure.
-- Ongoing retainer line for hosting, monitoring, and content updates.
-- A short assumptions-and-sources note, matching the transparency standard already set on the `/methodology` page.
+**3. Kill the hardcoded color**
+
+`src/components/site-footer.tsx` hardcodes `oklch(0.75 0.13 45)` in nine places for hover/highlight. Those get replaced with the gold accent token so the footer themes properly.
+
+**4. Typography to match the brand kit**
+
+The sheet specifies **Bebas Neue** (headlines + sublines, all caps) and **Lato** (body), replacing the current Montserrat/Inter. Loaded via a `<link>` in the root route, wired through `--font-display` / `--font-sans`. Headline sizing gets adjusted since Bebas is a condensed all-caps face and runs narrower than Montserrat.
+
+**5. Contrast pass**
+
+Burgundy on gold and gold on burgundy both need checking against WCAG 2.1 AA, which the site currently meets. Gold #F28705 fails as small text on white, so it stays a background/large-text accent and body links stay burgundy. I'll verify each page at desktop and mobile widths with screenshots after the swap.
+
+## Out of scope
+
+No content, layout, or functionality changes — this is purely visual reskinning. The uploaded brand sheet is used as reference only, not embedded on the site.
 
 ## Technical notes
 
-The tracking fix touches `src/hooks/use-pointer-tracking.ts`, `src/hooks/use-session-replay.ts`, and a retention migration on `purge_tracking_data()`. No schema changes, no changes to the public-facing pages. The FMV document is generated as a downloadable PDF artifact, not a site page.
+Touches `src/styles.css` (tokens), `src/routes/__root.tsx` (font link), `src/components/site-header.tsx`, `src/components/site-footer.tsx`, and small class adjustments wherever headline sizing needs to account for the condensed display face. Chart palettes read from the CSS tokens already, so Recharts follows automatically.
