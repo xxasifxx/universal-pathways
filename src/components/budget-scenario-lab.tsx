@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 
 import { logSignal } from "@/lib/analytics";
@@ -14,6 +15,7 @@ import {
   type LeverState,
 } from "@/lib/cost-model";
 import { cn } from "@/lib/utils";
+import { BUDGET_YEAR } from "@/lib/sources";
 
 export function BudgetScenarioLab({ child }: { child: ChildInput }) {
   const [state, setState] = useState<LeverState>({ ...BASELINE });
