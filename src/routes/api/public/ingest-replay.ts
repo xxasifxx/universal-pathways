@@ -55,7 +55,7 @@ export const Route = createFileRoute("/api/public/ingest-replay")({
             visitor_id: visitorId,
             session_id: data.session_id,
             seq: data.seq,
-            events: data.events,
+            events: data.events as never,
             path: data.path ?? null,
           });
 

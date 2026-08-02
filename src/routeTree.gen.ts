@@ -15,6 +15,9 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CostCalculatorRouteImport } from './routes/cost-calculator'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
+import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
+import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
+import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +49,21 @@ const VolunteerRoute = VolunteerRouteImport.update({
   path: '/volunteer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicIngestPointerRoute = ApiPublicIngestPointerRouteImport.update({
+  id: '/api/public/ingest-pointer',
+  path: '/api/public/ingest-pointer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicIngestReplayRoute = ApiPublicIngestReplayRouteImport.update({
+  id: '/api/public/ingest-replay',
+  path: '/api/public/ingest-replay',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicLogSignalRoute = ApiPublicLogSignalRouteImport.update({
+  id: '/api/public/log-signal',
+  path: '/api/public/log-signal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +72,9 @@ export interface FileRoutesByFullPath {
   '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
+  '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
+  '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
+  '/api/public/log-signal': typeof ApiPublicLogSignalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +83,9 @@ export interface FileRoutesByTo {
   '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
+  '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
+  '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
+  '/api/public/log-signal': typeof ApiPublicLogSignalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +95,9 @@ export interface FileRoutesById {
   '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
+  '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
+  '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
+  '/api/public/log-signal': typeof ApiPublicLogSignalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +108,9 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/priorities'
     | '/volunteer'
+    | '/api/public/ingest-pointer'
+    | '/api/public/ingest-replay'
+    | '/api/public/log-signal'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +119,9 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/priorities'
     | '/volunteer'
+    | '/api/public/ingest-pointer'
+    | '/api/public/ingest-replay'
+    | '/api/public/log-signal'
   id:
     | '__root__'
     | '/'
@@ -97,6 +130,9 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/priorities'
     | '/volunteer'
+    | '/api/public/ingest-pointer'
+    | '/api/public/ingest-replay'
+    | '/api/public/log-signal'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +142,9 @@ export interface RootRouteChildren {
   CostCalculatorRoute: typeof CostCalculatorRoute
   PrioritiesRoute: typeof PrioritiesRoute
   VolunteerRoute: typeof VolunteerRoute
+  ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
+  ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
+  ApiPublicLogSignalRoute: typeof ApiPublicLogSignalRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +191,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VolunteerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/ingest-pointer': {
+      id: '/api/public/ingest-pointer'
+      path: '/api/public/ingest-pointer'
+      fullPath: '/api/public/ingest-pointer'
+      preLoaderRoute: typeof ApiPublicIngestPointerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/ingest-replay': {
+      id: '/api/public/ingest-replay'
+      path: '/api/public/ingest-replay'
+      fullPath: '/api/public/ingest-replay'
+      preLoaderRoute: typeof ApiPublicIngestReplayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/log-signal': {
+      id: '/api/public/log-signal'
+      path: '/api/public/log-signal'
+      fullPath: '/api/public/log-signal'
+      preLoaderRoute: typeof ApiPublicLogSignalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +222,9 @@ const rootRouteChildren: RootRouteChildren = {
   CostCalculatorRoute: CostCalculatorRoute,
   PrioritiesRoute: PrioritiesRoute,
   VolunteerRoute: VolunteerRoute,
+  ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
+  ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
+  ApiPublicLogSignalRoute: ApiPublicLogSignalRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

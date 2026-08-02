@@ -1,10 +1,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 export type VisitorIdentity = {
-  anon_id?: string | null;
-  fp_hash?: string | null;
-  ip?: string | null;
-  user_agent?: string | null;
+  anon_id: string | null | undefined;
+  fp_hash: string | null | undefined;
+  ip: string | null | undefined;
+  user_agent: string | null | undefined;
 };
 
 export function clientIp(request: Request): string | null {
