@@ -38,7 +38,9 @@ export function ContactForm() {
 
     setPending(true);
     try {
-      await submitContact({ data: values });
+      await submitContact({
+        data: { ...values, anonId: getAnonId(), fpHash: getFingerprintSync() },
+      });
       setDone(true);
       toast.success(t("form.success.contact"));
     } catch {

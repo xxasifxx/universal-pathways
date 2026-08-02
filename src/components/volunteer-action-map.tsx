@@ -45,7 +45,9 @@ export function VolunteerActionMap() {
 
     setPending(true);
     try {
-      await submitVolunteer({ data: values });
+      await submitVolunteer({
+        data: { ...values, anonId: getAnonId(), fpHash: getFingerprintSync() },
+      });
       setDone(true);
       toast.success(t("form.success.volunteer"));
     } catch {
