@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CostCalculatorRouteImport } from './routes/cost-calculator'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminExportRouteImport } from './routes/admin/export'
@@ -53,6 +54,11 @@ const MethodologyRoute = MethodologyRouteImport.update({
 const PrioritiesRoute = PrioritiesRouteImport.update({
   id: '/priorities',
   path: '/priorities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VolunteerRoute = VolunteerRouteImport.update({
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/cost-calculator': typeof CostCalculatorRoute
   '/methodology': typeof MethodologyRoute
   '/priorities': typeof PrioritiesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
   '/admin/export': typeof AdminExportRoute
   '/admin/heatmaps': typeof AdminHeatmapsRoute
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/cost-calculator': typeof CostCalculatorRoute
   '/methodology': typeof MethodologyRoute
   '/priorities': typeof PrioritiesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
   '/admin/export': typeof AdminExportRoute
   '/admin/heatmaps': typeof AdminHeatmapsRoute
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/cost-calculator': typeof CostCalculatorRoute
   '/methodology': typeof MethodologyRoute
   '/priorities': typeof PrioritiesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
   '/admin/export': typeof AdminExportRoute
   '/admin/heatmaps': typeof AdminHeatmapsRoute
@@ -162,6 +171,7 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/methodology'
     | '/priorities'
+    | '/sitemap.xml'
     | '/volunteer'
     | '/admin/export'
     | '/admin/heatmaps'
@@ -179,6 +189,7 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/methodology'
     | '/priorities'
+    | '/sitemap.xml'
     | '/volunteer'
     | '/admin/export'
     | '/admin/heatmaps'
@@ -196,6 +207,7 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/methodology'
     | '/priorities'
+    | '/sitemap.xml'
     | '/volunteer'
     | '/admin/export'
     | '/admin/heatmaps'
@@ -214,6 +226,7 @@ export interface RootRouteChildren {
   CostCalculatorRoute: typeof CostCalculatorRoute
   MethodologyRoute: typeof MethodologyRoute
   PrioritiesRoute: typeof PrioritiesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VolunteerRoute: typeof VolunteerRoute
   AdminExportRoute: typeof AdminExportRoute
   AdminHeatmapsRoute: typeof AdminHeatmapsRoute
@@ -267,6 +280,13 @@ declare module '@tanstack/react-router' {
       path: '/priorities'
       fullPath: '/priorities'
       preLoaderRoute: typeof PrioritiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/volunteer': {
@@ -342,6 +362,7 @@ const rootRouteChildren: RootRouteChildren = {
   CostCalculatorRoute: CostCalculatorRoute,
   MethodologyRoute: MethodologyRoute,
   PrioritiesRoute: PrioritiesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   VolunteerRoute: VolunteerRoute,
   AdminExportRoute: AdminExportRoute,
   AdminHeatmapsRoute: AdminHeatmapsRoute,
@@ -355,13 +376,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
