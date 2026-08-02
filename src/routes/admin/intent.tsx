@@ -1,10 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 import { AdminShell, formatMs } from "@/components/admin/admin-shell";
 import { ReplayTab } from "@/components/admin/replay-tab";
-import { readSignals, readVisitorDetail, readVisitors } from "@/lib/admin.functions";
+import {
+  mergePeople,
+  readAllVisitors,
+  readSignals,
+  readVisitorDetail,
+  updatePerson,
+} from "@/lib/admin.functions";
 
 export const Route = createFileRoute("/admin/intent")({
   ssr: false,
@@ -59,28 +65,71 @@ function People({
   selected: string | null;
   onSelect: (id: string | null) => void;
 }) {
-  const visitors = useQuery({ queryKey: ["admin", "visitors"], queryFn: () => readVisitors() });
+  const queryClient = useQueryClient();
+  const [includeStaff, setIncludeStaff] = useState(false);
+  const [mergeSource, setMergeSource] = useState<string | null>(null);
+
+  const visitors = useQuery({
+    queryKey: ["admin", "visitors", includeStaff],
+    queryFn: () => readAllVisitors({ data: { includeStaff } }),
+  });
+
+  const invalidate = () => queryClient.invalidateQueries({ queryKey: ["admin"] });
+
+  const merge = useMutation({
+    mutationFn: (input: { winnerId: string; loserId: string }) => mergePeople({ data: input }),
+    onSuccess: () => {
+      setMergeSource(null);
+      void invalidate();
+    },
+  });
+
+  const update = useMutation({
+    mutationFn: (input: { visitorId: string; label?: string | null; isStaff?: boolean }) =>
+      updatePerson({ data: input }),
+    onSuccess: () => void invalidate(),
+  });
 
   if (visitors.isLoading) return <p className="text-sm text-muted-foreground">Loading people…</p>;
   if (visitors.error)
     return <p role="alert" className="text-sm text-destructive">{(visitors.error as Error).message}</p>;
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center gap-3 text-sm">
+        <label className="flex items-center gap-2 font-semibold">
+          <input
+            type="checkbox"
+            checked={includeStaff}
+            onChange={(e) => setIncludeStaff(e.target.checked)}
+          />
+          Show staff / my own devices
+        </label>
+        {mergeSource ? (
+          <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold">
+            Merging: pick the record to keep, or{" "}
+            <button type="button" className="underline" onClick={() => setMergeSource(null)}>
+              cancel
+            </button>
+          </span>
+        ) : null}
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
       <div className="overflow-x-auto rounded-md border border-border">
         <table className="w-full text-left text-sm">
           <caption className="sr-only">Visitors recorded on the campaign site</caption>
           <thead className="bg-secondary text-xs uppercase">
             <tr>
               <th scope="col" className="px-3 py-2">Person</th>
-              <th scope="col" className="px-3 py-2">Last seen</th>
+              <th scope="col" className="px-3 py-2">What they did</th>
+              <th scope="col" className="px-3 py-2">Stage</th>
               <th scope="col" className="px-3 py-2">Active</th>
-              <th scope="col" className="px-3 py-2">Pages</th>
-              <th scope="col" className="px-3 py-2">Score</th>
+              <th scope="col" className="px-3 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {(visitors.data ?? []).map((v) => (
+            {((visitors.data ?? []) as any[]).map((v) => (
               <tr key={v.id} className="border-t border-border">
                 <td className="px-3 py-2">
                   <button
@@ -88,18 +137,56 @@ function People({
                     onClick={() => onSelect(v.id)}
                     className="font-semibold text-primary underline underline-offset-4"
                   >
-                    {v.name || v.phone || v.email || `anon ${String(v.anon_id ?? "").slice(0, 8)}`}
+                    {v.display_name}
                   </button>
+                  <span className="mt-0.5 block text-xs text-muted-foreground">
+                    {new Date(v.last_seen).toLocaleString()} · {v.session_count} sessions ·{" "}
+                    {v.page_count} pages
+                  </span>
                 </td>
-                <td className="px-3 py-2 text-muted-foreground">
-                  {new Date(v.last_seen).toLocaleString()}
-                </td>
+                <td className="px-3 py-2 text-muted-foreground">{v.intent?.headline}</td>
                 <td className="px-3 py-2">
-                  {formatMs(v.active_ms)}{" "}
-                  <span className="text-muted-foreground">({v.session_count} sessions)</span>
+                  <span className="rounded-full border border-border px-2 py-0.5 text-xs font-semibold capitalize">
+                    {v.intent?.stage}
+                  </span>
                 </td>
-                <td className="px-3 py-2">{v.page_count}</td>
-                <td className="px-3 py-2">{v.engagement_score}</td>
+                <td className="px-3 py-2">{formatMs(v.active_ms)}</td>
+                <td className="px-3 py-2">
+                  <div className="flex flex-wrap gap-2 text-xs">
+                    {mergeSource && mergeSource !== v.id ? (
+                      <button
+                        type="button"
+                        className="underline"
+                        onClick={() =>
+                          merge.mutate({ winnerId: v.id, loserId: mergeSource })
+                        }
+                      >
+                        Keep this one
+                      </button>
+                    ) : (
+                      <button type="button" className="underline" onClick={() => setMergeSource(v.id)}>
+                        Merge
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      className="underline"
+                      onClick={() => {
+                        const label = window.prompt("Name this person", v.label ?? v.name ?? "");
+                        if (label !== null) update.mutate({ visitorId: v.id, label });
+                      }}
+                    >
+                      Rename
+                    </button>
+                    <button
+                      type="button"
+                      className="underline"
+                      onClick={() => update.mutate({ visitorId: v.id, isStaff: !v.is_staff })}
+                    >
+                      {v.is_staff ? "Not staff" : "This is me"}
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
             {(visitors.data ?? []).length === 0 ? (
@@ -114,6 +201,7 @@ function People({
       </div>
 
       {selected ? <Detail visitorId={selected} onClose={() => onSelect(null)} /> : null}
+      </div>
     </div>
   );
 }
@@ -126,7 +214,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
   });
 
   if (detail.isLoading) return <p className="text-sm text-muted-foreground">Loading person…</p>;
-  const d = detail.data;
+  const d = detail.data as any;
   if (!d) return null;
   const v = d.visitor as Record<string, unknown> | null;
 
@@ -135,10 +223,22 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="font-display text-lg font-extrabold">
-            {String(v?.["name"] ?? "") || `anon ${String(v?.["anon_id"] ?? "").slice(0, 8)}`}
+            {d.display_name}
           </h2>
+          <p className="mt-1 text-sm text-foreground">
+            <span className="font-semibold capitalize">{d.intent?.stage}</span> — {d.intent?.headline}
+          </p>
+          {d.intent?.child_profile ? (
+            <p className="text-xs text-muted-foreground">
+              Priced a {String(d.intent.child_profile.level ?? "student")} child
+              {d.intent.child_profile.services.length > 0
+                ? ` with ${d.intent.child_profile.services.join(", ")}`
+                : ""}
+            </p>
+          ) : null}
           <p className="text-xs text-muted-foreground">
             {String(v?.["email"] ?? "")} {String(v?.["phone"] ?? "")} · {String(v?.["last_ip"] ?? "")}
+            {d.merged_from?.length ? ` · merged from ${d.merged_from.length} other record(s)` : ""}
           </p>
           <p className="mt-1 text-sm">
             {formatMs(d.total_active_ms)} active across {d.sessions.length} sessions
@@ -169,7 +269,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
           <div>
             <h3 className="text-sm font-bold">Sessions</h3>
             <ul className="mt-1 space-y-1 text-sm">
-              {d.sessions.map((s) => (
+              {d.sessions.map((s: any) => (
                 <li key={s.session_id} className="text-muted-foreground">
                   {new Date(s.started_at).toLocaleString()} · span {formatMs(s.span_ms)} · active{" "}
                   {formatMs(s.active_ms)} · {s.pages.length} pages · {s.clicks} clicks
@@ -190,7 +290,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
                 </tr>
               </thead>
               <tbody>
-                {d.pages.map((p) => (
+                {d.pages.map((p: any) => (
                   <tr key={p.path} className="border-t border-border">
                     <td>{p.path}</td>
                     <td>{formatMs(p.active_ms)}</td>
@@ -208,7 +308,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
             <div>
               <h3 className="text-sm font-bold">Hover → click</h3>
               <ul className="mt-1 space-y-1 text-sm">
-                {d.hover_conversion.map((h) => (
+                {d.hover_conversion.map((h: any) => (
                   <li key={h.label}>
                     <span className="font-medium">{h.label}</span>{" "}
                     <span
@@ -243,7 +343,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
 
       {tab === "timeline" ? (
         <ol className="max-h-96 space-y-1 overflow-auto text-xs">
-          {d.signals.map((s) => (
+          {d.signals.map((s: any) => (
             <li key={s.id} className="border-b border-border pb-1">
               <span className="font-mono">{new Date(s.created_at).toLocaleTimeString()}</span>{" "}
               <span className="font-semibold">{s.event}</span> {s.path}

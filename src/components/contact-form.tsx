@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
+import { logSignal } from "@/lib/analytics";
 import { CONTACT_ROLES } from "@/lib/campaign";
 import { getFingerprintSync } from "@/lib/fingerprint";
 import { useI18n } from "@/lib/i18n";
@@ -16,6 +17,23 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [pending, setPending] = useState(false);
   const [done, setDone] = useState(false);
+  const started = useRef(false);
+  const submitted = useRef(false);
+
+  function markStarted() {
+    if (started.current) return;
+    started.current = true;
+    logSignal({ event: "form_started", service_group: "contact", meta: { form: "contact" } });
+  }
+
+  useEffect(
+    () => () => {
+      if (started.current && !submitted.current) {
+        logSignal({ event: "form_abandon", service_group: "contact", meta: { form: "contact" } });
+      }
+    },
+    [],
+  );
 
   const inputClass =
     "mt-1.5 w-full rounded-md border border-input bg-card px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus:border-primary";
@@ -44,6 +62,12 @@ export function ContactForm() {
         data: { ...values, anonId: getAnonId(), fpHash: getFingerprintSync() },
       });
       setDone(true);
+      submitted.current = true;
+      logSignal({
+        event: "form_submitted",
+        service_group: "contact",
+        meta: { form: "contact", role: values.role, message_length: values.message.length },
+      });
       toast.success(t("form.success.contact"));
     } catch {
       toast.error(t("form.error"));
@@ -66,6 +90,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={onSubmit}
+      onInput={markStarted}
       noValidate
       className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 sm:p-8"
     >

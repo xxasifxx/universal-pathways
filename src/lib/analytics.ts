@@ -1,4 +1,4 @@
-import { getFingerprintSync, resolveFingerprint } from "./fingerprint";
+import { getFingerprintSync, whenFingerprintReady } from "./fingerprint";
 import { isTrackingDisabled } from "./tracking-consent";
 import { getAnonId, getSessionId } from "./visitor";
 
@@ -20,6 +20,18 @@ export const SIGNAL_EVENTS = [
   "dead_click",
   "form_field_focus",
   "form_abandon",
+  // Campaign outcomes: what a person actually did, not how they moved a mouse.
+  "calculator_run",
+  "calculator_completed",
+  "scenario_adjusted",
+  "scenario_copied",
+  "budget_mode_toggled",
+  "zone_selected",
+  "timeline_step_opened",
+  "priority_read",
+  "form_started",
+  "form_submitted",
+  "donate_click",
 ] as const;
 
 export type SignalEvent = (typeof SIGNAL_EVENTS)[number];
@@ -77,21 +89,56 @@ export function beacon(url: string, body: unknown): void {
   }
 }
 
+/**
+ * Signals emitted before the fingerprint resolves are held briefly and flushed
+ * once it lands, so nothing ships without the cross-device join key.
+ */
+let queue: Array<Record<string, unknown>> = [];
+let flushing = false;
+
+function send(body: Record<string, unknown>): void {
+  beacon("/api/public/log-signal", { ...body, fp_hash: getFingerprintSync() });
+}
+
+function flushSoon(): void {
+  if (flushing) return;
+  flushing = true;
+  void whenFingerprintReady().then(() => {
+    const pending = queue;
+    queue = [];
+    for (const item of pending) send(item);
+  });
+  // A tab closing mid-wait still gets its data out, fingerprint or not.
+  window.addEventListener(
+    "pagehide",
+    () => {
+      const pending = queue;
+      queue = [];
+      for (const item of pending) send(item);
+    },
+    { once: true },
+  );
+}
+
 export function logSignal(payload: SignalPayload): void {
   if (typeof window === "undefined") return;
   if (isTrackingDisabled()) return;
   if (NON_PERSISTED.has(payload.event)) return;
 
-  void resolveFingerprint();
-
-  beacon("/api/public/log-signal", {
+  const body: Record<string, unknown> = {
     ...payload,
     path: payload.path ?? window.location.pathname,
     anon_id: getAnonId(),
     session_id: getSessionId(),
-    fp_hash: getFingerprintSync(),
     referrer: document.referrer || null,
     utm: readUtm(),
     user_agent: navigator.userAgent,
-  });
+  };
+
+  if (getFingerprintSync()) {
+    send(body);
+    return;
+  }
+  queue.push(body);
+  flushSoon();
 }

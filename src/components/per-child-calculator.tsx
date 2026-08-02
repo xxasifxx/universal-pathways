@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
+import { logSignal } from "@/lib/analytics";
 import {
   LEVELS,
   PRESET_CHILDREN,
@@ -24,10 +25,54 @@ export function PerChildCalculator({
 
   const result = useMemo(() => computeChildCost(child), [child]);
 
+  const touchedRef = useRef(false);
+  const completedRef = useRef(false);
+
+  // Only log once the parent has actually configured a child, not on page load.
+  useEffect(() => {
+    if (!touchedRef.current) {
+      touchedRef.current = true;
+      return;
+    }
+    const timer = window.setTimeout(() => {
+      logSignal({
+        event: "calculator_run",
+        service_slug: child.level,
+        service_group: "cost-calculator",
+        meta: {
+          level: child.level,
+          services: child.services,
+          modeled_total: Math.round(computeChildCost(child).total),
+        },
+      });
+    }, 1200);
+    return () => window.clearTimeout(timer);
+  }, [child]);
+
   const bill = Number(taxBill.replace(/[^0-9.]/g, ""));
   const billValid = taxBill.trim() !== "" && Number.isFinite(bill) && bill > 0;
   const billError = taxBill.trim() !== "" && !billValid;
   const schoolPortion = billValid ? bill * SCHOOL_TAX_SHARE : 0;
+
+  // Entering a real tax bill is the strongest intent this page can capture.
+  useEffect(() => {
+    if (!billValid || completedRef.current) return;
+    const timer = window.setTimeout(() => {
+      completedRef.current = true;
+      logSignal({
+        event: "calculator_completed",
+        service_slug: child.level,
+        service_group: "cost-calculator",
+        meta: {
+          level: child.level,
+          services: child.services,
+          entered_tax_bill: true,
+          school_portion: Math.round(schoolPortion),
+        },
+      });
+    }, 1500);
+    return () => window.clearTimeout(timer);
+  }, [billValid, schoolPortion, child]);
 
   const toggleService = (id: ServiceId) => {
     const has = child.services.includes(id);

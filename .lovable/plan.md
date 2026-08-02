@@ -1,65 +1,39 @@
-## Goal
+## What the data actually shows
 
-Add the full person-level intent-tracking stack and authenticated admin area to the campaign site, adapted from the PRD's react-router + Edge Function architecture to this project's TanStack Start stack.
+I queried the live tracking tables before writing this. 85 signals, 5 "visitors", and the problems are concrete:
 
-Confirmed current state: the project has no auth, no admin routes, no `user_roles` table (only `contact_messages` and `volunteer_signups`), and no tracking code. Everything below is new.
+- **You are split across two rows.** Two visitor records share fingerprint `59066a14…`, IP `39.42.167.153`, and the same iPhone user-agent, but different `anon_id` — so they never merged. The merge logic only adopts a fingerprint row when its `anon_id` is empty; once a row has an id, a fresh browser id (private tab, storage clear, new build) starts a brand-new "person" forever.
+- **19 of 85 signals have no fingerprint at all.** The fingerprint is cached in `sessionStorage`, so it recomputes every session, and everything emitted before it resolves goes out unfingerprinted. Those signals can never be re-linked later.
+- **Admin browsing is tracked as lead activity.** `/admin/login` and `/admin/intent` page views and sessions are in the dataset. Your own admin traffic is inflating the numbers.
+- **24 of 85 signals — the single largest event type — are junk hovers.** The hover selector matches `[tabindex]`, which catches the whole `<main>` element, so the label recorded is `"Campaign adminStaff only. This dashboard shows visitor..."` with `tag: main`, fired repeatedly. It measures nothing.
+- **Only 8 event types ever fired**, all mechanical (page_view, scroll, exit). None of the campaign-intent events (priority plank read, calculator run, budget scenario, volunteer abandon) show up, because the emitters only listen for `data-intent` attributes and almost nothing on the site carries them.
 
-## Stack translation
+Net: it's a firehose of anonymous mechanics, not a record of who cared about what.
 
-| PRD | Here |
-|---|---|
-| Supabase Edge Functions (`log-signal`, `ingest-*`) | TanStack server routes under `src/routes/api/public/*` (no auth, service-role writes, CORS + OPTIONS) |
-| Admin read edge functions | Authenticated `createServerFn` with `requireSupabaseAuth` + an admin role check |
-| `requireAdmin(req)` guard | `has_role(auth.uid(),'admin')` checked through the caller's own client before any admin client use |
-| react-router `<AdminRoute>` | `src/routes/_authenticated/` gate + an admin-role check inside the admin layout |
-| Hardcoded `SIGNAL_URL` | Same-origin `/api/public/...` paths, no env needed |
+## What I'll change
 
-## Phase 1 — Database
+### 1. Identity that survives a new browser id
+- Fingerprint moves to `localStorage` and resolves before the first signal is sent (short await with a timeout, so page speed isn't affected), so no signal ships unfingerprinted.
+- Server-side resolution becomes: match on `anon_id` → else match on `fp_hash` **regardless of whether that row already has an anon_id** → else insert. When a fingerprint match has a different `anon_id`, both are recorded as aliases of one person.
+- New `visitor_aliases` table (visitor_id, anon_id, fp_hash) so one person can own many device ids, plus a `merged_into` column on `visitors` so old rows fold into the survivor without deleting history.
+- A backfill migration that merges the existing duplicate pair and re-points its signals.
+- Identity is sticky: once you fill a form, name/email/phone propagate across every alias, past and future.
 
-One migration: `app_role` enum, `user_roles` + `has_role()` (security definer), `visitors`, `lead_signals`, `pointer_samples`, `replay_events`, all indexes from §6, GRANTs before RLS, admin-only SELECT policies, no anon insert policies (ingest is service-role). Adds `visitor_id` FK to the existing `contact_messages` and `volunteer_signups` tables. Then an insert granting the owner's account the `admin` role.
+### 2. Stop polluting the dataset
+- Suppress all tracking on `/admin/*` and for any signed-in admin session (the self-record toggle stays for deliberate testing).
+- Delete the `[tabindex]` hover rule; hover only fires for real links/buttons with a real label, deduped per element per page view, and only above a meaningful dwell.
+- Purge the existing junk `cta_hover` and admin-path rows so the dashboard starts honest.
 
-## Phase 2 — Client identity + consent
+### 3. Signals that mean something for a campaign
+- Tag the real surfaces with intent markers: each priority plank, the budget dashboard, the per-child calculator, the board-meeting scenario lab, the journey timeline, the zone map, donate/volunteer/contact CTAs.
+- Add outcome-level events: calculator completed (with grade + services chosen), scenario copied for public comment, zone selected, volunteer form started vs. abandoned vs. submitted, priority read to the end.
+- Roll them into a per-person **intent profile**: top issues by attention, whether they ran their own numbers, whether they're map-adjacent to a zone, and a lead stage (browsing → engaged → ready to ask).
 
-- `src/lib/visitor.ts` — `anon_id` (localStorage `lv_anon_id`), `session_id` (sessionStorage).
-- `src/lib/fingerprint.ts` — lazy FingerprintJS, cached, `getFingerprintSync()` returns null until resolved.
-- `src/lib/tracking-consent.ts` — DNT, `lv_no_track` cookie/localStorage, `?heatmap=1` preview suppression. Every emitter checks it first.
-- `src/lib/preview.ts` — heatmap-iframe detection.
-- All of this is browser-only and mounted client-side so SSR is unaffected.
-
-## Phase 3 — Emitters
-
-`src/lib/analytics.ts` with the full event enum, enriching each signal and sending it as a `text/plain` blob via `sendBeacon` with a `fetch(keepalive)` fallback.
-
-Hooks in `src/hooks/`: `usePageView`, `usePageEngagement` (scroll depth, active-only time, `page_exit` with `dwell_ms`), `useClickTracking` (delegated capture listeners, rage/dead click, hover dwell), `usePointerTracking` (~10 Hz, document-percent coords, ≤200-sample batches), `useSessionReplay` (rrweb, `maskAllInputs`, ~150 KB chunks, monotonic `seq`, hover annotations). Mounted once in `__root.tsx` inside a client-only wrapper. `useServiceIntent` is adapted to campaign content: priority planks, calculator interactions, donate/volunteer CTAs.
-
-## Phase 4 — Ingest routes
-
-`src/routes/api/public/log-signal.ts`, `ingest-pointer.ts`, `ingest-replay.ts`. Each: OPTIONS short-circuit, permissive CORS, zod validation, size caps (256 KB / 2 MB), server-derived IP and UA, `supabaseAdmin` loaded inside the handler, never throws to the client. `log-signal` implements the three-step visitor resolution (anon_id → orphan fp_hash adoption → insert) in `src/lib/visitors.server.ts`.
-
-Identity attachment: `submitVolunteer` / `submitContact` gain optional `anon_id` + `fp_hash`, resolve the visitor, stamp name/email/phone + `identified_at`, and store `visitor_id` on the lead row.
-
-## Phase 5 — Admin area
-
-- `src/routes/_authenticated/route.tsx` (integration-managed gate) + `src/routes/auth.tsx` login page: email/password plus Google (configured the same turn).
-- `src/routes/_authenticated/admin/` — layout with pill tabs, recording on/off toggle, sign out; children `intent`, `heatmaps`, `export`. Non-admin authenticated users get an explicit "Access denied" screen, not a redirect loop. Admin session arms `setTrackingDisabled(true)`.
-- Admin data via `src/lib/admin.functions.ts`: `readVisitors` (with session grouping by `session_id`, 30-min fallback gap, per-session span/active/pages/clicks; visitor-level active time labelled as a total across N sessions), `readVisitorDetail`, `readSignals`, `readHeatmap`, `readReplays`, `exportEngagement`.
-- **Intent tab**: People table → detail side panel (identity, sessions block, per-page table, hover→click conversion, replay, raw timeline); Signals feed with filters; Leads tab showing volunteer + contact submissions joined to their visitor.
-- **Replay tab**: chunks sorted by `seq`, segmented at every type-4 meta / type-2 full snapshot with one chip per page-load segment, idle gaps >3 s rewritten to 1 s with a "skipped Xm idle" note, hover annotation overlays.
-- **Heatmaps tab**: same-origin iframe at true device viewport (390×844 / 1280×900) with `?heatmap=1`, scrolled via `contentWindow.scrollTo`, heat canvas drawn at viewport size with document-percent points translated by the scroll offset, mini document map, path/viewport/mode/date/intensity controls.
-- **Export tab**: date range + path + grouping → CSV downloaded client-side.
-
-## Phase 6 — Defects from §10, fixed up front
-
-Env-free same-origin signal URL; no gtag mirror; replay sampling (configurable %, default 25%); a retention purge (`pg_cron` deleting replay/pointer >30 days, `lead_signals` >180 days); `cta_hover` aggregated rather than persisted per event; a note in the admin UI that a closed tab starts a new session.
+### 4. Admin that shows people, not hashes
+- Person row shows a resolved label (name → email → phone → device summary like "iPhone · East Brunswick · 3 visits") instead of `anon 4cbb7258`.
+- Manual **Merge** and **Rename / tag as me** actions, and a "this is staff, exclude" flag.
+- Detail view leads with the intent profile and a plain-English story of the visit, with the raw signal feed demoted to a tab.
 
 ## Technical notes
 
-- New dependencies: `@fingerprintjs/fingerprintjs`, `rrweb`, `rrweb-player`. All are loaded dynamically after hydration so they never enter the SSR graph.
-- `src/start.ts` already registers `attachSupabaseAuth`, so admin server fns get bearer tokens automatically.
-- Admin server fns verify the admin role through the caller's own RLS-scoped client before touching the service-role client.
-- Public-site routes stay SSR and unauthenticated; the tracking hooks are strictly client-side.
-- Per your note, no separate privacy disclosure page will be added; DNT and the opt-out toggle still ship since the heatmap preview depends on them.
-
-## Scale caveat
-
-This is a large build — roughly 30 new files across DB, tracking, ingest, and a four-tab admin SPA. I'd suggest doing it in the phase order above so each layer is verifiable (DB → tracking fires → ingest rows land → admin reads them) rather than all at once.
+Migration adds `visitor_aliases`, `visitors.merged_into`, `visitors.is_staff`, with GRANTs and admin-only read policies; writes stay server-side through the service role. Resolution logic lives in `src/lib/visitors.server.ts`; the ingest routes under `src/routes/api/public/*` keep their current shape. Emitters change in `src/hooks/use-click-tracking.ts`, `use-campaign-intent.ts`, and `src/lib/tracking-consent.ts`; admin aggregation in `src/lib/admin.server.ts` plus new merge/label server functions in `src/lib/admin.functions.ts`.

@@ -22,6 +22,56 @@ export const readVisitors = createServerFn({ method: "GET" })
     return buildVisitorList(supabaseAdmin);
   });
 
+export const readAllVisitors = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { includeStaff?: boolean }) =>
+    z.object({ includeStaff: z.boolean().default(false) }).parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    const { assertAdmin, buildVisitorList } = await import("./admin.server");
+    await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    return buildVisitorList(supabaseAdmin, 200, data.includeStaff);
+  });
+
+export const mergePeople = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { winnerId: string; loserId: string }) =>
+    z.object({ winnerId: z.string().uuid(), loserId: z.string().uuid() }).parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    const { assertAdmin } = await import("./admin.server");
+    await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { mergeVisitors } = await import("./visitors.server");
+    await mergeVisitors(supabaseAdmin, data.winnerId, data.loserId);
+    return { ok: true as const };
+  });
+
+export const updatePerson = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { visitorId: string; label?: string | null; isStaff?: boolean }) =>
+    z
+      .object({
+        visitorId: z.string().uuid(),
+        label: z.string().trim().max(120).nullable().optional(),
+        isStaff: z.boolean().optional(),
+      })
+      .parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    const { assertAdmin } = await import("./admin.server");
+    await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const patch: { label?: string | null; is_staff?: boolean } = {};
+    if (data.label !== undefined) patch.label = data.label || null;
+    if (data.isStaff !== undefined) patch.is_staff = data.isStaff;
+    if (Object.keys(patch).length > 0) {
+      await supabaseAdmin.from("visitors").update(patch).eq("id", data.visitorId);
+    }
+    return { ok: true as const };
+  });
+
 export const readVisitorDetail = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: { visitorId: string }) =>

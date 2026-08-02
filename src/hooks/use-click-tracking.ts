@@ -4,18 +4,31 @@ import { logSignal } from "@/lib/analytics";
 import { isTrackingDisabled } from "@/lib/tracking-consent";
 
 const INTERACTIVE = "a,button,input,select,textarea,summary,label,[role=button],[role=link],[tabindex]";
+/** Hover is only meaningful on real controls. `[tabindex]` matched wrappers like
+ *  <main>, which produced page-sized "hovers" with the whole page as the label. */
+const HOVERABLE = "a[href],button,summary,[role=button],[role=link]";
+const MAX_HOVER_AREA_RATIO = 0.4;
 const RAGE_WINDOW_MS = 700;
 const RAGE_RADIUS_PX = 30;
 const RAGE_COUNT = 3;
 const HOVER_DWELL_MS = 600;
 
 function labelFor(el: Element): string {
-  const tracked = el.closest("[data-track]");
-  if (tracked) return tracked.getAttribute("data-track") ?? "";
-  const aria = el.closest("[aria-label]");
-  if (aria) return aria.getAttribute("aria-label") ?? "";
+  const tracked = el.getAttribute("data-track") ?? el.closest("[data-track]")?.getAttribute("data-track");
+  if (tracked) return tracked;
+  const aria = el.getAttribute("aria-label");
+  if (aria) return aria;
   const text = (el.textContent ?? "").trim().replace(/\s+/g, " ");
-  return text.slice(0, 80);
+  // A "label" longer than a sentence means we grabbed a container, not a control.
+  return text.length > 80 ? "" : text;
+}
+
+function isMeaningfulHoverTarget(el: Element): boolean {
+  const rect = el.getBoundingClientRect();
+  const area = rect.width * rect.height;
+  const viewport = Math.max(1, window.innerWidth * window.innerHeight);
+  if (area / viewport > MAX_HOVER_AREA_RATIO) return false;
+  return labelFor(el).length > 0;
 }
 
 function describe(el: Element): Record<string, unknown> {
@@ -50,6 +63,7 @@ export function useClickTracking() {
     const hoverTimers = new WeakMap<Element, number>();
     const hoverStarts = new WeakMap<Element, number>();
     const hoveredLabels = new Set<string>();
+    const hoverLogged = new Set<string>();
 
     const onClick = (e: MouseEvent) => {
       const target = e.target;
@@ -100,12 +114,17 @@ export function useClickTracking() {
     const onEnter = (e: PointerEvent) => {
       const target = e.target;
       if (!(target instanceof Element)) return;
-      const el = target.closest(INTERACTIVE);
-      if (!el) return;
+      const el = target.closest(HOVERABLE);
+      if (!el || !isMeaningfulHoverTarget(el)) return;
       hoverStarts.set(el, Date.now());
       const timer = window.setTimeout(() => {
         const label = labelFor(el);
-        if (label) hoveredLabels.add(label);
+        if (!label) return;
+        hoveredLabels.add(label);
+        // One hover per control per page: repeats measured nothing but noise.
+        const key = `${window.location.pathname}|${label}`;
+        if (hoverLogged.has(key)) return;
+        hoverLogged.add(key);
         logSignal({
           event: "cta_hover",
           dwell_ms: HOVER_DWELL_MS,
@@ -118,7 +137,7 @@ export function useClickTracking() {
     const onLeave = (e: PointerEvent) => {
       const target = e.target;
       if (!(target instanceof Element)) return;
-      const el = target.closest(INTERACTIVE);
+      const el = target.closest(HOVERABLE);
       if (!el) return;
       const timer = hoverTimers.get(el);
       if (timer) window.clearTimeout(timer);

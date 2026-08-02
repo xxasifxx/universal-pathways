@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { logSignal } from "@/lib/analytics";
 import { JOURNEY } from "@/lib/campaign";
 import { cn } from "@/lib/utils";
 
@@ -30,7 +31,17 @@ export function JourneyTimeline() {
               type="button"
               aria-expanded={expanded}
               aria-controls={`journey-panel-${node.id}`}
-              onClick={() => setOpen(expanded ? "" : node.id)}
+              onClick={() => {
+                setOpen(expanded ? "" : node.id);
+                if (!expanded) {
+                  logSignal({
+                    event: "timeline_step_opened",
+                    service_slug: node.id,
+                    service_group: "student-journey",
+                    meta: { title: node.title, step: i + 1 },
+                  });
+                }
+              }}
               className={cn(
                 "w-full rounded-lg border p-5 text-left transition-colors",
                 expanded

@@ -4,7 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import { useAdminSession } from "@/hooks/use-admin-session";
 import { supabase } from "@/integrations/supabase/client";
-import { isTrackingDisabled, setTrackingDisabled } from "@/lib/tracking-consent";
+import { isTrackingDisabled, setStaffDevice, setTrackingDisabled } from "@/lib/tracking-consent";
 
 const TABS = [
   { to: "/admin/intent", label: "Intent" },
@@ -19,12 +19,14 @@ function RecordingToggle() {
     <button
       type="button"
       onClick={() => {
-        setTrackingDisabled(!off ? true : false);
-        setOff(!off);
+        const nextOff = !off; // true = suppress, false = record me like a visitor
+        setStaffDevice(nextOff);
+        setTrackingDisabled(nextOff);
+        setOff(nextOff);
       }}
       className="rounded-md border border-border px-3 py-1.5 text-xs font-semibold"
     >
-      Recording my activity: {off ? "off" : "on"}
+      Recording my activity: {off ? "off (staff)" : "on"}
     </button>
   );
 }
@@ -33,6 +35,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const { loading, session, isAdmin } = useAdminSession();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  // An admin's own browsing is instrumentation, not audience behaviour.
+  useEffect(() => {
+    if (isAdmin) setStaffDevice(true);
+  }, [isAdmin]);
 
   useEffect(() => {
     if (!loading && !session) {

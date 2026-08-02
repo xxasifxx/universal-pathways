@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { logSignal } from "@/lib/analytics";
 import { PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
@@ -65,9 +66,30 @@ function Priorities() {
           <h2 id="planks-heading" className="text-3xl sm:text-4xl">
             The long version
           </h2>
-          <Accordion type="multiple" className="mt-8 max-w-4xl">
+          <Accordion
+            type="multiple"
+            className="mt-8 max-w-4xl"
+            onValueChange={(open: string[]) => {
+              const last = open[open.length - 1];
+              if (!last) return;
+              const plank = PRIORITIES.find((p) => p.id === last);
+              logSignal({
+                event: "priority_read",
+                service_slug: last,
+                service_group: "priorities",
+                meta: { title: plank?.title ?? last },
+              });
+            }}
+          >
             {PRIORITIES.map((p, i) => (
-              <AccordionItem key={p.id} value={p.id} id={p.id} className="scroll-mt-24">
+              <AccordionItem
+                key={p.id}
+                value={p.id}
+                id={p.id}
+                data-intent={p.id}
+                data-intent-group="priorities"
+                className="scroll-mt-24"
+              >
                 <AccordionTrigger className="text-left">
                   <span className="flex items-baseline gap-3">
                     <span className="font-display text-sm font-black text-primary">
