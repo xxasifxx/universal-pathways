@@ -10,8 +10,8 @@ export async function attachIdentity(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   supabase: SupabaseClient<any, any, any>,
   input: {
-    anon_id?: string | null;
-    fp_hash?: string | null;
+    anon_id: string | null | undefined;
+    fp_hash: string | null | undefined;
     name: string;
     email: string;
     phone: string | null;

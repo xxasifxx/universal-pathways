@@ -17,6 +17,7 @@ import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminExportRouteImport } from './routes/admin/export'
+import { Route as AdminHeatmapsRouteImport } from './routes/admin/heatmaps'
 import { Route as AdminIntentRouteImport } from './routes/admin/intent'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
@@ -63,6 +64,11 @@ const AdminExportRoute = AdminExportRouteImport.update({
   path: '/admin/export',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminHeatmapsRoute = AdminHeatmapsRouteImport.update({
+  id: '/admin/heatmaps',
+  path: '/admin/heatmaps',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIntentRoute = AdminIntentRouteImport.update({
   id: '/admin/intent',
   path: '/admin/intent',
@@ -97,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
   '/admin/export': typeof AdminExportRoute
+  '/admin/heatmaps': typeof AdminHeatmapsRoute
   '/admin/intent': typeof AdminIntentRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/': typeof AdminIndexRoute
@@ -112,6 +119,7 @@ export interface FileRoutesByTo {
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
   '/admin/export': typeof AdminExportRoute
+  '/admin/heatmaps': typeof AdminHeatmapsRoute
   '/admin/intent': typeof AdminIntentRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin': typeof AdminIndexRoute
@@ -128,6 +136,7 @@ export interface FileRoutesById {
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
   '/admin/export': typeof AdminExportRoute
+  '/admin/heatmaps': typeof AdminHeatmapsRoute
   '/admin/intent': typeof AdminIntentRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/': typeof AdminIndexRoute
@@ -145,6 +154,7 @@ export interface FileRouteTypes {
     | '/priorities'
     | '/volunteer'
     | '/admin/export'
+    | '/admin/heatmaps'
     | '/admin/intent'
     | '/admin/login'
     | '/admin/'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/priorities'
     | '/volunteer'
     | '/admin/export'
+    | '/admin/heatmaps'
     | '/admin/intent'
     | '/admin/login'
     | '/admin'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/priorities'
     | '/volunteer'
     | '/admin/export'
+    | '/admin/heatmaps'
     | '/admin/intent'
     | '/admin/login'
     | '/admin/'
@@ -191,6 +203,7 @@ export interface RootRouteChildren {
   PrioritiesRoute: typeof PrioritiesRoute
   VolunteerRoute: typeof VolunteerRoute
   AdminExportRoute: typeof AdminExportRoute
+  AdminHeatmapsRoute: typeof AdminHeatmapsRoute
   AdminIntentRoute: typeof AdminIntentRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -257,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminExportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/heatmaps': {
+      id: '/admin/heatmaps'
+      path: '/admin/heatmaps'
+      fullPath: '/admin/heatmaps'
+      preLoaderRoute: typeof AdminHeatmapsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/intent': {
       id: '/admin/intent'
       path: '/admin/intent'
@@ -303,6 +323,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrioritiesRoute: PrioritiesRoute,
   VolunteerRoute: VolunteerRoute,
   AdminExportRoute: AdminExportRoute,
+  AdminHeatmapsRoute: AdminHeatmapsRoute,
   AdminIntentRoute: AdminIntentRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminIndexRoute: AdminIndexRoute,
