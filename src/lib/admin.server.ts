@@ -96,14 +96,129 @@ export function engagementScore(input: {
   return Math.max(0, Math.round(time + pages + clicks + scroll - input.rage * 3));
 }
 
-export async function buildVisitorList(supabase: DB, limit = 200) {
-  const { data: visitors } = await supabase
+const OUTCOME_EVENTS = new Set([
+  "calculator_run",
+  "calculator_completed",
+  "scenario_adjusted",
+  "scenario_copied",
+  "zone_selected",
+  "timeline_step_opened",
+  "priority_read",
+  "form_started",
+  "form_submitted",
+  "form_abandon",
+  "donate_click",
+]);
+
+function deviceLabel(ua: string | null): string {
+  if (!ua) return "unknown device";
+  if (/iPhone/i.test(ua)) return "iPhone";
+  if (/iPad/i.test(ua)) return "iPad";
+  if (/Android/i.test(ua)) return "Android";
+  if (/Macintosh/i.test(ua)) return "Mac";
+  if (/Windows/i.test(ua)) return "Windows";
+  if (/Linux/i.test(ua)) return "Linux";
+  return "browser";
+}
+
+/** A person, described the way a campaign would describe them. */
+export function personLabel(v: Record<string, any>, sessions: number): string {
+  if (v["label"]) return String(v["label"]);
+  if (v["name"]) return String(v["name"]);
+  if (v["email"]) return String(v["email"]);
+  if (v["phone"]) return String(v["phone"]);
+  const visits = sessions === 1 ? "first visit" : `${sessions} visits`;
+  return `${deviceLabel(v["last_ua"] ?? null)} · ${visits}`;
+}
+
+export type IntentProfile = {
+  stage: "browsing" | "engaged" | "invested" | "ready to ask";
+  headline: string;
+  topics: { slug: string; label: string; hits: number }[];
+  ran_own_numbers: boolean;
+  used_board_mode: boolean;
+  copied_for_comment: boolean;
+  zone: string | null;
+  child_profile: { level: string | null; services: string[] } | null;
+  forms: { started: number; submitted: number; abandoned: number };
+  outcomes: number;
+};
+
+/** Turn raw signals into what this person actually cares about. */
+export function buildIntentProfile(signals: SignalRow[], identified: boolean): IntentProfile {
+  const has = (event: string) => signals.some((s) => s.event === event);
+  const count = (event: string) => signals.filter((s) => s.event === event).length;
+
+  const topicHits = new Map<string, { label: string; hits: number }>();
+  for (const s of signals) {
+    if (!s.service_slug) continue;
+    if (!OUTCOME_EVENTS.has(s.event) && s.event !== "service_dwell") continue;
+    const label = String(s.meta?.["title"] ?? s.meta?.["zone"] ?? s.service_slug);
+    const entry = topicHits.get(s.service_slug) ?? { label, hits: 0 };
+    entry.hits += 1;
+    topicHits.set(s.service_slug, entry);
+  }
+
+  const calc = signals.find((s) => s.event === "calculator_completed" || s.event === "calculator_run");
+  const zoneSignal = signals.find((s) => s.event === "zone_selected");
+
+  const forms = {
+    started: count("form_started"),
+    submitted: count("form_submitted"),
+    abandoned: count("form_abandon"),
+  };
+  const outcomes = signals.filter((s) => OUTCOME_EVENTS.has(s.event)).length;
+
+  let stage: IntentProfile["stage"] = "browsing";
+  if (outcomes > 0) stage = "engaged";
+  if (has("calculator_completed") || has("scenario_adjusted") || forms.started > 0)
+    stage = "invested";
+  if (identified || forms.submitted > 0 || has("scenario_copied")) stage = "ready to ask";
+
+  const bits: string[] = [];
+  if (has("calculator_completed")) bits.push("priced out their own kid");
+  else if (has("calculator_run")) bits.push("opened the per-child calculator");
+  if (has("scenario_copied")) bits.push("copied numbers for public comment");
+  else if (has("scenario_adjusted")) bits.push("moved the budget levers");
+  if (zoneSignal) bits.push(`looked at the ${String(zoneSignal.meta?.["zone"] ?? "map")} zone`);
+  if (forms.submitted > 0) bits.push("sent a form");
+  else if (forms.abandoned > 0) bits.push("started a form and left");
+  const top = [...topicHits.values()].sort((a, b) => b.hits - a.hits)[0];
+  if (bits.length === 0 && top) bits.push(`read up on ${top.label}`);
+
+  return {
+    stage,
+    headline: bits.length > 0 ? bits.join(", ") : "browsed without committing to anything yet",
+    topics: [...topicHits.entries()]
+      .map(([slug, v]) => ({ slug, label: v.label, hits: v.hits }))
+      .sort((a, b) => b.hits - a.hits)
+      .slice(0, 8),
+    ran_own_numbers: has("calculator_completed"),
+    used_board_mode: has("scenario_adjusted") || has("scenario_copied"),
+    copied_for_comment: has("scenario_copied"),
+    zone: zoneSignal ? String(zoneSignal.meta?.["zone"] ?? zoneSignal.service_slug ?? "") : null,
+    child_profile: calc
+      ? {
+          level: (calc.meta?.["level"] as string | undefined) ?? null,
+          services: (calc.meta?.["services"] as string[] | undefined) ?? [],
+        }
+      : null,
+    forms,
+    outcomes,
+  };
+}
+
+export async function buildVisitorList(supabase: DB, limit = 200, includeStaff = false) {
+  let query = supabase
     .from("visitors")
     .select(
-      "id, anon_id, fp_hash, name, phone, email, first_seen, last_seen, last_ip, last_ua, signal_count, identified_at, notes",
+      "id, anon_id, fp_hash, name, phone, email, label, is_staff, first_seen, last_seen, last_ip, last_ua, signal_count, identified_at, notes",
     )
+    .is("merged_into", null)
     .order("last_seen", { ascending: false })
     .limit(limit);
+  if (!includeStaff) query = query.eq("is_staff", false);
+  const { data: visitors } = await query;
 
   const ids = (visitors ?? []).map((v: any) => v.id);
   if (ids.length === 0) return [];
@@ -131,8 +246,11 @@ export async function buildVisitorList(supabase: DB, limit = 200) {
     const clicks = rows.filter((r) => r.event === "element_click").length;
     const rage = rows.filter((r) => r.event === "rage_click").length;
     const maxScroll = rows.reduce((m, r) => Math.max(m, Number(r.meta?.["max_scroll_pct"] ?? 0)), 0);
+    const intent = buildIntentProfile(rows, Boolean(v.identified_at));
     return {
       ...v,
+      display_name: personLabel(v, sessions.length),
+      intent,
       session_count: sessions.length,
       active_ms: activeMs,
       page_count: pages,
@@ -140,7 +258,7 @@ export async function buildVisitorList(supabase: DB, limit = 200) {
       rage_count: rage,
       engagement_score: engagementScore({ activeMs, pages, clicks, maxScroll, rage }),
     };
-  });
+  }).sort((a: any, b: any) => b.intent.outcomes - a.intent.outcomes || b.engagement_score - a.engagement_score);
 }
 
 export async function buildVisitorDetail(supabase: DB, visitorId: string) {
