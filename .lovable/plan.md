@@ -1,39 +1,43 @@
-## What the data actually shows
+## Goal
 
-I queried the live tracking tables before writing this. 85 signals, 5 "visitors", and the problems are concrete:
+Two deliverables: (1) the site is genuinely launch-ready so the candidate can publish without hitting anything broken, and (2) a defensible fair-market-value document for the work done.
 
-- **You are split across two rows.** Two visitor records share fingerprint `59066a14…`, IP `39.42.167.153`, and the same iPhone user-agent, but different `anon_id` — so they never merged. The merge logic only adopts a fingerprint row when its `anon_id` is empty; once a row has an id, a fresh browser id (private tab, storage clear, new build) starts a brand-new "person" forever.
-- **19 of 85 signals have no fingerprint at all.** The fingerprint is cached in `sessionStorage`, so it recomputes every session, and everything emitted before it resolves goes out unfingerprinted. Those signals can never be re-linked later.
-- **Admin browsing is tracked as lead activity.** `/admin/login` and `/admin/intent` page views and sessions are in the dataset. Your own admin traffic is inflating the numbers.
-- **24 of 85 signals — the single largest event type — are junk hovers.** The hover selector matches `[tabindex]`, which catches the whole `<main>` element, so the label recorded is `"Campaign adminStaff only. This dashboard shows visitor..."` with `tag: main`, fired repeatedly. It measures nothing.
-- **Only 8 event types ever fired**, all mechanical (page_view, scroll, exit). None of the campaign-intent events (priority plank read, calculator run, budget scenario, volunteer abandon) show up, because the emitters only listen for `data-intent` attributes and almost nothing on the site carries them.
+## What I verified before writing this
 
-Net: it's a firehose of anonymous mechanics, not a record of who cared about what.
+- `lead_signals` is healthy: 206 rows, most recent 17:20 today. Page views, clicks, calculator/scenario outcomes are all landing.
+- `replay_events` has **0 rows**. `pointer_samples` has **4 rows**, last written 16:04. So heatmaps and session replay in the admin area currently show nothing.
+- Likely causes, to confirm during the fix: pointer batches only flush on `pagehide`, `visibilitychange`, or after 200 samples — an SPA route change never flushes, and touch devices barely fire `pointermove`. Replay is gated behind a 25% session sample and 150 KB chunks, so with low traffic and `sendBeacon`'s ~64 KB per-payload ceiling the chunks may never make it.
+- Forms (`contact_messages`, `volunteer_signups`) were confirmed writing correctly in earlier testing; they'll be re-tested as part of the launch pass.
 
-## What I'll change
+## Part 1 — Make it work
 
-### 1. Identity that survives a new browser id
-- Fingerprint moves to `localStorage` and resolves before the first signal is sent (short await with a timeout, so page speed isn't affected), so no signal ships unfingerprinted.
-- Server-side resolution becomes: match on `anon_id` → else match on `fp_hash` **regardless of whether that row already has an anon_id** → else insert. When a fingerprint match has a different `anon_id`, both are recorded as aliases of one person.
-- New `visitor_aliases` table (visitor_id, anon_id, fp_hash) so one person can own many device ids, plus a `merged_into` column on `visitors` so old rows fold into the survivor without deleting history.
-- A backfill migration that merges the existing duplicate pair and re-points its signals.
-- Identity is sticky: once you fill a form, name/email/phone propagate across every alias, past and future.
+**Fix the tracking pipeline (the only actually broken subsystem)**
+- Flush pointer batches on route change and on a short timer, not just on page unload; record touch/tap points so mobile visitors register at all.
+- Drop replay chunk size below the beacon ceiling and raise the sample rate temporarily to confirm end-to-end writes, then set it back down.
+- Verify in the browser that a real session produces rows in both tables, and that the admin Heatmaps and Replay tabs render them.
 
-### 2. Stop polluting the dataset
-- Suppress all tracking on `/admin/*` and for any signed-in admin session (the self-record toggle stays for deliberate testing).
-- Delete the `[tabindex]` hover rule; hover only fires for real links/buttons with a real label, deduped per element per page view, and only above a meaningful dwell.
-- Purge the existing junk `cta_hover` and admin-path rows so the dashboard starts honest.
+**Cost control, so a live campaign site doesn't run up credits**
+- Lower pointer sampling from 10 Hz to ~4 Hz and cap samples per page.
+- Keep replay at a low session sample rate and shorten retention (replay 14 days, pointer 14 days) via the existing purge function.
+- These land with the fix, so the pipeline goes live already tuned.
 
-### 3. Signals that mean something for a campaign
-- Tag the real surfaces with intent markers: each priority plank, the budget dashboard, the per-child calculator, the board-meeting scenario lab, the journey timeline, the zone map, donate/volunteer/contact CTAs.
-- Add outcome-level events: calculator completed (with grade + services chosen), scenario copied for public comment, zone selected, volunteer form started vs. abandoned vs. submitted, priority read to the end.
-- Roll them into a per-person **intent profile**: top issues by attention, whether they ran their own numbers, whether they're map-adjacent to a zone, and a lead stage (browsing → engaged → ready to ask).
+**Launch readiness pass across all 10 public routes and 5 admin routes**
+- Click through every page and every interactive tool at desktop and mobile widths, capture anything visually broken or dead.
+- Submit both forms live and confirm the rows arrive.
+- Confirm admin sign-in works for both admin accounts and each tab loads data.
+- Check every page has its own title/description, `robots.txt` still blocks `/admin`, and no console errors on any route.
+- Run the security scan and resolve anything critical before publishing.
+- Publish, then load the live URL and re-verify the homepage, one form, and one tracking write against production.
 
-### 4. Admin that shows people, not hashes
-- Person row shows a resolved label (name → email → phone → device summary like "iPhone · East Brunswick · 3 visits") instead of `anon 4cbb7258`.
-- Manual **Merge** and **Rename / tag as me** actions, and a "this is staff, exclude" flag.
-- Detail view leads with the intent profile and a plain-English story of the visit, with the raw signal feed demoted to a tab.
+## Part 2 — Fair market value document
+
+A PDF written to survive scrutiny (including ELEC review), containing:
+- Scope inventory: routes, components, database tables, migrations, lines of code — measured, not estimated.
+- Named deliverables: budget dashboard, per-child cost calculator, board-meeting scenario lab, journey timeline, policy flowchart, zone map, methodology/sources page, WCAG 2.1 AA accessibility work, five-language i18n scaffolding, and the admin intent-tracking platform.
+- FMV benchmarked two ways: (a) comparable US agency/freelance market rate for equivalent scope, showing what this would ordinarily cost, and (b) actual cost basis at the $30/hr solo-operator rate plus pass-through infrastructure.
+- Ongoing retainer line for hosting, monitoring, and content updates.
+- A short assumptions-and-sources note, matching the transparency standard already set on the `/methodology` page.
 
 ## Technical notes
 
-Migration adds `visitor_aliases`, `visitors.merged_into`, `visitors.is_staff`, with GRANTs and admin-only read policies; writes stay server-side through the service role. Resolution logic lives in `src/lib/visitors.server.ts`; the ingest routes under `src/routes/api/public/*` keep their current shape. Emitters change in `src/hooks/use-click-tracking.ts`, `use-campaign-intent.ts`, and `src/lib/tracking-consent.ts`; admin aggregation in `src/lib/admin.server.ts` plus new merge/label server functions in `src/lib/admin.functions.ts`.
+The tracking fix touches `src/hooks/use-pointer-tracking.ts`, `src/hooks/use-session-replay.ts`, and a retention migration on `purge_tracking_data()`. No schema changes, no changes to the public-facing pages. The FMV document is generated as a downloadable PDF artifact, not a site page.

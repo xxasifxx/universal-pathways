@@ -5,7 +5,8 @@ import { getFingerprintSync } from "@/lib/fingerprint";
 import { isTrackingDisabled } from "@/lib/tracking-consent";
 import { getAnonId, getSessionId } from "@/lib/visitor";
 
-const CHUNK_BYTES = 150 * 1024;
+// sendBeacon caps payloads around 64KB; larger chunks were being dropped silently.
+const CHUNK_BYTES = 40 * 1024;
 const SAMPLE_RATE = 0.25; // record replay for 25% of sessions
 const SAMPLE_KEY = "lv_replay_sampled";
 
@@ -100,7 +101,9 @@ export function useSessionReplay() {
         document.addEventListener("pointerleave", onLeave, true);
         window.addEventListener("pagehide", flush);
         document.addEventListener("visibilitychange", flush);
-        const interval = window.setInterval(flush, 10000);
+        const interval = window.setInterval(flush, 8000);
+        // rrweb's first full snapshot is the one chunk we never want to lose.
+        window.setTimeout(flush, 1500);
 
         stop = ((original) => () => {
           original?.();
