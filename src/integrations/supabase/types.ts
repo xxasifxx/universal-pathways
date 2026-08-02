@@ -223,6 +223,38 @@ export type Database = {
         }
         Relationships: []
       }
+      visitor_aliases: {
+        Row: {
+          anon_id: string | null
+          created_at: string
+          fp_hash: string | null
+          id: string
+          visitor_id: string
+        }
+        Insert: {
+          anon_id?: string | null
+          created_at?: string
+          fp_hash?: string | null
+          id?: string
+          visitor_id: string
+        }
+        Update: {
+          anon_id?: string | null
+          created_at?: string
+          fp_hash?: string | null
+          id?: string
+          visitor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "visitor_aliases_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "visitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       visitors: {
         Row: {
           anon_id: string | null
@@ -234,9 +266,12 @@ export type Database = {
           fp_hash: string | null
           id: string
           identified_at: string | null
+          is_staff: boolean
+          label: string | null
           last_ip: string | null
           last_seen: string
           last_ua: string | null
+          merged_into: string | null
           name: string | null
           notes: string | null
           phone: string | null
@@ -253,9 +288,12 @@ export type Database = {
           fp_hash?: string | null
           id?: string
           identified_at?: string | null
+          is_staff?: boolean
+          label?: string | null
           last_ip?: string | null
           last_seen?: string
           last_ua?: string | null
+          merged_into?: string | null
           name?: string | null
           notes?: string | null
           phone?: string | null
@@ -272,16 +310,27 @@ export type Database = {
           fp_hash?: string | null
           id?: string
           identified_at?: string | null
+          is_staff?: boolean
+          label?: string | null
           last_ip?: string | null
           last_seen?: string
           last_ua?: string | null
+          merged_into?: string | null
           name?: string | null
           notes?: string | null
           phone?: string | null
           signal_count?: number
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "visitors_merged_into_fkey"
+            columns: ["merged_into"]
+            isOneToOne: false
+            referencedRelation: "visitors"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       volunteer_signups: {
         Row: {
