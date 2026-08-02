@@ -14,8 +14,8 @@ export function SiteFooter() {
   return (
     <footer className="bg-ink text-ink-foreground">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="rounded-xl border border-primary/40 bg-primary/10 p-6 sm:p-8">
-          <p className="eyebrow text-primary-foreground/70">
+        <div className="rounded-xl border border-gold/40 bg-gold/10 p-6 sm:p-8">
+          <p className="eyebrow text-ink-foreground/75">
             {t("footer.register.title")}
           </p>
           <p className="mt-3 max-w-2xl font-display text-2xl font-extrabold leading-tight sm:text-3xl">
@@ -27,7 +27,7 @@ export function SiteFooter() {
             href="https://www.nj.gov/state/elections/voter-registration.shtml"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex rounded-md bg-primary px-5 py-2.5 font-display text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
+            className="mt-5 inline-flex rounded-md bg-gold px-5 py-2.5 font-display text-base tracking-wide text-gold-foreground transition-opacity hover:opacity-90"
           >
             {t("footer.register.cta")}
           </a>
