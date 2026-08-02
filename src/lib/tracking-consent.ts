@@ -1,6 +1,33 @@
 import { isHeatmapPreview } from "./preview";
 
 const KEY = "lv_no_track";
+const STAFF_KEY = "lv_is_staff";
+
+/** Admin surfaces are instrumentation, not audience behaviour. */
+function isAdminSurface(): boolean {
+  if (typeof window === "undefined") return true;
+  return window.location.pathname.startsWith("/admin");
+}
+
+/** Set when an admin signs in; keeps staff browsing out of the lead data. */
+export function setStaffDevice(isStaff: boolean): void {
+  if (typeof window === "undefined") return;
+  try {
+    if (isStaff) window.localStorage.setItem(STAFF_KEY, "1");
+    else window.localStorage.removeItem(STAFF_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
+export function isStaffDevice(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.localStorage.getItem(STAFF_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
 
 function readCookie(name: string): string | null {
   if (typeof document === "undefined") return null;
@@ -12,6 +39,8 @@ function readCookie(name: string): string | null {
 export function isTrackingDisabled(): boolean {
   if (typeof window === "undefined") return true;
   if (isHeatmapPreview()) return true;
+  if (isAdminSurface()) return true;
+  if (isStaffDevice()) return true;
   try {
     const dnt =
       navigator.doNotTrack ??
