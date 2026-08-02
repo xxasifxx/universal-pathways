@@ -63,63 +63,63 @@
 :root {
   --radius: 0.5rem;
 
-  /* Soft off-white field from the brand sheet */
-  --background: oklch(0.977 0.011 84.6);
-  --foreground: oklch(0.302 0.113 32.6);
+  /* Clean white-leaning field */
+  --background: oklch(0.985 0.004 85.0);
+  --foreground: oklch(0.309 0.100 30.9);
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.302 0.113 32.6);
+  --card-foreground: oklch(0.309 0.100 30.9);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.302 0.113 32.6);
+  --popover-foreground: oklch(0.309 0.100 30.9);
 
-  /* Burgundy #5A0B00 */
-  --primary: oklch(0.302 0.113 32.6);
+  /* Burgundy #58150C */
+  --primary: oklch(0.309 0.100 30.9);
   --primary-foreground: oklch(1 0 0);
 
-  --secondary: oklch(0.940 0.017 82.0);
-  --secondary-foreground: oklch(0.302 0.113 32.6);
+  --secondary: oklch(0.955 0.008 85.0);
+  --secondary-foreground: oklch(0.309 0.100 30.9);
 
-  --muted: oklch(0.940 0.017 82.0);
-  --muted-foreground: oklch(0.455 0.038 40.0);
+  --muted: oklch(0.955 0.008 85.0);
+  --muted-foreground: oklch(0.455 0.030 38.0);
 
-  --accent: oklch(0.940 0.017 82.0);
-  --accent-foreground: oklch(0.377 0.137 31.0);
+  --accent: oklch(0.955 0.008 85.0);
+  --accent-foreground: oklch(0.309 0.100 30.9);
 
   --destructive: oklch(0.470 0.170 29.0);
   --destructive-foreground: oklch(1 0 0);
 
-  --border: oklch(0.890 0.018 80.0);
-  --input: oklch(0.890 0.018 80.0);
-  --ring: oklch(0.302 0.113 32.6);
+  --border: oklch(0.900 0.010 82.0);
+  --input: oklch(0.900 0.010 82.0);
+  --ring: oklch(0.309 0.100 30.9);
 
   /* Burgundy — footers, high-contrast panels */
-  --ink: oklch(0.302 0.113 32.6);
-  --ink-foreground: oklch(0.977 0.011 84.6);
+  --ink: oklch(0.309 0.100 30.9);
+  --ink-foreground: oklch(0.985 0.004 85.0);
 
-  /* Gold #F28705 — calls to action and emphasis */
-  --gold: oklch(0.725 0.170 59.2);
-  --gold-foreground: oklch(0.302 0.113 32.6);
+  /* Campaign yellow #FDCD01 — calls to action and emphasis */
+  --gold: oklch(0.865 0.177 91.6);
+  --gold-foreground: oklch(0.309 0.100 30.9);
 
   /* Flowchart states */
   --trap: oklch(0.470 0.170 29.0);
   --solution: oklch(0.450 0.105 153.9);
 
-  /* Burgundy → gold ramp */
-  --chart-1: oklch(0.302 0.113 32.6);
-  --chart-2: oklch(0.418 0.150 31.7);
-  --chart-3: oklch(0.530 0.155 40.0);
-  --chart-4: oklch(0.630 0.165 50.0);
-  --chart-5: oklch(0.725 0.170 59.2);
-  --chart-6: oklch(0.820 0.130 72.0);
+  /* Burgundy → campaign yellow ramp */
+  --chart-1: oklch(0.309 0.100 30.9);
+  --chart-2: oklch(0.430 0.140 33.0);
+  --chart-3: oklch(0.550 0.160 45.0);
+  --chart-4: oklch(0.680 0.170 65.0);
+  --chart-5: oklch(0.790 0.175 82.0);
+  --chart-6: oklch(0.865 0.177 91.6);
 
-  --sidebar: oklch(0.940 0.017 82.0);
-  --sidebar-foreground: oklch(0.302 0.113 32.6);
-  --sidebar-primary: oklch(0.302 0.113 32.6);
+  --sidebar: oklch(0.955 0.008 85.0);
+  --sidebar-foreground: oklch(0.309 0.100 30.9);
+  --sidebar-primary: oklch(0.309 0.100 30.9);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.977 0.011 84.6);
-  --sidebar-accent-foreground: oklch(0.302 0.113 32.6);
-  --sidebar-border: oklch(0.890 0.018 80.0);
-  --sidebar-ring: oklch(0.302 0.113 32.6);
+  --sidebar-accent: oklch(0.985 0.004 85.0);
+  --sidebar-accent-foreground: oklch(0.309 0.100 30.9);
+  --sidebar-border: oklch(0.900 0.010 82.0);
+  --sidebar-ring: oklch(0.309 0.100 30.9);
 }
 
 @layer base {
