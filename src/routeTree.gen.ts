@@ -15,6 +15,8 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CostCalculatorRouteImport } from './routes/cost-calculator'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminExportRouteImport } from './routes/admin/export'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
@@ -50,6 +52,16 @@ const VolunteerRoute = VolunteerRouteImport.update({
   path: '/volunteer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminExportRoute = AdminExportRouteImport.update({
+  id: '/admin/export',
+  path: '/admin/export',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
@@ -78,7 +90,9 @@ export interface FileRoutesByFullPath {
   '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/export': typeof AdminExportRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/': typeof AdminIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -90,7 +104,9 @@ export interface FileRoutesByTo {
   '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/export': typeof AdminExportRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin': typeof AdminIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -103,7 +119,9 @@ export interface FileRoutesById {
   '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/export': typeof AdminExportRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/': typeof AdminIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -117,7 +135,9 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/priorities'
     | '/volunteer'
+    | '/admin/export'
     | '/admin/login'
+    | '/admin/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -129,7 +149,9 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/priorities'
     | '/volunteer'
+    | '/admin/export'
     | '/admin/login'
+    | '/admin'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -141,7 +163,9 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/priorities'
     | '/volunteer'
+    | '/admin/export'
     | '/admin/login'
+    | '/admin/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -154,7 +178,9 @@ export interface RootRouteChildren {
   CostCalculatorRoute: typeof CostCalculatorRoute
   PrioritiesRoute: typeof PrioritiesRoute
   VolunteerRoute: typeof VolunteerRoute
+  AdminExportRoute: typeof AdminExportRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
   ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
   ApiPublicLogSignalRoute: typeof ApiPublicLogSignalRoute
@@ -204,6 +230,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VolunteerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/export': {
+      id: '/admin/export'
+      path: '/admin/export'
+      fullPath: '/admin/export'
+      preLoaderRoute: typeof AdminExportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/admin/login'
@@ -242,7 +282,9 @@ const rootRouteChildren: RootRouteChildren = {
   CostCalculatorRoute: CostCalculatorRoute,
   PrioritiesRoute: PrioritiesRoute,
   VolunteerRoute: VolunteerRoute,
+  AdminExportRoute: AdminExportRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminIndexRoute: AdminIndexRoute,
   ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
   ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
   ApiPublicLogSignalRoute: ApiPublicLogSignalRoute,
