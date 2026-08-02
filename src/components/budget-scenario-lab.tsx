@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 
 import { logSignal } from "@/lib/analytics";
@@ -14,6 +15,7 @@ import {
   type LeverState,
 } from "@/lib/cost-model";
 import { cn } from "@/lib/utils";
+import { BUDGET_YEAR } from "@/lib/sources";
 
 export function BudgetScenarioLab({ child }: { child: ChildInput }) {
   const [state, setState] = useState<LeverState>({ ...BASELINE });
@@ -231,8 +233,12 @@ export function BudgetScenarioLab({ child }: { child: ChildInput }) {
             {copied ? "Copied. Paste it into your comment or an email to the board." : ""}
           </p>
           <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-            Baseline is the {BUDGET_TOTAL_DISPLAY} operating budget. Unit costs are modeled averages,
-            so treat the direction as solid and the decimal places as rough.
+            Baseline is the {BUDGET_YEAR} adopted {BUDGET_TOTAL_DISPLAY} operating budget. Unit costs
+            are modeled averages, so treat the direction as solid and the decimal places as rough.{" "}
+            <Link to="/methodology" className="font-semibold text-primary underline">
+              Sources and assumptions
+            </Link>
+            .
           </p>
         </div>
       </div>
