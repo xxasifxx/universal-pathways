@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import heroAsset from "@/assets/saqeeb-hero.jpg.asset.json";
+import heroAsset from "@/assets/saqeeb-portrait.jpg.asset.json";
 import { BudgetDashboard } from "@/components/budget-dashboard";
 import { CANDIDATE_NAME, DISTRICT_STATS, PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
@@ -82,14 +82,14 @@ function Index() {
           <figure className="relative">
             <img
               src={heroAsset.url}
-              alt="Muhammad Saqeeb with community members outside a local East Brunswick-area coffee shop"
-              width={1200}
-              height={1600}
+              alt="Muhammad Saqeeb, candidate for the East Brunswick Board of Education"
+              width={1213}
+              height={1140}
               className="w-full rounded-xl border-4 border-ink object-cover shadow-lg"
             />
             <figcaption className="mt-3 text-xs text-muted-foreground">
-              Outside Queen City Coffee, talking with neighbors. That&apos;s most of what this
-              campaign is.
+              Muhammad Saqeeb, East Brunswick Public Schools graduate and candidate for the Board of
+              Education.
             </figcaption>
           </figure>
         </div>
