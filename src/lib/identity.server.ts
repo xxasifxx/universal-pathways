@@ -39,5 +39,20 @@ export async function attachIdentity(
     })
     .eq("id", visitorId);
 
+  // A person who gives the same email on another device is the same person:
+  // fold those records together so their whole history sits under one name.
+  const { data: sameEmail } = await supabase
+    .from("visitors")
+    .select("id")
+    .eq("email", input.email)
+    .is("merged_into", null)
+    .neq("id", visitorId)
+    .limit(10);
+
+  const { mergeVisitors } = await import("./visitors.server");
+  for (const row of (sameEmail ?? []) as Array<{ id: string }>) {
+    await mergeVisitors(supabase, visitorId, row.id);
+  }
+
   return visitorId;
 }
