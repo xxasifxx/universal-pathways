@@ -48,7 +48,7 @@ const en = {
 
   "home.hero.headline": "Show the numbers. Open the doors.",
   "home.hero.sub":
-    "I'm running for the East Brunswick Board of Education because this district already knows how to teach kids one at a time. It just reserves that for the ones with a file.",
+    "I'm running for the East Brunswick Board of Education because the people most affected by school policies don't always have the strongest voice in creating them. This site shows you the same numbers the board sees.",
   "home.hero.cta.primary": "Read the platform",
   "home.hero.cta.secondary": "Volunteer",
   "home.hero.badge": "East Brunswick Board of Education · 2026",
@@ -66,7 +66,7 @@ const en = {
   "priorities.eyebrow": "The platform",
   "priorities.title": "What I'd work on first",
 
-  "about.title": "I was one of the kids this district sorted",
+  "about.title": "The people most affected don't always have the strongest voice",
   "about.timeline.eyebrow": "The student journey",
   "about.timeline.title": "How I got here",
 
