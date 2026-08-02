@@ -25,8 +25,15 @@ export function PerChildCalculator({
 
   const result = useMemo(() => computeChildCost(child), [child]);
 
-  // One signal per settled configuration: what kind of student this parent has.
+  const touchedRef = useRef(false);
+  const completedRef = useRef(false);
+
+  // Only log once the parent has actually configured a child, not on page load.
   useEffect(() => {
+    if (!touchedRef.current) {
+      touchedRef.current = true;
+      return;
+    }
     const timer = window.setTimeout(() => {
       logSignal({
         event: "calculator_run",
@@ -41,8 +48,6 @@ export function PerChildCalculator({
     }, 1200);
     return () => window.clearTimeout(timer);
   }, [child]);
-
-  const completedRef = useRef(false);
 
   const bill = Number(taxBill.replace(/[^0-9.]/g, ""));
   const billValid = taxBill.trim() !== "" && Number.isFinite(bill) && bill > 0;
