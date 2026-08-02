@@ -61,7 +61,7 @@ const en = {
   "budget.total": "Total operating budget",
   "budget.share": "share of budget",
   "budget.disclaimer":
-    "Illustrative breakdown based on publicly reported district figures. Line items shift from year to year, so treat these as approximate until the district publishes something better. I'd like it to.",
+    "Illustrative breakdown of the adopted 2024\u20132025 operating budget, grouped from publicly reported district figures. Line items shift from year to year, so treat these as approximate until the district publishes something better. I'd like it to.",
 
   "priorities.eyebrow": "The platform",
   "priorities.title": "What I'd work on first",
