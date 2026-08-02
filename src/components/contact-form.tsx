@@ -2,8 +2,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { CONTACT_ROLES } from "@/lib/campaign";
+import { getFingerprintSync } from "@/lib/fingerprint";
 import { useI18n } from "@/lib/i18n";
 import { submitContact } from "@/lib/submissions.functions";
+import { getAnonId } from "@/lib/visitor";
 import { cn } from "@/lib/utils";
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
@@ -38,7 +40,9 @@ export function ContactForm() {
 
     setPending(true);
     try {
-      await submitContact({ data: values });
+      await submitContact({
+        data: { ...values, anonId: getAnonId(), fpHash: getFingerprintSync() },
+      });
       setDone(true);
       toast.success(t("form.success.contact"));
     } catch {

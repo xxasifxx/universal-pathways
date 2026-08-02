@@ -15,6 +15,14 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CostCalculatorRouteImport } from './routes/cost-calculator'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminExportRouteImport } from './routes/admin/export'
+import { Route as AdminHeatmapsRouteImport } from './routes/admin/heatmaps'
+import { Route as AdminIntentRouteImport } from './routes/admin/intent'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
+import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
+import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +54,46 @@ const VolunteerRoute = VolunteerRouteImport.update({
   path: '/volunteer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminExportRoute = AdminExportRouteImport.update({
+  id: '/admin/export',
+  path: '/admin/export',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminHeatmapsRoute = AdminHeatmapsRouteImport.update({
+  id: '/admin/heatmaps',
+  path: '/admin/heatmaps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIntentRoute = AdminIntentRouteImport.update({
+  id: '/admin/intent',
+  path: '/admin/intent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicIngestPointerRoute = ApiPublicIngestPointerRouteImport.update({
+  id: '/api/public/ingest-pointer',
+  path: '/api/public/ingest-pointer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicIngestReplayRoute = ApiPublicIngestReplayRouteImport.update({
+  id: '/api/public/ingest-replay',
+  path: '/api/public/ingest-replay',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicLogSignalRoute = ApiPublicLogSignalRouteImport.update({
+  id: '/api/public/log-signal',
+  path: '/api/public/log-signal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +102,14 @@ export interface FileRoutesByFullPath {
   '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/export': typeof AdminExportRoute
+  '/admin/heatmaps': typeof AdminHeatmapsRoute
+  '/admin/intent': typeof AdminIntentRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/': typeof AdminIndexRoute
+  '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
+  '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
+  '/api/public/log-signal': typeof ApiPublicLogSignalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +118,14 @@ export interface FileRoutesByTo {
   '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/export': typeof AdminExportRoute
+  '/admin/heatmaps': typeof AdminHeatmapsRoute
+  '/admin/intent': typeof AdminIntentRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin': typeof AdminIndexRoute
+  '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
+  '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
+  '/api/public/log-signal': typeof ApiPublicLogSignalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +135,14 @@ export interface FileRoutesById {
   '/cost-calculator': typeof CostCalculatorRoute
   '/priorities': typeof PrioritiesRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/export': typeof AdminExportRoute
+  '/admin/heatmaps': typeof AdminHeatmapsRoute
+  '/admin/intent': typeof AdminIntentRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/': typeof AdminIndexRoute
+  '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
+  '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
+  '/api/public/log-signal': typeof ApiPublicLogSignalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +153,14 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/priorities'
     | '/volunteer'
+    | '/admin/export'
+    | '/admin/heatmaps'
+    | '/admin/intent'
+    | '/admin/login'
+    | '/admin/'
+    | '/api/public/ingest-pointer'
+    | '/api/public/ingest-replay'
+    | '/api/public/log-signal'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +169,14 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/priorities'
     | '/volunteer'
+    | '/admin/export'
+    | '/admin/heatmaps'
+    | '/admin/intent'
+    | '/admin/login'
+    | '/admin'
+    | '/api/public/ingest-pointer'
+    | '/api/public/ingest-replay'
+    | '/api/public/log-signal'
   id:
     | '__root__'
     | '/'
@@ -97,6 +185,14 @@ export interface FileRouteTypes {
     | '/cost-calculator'
     | '/priorities'
     | '/volunteer'
+    | '/admin/export'
+    | '/admin/heatmaps'
+    | '/admin/intent'
+    | '/admin/login'
+    | '/admin/'
+    | '/api/public/ingest-pointer'
+    | '/api/public/ingest-replay'
+    | '/api/public/log-signal'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +202,14 @@ export interface RootRouteChildren {
   CostCalculatorRoute: typeof CostCalculatorRoute
   PrioritiesRoute: typeof PrioritiesRoute
   VolunteerRoute: typeof VolunteerRoute
+  AdminExportRoute: typeof AdminExportRoute
+  AdminHeatmapsRoute: typeof AdminHeatmapsRoute
+  AdminIntentRoute: typeof AdminIntentRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
+  ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
+  ApiPublicLogSignalRoute: typeof ApiPublicLogSignalRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +256,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VolunteerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/export': {
+      id: '/admin/export'
+      path: '/admin/export'
+      fullPath: '/admin/export'
+      preLoaderRoute: typeof AdminExportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/heatmaps': {
+      id: '/admin/heatmaps'
+      path: '/admin/heatmaps'
+      fullPath: '/admin/heatmaps'
+      preLoaderRoute: typeof AdminHeatmapsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/intent': {
+      id: '/admin/intent'
+      path: '/admin/intent'
+      fullPath: '/admin/intent'
+      preLoaderRoute: typeof AdminIntentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/ingest-pointer': {
+      id: '/api/public/ingest-pointer'
+      path: '/api/public/ingest-pointer'
+      fullPath: '/api/public/ingest-pointer'
+      preLoaderRoute: typeof ApiPublicIngestPointerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/ingest-replay': {
+      id: '/api/public/ingest-replay'
+      path: '/api/public/ingest-replay'
+      fullPath: '/api/public/ingest-replay'
+      preLoaderRoute: typeof ApiPublicIngestReplayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/log-signal': {
+      id: '/api/public/log-signal'
+      path: '/api/public/log-signal'
+      fullPath: '/api/public/log-signal'
+      preLoaderRoute: typeof ApiPublicLogSignalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,17 +322,15 @@ const rootRouteChildren: RootRouteChildren = {
   CostCalculatorRoute: CostCalculatorRoute,
   PrioritiesRoute: PrioritiesRoute,
   VolunteerRoute: VolunteerRoute,
+  AdminExportRoute: AdminExportRoute,
+  AdminHeatmapsRoute: AdminHeatmapsRoute,
+  AdminIntentRoute: AdminIntentRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
+  ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
+  ApiPublicLogSignalRoute: ApiPublicLogSignalRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

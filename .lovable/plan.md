@@ -1,55 +1,65 @@
-## What we're building
+## Goal
 
-Two things, tied together:
+Add the full person-level intent-tracking stack and authenticated admin area to the campaign site, adapted from the PRD's react-router + Edge Function architecture to this project's TanStack Start stack.
 
-1. **A working tool** at a new page, `/cost-calculator` — "What does the district spend on my kid?"
-2. **A new priority plank** in the platform promising to make the district publish this officially, linking to the working demo as proof it's buildable.
+Confirmed current state: the project has no auth, no admin routes, no `user_roles` table (only `contact_messages` and `volunteer_signups`), and no tracking code. Everything below is new.
 
-## Page 1 — Parent mode
+## Stack translation
 
-A parent lands on the page and either picks a ready-made scenario or fills in their own child.
+| PRD | Here |
+|---|---|
+| Supabase Edge Functions (`log-signal`, `ingest-*`) | TanStack server routes under `src/routes/api/public/*` (no auth, service-role writes, CORS + OPTIONS) |
+| Admin read edge functions | Authenticated `createServerFn` with `requireSupabaseAuth` + an admin role check |
+| `requireAdmin(req)` guard | `has_role(auth.uid(),'admin')` checked through the caller's own client before any admin client use |
+| react-router `<AdminRoute>` | `src/routes/_authenticated/` gate + an admin-role check inside the admin layout |
+| Hardcoded `SIGNAL_URL` | Same-origin `/api/public/...` paths, no env needed |
 
-**Inputs (all optional, all client-side — nothing is stored or sent anywhere):**
-- Grade level / school — elementary, middle, high (per-pupil cost differs by level)
-- Services used — checkboxes: special education, ESL / multilingual support, busing, free or reduced lunch, athletics & activities
-- Annual property tax bill — optional single field
-- Or skip all of it: three preset kids ("4th grader, walks to school", "7th grader with an IEP and a bus", "11th grader, three APs and a sport")
+## Phase 1 — Database
 
-**Output:**
-- One big number: total district spending on this child this year
-- A stacked breakdown of that number against the same six budget lines already used on the home page (teachers, support staff, special ed, benefits, buildings, admin) so the two dashboards speak the same language
-- If a tax bill was entered: "About $X of your $Y tax bill goes to the schools, and roughly $Z of that follows your child." Includes a plain-English note that schools are funded collectively — one household's bill never covers one child, and that's the point.
+One migration: `app_role` enum, `user_roles` + `has_role()` (security definer), `visitors`, `lead_signals`, `pointer_samples`, `replay_events`, all indexes from §6, GRANTs before RLS, admin-only SELECT policies, no anon insert policies (ingest is service-role). Adds `visitor_id` FK to the existing `contact_messages` and `volunteer_signups` tables. Then an insert granting the owner's account the `admin` role.
 
-## Page 2 — Board-meeting mode
+## Phase 2 — Client identity + consent
 
-Same page, second section, designed to be usable on a phone in the back row of a board meeting.
+- `src/lib/visitor.ts` — `anon_id` (localStorage `lv_anon_id`), `session_id` (sessionStorage).
+- `src/lib/fingerprint.ts` — lazy FingerprintJS, cached, `getFingerprintSync()` returns null until resolved.
+- `src/lib/tracking-consent.ts` — DNT, `lv_no_track` cookie/localStorage, `?heatmap=1` preview suppression. Every emitter checks it first.
+- `src/lib/preview.ts` — heatmap-iframe detection.
+- All of this is browser-only and mounted client-side so SSR is unaffected.
 
-**Presets** — one tap loads a live proposal, e.g.:
-- Cut 10 classroom aides
-- Add 5 counselors
-- Trim busing by one tier
-- 2% across-the-board staff raise
-- Flat-fund next year (inflation-only cut in real terms)
+## Phase 3 — Emitters
 
-**Sliders** — after loading a preset (or from scratch), adjust the underlying lines: classroom aides, counselors, busing routes, staff pay, supplies. Each change updates, in real time:
-- The dollar change **per child** — for the child configured above, not an abstract average
-- The change to the **total budget** and to a typical tax bill
-- A **plain-English consequence line** for each moved slider — what it actually means in the room, e.g. "10 fewer aides means ~28 classrooms lose their second adult; the kids who need someone sitting next to them lose them first." That's the qualitative half you asked for.
+`src/lib/analytics.ts` with the full event enum, enriching each signal and sending it as a `text/plain` blob via `sendBeacon` with a `fetch(keepalive)` fallback.
 
-A "reset to current budget" button, and a share/copy-summary button so an attendee can paste their numbers into a comment.
+Hooks in `src/hooks/`: `usePageView`, `usePageEngagement` (scroll depth, active-only time, `page_exit` with `dwell_ms`), `useClickTracking` (delegated capture listeners, rage/dead click, hover dwell), `usePointerTracking` (~10 Hz, document-percent coords, ≤200-sample batches), `useSessionReplay` (rrweb, `maskAllInputs`, ~150 KB chunks, monotonic `seq`, hover annotations). Mounted once in `__root.tsx` inside a client-only wrapper. `useServiceIntent` is adapted to campaign content: priority planks, calculator interactions, donate/volunteer CTAs.
 
-## Priority plank
+## Phase 4 — Ingest routes
 
-New sixth plank in the platform, in the same voice as the others: the district should publish this itself. Written to be honest about the limits — the site's numbers are modeled from the public budget, and only the district has the real per-pupil detail, which is exactly why they should be the ones publishing it. Cross-linked from the priorities page and the home page budget section.
+`src/routes/api/public/log-signal.ts`, `ingest-pointer.ts`, `ingest-replay.ts`. Each: OPTIONS short-circuit, permissive CORS, zod validation, size caps (256 KB / 2 MB), server-derived IP and UA, `supabaseAdmin` loaded inside the handler, never throws to the client. `log-signal` implements the three-step visitor resolution (anon_id → orphan fp_hash adoption → insert) in `src/lib/visitors.server.ts`.
 
-## Honesty guardrails
+Identity attachment: `submitVolunteer` / `submitContact` gain optional `anon_id` + `fp_hash`, resolve the visitor, stamp name/email/phone + `identified_at`, and store `visitor_id` on the lead row.
 
-Every number is modeled from the public $229M budget already on the site, not district-supplied. Every screen carries that disclaimer, in plain language, not buried fine print. The calculator never asks for a child's name, school, or any identifying detail, and stores nothing.
+## Phase 5 — Admin area
+
+- `src/routes/_authenticated/route.tsx` (integration-managed gate) + `src/routes/auth.tsx` login page: email/password plus Google (configured the same turn).
+- `src/routes/_authenticated/admin/` — layout with pill tabs, recording on/off toggle, sign out; children `intent`, `heatmaps`, `export`. Non-admin authenticated users get an explicit "Access denied" screen, not a redirect loop. Admin session arms `setTrackingDisabled(true)`.
+- Admin data via `src/lib/admin.functions.ts`: `readVisitors` (with session grouping by `session_id`, 30-min fallback gap, per-session span/active/pages/clicks; visitor-level active time labelled as a total across N sessions), `readVisitorDetail`, `readSignals`, `readHeatmap`, `readReplays`, `exportEngagement`.
+- **Intent tab**: People table → detail side panel (identity, sessions block, per-page table, hover→click conversion, replay, raw timeline); Signals feed with filters; Leads tab showing volunteer + contact submissions joined to their visitor.
+- **Replay tab**: chunks sorted by `seq`, segmented at every type-4 meta / type-2 full snapshot with one chip per page-load segment, idle gaps >3 s rewritten to 1 s with a "skipped Xm idle" note, hover annotation overlays.
+- **Heatmaps tab**: same-origin iframe at true device viewport (390×844 / 1280×900) with `?heatmap=1`, scrolled via `contentWindow.scrollTo`, heat canvas drawn at viewport size with document-percent points translated by the scroll offset, mini document map, path/viewport/mode/date/intensity controls.
+- **Export tab**: date range + path + grouping → CSV downloaded client-side.
+
+## Phase 6 — Defects from §10, fixed up front
+
+Env-free same-origin signal URL; no gtag mirror; replay sampling (configurable %, default 25%); a retention purge (`pg_cron` deleting replay/pointer >30 days, `lead_signals` >180 days); `cta_hover` aggregated rather than persisted per event; a note in the admin UI that a closed tab starts a new session.
 
 ## Technical notes
 
-- New route `src/routes/cost-calculator.tsx` with its own head metadata, plus two components (`per-child-calculator.tsx`, `budget-scenario-lab.tsx`).
-- All math lives in a new `src/lib/cost-model.ts`: per-pupil base derived from the existing `BUDGET_TOTAL` and 8,100 students, level weights, service add-ons, and the slider line-items with their per-unit cost and consequence copy. Deriving from the existing constants keeps the two dashboards consistent.
-- Pure client-side state — no database, no server functions, no new backend.
-- Reuses existing Recharts setup, design tokens, i18n catalog, and the accessibility patterns already established (keyboard-operable sliders with visible text values, `aria-live` on results, labelled inputs, error text linked via `aria-describedby`).
-- New plank appended to `PRIORITIES` in `src/lib/campaign.ts`; nav link added in the header and footer.
+- New dependencies: `@fingerprintjs/fingerprintjs`, `rrweb`, `rrweb-player`. All are loaded dynamically after hydration so they never enter the SSR graph.
+- `src/start.ts` already registers `attachSupabaseAuth`, so admin server fns get bearer tokens automatically.
+- Admin server fns verify the admin role through the caller's own RLS-scoped client before touching the service-role client.
+- Public-site routes stay SSR and unauthenticated; the tracking hooks are strictly client-side.
+- Per your note, no separate privacy disclosure page will be added; DNT and the opt-out toggle still ship since the heatmap preview depends on them.
+
+## Scale caveat
+
+This is a large build — roughly 30 new files across DB, tracking, ingest, and a four-tab admin SPA. I'd suggest doing it in the phase order above so each layer is verifiable (DB → tracking fires → ingest rows land → admin reads them) rather than all at once.
