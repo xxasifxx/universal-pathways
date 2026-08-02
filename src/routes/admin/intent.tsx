@@ -1,10 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 import { AdminShell, formatMs } from "@/components/admin/admin-shell";
 import { ReplayTab } from "@/components/admin/replay-tab";
-import { readSignals, readVisitorDetail, readVisitors } from "@/lib/admin.functions";
+import {
+  mergePeople,
+  readAllVisitors,
+  readSignals,
+  readVisitorDetail,
+  updatePerson,
+} from "@/lib/admin.functions";
 
 export const Route = createFileRoute("/admin/intent")({
   ssr: false,
@@ -59,28 +65,71 @@ function People({
   selected: string | null;
   onSelect: (id: string | null) => void;
 }) {
-  const visitors = useQuery({ queryKey: ["admin", "visitors"], queryFn: () => readVisitors() });
+  const queryClient = useQueryClient();
+  const [includeStaff, setIncludeStaff] = useState(false);
+  const [mergeSource, setMergeSource] = useState<string | null>(null);
+
+  const visitors = useQuery({
+    queryKey: ["admin", "visitors", includeStaff],
+    queryFn: () => readAllVisitors({ data: { includeStaff } }),
+  });
+
+  const invalidate = () => queryClient.invalidateQueries({ queryKey: ["admin"] });
+
+  const merge = useMutation({
+    mutationFn: (input: { winnerId: string; loserId: string }) => mergePeople({ data: input }),
+    onSuccess: () => {
+      setMergeSource(null);
+      void invalidate();
+    },
+  });
+
+  const update = useMutation({
+    mutationFn: (input: { visitorId: string; label?: string | null; isStaff?: boolean }) =>
+      updatePerson({ data: input }),
+    onSuccess: () => void invalidate(),
+  });
 
   if (visitors.isLoading) return <p className="text-sm text-muted-foreground">Loading people…</p>;
   if (visitors.error)
     return <p role="alert" className="text-sm text-destructive">{(visitors.error as Error).message}</p>;
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center gap-3 text-sm">
+        <label className="flex items-center gap-2 font-semibold">
+          <input
+            type="checkbox"
+            checked={includeStaff}
+            onChange={(e) => setIncludeStaff(e.target.checked)}
+          />
+          Show staff / my own devices
+        </label>
+        {mergeSource ? (
+          <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold">
+            Merging: pick the record to keep, or{" "}
+            <button type="button" className="underline" onClick={() => setMergeSource(null)}>
+              cancel
+            </button>
+          </span>
+        ) : null}
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
       <div className="overflow-x-auto rounded-md border border-border">
         <table className="w-full text-left text-sm">
           <caption className="sr-only">Visitors recorded on the campaign site</caption>
           <thead className="bg-secondary text-xs uppercase">
             <tr>
               <th scope="col" className="px-3 py-2">Person</th>
-              <th scope="col" className="px-3 py-2">Last seen</th>
+              <th scope="col" className="px-3 py-2">What they did</th>
+              <th scope="col" className="px-3 py-2">Stage</th>
               <th scope="col" className="px-3 py-2">Active</th>
-              <th scope="col" className="px-3 py-2">Pages</th>
-              <th scope="col" className="px-3 py-2">Score</th>
+              <th scope="col" className="px-3 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {(visitors.data ?? []).map((v) => (
+            {((visitors.data ?? []) as any[]).map((v) => (
               <tr key={v.id} className="border-t border-border">
                 <td className="px-3 py-2">
                   <button
@@ -88,18 +137,56 @@ function People({
                     onClick={() => onSelect(v.id)}
                     className="font-semibold text-primary underline underline-offset-4"
                   >
-                    {v.name || v.phone || v.email || `anon ${String(v.anon_id ?? "").slice(0, 8)}`}
+                    {v.display_name}
                   </button>
+                  <span className="mt-0.5 block text-xs text-muted-foreground">
+                    {new Date(v.last_seen).toLocaleString()} · {v.session_count} sessions ·{" "}
+                    {v.page_count} pages
+                  </span>
                 </td>
-                <td className="px-3 py-2 text-muted-foreground">
-                  {new Date(v.last_seen).toLocaleString()}
-                </td>
+                <td className="px-3 py-2 text-muted-foreground">{v.intent?.headline}</td>
                 <td className="px-3 py-2">
-                  {formatMs(v.active_ms)}{" "}
-                  <span className="text-muted-foreground">({v.session_count} sessions)</span>
+                  <span className="rounded-full border border-border px-2 py-0.5 text-xs font-semibold capitalize">
+                    {v.intent?.stage}
+                  </span>
                 </td>
-                <td className="px-3 py-2">{v.page_count}</td>
-                <td className="px-3 py-2">{v.engagement_score}</td>
+                <td className="px-3 py-2">{formatMs(v.active_ms)}</td>
+                <td className="px-3 py-2">
+                  <div className="flex flex-wrap gap-2 text-xs">
+                    {mergeSource && mergeSource !== v.id ? (
+                      <button
+                        type="button"
+                        className="underline"
+                        onClick={() =>
+                          merge.mutate({ winnerId: v.id, loserId: mergeSource })
+                        }
+                      >
+                        Keep this one
+                      </button>
+                    ) : (
+                      <button type="button" className="underline" onClick={() => setMergeSource(v.id)}>
+                        Merge
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      className="underline"
+                      onClick={() => {
+                        const label = window.prompt("Name this person", v.label ?? v.name ?? "");
+                        if (label !== null) update.mutate({ visitorId: v.id, label });
+                      }}
+                    >
+                      Rename
+                    </button>
+                    <button
+                      type="button"
+                      className="underline"
+                      onClick={() => update.mutate({ visitorId: v.id, isStaff: !v.is_staff })}
+                    >
+                      {v.is_staff ? "Not staff" : "This is me"}
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
             {(visitors.data ?? []).length === 0 ? (
@@ -114,6 +201,7 @@ function People({
       </div>
 
       {selected ? <Detail visitorId={selected} onClose={() => onSelect(null)} /> : null}
+      </div>
     </div>
   );
 }
