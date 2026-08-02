@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
+import { SourcesNote } from "@/components/sources-note";
 import { BUDGET_SLICES, BUDGET_TOTAL } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
