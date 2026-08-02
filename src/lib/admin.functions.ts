@@ -142,9 +142,11 @@ export const readReplayChunks = createServerFn({ method: "POST" })
       .eq("session_id", data.sessionId)
       .order("seq", { ascending: true })
       .limit(500);
-    return ((rows ?? []) as Array<Record<string, unknown>>).flatMap(
-      (row) => (row["events"] as Record<string, unknown>[]) ?? [],
+    const events = ((rows ?? []) as Array<Record<string, unknown>>).flatMap(
+      (row) => (row["events"] as unknown[]) ?? [],
     );
+    // Returned as JSON text: rrweb events are arbitrary shapes the RPC serializer rejects.
+    return { eventsJson: JSON.stringify(events), count: events.length };
   });
 
 export const exportEngagement = createServerFn({ method: "POST" })
