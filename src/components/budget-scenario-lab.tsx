@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
+import { logSignal } from "@/lib/analytics";
 import {
   BASELINE,
   BUDGET_TOTAL_DISPLAY,
@@ -23,6 +24,22 @@ export function BudgetScenarioLab({ child }: { child: ChildInput }) {
 
   const dirty = scenario.changed.length > 0;
   const newChildCost = childCost.total + scenario.perChildDelta;
+
+  useEffect(() => {
+    if (!dirty) return;
+    const timer = window.setTimeout(() => {
+      logSignal({
+        event: "scenario_adjusted",
+        service_group: "board-meeting-mode",
+        meta: {
+          levers: scenario.changed.map((c) => c.lever.id),
+          budget_delta: Math.round(scenario.budgetDelta),
+          per_child_delta: Math.round(scenario.perChildDelta),
+        },
+      });
+    }, 1500);
+    return () => window.clearTimeout(timer);
+  }, [dirty, scenario]);
 
   const applyPreset = (values: Partial<LeverState>) => {
     setState({ ...BASELINE, ...values });
@@ -49,6 +66,15 @@ export function BudgetScenarioLab({ child }: { child: ChildInput }) {
     try {
       await navigator.clipboard.writeText(summary());
       setCopied(true);
+      logSignal({
+        event: "scenario_copied",
+        service_group: "board-meeting-mode",
+        meta: {
+          levers: scenario.changed.map((c) => c.lever.id),
+          budget_delta: Math.round(scenario.budgetDelta),
+          per_child_delta: Math.round(scenario.perChildDelta),
+        },
+      });
     } catch {
       setCopied(false);
     }
