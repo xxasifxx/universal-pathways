@@ -22,6 +22,7 @@ export type Database = {
           message: string
           name: string
           role: string
+          visitor_id: string | null
         }
         Insert: {
           created_at?: string
@@ -30,6 +31,7 @@ export type Database = {
           message: string
           name: string
           role: string
+          visitor_id?: string | null
         }
         Update: {
           created_at?: string
@@ -38,6 +40,246 @@ export type Database = {
           message?: string
           name?: string
           role?: string
+          visitor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_messages_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "visitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_signals: {
+        Row: {
+          anon_id: string | null
+          created_at: string
+          dwell_ms: number | null
+          event: string
+          fp_hash: string | null
+          id: string
+          ip: string | null
+          meta: Json | null
+          path: string | null
+          referrer: string | null
+          service_group: string | null
+          service_slug: string | null
+          session_id: string | null
+          user_agent: string | null
+          utm: Json | null
+          visitor_id: string | null
+        }
+        Insert: {
+          anon_id?: string | null
+          created_at?: string
+          dwell_ms?: number | null
+          event: string
+          fp_hash?: string | null
+          id?: string
+          ip?: string | null
+          meta?: Json | null
+          path?: string | null
+          referrer?: string | null
+          service_group?: string | null
+          service_slug?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+          utm?: Json | null
+          visitor_id?: string | null
+        }
+        Update: {
+          anon_id?: string | null
+          created_at?: string
+          dwell_ms?: number | null
+          event?: string
+          fp_hash?: string | null
+          id?: string
+          ip?: string | null
+          meta?: Json | null
+          path?: string | null
+          referrer?: string | null
+          service_group?: string | null
+          service_slug?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+          utm?: Json | null
+          visitor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_signals_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "visitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pointer_samples: {
+        Row: {
+          created_at: string
+          id: string
+          is_touch: boolean
+          path: string | null
+          sample_count: number
+          samples: Json
+          session_id: string | null
+          viewport_h: number | null
+          viewport_w: number | null
+          visitor_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_touch?: boolean
+          path?: string | null
+          sample_count?: number
+          samples: Json
+          session_id?: string | null
+          viewport_h?: number | null
+          viewport_w?: number | null
+          visitor_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_touch?: boolean
+          path?: string | null
+          sample_count?: number
+          samples?: Json
+          session_id?: string | null
+          viewport_h?: number | null
+          viewport_w?: number | null
+          visitor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pointer_samples_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "visitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      replay_events: {
+        Row: {
+          created_at: string
+          events: Json
+          id: string
+          path: string | null
+          seq: number
+          session_id: string
+          visitor_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          events: Json
+          id?: string
+          path?: string | null
+          seq: number
+          session_id: string
+          visitor_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          events?: Json
+          id?: string
+          path?: string | null
+          seq?: number
+          session_id?: string
+          visitor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "replay_events_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "visitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      visitors: {
+        Row: {
+          anon_id: string | null
+          created_at: string
+          email: string | null
+          first_ip: string | null
+          first_seen: string
+          first_ua: string | null
+          fp_hash: string | null
+          id: string
+          identified_at: string | null
+          last_ip: string | null
+          last_seen: string
+          last_ua: string | null
+          name: string | null
+          notes: string | null
+          phone: string | null
+          signal_count: number
+          updated_at: string
+        }
+        Insert: {
+          anon_id?: string | null
+          created_at?: string
+          email?: string | null
+          first_ip?: string | null
+          first_seen?: string
+          first_ua?: string | null
+          fp_hash?: string | null
+          id?: string
+          identified_at?: string | null
+          last_ip?: string | null
+          last_seen?: string
+          last_ua?: string | null
+          name?: string | null
+          notes?: string | null
+          phone?: string | null
+          signal_count?: number
+          updated_at?: string
+        }
+        Update: {
+          anon_id?: string | null
+          created_at?: string
+          email?: string | null
+          first_ip?: string | null
+          first_seen?: string
+          first_ua?: string | null
+          fp_hash?: string | null
+          id?: string
+          identified_at?: string | null
+          last_ip?: string | null
+          last_seen?: string
+          last_ua?: string | null
+          name?: string | null
+          notes?: string | null
+          phone?: string | null
+          signal_count?: number
+          updated_at?: string
         }
         Relationships: []
       }
@@ -49,6 +291,7 @@ export type Database = {
           id: string
           mobile: string | null
           name: string
+          visitor_id: string | null
           zip_code: string
           zone: string | null
         }
@@ -59,6 +302,7 @@ export type Database = {
           id?: string
           mobile?: string | null
           name: string
+          visitor_id?: string | null
           zip_code: string
           zone?: string | null
         }
@@ -69,20 +313,36 @@ export type Database = {
           id?: string
           mobile?: string | null
           name?: string
+          visitor_id?: string | null
           zip_code?: string
           zone?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "volunteer_signups_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "visitors"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      purge_tracking_data: { Args: never; Returns: undefined }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -209,6 +469,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin"],
+    },
   },
 } as const
