@@ -269,7 +269,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
           <div>
             <h3 className="text-sm font-bold">Sessions</h3>
             <ul className="mt-1 space-y-1 text-sm">
-              {d.sessions.map((s) => (
+              {d.sessions.map((s: any) => (
                 <li key={s.session_id} className="text-muted-foreground">
                   {new Date(s.started_at).toLocaleString()} · span {formatMs(s.span_ms)} · active{" "}
                   {formatMs(s.active_ms)} · {s.pages.length} pages · {s.clicks} clicks
@@ -290,7 +290,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
                 </tr>
               </thead>
               <tbody>
-                {d.pages.map((p) => (
+                {d.pages.map((p: any) => (
                   <tr key={p.path} className="border-t border-border">
                     <td>{p.path}</td>
                     <td>{formatMs(p.active_ms)}</td>
@@ -308,7 +308,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
             <div>
               <h3 className="text-sm font-bold">Hover → click</h3>
               <ul className="mt-1 space-y-1 text-sm">
-                {d.hover_conversion.map((h) => (
+                {d.hover_conversion.map((h: any) => (
                   <li key={h.label}>
                     <span className="font-medium">{h.label}</span>{" "}
                     <span
@@ -343,7 +343,7 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
 
       {tab === "timeline" ? (
         <ol className="max-h-96 space-y-1 overflow-auto text-xs">
-          {d.signals.map((s) => (
+          {d.signals.map((s: any) => (
             <li key={s.id} className="border-b border-border pb-1">
               <span className="font-mono">{new Date(s.created_at).toLocaleTimeString()}</span>{" "}
               <span className="font-semibold">{s.event}</span> {s.path}
