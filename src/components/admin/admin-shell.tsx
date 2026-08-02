@@ -19,11 +19,10 @@ function RecordingToggle() {
     <button
       type="button"
       onClick={() => {
-        const next = !off;
-        // "On" means: stop treating this device as staff and start recording.
-        setStaffDevice(!next);
-        setTrackingDisabled(!next);
-        setOff(!next);
+        const nextOff = !off; // true = suppress, false = record me like a visitor
+        setStaffDevice(nextOff);
+        setTrackingDisabled(nextOff);
+        setOff(nextOff);
       }}
       className="rounded-md border border-border px-3 py-1.5 text-xs font-semibold"
     >
