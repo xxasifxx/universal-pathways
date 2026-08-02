@@ -133,7 +133,7 @@ function Index() {
                   {p.short}
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">
-                  Read more
+                  Read more about {p.title}
                   <ArrowRight
                     aria-hidden="true"
                     className="size-4 transition-transform group-hover:translate-x-1"
