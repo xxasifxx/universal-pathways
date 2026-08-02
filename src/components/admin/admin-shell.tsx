@@ -4,7 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import { useAdminSession } from "@/hooks/use-admin-session";
 import { supabase } from "@/integrations/supabase/client";
-import { isTrackingDisabled, setTrackingDisabled } from "@/lib/tracking-consent";
+import { isTrackingDisabled, setStaffDevice, setTrackingDisabled } from "@/lib/tracking-consent";
 
 const TABS = [
   { to: "/admin/intent", label: "Intent" },
@@ -33,6 +33,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const { loading, session, isAdmin } = useAdminSession();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  // An admin's own browsing is instrumentation, not audience behaviour.
+  useEffect(() => {
+    if (isAdmin) setStaffDevice(true);
+  }, [isAdmin]);
 
   useEffect(() => {
     if (!loading && !session) {

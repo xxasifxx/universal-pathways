@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
+import { logSignal } from "@/lib/analytics";
 import { HELP_OPTIONS, ZONES } from "@/lib/campaign";
 import { getFingerprintSync } from "@/lib/fingerprint";
 import { useI18n } from "@/lib/i18n";
@@ -20,6 +21,35 @@ export function VolunteerActionMap() {
   const [done, setDone] = useState(false);
 
   const zone = ZONES.find((z) => z.id === zoneId)!;
+  const started = useRef(false);
+  const submitted = useRef(false);
+
+  function selectZone(id: string) {
+    setZoneId(id);
+    const picked = ZONES.find((z) => z.id === id);
+    logSignal({
+      event: "zone_selected",
+      service_slug: id,
+      service_group: "volunteer-map",
+      meta: { zone: picked?.name ?? id, team: picked?.team ?? null },
+    });
+  }
+
+  function markStarted() {
+    if (started.current) return;
+    started.current = true;
+    logSignal({ event: "form_started", service_group: "volunteer", meta: { form: "volunteer" } });
+  }
+
+  // Someone who typed but never sent is a lead we would otherwise never see.
+  useEffect(
+    () => () => {
+      if (started.current && !submitted.current) {
+        logSignal({ event: "form_abandon", service_group: "volunteer", meta: { form: "volunteer" } });
+      }
+    },
+    [],
+  );
 
   function toggleHelp(id: string) {
     setHelp((prev) => (prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id]));
@@ -51,6 +81,13 @@ export function VolunteerActionMap() {
         data: { ...values, anonId: getAnonId(), fpHash: getFingerprintSync() },
       });
       setDone(true);
+      submitted.current = true;
+      logSignal({
+        event: "form_submitted",
+        service_slug: zoneId,
+        service_group: "volunteer",
+        meta: { form: "volunteer", zone: zone.name, help_with: help },
+      });
       toast.success(t("form.success.volunteer"));
     } catch {
       toast.error(t("form.error"));
@@ -85,11 +122,11 @@ export function VolunteerActionMap() {
                   tabIndex={0}
                   aria-label={`${z.name} zone — ${z.team}`}
                   aria-pressed={selected}
-                  onClick={() => setZoneId(z.id)}
+                  onClick={() => selectZone(z.id)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      setZoneId(z.id);
+                      selectZone(z.id);
                     }
                   }}
                   onMouseEnter={() => setHovered(z.id)}
@@ -128,7 +165,7 @@ export function VolunteerActionMap() {
           <span className="text-sm font-semibold">{t("volunteer.select")}</span>
           <select
             value={zoneId}
-            onChange={(e) => setZoneId(e.target.value)}
+            onChange={(e) => selectZone(e.target.value)}
             className={inputClass}
           >
             {ZONES.map((z) => (
@@ -153,7 +190,12 @@ export function VolunteerActionMap() {
             {t("form.success.volunteer")}
           </p>
         ) : (
-          <form onSubmit={onSubmit} noValidate className="mt-6 flex flex-col gap-4">
+          <form
+            onSubmit={onSubmit}
+            onInput={markStarted}
+            noValidate
+            className="mt-6 flex flex-col gap-4"
+          >
             <label>
               <span className="text-sm font-semibold">{t("form.name")}</span>
               <input
