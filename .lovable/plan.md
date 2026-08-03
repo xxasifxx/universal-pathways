@@ -1,44 +1,39 @@
-## Goal
+# Home page: ask Muhammad a question
 
-Bring the live site in line with the campaign brand kit in the uploaded sheet: **Burgundy #5A0B00**, **Gold #F28705**, **White**, with the "MUHAMMAD SAQEEB / EB BOARD OF EDUCATION" lockup and its typography.
+The point of Wilbur's page isn't the bullet list — it's that the page gives you one obvious thing to do. Right now the home page ends in a list of five priorities nobody scrolls. It should end in a question box that reaches Muhammad directly.
 
-## What changes
+## What changes on the home page
 
-**1. Palette swap in `src/styles.css` (the single source of truth)**
+Order, top to bottom:
 
-All colors are already semantic tokens, so the recolor happens in one place and every page follows.
+1. Portrait + "Hi, I'm Muhammad Saqeeb. Here's why I'm running." (unchanged)
+2. The short first-person story and four reasons (unchanged)
+3. **Ask Muhammad a question** — the main event, directly under the intro. Name, email, one question box, Send. Nothing else.
+4. A single quiet line of links underneath: Priorities, District dashboard, Volunteer, and social links when provided.
 
-| Token | Now | New |
-| --- | --- | --- |
-| `--primary` | terracotta | burgundy #5A0B00 |
-| `--accent` / highlight | warm tan | gold #F28705 |
-| `--ink` (footer, dark panels) | deep chocolate | burgundy #5A0B00 |
-| `--background` | warm cream | soft cream-white matching the sheet's off-white field |
-| `--card` | near-white | white |
-| chart-1…6 | terracotta ramp | burgundy → gold ramp so the budget dashboard, calculator and scenario lab reread on-brand |
+The five-priority list block is removed from the home page. The `/priorities` page stays exactly as it is for the people who do want it — it's just a link now, not the finish line.
 
-Gold becomes the call-to-action / emphasis color (Donate button, deadline highlight, active states), burgundy the structural color (header lockup, footer, headings, section rules) — same relationship the yard signs and flyer use.
+Buttons at the top change to match: the primary button scrolls to the question box ("Ask me a question"), the secondary stays "Volunteer".
 
-**2. Header lockup**
+## Where the question goes
 
-Rework the "MS" square into the brand lockup: burgundy-on-gold wordmark with the star divider and "EB BOARD OF EDUCATION" subline, sized down for the nav bar. Mobile keeps the compact mark.
+Two places, so nothing is lost:
 
-**3. Kill the hardcoded color**
+- Saved to the campaign inbox in the backend (the existing contact-message store, already visible in the admin area).
+- Emailed to `ask@saqeeb.org` the moment it's submitted, with the asker's name, email, and question, and reply-to set to the asker so Muhammad can just hit Reply.
+- The person asking gets a short confirmation email back: "Muhammad got your question."
 
-`src/components/site-footer.tsx` hardcodes `oklch(0.75 0.13 45)` in nine places for hover/highlight. Those get replaced with the gold accent token so the footer themes properly.
+Sending email requires one setup step: the campaign's email domain has to be connected once (a DNS record at the domain registrar for saqeeb.org). Until that's verified, questions still save to the campaign inbox and nothing breaks — the emails start flowing the moment DNS clears.
 
-**4. Typography to match the brand kit**
+## After submitting
 
-The sheet specifies **Bebas Neue** (headlines + sublines, all caps) and **Lato** (body), replacing the current Montserrat/Inter. Loaded via a `<link>` in the root route, wired through `--font-display` / `--font-sans`. Headline sizing gets adjusted since Bebas is a condensed all-caps face and runs narrower than Montserrat.
-
-**5. Contrast pass**
-
-Burgundy on gold and gold on burgundy both need checking against WCAG 2.1 AA, which the site currently meets. Gold #F28705 fails as small text on white, so it stays a background/large-text accent and body links stay burgundy. I'll verify each page at desktop and mobile widths with screenshots after the swap.
-
-## Out of scope
-
-No content, layout, or functionality changes — this is purely visual reskinning. The uploaded brand sheet is used as reference only, not embedded on the site.
+The form is replaced in place by a clear confirmation, scrolled into view, with a note that he answers personally, usually within a couple of days.
 
 ## Technical notes
 
-Touches `src/styles.css` (tokens), `src/routes/__root.tsx` (font link), `src/components/site-header.tsx`, `src/components/site-footer.tsx`, and small class adjustments wherever headline sizing needs to account for the condensed display face. Chart palettes read from the CSS tokens already, so Recharts follows automatically.
+- `src/routes/index.tsx`: remove the priorities-list section; add an `#ask` section rendering a new `AskQuestionForm`; retarget the hero primary CTA to `#ask`; add a compact link row.
+- New `src/components/ask-question-form.tsx`: name / email / question, Zod-matched client validation, inline errors, error toast on invalid, disabled+pending state, success state replacing the form.
+- `src/lib/submissions.functions.ts`: reuse `submitContact`, dropping the required `role` enum (it becomes optional) so the form stays three fields; add the email dispatch inside the handler after the insert, wrapped so a mail failure never fails the save.
+- Email: run the Lovable email domain setup for `saqeeb.org`, scaffold the app-email templates, and add two templates — a notification to `ask@saqeeb.org` and a confirmation to the asker — both styled in campaign burgundy/gold.
+- Keep the existing intent tracking hook-ups (`useCampaignIntent`) on the new form so a question counts as a high-intent signal.
+- Verify on mobile (390px) with a real submit before handing back.
