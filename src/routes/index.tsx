@@ -2,10 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 
 import heroAsset from "@/assets/saqeeb-portrait.jpg.asset.json";
+import { AskQuestionForm } from "@/components/ask-question-form";
 import {
   CANDIDATE_NAME,
   CONTACT_EMAIL,
-  PRIORITIES,
   SOCIAL_LINKS,
   WHY_SAQEEB,
 } from "@/lib/campaign";
