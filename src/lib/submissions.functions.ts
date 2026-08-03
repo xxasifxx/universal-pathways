@@ -64,18 +64,27 @@ export const submitContact = createServerFn({ method: "POST" })
       email: data.email,
       phone: null,
     });
-    const { error } = await supabaseAdmin.from("contact_messages").insert({
+    const { data: inserted, error } = await supabaseAdmin
+      .from("contact_messages")
+      .insert({
       name: data.name,
       email: data.email,
       role: data.role ?? "Resident",
       message: data.message,
       visitor_id: visitorId,
-    });
+      })
+      .select("id")
+      .single();
     if (error) throw new Error("Could not save message");
 
     try {
       const { notifyQuestion } = await import("./question-email.server");
-      await notifyQuestion({ name: data.name, email: data.email, message: data.message });
+      await notifyQuestion({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        id: inserted?.id,
+      });
     } catch (mailError) {
       // A mail failure must never lose the question — it is already saved.
       console.error("question email failed", mailError);

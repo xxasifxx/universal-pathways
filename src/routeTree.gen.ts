@@ -22,6 +22,7 @@ import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
 import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -88,6 +89,12 @@ const ApiPublicLogSignalRoute = ApiPublicLogSignalRouteImport.update({
   path: '/api/public/log-signal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -118,6 +126,7 @@ export interface FileRoutesByTo {
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,6 +143,7 @@ export interface FileRoutesById {
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
@@ -181,6 +193,7 @@ export interface FileRouteTypes {
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -197,6 +210,7 @@ export interface RootRouteChildren {
   ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
   ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
   ApiPublicLogSignalRoute: typeof ApiPublicLogSignalRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -292,6 +306,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicLogSignalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -309,17 +330,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
   ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
   ApiPublicLogSignalRoute: ApiPublicLogSignalRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.purge_tracking_data() FROM PUBLIC, anon, authenticated;
