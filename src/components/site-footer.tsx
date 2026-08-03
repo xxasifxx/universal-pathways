@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import {
   CANDIDATE_NAME,
   CONTACT_EMAIL,
-  DONATE_URL,
   REGISTRATION_DEADLINE,
 } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
@@ -53,14 +52,9 @@ export function SiteFooter() {
             <a href={`mailto:${CONTACT_EMAIL}`} className="w-fit font-semibold hover:text-gold">
               {CONTACT_EMAIL}
             </a>
-            <a
-              href={DONATE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-fit font-semibold hover:text-gold"
-            >
+            <Link to="/donate" className="w-fit font-semibold hover:text-gold">
               {t("nav.donate")}
-            </a>
+            </Link>
           </div>
         </div>
 

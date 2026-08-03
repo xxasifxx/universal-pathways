@@ -72,3 +72,52 @@ export async function notifyVolunteer(input: {
 
   return notification;
 }
+
+/**
+ * A contribution pledge: the campaign gets the full ELEC-reportable record,
+ * and the donor gets the instructions for actually sending the money.
+ */
+export async function notifyContribution(input: {
+  name: string;
+  email: string;
+  phone?: string | null;
+  addressLine1: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  occupation: string;
+  employer: string;
+  amount: number;
+  method: string;
+  note?: string | null;
+  id?: string;
+}) {
+  const { sendTemplateEmail } = await import("./email-templates/send-email");
+  const key = input.id ?? `${input.email}-${Date.now()}`;
+
+  const notification = await sendTemplateEmail("contribution-notification", "ask@saqeeb.org", {
+    templateData: {
+      ...input,
+      phone: input.phone ?? "",
+      note: input.note ?? "",
+    },
+    idempotencyKey: `contribution-notification-${key}`,
+    replyTo: input.email,
+  });
+
+  try {
+    await sendTemplateEmail("contribution-confirmation", input.email, {
+      templateData: {
+        name: input.name,
+        amount: input.amount,
+        method: input.method,
+      },
+      idempotencyKey: `contribution-confirmation-${key}`,
+      replyTo: "ask@saqeeb.org",
+    });
+  } catch (error) {
+    console.error("contribution confirmation email failed", error);
+  }
+
+  return notification;
+}

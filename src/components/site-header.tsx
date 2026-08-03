@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-import { CANDIDATE_NAME, DONATE_URL } from "@/lib/campaign";
+import { CANDIDATE_NAME } from "@/lib/campaign";
 import { LOCALES, useI18n, type LocaleCode } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -72,14 +72,13 @@ export function SiteHeader() {
           <div className="hidden sm:block">
             <LanguageSelect />
           </div>
-          <a
-            href={DONATE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/donate"
+            onClick={() => setOpen(false)}
             className="rounded-md bg-gold px-4 py-2 font-display text-base tracking-wide text-gold-foreground transition-opacity hover:opacity-90"
           >
             {t("nav.donate")}
-          </a>
+          </Link>
           <button
             type="button"
             aria-expanded={open}

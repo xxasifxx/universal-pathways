@@ -1,13 +1,45 @@
 /**
  * Campaign-wide constants and content data.
- * Swap DONATE_URL for the live ActBlue page when it's ready.
  */
 
 export const CANDIDATE_NAME = "Muhammad Saqeeb";
 export const OFFICE = "East Brunswick Board of Education";
-export const DONATE_URL = "https://secure.actblue.com/";
 export const CONTACT_EMAIL = "ask@saqeeb.org";
 export const REGISTRATION_DEADLINE = "October 13th";
+
+/**
+ * Contributions go straight to the campaign bank account — no ActBlue, no
+ * processor cut. Replace the placeholder values below with the real committee
+ * banking details before the Donate page goes live.
+ */
+export const DONATION = {
+  committeeName: "Saqeeb for East Brunswick BOE",
+  /** NJ ELEC individual limit per election for a school board candidate committee. */
+  maxIndividual: 3000,
+  /** Contributions at or above this amount require occupation and employer on the report. */
+  reportingThreshold: 300,
+  bank: {
+    name: "REPLACE — bank name",
+    accountName: "Saqeeb for East Brunswick BOE",
+    routingNumber: "REPLACE — routing number",
+    accountNumber: "REPLACE — account number",
+  },
+  zelle: "REPLACE — Zelle email or phone",
+  checkPayableTo: "Saqeeb for East Brunswick BOE",
+  mailingAddress: ["REPLACE — street address", "East Brunswick, NJ 08816"],
+} as const;
+
+export const DONATION_AMOUNTS = [25, 50, 100, 250, 500, 1000];
+
+export const DONATION_METHODS = [
+  {
+    id: "bank_transfer",
+    label: "Bank transfer (ACH)",
+    hint: "We'll email you the account and routing numbers.",
+  },
+  { id: "zelle", label: "Zelle", hint: "Fastest — no fees on either side." },
+  { id: "check", label: "Check by mail", hint: "Made payable to the committee." },
+] as const;
 
 /** Campaign social profiles. Set a URL to null to hide that link. */
 export const SOCIAL_LINKS: { id: string; label: string; url: string | null }[] = [
