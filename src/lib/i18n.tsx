@@ -44,12 +44,13 @@ const en = {
     "An independent campaign for the East Brunswick Board of Education. No party line, no consultants.",
   "footer.rights": "Paid for by Saqeeb for East Brunswick.",
 
-  "home.hero.headline": "Students first. Every decision.",
+  "home.hero.headline": "Hi, I'm Muhammad Saqeeb.",
   "home.hero.sub":
-    "East Brunswick schools should put students first by listening to them, giving families clear information, investing in staff, and ensuring every child feels safe and included.",
-  "home.hero.cta.primary": "See the five priorities",
+    "I'm running for the East Brunswick Board of Education. My parents came here because they believed these public schools would create opportunities they never had. They were right — but figuring out placement rules, graduation pathways, and eligibility was an education of its own. Years after graduating, I kept showing up to Board meetings to understand how decisions affecting thousands of students actually get made. When hate incidents started affecting our students, paying attention stopped being enough.",
+  "home.hero.cta.primary": "Read my priorities",
   "home.hero.cta.secondary": "Volunteer",
   "home.hero.badge": "East Brunswick Board of Education · 2026",
+  "home.hero.social": "Follow the campaign",
 
   "budget.eyebrow": "Follow the money",
   "budget.title": "Where East Brunswick's $229 million actually goes",

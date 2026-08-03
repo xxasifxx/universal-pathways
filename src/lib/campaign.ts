@@ -9,6 +9,22 @@ export const DONATE_URL = "https://secure.actblue.com/";
 export const CONTACT_EMAIL = "hello@saqeebforeb.org";
 export const REGISTRATION_DEADLINE = "October 13th";
 
+/** Campaign social profiles. Set a URL to null to hide that link. */
+export const SOCIAL_LINKS: { id: string; label: string; url: string | null }[] = [
+  { id: "facebook", label: "Facebook", url: null },
+  { id: "instagram", label: "Instagram", url: null },
+  { id: "x", label: "X", url: null },
+  { id: "linkedin", label: "LinkedIn", url: null },
+];
+
+/** Short, scannable reasons to vote for Saqeeb — shown at the top of the home page. */
+export const WHY_SAQEEB = [
+  "East Brunswick Public Schools graduate who knows the system from the inside",
+  "Years of showing up: Board meetings, budgets, agendas, policy",
+  "Stood up for students when hate incidents hit our schools",
+  "Brings students, parents, and educators into the decisions",
+];
+
 /** Breakdown of the district's $229M operating budget. */
 export const BUDGET_TOTAL = 229_000_000;
 
