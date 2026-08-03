@@ -102,24 +102,6 @@ function Index() {
                 {t("home.hero.cta.secondary")}
               </Link>
             </div>
-            {SOCIAL_LINKS.some((s) => s.url) ? (
-              <div className="mt-8">
-                <p className="eyebrow text-muted-foreground">{t("home.hero.social")}</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {SOCIAL_LINKS.filter((s) => s.url).map((s) => (
-                    <a
-                      key={s.id}
-                      href={s.url!}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-md border-2 border-ink px-4 py-2 text-sm font-bold text-ink transition-colors hover:bg-ink hover:text-ink-foreground"
-                    >
-                      {s.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ) : null}
           </div>
         </div>
       </section>
