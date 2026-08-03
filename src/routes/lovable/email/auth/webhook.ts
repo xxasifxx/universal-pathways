@@ -9,7 +9,7 @@ import { EmailChangeEmail } from '@/lib/email-templates/email-change'
 import { ReauthenticationEmail } from '@/lib/email-templates/reauthentication'
 
 // Configuration
-const SITE_NAME = "universal-pathways"
+const SITE_NAME = "Saqeeb for East Brunswick BOE"
 const SENDER_DOMAIN = "notify.saqeeb.org"
 const ROOT_DOMAIN = "saqeeb.org"
 const FROM_DOMAIN = "notify.saqeeb.org"
