@@ -18,7 +18,7 @@ const volunteerSchema = z.object({
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
   email: z.string().trim().email("Enter a valid email").max(255),
-  role: z.enum(["Parent", "Student", "Teacher", "Resident"]),
+  role: z.enum(["Parent", "Student", "Teacher", "Resident"]).optional(),
   message: z.string().trim().min(1, "Message is required").max(2000),
   anonId: z.string().max(80).optional().nullable(),
   fpHash: z.string().max(120).optional().nullable(),
@@ -67,10 +67,19 @@ export const submitContact = createServerFn({ method: "POST" })
     const { error } = await supabaseAdmin.from("contact_messages").insert({
       name: data.name,
       email: data.email,
-      role: data.role,
+      role: data.role ?? "Resident",
       message: data.message,
       visitor_id: visitorId,
     });
     if (error) throw new Error("Could not save message");
+
+    try {
+      const { notifyQuestion } = await import("./question-email.server");
+      await notifyQuestion({ name: data.name, email: data.email, message: data.message });
+    } catch (mailError) {
+      // A mail failure must never lose the question — it is already saved.
+      console.error("question email failed", mailError);
+    }
+
     return { ok: true as const };
   });
