@@ -39,23 +39,14 @@ export function SiteFooter() {
             <p className="mt-2 text-sm text-ink-foreground/85">{t("footer.tagline")}</p>
           </div>
           <nav aria-label="Footer" className="flex flex-col gap-2 text-sm font-semibold">
-            <Link to="/about" className="w-fit hover:text-gold">
-              {t("nav.about")}
-            </Link>
             <Link to="/priorities" className="w-fit hover:text-gold">
               {t("nav.priorities")}
             </Link>
-            <Link to="/cost-calculator" className="w-fit hover:text-gold">
-              {t("nav.calculator")}
-            </Link>
-            <Link to="/methodology" className="w-fit hover:text-gold">
-              Sources &amp; assumptions
+            <Link to="/dashboard" className="w-fit hover:text-gold">
+              {t("nav.dashboard")}
             </Link>
             <Link to="/volunteer" className="w-fit hover:text-gold">
               {t("nav.volunteer")}
-            </Link>
-            <Link to="/contact" className="w-fit hover:text-gold">
-              {t("nav.contact")}
             </Link>
           </nav>
           <div className="flex flex-col gap-2 text-sm">

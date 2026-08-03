@@ -1,14 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 import heroAsset from "@/assets/saqeeb-portrait.jpg.asset.json";
-import { BudgetDashboard } from "@/components/budget-dashboard";
 import { CANDIDATE_NAME, DISTRICT_STATS, PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
 const TITLE = "Muhammad Saqeeb for East Brunswick Board of Education";
 const DESCRIPTION =
-  "A school board campaign built on plain numbers and open access. See where the district's $229M goes, and what I'd change.";
+  "A student-first campaign for East Brunswick schools: student voice, mental health and special education, safe and inclusive schools, and transparent leadership.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,8 +55,8 @@ function Index() {
               {t("home.hero.badge")}
             </p>
             <h1 className="mt-5 text-4xl leading-[1.05] sm:text-6xl">
-              Show the numbers.
-              <span className="block text-primary">Open the doors.</span>
+              Students first.
+              <span className="block text-primary">Every decision.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
               {t("home.hero.sub")}
@@ -106,8 +105,6 @@ function Index() {
         </div>
       </section>
 
-      <BudgetDashboard />
-
       <section aria-labelledby="priorities-heading" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="eyebrow text-primary">{t("priorities.eyebrow")}</p>
@@ -116,22 +113,19 @@ function Index() {
           </h2>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            {PRIORITIES.slice(0, 4).map((p, i) => (
+            {PRIORITIES.map((p) => (
               <Link
                 key={p.id}
                 to="/priorities"
                 hash={p.id}
                 className="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary"
               >
-                <span className="font-display text-sm font-black text-primary">
-                  {String(i + 1).padStart(2, "0")}
+                <span className="flex items-center gap-2 font-display text-sm font-black text-primary">
+                  <Check aria-hidden="true" className="size-4" />
+                  {p.number}
                 </span>
-                <h3 className="mt-2 font-display text-xl font-extrabold sm:text-2xl">
-                  {p.title}
-                </h3>
-                <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-                  {p.short}
-                </p>
+                <h3 className="mt-2 font-display text-xl font-extrabold sm:text-2xl">{p.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-muted-foreground">{p.summary}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">
                   Read more about {p.title}
                   <ArrowRight

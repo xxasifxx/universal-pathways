@@ -1,10 +1,9 @@
-import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
-import { SourcesNote } from "@/components/sources-note";
 import { BUDGET_SLICES, BUDGET_TOTAL } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
+import { SOURCE_LINE } from "@/lib/sources";
 import { cn } from "@/lib/utils";
 
 const usd = new Intl.NumberFormat("en-US", {
@@ -197,16 +196,13 @@ export function BudgetDashboard() {
         </div>
 
         <div className="mt-8 max-w-3xl">
-          <Link
-            to="/cost-calculator"
-            className="inline-flex rounded-md bg-gold px-5 py-2.5 font-display text-sm font-bold text-gold-foreground transition-opacity hover:opacity-90"
-          >
-            Now do it for your own kid
-          </Link>
-          <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
+          <p className="text-xs leading-relaxed text-muted-foreground">
             {t("budget.disclaimer")}
           </p>
-          <SourcesNote className="mt-3" />
+          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+            <span className="font-semibold text-foreground">Source: </span>
+            {SOURCE_LINE}
+          </p>
         </div>
       </div>
     </section>

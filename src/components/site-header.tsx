@@ -8,11 +8,9 @@ import { cn } from "@/lib/utils";
 
 const NAV = [
   { to: "/", key: "nav.home" },
-  { to: "/about", key: "nav.about" },
   { to: "/priorities", key: "nav.priorities" },
-  { to: "/cost-calculator", key: "nav.calculator" },
+  { to: "/dashboard", key: "nav.dashboard" },
   { to: "/volunteer", key: "nav.volunteer" },
-  { to: "/contact", key: "nav.contact" },
 ] as const;
 
 function LanguageSelect() {

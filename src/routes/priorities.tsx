@@ -1,19 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Check } from "lucide-react";
 
-import { PathwaysVisualizer } from "@/components/pathways-visualizer";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { logSignal } from "@/lib/analytics";
 import { PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
-const TITLE = "Priorities — What I'd Change in East Brunswick";
+const TITLE = "Five Priorities for East Brunswick Schools";
 const DESCRIPTION =
-  "Individual learning plans without a classification, open access to advanced courses, staffed classrooms, and a budget parents can read.";
+  "Students first, mental health and special education, safe and inclusive schools, transparent leadership, and long-term facilities investment.";
 
 export const Route = createFileRoute("/priorities")({
   head: () => ({
@@ -32,86 +25,67 @@ function Priorities() {
 
   return (
     <>
-      <section className="border-b border-border py-14 sm:py-20">
+      <section className="bg-primary py-14 text-primary-foreground sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="eyebrow text-primary">{t("priorities.eyebrow")}</p>
-          <h1 className="mt-3 max-w-4xl text-4xl leading-[1.05] sm:text-6xl">
-            What I&apos;d change
+          <h1 className="max-w-4xl text-4xl leading-[1.05] sm:text-6xl">
+            Five priorities for East Brunswick schools
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            All of this comes back to one thing. East Brunswick already knows how to teach kids
-            one at a time. It just keeps that skill locked in one department.
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/90">
+            A focused, student-first agenda built around student voice, mental health and special
+            education, belonging, transparency, and responsible long-term investment.
           </p>
         </div>
       </section>
 
-      <section aria-labelledby="pathways-heading" className="bg-secondary/50 py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="eyebrow text-primary">{t("pathways.eyebrow")}</p>
-          <h2 id="pathways-heading" className="mt-3 text-3xl sm:text-5xl">
-            {t("pathways.title")}
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Same kid, same bad week, same counselor&apos;s office. Press play and watch the two
-            versions come apart.
-          </p>
-          <div className="mt-8">
-            <PathwaysVisualizer />
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="planks-heading" className="py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 id="planks-heading" className="text-3xl sm:text-4xl">
-            The long version
-          </h2>
-          <Accordion
-            type="multiple"
-            className="mt-8 max-w-4xl"
-            onValueChange={(open: string[]) => {
-              const last = open[open.length - 1];
-              if (!last) return;
-              const plank = PRIORITIES.find((p) => p.id === last);
-              logSignal({
-                event: "priority_read",
-                service_slug: last,
-                service_group: "priorities",
-                meta: { title: plank?.title ?? last },
-              });
-            }}
-          >
-            {PRIORITIES.map((p, i) => (
-              <AccordionItem
-                key={p.id}
-                value={p.id}
-                id={p.id}
-                data-intent={p.id}
-                data-intent-group="priorities"
-                className="scroll-mt-24"
-              >
-                <AccordionTrigger className="text-left">
-                  <span className="flex items-baseline gap-3">
-                    <span className="font-display text-sm font-black text-primary">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="font-display text-lg font-extrabold sm:text-xl">
-                      {p.title}
-                    </span>
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="flex flex-col gap-4 pb-2 text-base leading-relaxed text-muted-foreground">
-                    {p.body.map((para) => (
-                      <p key={para.slice(0, 24)}>{para}</p>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
+      <nav aria-label="Priorities" className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+          <p className="eyebrow text-primary">{t("priorities.eyebrow")}</p>
+          <ul className="mt-4 flex flex-col">
+            {PRIORITIES.map((p) => (
+              <li key={p.id} className="border-t border-border">
+                <Link
+                  to="/priorities"
+                  hash={p.id}
+                  className="flex items-baseline gap-3 py-3 font-display text-base font-extrabold uppercase tracking-wide text-primary hover:underline sm:text-lg"
+                >
+                  <span className="text-sm">{p.number}</span>
+                  {p.title}
+                </Link>
+              </li>
             ))}
-          </Accordion>
+          </ul>
         </div>
-      </section>
+      </nav>
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        {PRIORITIES.map((p) => (
+          <section
+            key={p.id}
+            id={p.id}
+            aria-labelledby={`${p.id}-heading`}
+            className="scroll-mt-24 border-b border-border py-12 last:border-b-0 sm:py-16"
+          >
+            <p className="eyebrow text-primary">Priority {p.number}</p>
+            <div className="mt-3 flex items-start gap-4">
+              <span
+                aria-hidden="true"
+                className="mt-1 grid size-10 shrink-0 place-items-center rounded-full border-2 border-primary text-primary"
+              >
+                <Check className="size-5" />
+              </span>
+              <h2 id={`${p.id}-heading`} className="text-3xl sm:text-4xl">
+                {p.title}
+              </h2>
+            </div>
+            <p className="mt-5 max-w-3xl text-lg leading-relaxed">{p.summary}</p>
+            <ul className="mt-6 flex max-w-3xl list-disc flex-col gap-3 pl-5 text-base leading-relaxed text-muted-foreground">
+              {p.points.map((point) => (
+                <li key={point.slice(0, 32)}>{point}</li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
     </>
   );
 }
