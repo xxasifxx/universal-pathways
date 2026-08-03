@@ -24,7 +24,7 @@ type Errors = Partial<Record<Field, string>>;
 const inputClass =
   "mt-1.5 w-full rounded-md border border-input bg-card px-3 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus:border-primary";
 
-function FieldError({ id, message }: { id: string; message?: string }) {
+function FieldError({ id, message }: { id: string; message?: string | undefined }) {
   if (!message) return null;
   return (
     <span id={id} role="alert" className="mt-1 block text-sm text-destructive">
