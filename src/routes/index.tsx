@@ -4,7 +4,7 @@ import { ArrowRight, Check } from "lucide-react";
 import heroAsset from "@/assets/saqeeb-portrait.jpg.asset.json";
 import {
   CANDIDATE_NAME,
-  DISTRICT_STATS,
+  CONTACT_EMAIL,
   PRIORITIES,
   SOCIAL_LINKS,
   WHY_SAQEEB,
@@ -124,14 +124,15 @@ function Index() {
         </div>
       </section>
 
-      <section aria-label="District at a glance" className="bg-ink text-ink-foreground">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-10 sm:px-6 md:grid-cols-4">
-          {DISTRICT_STATS.map((s) => (
-            <div key={s.label}>
-              <p className="font-display text-3xl font-black sm:text-4xl">{s.value}</p>
-              <p className="mt-1 text-sm text-ink-foreground/85">{s.label}</p>
-            </div>
-          ))}
+      <section aria-label="Contact" className="bg-ink text-ink-foreground">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-6 sm:px-6">
+          <p className="font-display text-xl tracking-wide">Questions? Ask me directly.</p>
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="font-semibold underline underline-offset-4 hover:text-gold"
+          >
+            {CONTACT_EMAIL}
+          </a>
         </div>
       </section>
 
@@ -142,30 +143,31 @@ function Index() {
             {t("priorities.title")}
           </h2>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+        <ul className="mt-8 flex flex-col gap-3">
             {PRIORITIES.map((p) => (
-              <Link
-                key={p.id}
-                to="/priorities"
-                hash={p.id}
-                className="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary"
-              >
-                <span className="flex items-center gap-2 font-display text-sm font-black text-primary">
-                  <Check aria-hidden="true" className="size-4" />
-                  {p.number}
-                </span>
-                <h3 className="mt-2 font-display text-xl font-extrabold sm:text-2xl">{p.title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-muted-foreground">{p.summary}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">
-                  Read more about {p.title}
+              <li key={p.id}>
+                <Link
+                  to="/priorities"
+                  hash={p.id}
+                  className="group flex items-start gap-3 rounded-lg border border-border bg-card px-5 py-4 transition-colors hover:border-primary"
+                >
+                  <Check aria-hidden="true" className="mt-1 size-4 shrink-0 text-primary" />
+                  <span className="font-display text-xl font-extrabold">{p.title}</span>
                   <ArrowRight
                     aria-hidden="true"
-                    className="size-4 transition-transform group-hover:translate-x-1"
+                    className="ml-auto mt-1 size-4 shrink-0 text-primary transition-transform group-hover:translate-x-1"
                   />
-                </span>
-              </Link>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
+          <Link
+            to="/priorities"
+            className="mt-8 inline-flex items-center gap-2 font-display text-base font-bold text-primary underline underline-offset-4"
+          >
+            Read the full platform
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
         </div>
       </section>
     </>

@@ -6,7 +6,7 @@
 export const CANDIDATE_NAME = "Muhammad Saqeeb";
 export const OFFICE = "East Brunswick Board of Education";
 export const DONATE_URL = "https://secure.actblue.com/";
-export const CONTACT_EMAIL = "hello@saqeebforeb.org";
+export const CONTACT_EMAIL = "ask@saqeeb.org";
 export const REGISTRATION_DEADLINE = "October 13th";
 
 /** Campaign social profiles. Set a URL to null to hide that link. */

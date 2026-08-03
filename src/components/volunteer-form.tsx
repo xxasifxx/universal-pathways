@@ -20,6 +20,11 @@ export function VolunteerForm({ defaultHelp = [] as string[] }) {
 
   const started = useRef(false);
   const submitted = useRef(false);
+  const statusRef = useRef<HTMLParagraphElement | null>(null);
+
+  useEffect(() => {
+    if (done) statusRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [done]);
 
   function markStarted() {
     if (started.current) return;
@@ -61,7 +66,11 @@ export function VolunteerForm({ defaultHelp = [] as string[] }) {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(values.email)) next.email = "Please enter a valid email.";
     if (!/^\d{5}(-\d{4})?$/.test(values.zipCode)) next.zipCode = "Enter a 5-digit zip code.";
     setErrors(next);
-    if (Object.keys(next).length > 0) return;
+    if (Object.keys(next).length > 0) {
+      toast.error("Please fix the highlighted fields.");
+      (e.currentTarget.querySelector("[aria-invalid='true']") as HTMLElement | null)?.focus();
+      return;
+    }
 
     setPending(true);
     try {
@@ -89,6 +98,8 @@ export function VolunteerForm({ defaultHelp = [] as string[] }) {
   if (done) {
     return (
       <p
+        ref={statusRef}
+        tabIndex={-1}
         role="status"
         className="rounded-lg border border-primary/40 bg-secondary p-5 text-base font-semibold text-primary"
       >
