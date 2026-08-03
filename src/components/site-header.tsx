@@ -50,17 +50,6 @@ export function SiteHeader() {
             <span className="block truncate font-display text-xl tracking-[0.02em] text-gold-foreground">
               Saqeeb
             </span>
-            <span
-              aria-hidden="true"
-              className="mb-0.5 flex w-full items-center gap-1.5"
-            >
-              <span className="h-px flex-1 bg-gold-foreground/70" />
-              <span className="text-[7px] text-gold-foreground">★</span>
-              <span className="h-px flex-1 bg-gold-foreground/70" />
-            </span>
-            <span className="block truncate text-[8px] font-bold uppercase tracking-[0.16em] text-gold-foreground">
-              EB Board of Education
-            </span>
           </span>
           <span className="sr-only">{CANDIDATE_NAME} for East Brunswick Board of Education</span>
         </Link>

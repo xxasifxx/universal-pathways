@@ -44,7 +44,7 @@ Everything below the hero — the question box and the quiet link row — stays 
 
 ## Navbar
 
-Remove the star-and-rules divider from the logo lockup, so it reads Muhammad / Saqeeb / EB Board of Education with no ornament.
+Remove the star-and-rules divider and text below it from the logo lockup, so it reads Muhammad / Saqeeb with no ornament.
 
 ## Technical notes
 

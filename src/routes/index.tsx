@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import heroAsset from "@/assets/saqeeb-portrait.jpg.asset.json";
 import { AskQuestionForm } from "@/components/ask-question-form";
@@ -55,8 +55,8 @@ function Index() {
   return (
     <>
       <section className="border-b border-border">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:items-center lg:gap-14">
-          <figure className="order-1 lg:order-none">
+        <div className="mx-auto flex max-w-2xl flex-col items-center px-4 py-12 text-center sm:px-6 sm:py-16">
+          <figure className="w-full max-w-sm">
             <img
               src={heroAsset.url}
               alt="Muhammad Saqeeb, candidate for the East Brunswick Board of Education"
@@ -66,41 +66,33 @@ function Index() {
             />
           </figure>
 
-          <div className="order-2 lg:order-none">
-            <p className="eyebrow inline-block rounded-full bg-secondary px-3 py-1.5 text-accent-foreground">
-              {t("home.hero.badge")}
-            </p>
-            <h1 className="mt-5 text-4xl leading-[1.05] sm:text-5xl">
-              Hi, I&apos;m Muhammad Saqeeb.
-              <span className="block text-primary">Nice to meet you!</span>
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-foreground/90">
-              {t("home.hero.sub")}
-            </p>
-            <ul className="mt-6 grid gap-2.5">
-              {WHY_SAQEEB.map((reason) => (
-                <li key={reason} className="flex gap-2.5 text-base leading-relaxed">
-                  <Check aria-hidden="true" className="mt-1 size-4 shrink-0 text-primary" />
-                  <span>{reason}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#ask"
-                className="inline-flex items-center gap-2 rounded-md bg-gold px-6 py-3.5 font-display text-base font-bold text-gold-foreground transition-opacity hover:opacity-90"
-              >
-                Ask me a question
-                <ArrowRight aria-hidden="true" className="size-4" />
-              </a>
-              <Link
-                to="/volunteer"
-                className="inline-flex items-center rounded-md border-2 border-ink px-6 py-3.5 font-display text-base font-bold text-ink transition-colors hover:bg-ink hover:text-ink-foreground"
-              >
-                {t("home.hero.cta.secondary")}
-              </Link>
-            </div>
-          </div>
+          <h1 className="mt-8 text-4xl leading-[1.05] sm:text-5xl">
+            {t("home.hero.headline")}
+            <span className="block text-primary">{t("home.hero.sub")}</span>
+          </h1>
+
+          <ul className="mt-7 grid gap-2.5">
+            {WHY_SAQEEB.map((snippet) => (
+              <li key={snippet} className="text-base leading-relaxed text-foreground/90">
+                {snippet}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="mt-7 font-semibold text-primary underline underline-offset-4"
+          >
+            {CONTACT_EMAIL}
+          </a>
+
+          <a
+            href="#ask"
+            className="mt-7 inline-flex items-center gap-2 rounded-md bg-gold px-6 py-3.5 font-display text-base font-bold text-gold-foreground transition-opacity hover:opacity-90"
+          >
+            Ask me a question
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </a>
         </div>
       </section>
 

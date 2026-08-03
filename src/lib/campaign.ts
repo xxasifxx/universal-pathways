@@ -17,11 +17,12 @@ export const SOCIAL_LINKS: { id: string; label: string; url: string | null }[] =
   { id: "linkedin", label: "LinkedIn", url: null },
 ];
 
-/** Short, scannable reasons to vote for Saqeeb — shown at the top of the home page. */
+/** Short snippets about Saqeeb — shown at the top of the home page. */
 export const WHY_SAQEEB = [
-  "East Brunswick Public Schools graduate who knows the system from the inside",
-  "Years of showing up: Board meetings, budgets, agendas, policy",
-  "Stood up for students when hate incidents hit our schools",
+  "Raised in East Brunswick, working-class immigrant family",
+  "East Brunswick Public Schools graduate",
+  "Community organizer",
+  "Data scientist",
   "Brings students, parents, and educators into the decisions",
 ];
 
