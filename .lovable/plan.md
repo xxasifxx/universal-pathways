@@ -1,53 +1,54 @@
-# Hero: his original wording, Wilbur's format
+# Hero: "Hi, I'm Saqeeb. Nice to meet you!"
 
-## The fault
+## What the hero says
 
-The hero bullets are copy I wrote. His own site already had the words — short priority labels with one plain line each. Wilbur's page proves the format: greeting, portrait, name and office, a bulleted list of short phrases, email. Nothing authored on top.
-
-## What changes
-
-**1. Hero content comes from his original site, verbatim**
-
-Replace the invented `WHY_SAQEEB` bullets and the `home.hero.sub` bio paragraph with the five labels from his own site:
-
-- Empowered Students
-- Clear Dashboards
-- Better Staff Benefits
-- Safe & Inclusive Schools
-- Students First
-
-Each rendered as a plain bullet line, no checkmark icons, no card, no summary sentence. Just the list, the way Wilbur's page does it.
-
-**2. Hero structure follows Wilbur's page**
+Headline stays personal and plain:
 
 ```text
-Hi! My name's Muhammad.
-I'm running for the East Brunswick Board of Education.
-
-        [portrait]
-
-Muhammad Saqeeb for East Brunswick
-Board of Education
-
-   • Empowered Students •
-   • Clear Dashboards •
-   • Better Staff Benefits •
-   • Safe & Inclusive Schools •
-   • Students First •
-        ask@saqeeb.org
-
-     Ask me a question
+Hi, I'm Saqeeb.
+Nice to meet you!
 ```
 
-Centered, one column, campaign yellow and burgundy tokens kept. No badge chip, no two-button row — the single "Ask me a question" action scrolls to the existing question box below.
+Under it, short snippets about him — not sentences I wrote, but the descriptors from his own original site, kept as fragments:
 
-**3. Remove the star from the navbar logo**
+- Raised in East Brunswick, working-class immigrant family
+- East Brunswick Public Schools graduate
+- Community organizer
+- Data scientist
+- Brings students, parents, and educators into the decisions
 
-Delete the star-and-rules divider row between "Saqeeb" and "EB Board of Education" in the header lockup.
+No story paragraph, no slogans, no "here's why I'm running" framing.
+
+## Layout (Wilbur's format)
+
+```text
+        [portrait]
+
+     Hi, I'm Saqeeb.
+     Nice to meet you!
+
+  · Raised in East Brunswick, working-class immigrant family
+  · East Brunswick Public Schools graduate
+  · Community organizer
+  · Data scientist
+  · Brings students, parents, and educators into the decisions
+
+        ask@saqeeb.org
+
+     [ Ask me a question ]
+```
+
+Single centered column, portrait first, plain bullet dots instead of checkmark icons, one button that scrolls to the existing question box. The badge chip and the secondary Volunteer button come out of the hero. Campaign yellow and burgundy tokens unchanged.
+
+Everything below the hero — the question box and the quiet link row — stays exactly as it is.
+
+## Navbar
+
+Remove the star-and-rules divider from the logo lockup, so it reads Muhammad / Saqeeb / EB Board of Education with no ornament.
 
 ## Technical notes
 
-- `src/lib/campaign.ts` — replace `WHY_SAQEEB` with the five original priority labels.
-- `src/lib/i18n.tsx` — `home.hero.sub` becomes "I'm running for the East Brunswick Board of Education."; headline becomes "Hi! My name's Muhammad."
-- `src/routes/index.tsx` — restructure hero to single centered column: greeting, portrait, name/office line, bullet list, email, one CTA. Drop the badge chip, the checkmark list, and the secondary Volunteer button.
-- `src/components/site-header.tsx` — remove the `aria-hidden` star divider span (lines 53-60).
+- `src/lib/campaign.ts` — replace `WHY_SAQEEB` contents with the five snippet fragments above.
+- `src/lib/i18n.tsx` — drop the bio paragraph in `home.hero.sub`; headline strings become "Hi, I'm Saqeeb." / "Nice to meet you!".
+- `src/routes/index.tsx` — restructure the hero section to one centered column: portrait, headline, snippet list (no `Check` icon), email line, single `#ask` CTA. Remove the badge `<p>` and the `/volunteer` button.
+- `src/components/site-header.tsx` — delete the `aria-hidden` star divider span (lines 53-60).
