@@ -1,31 +1,45 @@
-# Hero: stop authoring words for him
+# Hero: his original wording, Wilbur's format
 
-## The actual fault
+## The fault
 
-The hero doesn't have a tone problem, it has a source problem. The four bullets under the headline (`WHY_SAQEEB`) and the bio paragraph (`home.hero.sub`) are text written for him, not by him. Any rewrite of that text is still invented. The five priorities in `PRIORITIES` are the only campaign copy that came from the candidate.
+The hero bullets are copy I wrote. His own site already had the words — short priority labels with one plain line each. Wilbur's page proves the format: greeting, portrait, name and office, a bulleted list of short phrases, email. Nothing authored on top.
 
 ## What changes
 
-**1. Delete the invented hero copy**
+**1. Hero content comes from his original site, verbatim**
 
-- Remove the `WHY_SAQEEB` array and its checkmark list from the hero.
-- Remove the `home.hero.sub` bio paragraph.
+Replace the invented `WHY_SAQEEB` bullets and the `home.hero.sub` bio paragraph with the five labels from his own site:
 
-**2. Hero shows his real priorities, verbatim**
+- Empowered Students
+- Clear Dashboards
+- Better Staff Benefits
+- Safe & Inclusive Schools
+- Students First
 
-Under "Hi, I'm Muhammad Saqeeb. Nice to meet you!", one plain line:
+Each rendered as a plain bullet line, no checkmark icons, no card, no summary sentence. Just the list, the way Wilbur's page does it.
 
-`I'm running for the East Brunswick Board of Education because of these priorities.`
+**2. Hero structure follows Wilbur's page**
 
-Then the five priority titles exactly as they already exist in `PRIORITIES` — titles only, no summaries, no icons, no links per item:
+```text
+Hi! My name's Muhammad.
+I'm running for the East Brunswick Board of Education.
 
-1. Students First
-2. Mental Health, Special Education & Early Learning
-3. Safe, Inclusive & Welcoming Schools
-4. Transparent, Responsible & Community-Focused Leadership
-5. Strong Facilities & Long-Term Investment
+        [portrait]
 
-Nothing on the home page is authored copy anymore — it's his headline, his priorities, then the question box.
+Muhammad Saqeeb for East Brunswick
+Board of Education
+
+   • Empowered Students •
+   • Clear Dashboards •
+   • Better Staff Benefits •
+   • Safe & Inclusive Schools •
+   • Students First •
+        ask@saqeeb.org
+
+     Ask me a question
+```
+
+Centered, one column, campaign yellow and burgundy tokens kept. No badge chip, no two-button row — the single "Ask me a question" action scrolls to the existing question box below.
 
 **3. Remove the star from the navbar logo**
 
@@ -33,7 +47,7 @@ Delete the star-and-rules divider row between "Saqeeb" and "EB Board of Educatio
 
 ## Technical notes
 
-- `src/lib/campaign.ts` — delete `WHY_SAQEEB`.
-- `src/lib/i18n.tsx` — replace `home.hero.sub` with the single lead-in line.
-- `src/routes/index.tsx` — hero renders `PRIORITIES.map(p => p.title)`; drop the `WHY_SAQEEB` import and list.
+- `src/lib/campaign.ts` — replace `WHY_SAQEEB` with the five original priority labels.
+- `src/lib/i18n.tsx` — `home.hero.sub` becomes "I'm running for the East Brunswick Board of Education."; headline becomes "Hi! My name's Muhammad."
+- `src/routes/index.tsx` — restructure hero to single centered column: greeting, portrait, name/office line, bullet list, email, one CTA. Drop the badge chip, the checkmark list, and the secondary Volunteer button.
 - `src/components/site-header.tsx` — remove the `aria-hidden` star divider span (lines 53-60).
