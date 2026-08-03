@@ -3,13 +3,17 @@
  *
  * Every question is already saved to the campaign inbox before this runs, so a
  * failure here is logged and swallowed by the caller — it never loses a question.
- *
- * Email sending activates once the campaign's sender domain is verified; until
- * then this is a no-op and questions are read from the admin area.
  */
-export async function notifyQuestion(input: { name: string; email: string; message: string }) {
-  console.info(
-    `[question] ${input.name} <${input.email}>: ${input.message.slice(0, 120)}`,
-  );
-  return { sent: false as const, reason: "email_domain_not_configured" as const };
+export async function notifyQuestion(input: {
+  name: string;
+  email: string;
+  message: string;
+  id?: string;
+}) {
+  const { sendTemplateEmail } = await import("./email-templates/send-email");
+  return sendTemplateEmail("question-notification", "ask@saqeeb.org", {
+    templateData: { name: input.name, email: input.email, message: input.message },
+    idempotencyKey: `question-notification-${input.id ?? `${input.email}-${Date.now()}`}`,
+    replyTo: input.email,
+  });
 }
