@@ -72,9 +72,7 @@ function Index() {
             </p>
             <h1 className="mt-5 text-4xl leading-[1.05] sm:text-5xl">
               Hi, I&apos;m Muhammad Saqeeb.
-              <span className="block text-primary">
-                Here&apos;s why I&apos;m running.
-              </span>
+              <span className="block text-primary">Nice to meet you!</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-foreground/90">
               {t("home.hero.sub")}
