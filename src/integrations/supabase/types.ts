@@ -52,6 +52,77 @@ export type Database = {
           },
         ]
       }
+      contributions: {
+        Row: {
+          address_line1: string
+          amount_cents: number
+          certifies_own_funds: boolean
+          certifies_us_person: boolean
+          city: string
+          created_at: string
+          email: string
+          employer: string
+          id: string
+          method: string
+          name: string
+          note: string | null
+          occupation: string
+          phone: string | null
+          state: string
+          status: string
+          visitor_id: string | null
+          zip_code: string
+        }
+        Insert: {
+          address_line1: string
+          amount_cents: number
+          certifies_own_funds?: boolean
+          certifies_us_person?: boolean
+          city: string
+          created_at?: string
+          email: string
+          employer: string
+          id?: string
+          method: string
+          name: string
+          note?: string | null
+          occupation: string
+          phone?: string | null
+          state: string
+          status?: string
+          visitor_id?: string | null
+          zip_code: string
+        }
+        Update: {
+          address_line1?: string
+          amount_cents?: number
+          certifies_own_funds?: boolean
+          certifies_us_person?: boolean
+          city?: string
+          created_at?: string
+          email?: string
+          employer?: string
+          id?: string
+          method?: string
+          name?: string
+          note?: string | null
+          occupation?: string
+          phone?: string | null
+          state?: string
+          status?: string
+          visitor_id?: string | null
+          zip_code?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contributions_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "visitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       lead_signals: {
         Row: {
           anon_id: string | null
