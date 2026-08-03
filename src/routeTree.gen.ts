@@ -10,10 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CostCalculatorRouteImport } from './routes/cost-calculator'
-import { Route as MethodologyRouteImport } from './routes/methodology'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
@@ -31,24 +28,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CostCalculatorRoute = CostCalculatorRouteImport.update({
-  id: '/cost-calculator',
-  path: '/cost-calculator',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MethodologyRoute = MethodologyRouteImport.update({
-  id: '/methodology',
-  path: '/methodology',
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrioritiesRoute = PrioritiesRouteImport.update({
@@ -109,10 +91,7 @@ const ApiPublicLogSignalRoute = ApiPublicLogSignalRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/contact': typeof ContactRoute
-  '/cost-calculator': typeof CostCalculatorRoute
-  '/methodology': typeof MethodologyRoute
+  '/dashboard': typeof DashboardRoute
   '/priorities': typeof PrioritiesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
@@ -127,10 +106,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/contact': typeof ContactRoute
-  '/cost-calculator': typeof CostCalculatorRoute
-  '/methodology': typeof MethodologyRoute
+  '/dashboard': typeof DashboardRoute
   '/priorities': typeof PrioritiesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
@@ -146,10 +122,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/contact': typeof ContactRoute
-  '/cost-calculator': typeof CostCalculatorRoute
-  '/methodology': typeof MethodologyRoute
+  '/dashboard': typeof DashboardRoute
   '/priorities': typeof PrioritiesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
@@ -166,10 +139,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
-    | '/contact'
-    | '/cost-calculator'
-    | '/methodology'
+    | '/dashboard'
     | '/priorities'
     | '/sitemap.xml'
     | '/volunteer'
@@ -184,10 +154,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
-    | '/contact'
-    | '/cost-calculator'
-    | '/methodology'
+    | '/dashboard'
     | '/priorities'
     | '/sitemap.xml'
     | '/volunteer'
@@ -202,10 +169,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/about'
-    | '/contact'
-    | '/cost-calculator'
-    | '/methodology'
+    | '/dashboard'
     | '/priorities'
     | '/sitemap.xml'
     | '/volunteer'
@@ -221,10 +185,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  ContactRoute: typeof ContactRoute
-  CostCalculatorRoute: typeof CostCalculatorRoute
-  MethodologyRoute: typeof MethodologyRoute
+  DashboardRoute: typeof DashboardRoute
   PrioritiesRoute: typeof PrioritiesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VolunteerRoute: typeof VolunteerRoute
@@ -247,32 +208,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cost-calculator': {
-      id: '/cost-calculator'
-      path: '/cost-calculator'
-      fullPath: '/cost-calculator'
-      preLoaderRoute: typeof CostCalculatorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/methodology': {
-      id: '/methodology'
-      path: '/methodology'
-      fullPath: '/methodology'
-      preLoaderRoute: typeof MethodologyRouteImport
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/priorities': {
@@ -357,10 +297,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  ContactRoute: ContactRoute,
-  CostCalculatorRoute: CostCalculatorRoute,
-  MethodologyRoute: MethodologyRoute,
+  DashboardRoute: DashboardRoute,
   PrioritiesRoute: PrioritiesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VolunteerRoute: VolunteerRoute,

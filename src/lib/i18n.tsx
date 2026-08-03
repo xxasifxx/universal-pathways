@@ -28,11 +28,9 @@ export type LocaleCode = (typeof LOCALES)[number]["code"];
 
 const en = {
   "nav.home": "Home",
-  "nav.about": "About",
   "nav.priorities": "Priorities",
-  "nav.calculator": "Cost per child",
+  "nav.dashboard": "District dashboard",
   "nav.volunteer": "Volunteer",
-  "nav.contact": "Contact",
   "nav.donate": "Donate",
   "nav.menu": "Open menu",
   "nav.close": "Close menu",
@@ -46,10 +44,10 @@ const en = {
     "An independent campaign for the East Brunswick Board of Education. No party line, no consultants.",
   "footer.rights": "Paid for by Saqeeb for East Brunswick.",
 
-  "home.hero.headline": "Show the numbers. Open the doors.",
+  "home.hero.headline": "Students first. Every decision.",
   "home.hero.sub":
-    "I'm running for the East Brunswick Board of Education because the people most affected by school policies don't always have the strongest voice in creating them. This site shows you the same numbers the board sees.",
-  "home.hero.cta.primary": "Read the platform",
+    "East Brunswick schools should put students first by listening to them, giving families clear information, investing in staff, and ensuring every child feels safe and included.",
+  "home.hero.cta.primary": "See the five priorities",
   "home.hero.cta.secondary": "Volunteer",
   "home.hero.badge": "East Brunswick Board of Education · 2026",
 
@@ -63,44 +61,22 @@ const en = {
   "budget.disclaimer":
     "Illustrative breakdown of the adopted 2024\u20132025 operating budget, grouped from publicly reported district figures. Line items shift from year to year, so treat these as approximate until the district publishes something better. I'd like it to.",
 
-  "priorities.eyebrow": "The platform",
-  "priorities.title": "What I'd work on first",
-
-  "about.title": "The people most affected don't always have the strongest voice",
-  "about.timeline.eyebrow": "The student journey",
-  "about.timeline.title": "How I got here",
-
-  "pathways.eyebrow": "Personalized pathways",
-  "pathways.title": "Same student. Two systems.",
-  "pathways.start": "Start: a seventh grader has a bad week",
-  "pathways.replay": "Replay both paths",
-  "pathways.trap": "What happens now",
-  "pathways.solution": "What I'd rather happen",
+  "priorities.eyebrow": "Our five priorities",
+  "priorities.title": "Five priorities for East Brunswick schools",
 
   "volunteer.title": "Powered by Neighbors",
-  "volunteer.map.title": "Find your neighborhood",
-  "volunteer.map.help":
-    "Pick your school zone and you'll be working your own streets.",
-  "volunteer.select": "Or choose your zone from the list",
-
-  "contact.title": "Tell me what's broken",
-  "contact.body":
-    "If something in this district isn't working for your kid or your classroom, I want the details. I read all of it, and the specific complaints are the ones that turn into policy.",
 
   "form.name": "Name",
   "form.email": "Email",
   "form.zip": "Zip code",
   "form.mobile": "Mobile number",
   "form.mobile.optional": "Mobile number (optional)",
+  "form.address": "Street address (optional)",
   "form.help": "How do you want to help?",
-  "form.role": "I am a…",
-  "form.message": "Message",
   "form.submit.volunteer": "Sign me up",
-  "form.submit.contact": "Send it",
   "form.submitting": "Sending…",
   "form.success.volunteer":
     "You're on the list. Someone will reach out this week, probably in the evening.",
-  "form.success.contact": "Got it. Thanks for writing.",
   "form.error": "That didn't go through. Try again?",
 } as const;
 

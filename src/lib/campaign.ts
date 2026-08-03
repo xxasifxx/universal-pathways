@@ -9,7 +9,7 @@ export const DONATE_URL = "https://secure.actblue.com/";
 export const CONTACT_EMAIL = "hello@saqeebforeb.org";
 export const REGISTRATION_DEADLINE = "October 13th";
 
-/** Mock breakdown of the district's $229M operating budget. */
+/** Breakdown of the district's $229M operating budget. */
 export const BUDGET_TOTAL = 229_000_000;
 
 export type BudgetSlice = {
@@ -43,7 +43,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
     jargon: "Special Education & Related Services",
     plain: "Special Education programs",
     amount: 34_300_000,
-    note: "Real expertise, walled off in one program. I want the same dollars writing plans for any kid who needs one.",
+    note: "Staffing, services, and early intervention for students who need them, plus out-of-district placements.",
     color: "var(--color-chart-3)",
   },
   {
@@ -67,212 +67,90 @@ export const BUDGET_SLICES: BudgetSlice[] = [
     jargon: "General & School Administration",
     plain: "Principals & central office",
     amount: 16_400_000,
-    note: "Principals, directors, and the central office where placement decisions actually get made.",
+    note: "Principals, directors, and the central office where most policy decisions actually get made.",
     color: "var(--color-chart-6)",
   },
 ];
 
 export type Priority = {
   id: string;
+  number: string;
   title: string;
-  short: string;
-  body: string[];
+  summary: string;
+  points: string[];
 };
 
 export const PRIORITIES: Priority[] = [
   {
-    id: "pathways",
-    title: "Universal Pathways",
-    short:
-      "Individual learning plans shouldn't require a classification first.",
-    body: [
-      "East Brunswick writes individualized learning plans all the time. It just does it inside Special Education, where federal law requires it, and almost nowhere else. So a kid who needs something specific has to be classified before anyone will write it down.",
-      "What I want instead is pretty boring in practice. A student who's behind in reading in September gets reading help in September. If that same student is ready for accelerated math in January, they move in January. Nobody has to carry a label through middle school to make either of those things happen.",
-      "This isn't a spending increase. It's the $34.3 million of Special Education expertise we already pay for, plus counselors already on payroll, working across the whole district instead of one track.",
+    id: "students-first",
+    number: "01",
+    title: "Students First",
+    summary:
+      "Students should have a real voice in the decisions that shape their education, and fair access to the courses that open doors.",
+    points: [
+      "Create meaningful student advisory committees and regular opportunities for students to speak before major Board decisions.",
+      "Review rigid placement systems, including the district matrix, and expand fair access to advanced and higher-level courses.",
+      "Review homework, grading, and assessment policies so grades better reflect learning, creativity, effort, and critical thinking.",
+      "Prepare students for an AI-driven future by teaching responsible AI use, digital literacy, and independent thinking.",
     ],
   },
   {
-    id: "agency",
-    title: "Empowered Students",
-    short:
-      "Let students opt into the hard class, and put real support around them when they do.",
-    body: [
-      "A student can be kept out of an AP or honors course by a prerequisite grade, an old classification, or one counselor's read of whether they're ready. Everyone involved means well. But a district that never lets marginal students try also never has to report that any of them struggled, and that's a convenient thing for the numbers.",
-      "If a family wants the harder class and understands what they're signing up for, that should be their call. The district's job starts after the yes: tutoring that's scheduled rather than offered, a check-in halfway through the marking period, and a way back if the first quarter goes badly.",
-      "I'm not proposing we take away support. I'm proposing we stop using it as a reason to say no.",
+    id: "mental-health",
+    number: "02",
+    title: "Mental Health, Special Education & Early Learning",
+    summary:
+      "The staff who support students day to day are not an add-on. They are what makes everything else work.",
+    points: [
+      "Maintain and strengthen school psychologists, counselors, social workers, and other essential mental health staff.",
+      "Protect and improve special education staffing, services, early intervention, and communication with families.",
+      "Recognize that special education professionals strengthen the entire school community by supporting students, classrooms, educators, and families.",
+      "Protect the Early Learning Program and work to keep it affordable by supporting it through the school budget rather than placing excessive costs on families.",
     ],
   },
   {
-    id: "staff",
-    title: "Better Paid, Better Supported Staff",
-    short:
-      "Understaffed rooms and unfunded mandates, not the people in front of the kids.",
-    body: [
-      "Almost every conversation I have about outcomes ends up in the same place: there aren't enough adults in the building. A teacher with twenty-eight kids at five different levels and no aide isn't failing. They're being set up to fail.",
-      "Pay matters, and we should stop losing good people to neighboring districts over a few thousand dollars. But the bigger lever is the support roles. Aides and paraprofessionals are what make it physically possible to give one kid something different from the kid next to him.",
-      "So my test for any new initiative is simple. Does it add work to a teacher's day? Then it has to add a person to the room, or it isn't ready.",
+    id: "safe-inclusive",
+    number: "03",
+    title: "Safe, Inclusive & Welcoming Schools",
+    summary:
+      "Every student deserves to feel safe, respected, and represented in East Brunswick schools.",
+    points: [
+      "Keep schools safe from bullying, discrimination, hate incidents, and routine immigration enforcement.",
+      "Build meaningful cultural and religious inclusion by creating more opportunities for students to learn from East Brunswick's diverse communities.",
+      "Expand inclusive cafeteria choices, including dependable halal and kosher meal options.",
     ],
   },
   {
-    id: "dashboards",
-    title: "Clear Dashboards",
-    short:
-      "Publish where the resources are thin, not scorecards on teachers.",
-    body: [
-      "The budget is public in the sense that a PDF exists. Ask ten parents what \"Instructional Support Services\" pays for and you'll get ten shrugs, even though it's the line covering their kid's counselor and nurse.",
-      "I'd like the district to publish something a parent can actually use: which buildings are short on aides, which counselors are carrying caseloads above the recommended ratio, where referrals are spiking. That's a map of where help is needed. It isn't an evaluation of anybody.",
-      "The pattern is consistent wherever this gets tried. Measure people to catch them and the reporting gets defensive. Measure conditions to fix them and you get honest numbers.",
+    id: "transparent-leadership",
+    number: "04",
+    title: "Transparent, Responsible & Community-Focused Leadership",
+    summary:
+      "Public money and public decisions should be understandable to the public paying for them.",
+    points: [
+      "Make budgets, contracts, policy changes, and major Board decisions easier for residents to understand.",
+      "Hold consultants, vendors, and private contractors accountable for cost, quality, and measurable results.",
+      "Improve communication and participation for parents, educators, immigrant families, and multilingual communities.",
     ],
   },
   {
-    id: "safe",
-    title: "Safe & Inclusive Schools",
-    short:
-      "Reach every family in a language they read, and name what we do when hate shows up.",
-    body: [
-      "More than 90 languages are spoken in the homes of East Brunswick students. An English-only notice with a Friday deadline isn't really a notice for a lot of those families.",
-      "Anything with a deadline attached should go out translated and in plain language: registration, discipline letters, IEP meeting invitations, budget votes. Not the whole website. The things that cost you something if you miss them.",
-      "On hate, I'd rather be specific than sound noble. Islamophobia and antisemitism both show up here, usually in a group chat before they show up in a hallway. What families ask me for isn't a stronger values statement. It's knowing which adult handles it, how fast, and what the parent hears back.",
+    id: "facilities",
+    number: "05",
+    title: "Strong Facilities & Long-Term Investment",
+    summary:
+      "Buildings are a generational decision. They deserve an honest conversation about value and cost.",
+    points: [
+      "Carefully evaluate every school facilities proposal based on long-term educational value, total cost, enrollment needs, and the burden placed on taxpayers.",
+      "Recognize that a new high school may provide greater long-term value than repeated temporary fixes, while being honest that residents may be asked to fund much of the project, and work with state legislators to secure stronger state funding for new school facilities.",
     ],
-  },
-  {
-    id: "cost-dashboard",
-    title: "A Budget Dashboard for Your Actual Kid",
-    short:
-      "Show a parent what the district spends on their child, and let them run the numbers while the board is still debating.",
-    body: [
-      "The budget hearing is the one night a year when parents are told the numbers matter, and it gets held in a language nobody outside the central office speaks. A line moves by 1.4 percent, somebody says the word efficiencies, and the room nods because what else is it going to do.",
-      "I want the district to publish a dashboard where a parent picks their kid's grade and the services their kid actually uses and gets a real number back: this is what East Brunswick spends on your child this year, and here's what it buys. Then, when something's on the agenda, the same tool takes the proposed change and shows both halves. What it does to that number, and what it does to the room. Ten fewer aides isn't a percentage. It's about twenty-eight classrooms losing their second adult, and the kids who needed someone sitting beside them notice first.",
-      "I built a working version so nobody has to take my word that it's feasible. Mine runs off the published budget, so the figures are modeled. The district has the real per-pupil detail and could do it properly, which is the whole reason to ask.",
-    ],
-  },
-];
-
-export type JourneyNode = {
-  id: string;
-  label: string;
-  title: string;
-  text: string;
-};
-
-export const JOURNEY: JourneyNode[] = [
-  {
-    id: "label",
-    label: "01",
-    title: "The bet my parents made",
-    text: "My parents came to East Brunswick believing its public schools would create opportunities they never had. They were right about that. It's the reason my family is here at all.",
-  },
-  {
-    id: "gate",
-    label: "02",
-    title: "Learning the rules alongside the coursework",
-    text: "Navigating the school system wasn't always straightforward. Placement requirements, graduation pathways, eligibility rules — understanding those became part of my education, because those decisions determined which opportunities were available to me.",
-  },
-  {
-    id: "insight",
-    label: "03",
-    title: "Sitting through the meetings",
-    text: "That experience never really left. Long after graduating I found myself at Board of Education meetings, reading policies, budgets, and agendas. Not because I planned to run for office, but because I wanted to understand how decisions affecting thousands of students were actually made.",
-  },
-  {
-    id: "bridge",
-    label: "04",
-    title: "Why I'm running",
-    text: "When hate incidents began affecting students in our schools, paying attention was no longer enough. The conversations that followed introduced me to parents, educators, and students whose experiences were different from mine but kept arriving at the same conclusion: the people most affected by school policies don't always have the strongest voice in creating them.",
-  },
-];
-
-export const FLOW_TRAP = [
-  "Referred, classified, moved out of the general track",
-  "Separated from the friends he had in September",
-  "Told he isn't eligible for AP",
-  "Coasts. Nobody notices.",
-];
-
-export const FLOW_SOLUTION = [
-  "Gets counseling for the thing that actually happened",
-  "Stays in his classes with his friends",
-  "Signs up for AP because he wants to",
-  "Works harder than he has in two years",
-];
-
-export type Zone = {
-  id: string;
-  name: string;
-  team: string;
-  blurb: string;
-  /** SVG polygon points for the schematic township map. */
-  points: string;
-  labelX: number;
-  labelY: number;
-};
-
-export const ZONES: Zone[] = [
-  {
-    id: "churchill",
-    name: "Churchill",
-    team: "Churchill Canvass Team",
-    blurb: "Middle-school families in the north end. Lots of doors, close together, which is about the best thing you can ask for.",
-    points: "20,18 168,18 168,116 20,116",
-    labelX: 94,
-    labelY: 67,
-  },
-  {
-    id: "hammarskjold",
-    name: "Hammarskjold",
-    team: "Hammarskjold Canvass Team",
-    blurb: "The other middle school zone. People here actually vote in school elections, which is rarer than it should be.",
-    points: "172,18 320,18 320,116 172,116",
-    labelX: 246,
-    labelY: 67,
-  },
-  {
-    id: "warnsdorfer",
-    name: "Warnsdorfer",
-    team: "Warnsdorfer Neighborhood Crew",
-    blurb: "Elementary families out near the township line.",
-    points: "20,120 118,120 118,222 20,222",
-    labelX: 69,
-    labelY: 171,
-  },
-  {
-    id: "frost",
-    name: "Frost",
-    team: "Frost Canvass Team",
-    blurb: "Dense elementary catchment. You can cover a lot of ground here in two hours.",
-    points: "122,120 218,120 218,222 122,222",
-    labelX: 170,
-    labelY: 171,
-  },
-  {
-    id: "irwin",
-    name: "Irwin",
-    team: "Irwin Phone Bank",
-    blurb: "A lot of parents working second shift. We tried doors here in the spring and mostly talked to nobody, so we're on the phones instead.",
-    points: "222,120 320,120 320,222 222,222",
-    labelX: 271,
-    labelY: 171,
-  },
-  {
-    id: "bowne-munro",
-    name: "Bowne-Munro",
-    team: "Bowne-Munro Volunteer Squad",
-    blurb: "Forty-year residents and families who arrived last year, on the same block. If you speak Gujarati, Spanish, Mandarin or Urdu, this is where you'd help most.",
-    points: "20,226 320,226 320,300 20,300",
-    labelX: 170,
-    labelY: 263,
   },
 ];
 
 export const HELP_OPTIONS = [
+  { id: "yard-sign", label: "Request a yard sign" },
   { id: "canvassing", label: "Canvassing" },
   { id: "phone-banking", label: "Phone banking" },
-  { id: "data-entry", label: "Data entry" },
-  { id: "yard-sign", label: "Host a yard sign" },
+  { id: "events", label: "Events & tabling" },
   { id: "translation", label: "Translation & outreach" },
 ] as const;
-
-export const CONTACT_ROLES = ["Parent", "Student", "Teacher", "Resident"] as const;
 
 export const DISTRICT_STATS = [
   { value: "8,100", label: "students" },
