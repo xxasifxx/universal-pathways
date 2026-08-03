@@ -88,13 +88,13 @@ function Index() {
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/priorities"
+              <a
+                href="#ask"
                 className="inline-flex items-center gap-2 rounded-md bg-gold px-6 py-3.5 font-display text-base font-bold text-gold-foreground transition-opacity hover:opacity-90"
               >
-                {t("home.hero.cta.primary")}
+                Ask me a question
                 <ArrowRight aria-hidden="true" className="size-4" />
-              </Link>
+              </a>
               <Link
                 to="/volunteer"
                 className="inline-flex items-center rounded-md border-2 border-ink px-6 py-3.5 font-display text-base font-bold text-ink transition-colors hover:bg-ink hover:text-ink-foreground"
@@ -124,50 +124,46 @@ function Index() {
         </div>
       </section>
 
-      <section aria-label="Contact" className="bg-ink text-ink-foreground">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-6 sm:px-6">
-          <p className="font-display text-xl tracking-wide">Questions? Ask me directly.</p>
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="font-semibold underline underline-offset-4 hover:text-gold"
-          >
-            {CONTACT_EMAIL}
-          </a>
+      <section id="ask" aria-labelledby="ask-heading" className="scroll-mt-20 bg-secondary py-14 sm:py-20">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6">
+          <h2 id="ask-heading" className="text-3xl sm:text-4xl">
+            Ask Muhammad a question
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-foreground/90">
+            It goes straight to him at{" "}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-primary underline underline-offset-4">
+              {CONTACT_EMAIL}
+            </a>
+            . He answers personally.
+          </p>
+          <div className="mt-7 rounded-xl border border-border bg-background p-5 sm:p-7">
+            <AskQuestionForm />
+          </div>
         </div>
       </section>
 
-      <section aria-labelledby="priorities-heading" className="py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="eyebrow text-primary">{t("priorities.eyebrow")}</p>
-          <h2 id="priorities-heading" className="mt-3 text-3xl sm:text-5xl">
-            {t("priorities.title")}
-          </h2>
-
-        <ul className="mt-8 flex flex-col gap-3">
-            {PRIORITIES.map((p) => (
-              <li key={p.id}>
-                <Link
-                  to="/priorities"
-                  hash={p.id}
-                  className="group flex items-start gap-3 rounded-lg border border-border bg-card px-5 py-4 transition-colors hover:border-primary"
-                >
-                  <Check aria-hidden="true" className="mt-1 size-4 shrink-0 text-primary" />
-                  <span className="font-display text-xl font-extrabold">{p.title}</span>
-                  <ArrowRight
-                    aria-hidden="true"
-                    className="ml-auto mt-1 size-4 shrink-0 text-primary transition-transform group-hover:translate-x-1"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link
-            to="/priorities"
-            className="mt-8 inline-flex items-center gap-2 font-display text-base font-bold text-primary underline underline-offset-4"
-          >
-            Read the full platform
-            <ArrowRight aria-hidden="true" className="size-4" />
+      <section aria-label="More" className="border-t border-border py-10">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 sm:px-6">
+          <Link to="/priorities" className="font-display text-lg tracking-wide text-primary underline underline-offset-4">
+            Priorities
           </Link>
+          <Link to="/dashboard" className="font-display text-lg tracking-wide text-primary underline underline-offset-4">
+            District dashboard
+          </Link>
+          <Link to="/volunteer" className="font-display text-lg tracking-wide text-primary underline underline-offset-4">
+            Volunteer
+          </Link>
+          {SOCIAL_LINKS.filter((s) => s.url).map((s) => (
+            <a
+              key={s.id}
+              href={s.url!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-display text-lg tracking-wide text-primary underline underline-offset-4"
+            >
+              {s.label}
+            </a>
+          ))}
         </div>
       </section>
     </>
