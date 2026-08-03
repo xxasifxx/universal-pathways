@@ -1,28 +1,39 @@
-# Hero: plain notes from a local resident
+# Hero: stop authoring words for him
+
+## The actual fault
+
+The hero doesn't have a tone problem, it has a source problem. The four bullets under the headline (`WHY_SAQEEB`) and the bio paragraph (`home.hero.sub`) are text written for him, not by him. Any rewrite of that text is still invented. The five priorities in `PRIORITIES` are the only campaign copy that came from the candidate.
 
 ## What changes
 
-**1. Hero bio becomes short, plain snippet notes**
+**1. Delete the invented hero copy**
 
-Drop the paragraph under the headline. Replace with one plain lead-in line and a short list written the way a neighbor jots notes — lowercase-feeling, concrete, no slogan phrasing, no em-dash taglines.
+- Remove the `WHY_SAQEEB` array and its checkmark list from the hero.
+- Remove the `home.hero.sub` bio paragraph.
 
-Lead-in: `I'm running for the Board of Education. A few things I want to work on:`
+**2. Hero shows his real priorities, verbatim**
 
-Notes list (replacing the current `WHY_SAQEEB` items):
-- Kids should have a say in decisions about their own schooling
-- Keep counselors, special ed staff, and early learning funded
-- Schools where every kid feels safe showing up
-- Budget numbers people can actually read
-- Honest math on the buildings before anyone votes on them
+Under "Hi, I'm Muhammad Saqeeb. Nice to meet you!", one plain line:
 
-No campaign-speak, no "first," no capitalized program names. If you'd rather these be in his exact words, send me his notes verbatim and I'll use those instead of my wording.
+`I'm running for the East Brunswick Board of Education because of these priorities.`
 
-**2. Remove the star from the navbar logo**
+Then the five priority titles exactly as they already exist in `PRIORITIES` — titles only, no summaries, no icons, no links per item:
 
-Delete the star-and-rules divider row between "Saqeeb" and "EB Board of Education" in the header lockup. Keeps the yellow block, name, and office line, just tighter.
+1. Students First
+2. Mental Health, Special Education & Early Learning
+3. Safe, Inclusive & Welcoming Schools
+4. Transparent, Responsible & Community-Focused Leadership
+5. Strong Facilities & Long-Term Investment
+
+Nothing on the home page is authored copy anymore — it's his headline, his priorities, then the question box.
+
+**3. Remove the star from the navbar logo**
+
+Delete the star-and-rules divider row between "Saqeeb" and "EB Board of Education" in the header lockup.
 
 ## Technical notes
 
-- `src/lib/i18n.tsx` — shorten `home.hero.sub` to the single lead-in line.
-- `src/lib/campaign.ts` — rewrite `WHY_SAQEEB` entries as the five plain notes.
+- `src/lib/campaign.ts` — delete `WHY_SAQEEB`.
+- `src/lib/i18n.tsx` — replace `home.hero.sub` with the single lead-in line.
+- `src/routes/index.tsx` — hero renders `PRIORITIES.map(p => p.title)`; drop the `WHY_SAQEEB` import and list.
 - `src/components/site-header.tsx` — remove the `aria-hidden` star divider span (lines 53-60).
