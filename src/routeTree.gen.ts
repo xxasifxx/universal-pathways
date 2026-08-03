@@ -22,6 +22,8 @@ import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
 import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
+import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
+import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
@@ -89,6 +91,16 @@ const ApiPublicLogSignalRoute = ApiPublicLogSignalRouteImport.update({
   path: '/api/public/log-signal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
+  id: '/lovable/email/auth/preview',
+  path: '/lovable/email/auth/preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailAuthWebhookRoute = LovableEmailAuthWebhookRouteImport.update({
+  id: '/lovable/email/auth/webhook',
+  path: '/lovable/email/auth/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailTransactionalPreviewRoute =
   LovableEmailTransactionalPreviewRouteImport.update({
     id: '/lovable/email/transactional/preview',
@@ -110,6 +122,8 @@ export interface FileRoutesByFullPath {
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
+  '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
@@ -126,6 +140,8 @@ export interface FileRoutesByTo {
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
+  '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
@@ -143,6 +159,8 @@ export interface FileRoutesById {
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
+  '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
@@ -161,6 +179,8 @@ export interface FileRouteTypes {
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/lovable/email/auth/preview'
+    | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -177,6 +197,8 @@ export interface FileRouteTypes {
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/lovable/email/auth/preview'
+    | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
   id:
     | '__root__'
@@ -193,6 +215,8 @@ export interface FileRouteTypes {
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/lovable/email/auth/preview'
+    | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
@@ -210,6 +234,8 @@ export interface RootRouteChildren {
   ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
   ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
   ApiPublicLogSignalRoute: typeof ApiPublicLogSignalRoute
+  LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
+  LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
@@ -306,6 +332,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicLogSignalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/auth/preview': {
+      id: '/lovable/email/auth/preview'
+      path: '/lovable/email/auth/preview'
+      fullPath: '/lovable/email/auth/preview'
+      preLoaderRoute: typeof LovableEmailAuthPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/auth/webhook': {
+      id: '/lovable/email/auth/webhook'
+      path: '/lovable/email/auth/webhook'
+      fullPath: '/lovable/email/auth/webhook'
+      preLoaderRoute: typeof LovableEmailAuthWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/transactional/preview': {
       id: '/lovable/email/transactional/preview'
       path: '/lovable/email/transactional/preview'
@@ -330,8 +370,20 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
   ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
   ApiPublicLogSignalRoute: ApiPublicLogSignalRoute,
+  LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
+  LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
