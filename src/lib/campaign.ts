@@ -52,7 +52,7 @@ export const DONATION_METHODS = [
 /** Campaign social profiles. Set a URL to null to hide that link. */
 export const SOCIAL_LINKS: { id: string; label: string; url: string | null }[] = [
   { id: "facebook", label: "Facebook", url: null },
-  { id: "instagram", label: "Instagram", url: null },
+  { id: "instagram", label: "Instagram", url: "https://www.instagram.com/saqeeb4eb" },
   { id: "x", label: "X", url: null },
   { id: "linkedin", label: "LinkedIn", url: null },
 ];
