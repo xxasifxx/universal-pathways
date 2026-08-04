@@ -16,7 +16,7 @@ The pledge form's confirmation email gets the actual account info:
 - Bank: Provident Bank
 - Routing: 221272303
 - Account: 103601292
-- Account name / check payable to: Saqeeb for East Brunswick BOE
+- Account name / check payable to: Friends Of Saqeeb
 - Mailing address for checks: 406 Ryders Lane, East Brunswick, NJ 08816
 
 The routing and account numbers stay **off the public page** — they appear only in the confirmation email to the person who pledged. A routing/account pair printed publicly invites fraudulent ACH debits against the committee account. The public page says "we'll email you the transfer details."
