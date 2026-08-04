@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Heart } from "lucide-react";
+import { ArrowRight, Check, Heart, Instagram } from "lucide-react";
 
 import heroAsset from "@/assets/saqeeb-portrait.jpg.asset.json";
 import { AskQuestionForm } from "@/components/ask-question-form";
@@ -96,7 +96,11 @@ function Index() {
                     rel="noopener noreferrer"
                     className="grid size-12 place-items-center rounded-full border border-primary-foreground/70 text-sm font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
                   >
-                    <span aria-hidden="true">{s.label.slice(0, 2)}</span>
+                    {s.id === "instagram" ? (
+                      <Instagram aria-hidden="true" className="size-5" />
+                    ) : (
+                      <span aria-hidden="true">{s.label.slice(0, 2)}</span>
+                    )}
                     <span className="sr-only">{s.label}</span>
                   </a>
                 </li>
