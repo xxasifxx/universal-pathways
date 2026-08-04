@@ -88,7 +88,7 @@ function Index() {
 
           <a
             href="#ask"
-            className="mt-7 inline-flex items-center gap-2 rounded-md bg-gold px-6 py-3.5 font-display text-base font-bold text-gold-foreground transition-opacity hover:opacity-90"
+            className="mt-7 inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 font-display text-base font-bold text-primary-foreground transition-opacity hover:opacity-90"
           >
             Ask me a question
             <ArrowRight aria-hidden="true" className="size-4" />

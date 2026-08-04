@@ -41,14 +41,14 @@ export function VolunteerNotification({
       <Head />
       <Preview>{`New volunteer signup: ${name}`}</Preview>
       <Body style={{ backgroundColor: '#ffffff', fontFamily: 'Lato, Arial, sans-serif' }}>
-        <Container style={{ padding: '32px 28px', maxWidth: '560px', borderTop: '6px solid #FDCD01' }}>
-          <Heading style={{ color: '#58150C', fontSize: '22px', margin: '0 0 4px', letterSpacing: '0.02em' }}>
+        <Container style={{ padding: '32px 28px', maxWidth: '560px', borderTop: '6px solid #0E351A' }}>
+          <Heading style={{ color: '#0E351A', fontSize: '22px', margin: '0 0 4px', letterSpacing: '0.02em' }}>
             New volunteer signup
           </Heading>
-          <Text style={{ color: '#58150C', fontSize: '14px', margin: '0 0 16px' }}>
+          <Text style={{ color: '#0E351A', fontSize: '14px', margin: '0 0 16px' }}>
             {name} &lt;{email}&gt;
           </Text>
-          <Hr style={{ borderColor: '#FDCD01', borderWidth: '2px' }} />
+          <Hr style={{ borderColor: '#0E351A', borderWidth: '2px' }} />
           <Text style={label}>Zip code</Text>
           <Text style={value}>{zipCode || '—'}</Text>
           <Text style={label}>Mobile</Text>

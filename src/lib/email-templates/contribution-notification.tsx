@@ -74,8 +74,8 @@ export function ContributionNotification({
       <Head />
       <Preview>{`New contribution pledge: ${formatted} from ${name}`}</Preview>
       <Body style={{ backgroundColor: '#ffffff', fontFamily: 'Lato, Arial, sans-serif' }}>
-        <Container style={{ padding: '32px 28px', maxWidth: '560px', borderTop: '6px solid #FDCD01' }}>
-          <Heading style={{ color: '#58150C', fontSize: '22px', margin: '0 0 6px', letterSpacing: '0.02em' }}>
+        <Container style={{ padding: '32px 28px', maxWidth: '560px', borderTop: '6px solid #0E351A' }}>
+          <Heading style={{ color: '#0E351A', fontSize: '22px', margin: '0 0 6px', letterSpacing: '0.02em' }}>
             {formatted} pledged
           </Heading>
           <Text style={{ color: '#777777', fontSize: '13px', margin: '0 0 24px' }}>

@@ -1,5 +1,5 @@
 // Shared brand styling for campaign auth emails.
-// Burgundy #58150C, Gold #FDCD01, Lato body type.
+// Sign green #0E351A, warm cream #F5F0E6, Lato body type.
 export const main = {
   backgroundColor: '#ffffff',
   fontFamily: 'Lato, Helvetica, Arial, sans-serif',
@@ -7,12 +7,12 @@ export const main = {
 export const container = {
   padding: '32px 28px',
   maxWidth: '560px',
-  borderTop: '6px solid #FDCD01',
+  borderTop: '6px solid #0E351A',
 }
 export const h1 = {
   fontSize: '24px',
   fontWeight: 'bold' as const,
-  color: '#58150C',
+  color: '#0E351A',
   letterSpacing: '0.02em',
   margin: '0 0 20px',
 }
@@ -22,10 +22,10 @@ export const text = {
   lineHeight: '1.6',
   margin: '0 0 24px',
 }
-export const link = { color: '#58150C', textDecoration: 'underline' }
+export const link = { color: '#0E351A', textDecoration: 'underline' }
 export const button = {
-  backgroundColor: '#FDCD01',
-  color: '#58150C',
+  backgroundColor: '#0E351A',
+  color: '#F5F0E6',
   fontSize: '15px',
   fontWeight: 'bold' as const,
   borderRadius: '6px',
@@ -37,7 +37,7 @@ export const codeStyle = {
   fontFamily: 'Courier, monospace',
   fontSize: '26px',
   fontWeight: 'bold' as const,
-  color: '#58150C',
+  color: '#0E351A',
   letterSpacing: '0.12em',
   margin: '0 0 30px',
 }

@@ -24,8 +24,8 @@ export function VolunteerConfirmation({
       <Head />
       <Preview>Thanks for signing up to help</Preview>
       <Body style={{ backgroundColor: '#ffffff', fontFamily: 'Lato, Arial, sans-serif' }}>
-        <Container style={{ padding: '32px 28px', maxWidth: '560px', borderTop: '6px solid #FDCD01' }}>
-          <Heading style={{ color: '#58150C', fontSize: '22px', margin: '0 0 16px', letterSpacing: '0.02em' }}>
+        <Container style={{ padding: '32px 28px', maxWidth: '560px', borderTop: '6px solid #0E351A' }}>
+          <Heading style={{ color: '#0E351A', fontSize: '22px', margin: '0 0 16px', letterSpacing: '0.02em' }}>
             Thanks, {name}!
           </Heading>
           <Text style={{ color: '#2b2b2b', fontSize: '15px', lineHeight: '1.6', margin: '0 0 20px' }}>
@@ -33,7 +33,7 @@ export function VolunteerConfirmation({
             steps and timing.
           </Text>
           {helpWith.length ? (
-            <Text style={{ color: '#2b2b2b', fontSize: '15px', lineHeight: '1.6', borderLeft: '3px solid #FDCD01', paddingLeft: '14px', margin: '0 0 24px' }}>
+            <Text style={{ color: '#2b2b2b', fontSize: '15px', lineHeight: '1.6', borderLeft: '3px solid #0E351A', paddingLeft: '14px', margin: '0 0 24px' }}>
               You said you can help with: {helpWith.join(', ')}.
             </Text>
           ) : null}

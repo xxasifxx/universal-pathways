@@ -162,7 +162,7 @@ export function AskQuestionForm() {
       <button
         type="submit"
         disabled={pending}
-        className="mt-1 rounded-md bg-gold px-5 py-3.5 font-display text-lg tracking-wide text-gold-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+        className="mt-1 rounded-md bg-primary px-5 py-3.5 font-display text-lg tracking-wide text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
       >
         {pending ? t("form.submitting") : "Send my question"}
       </button>

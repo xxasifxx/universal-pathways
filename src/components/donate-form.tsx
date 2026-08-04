@@ -159,7 +159,7 @@ export function DonateForm() {
               className={cn(
                 "rounded-md border px-4 py-2.5 font-display text-lg tracking-wide transition-colors",
                 !custom.trim() && amount === value
-                  ? "border-gold bg-gold text-gold-foreground"
+                  ? "border-primary bg-primary text-primary-foreground"
                   : "border-input bg-card text-foreground hover:border-primary",
               )}
             >
@@ -282,7 +282,7 @@ export function DonateForm() {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md bg-gold px-5 py-3.5 font-display text-lg tracking-wide text-gold-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+        className="rounded-md bg-primary px-5 py-3.5 font-display text-lg tracking-wide text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
       >
         {pending ? "Sending…" : "Get sending instructions"}
       </button>
