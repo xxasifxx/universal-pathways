@@ -66,6 +66,42 @@ export const WHY_SAQEEB = [
   "Brings students, parents, and educators into the decisions",
 ];
 
+/** One-line intro under the portrait on the home page. */
+export const INTRO_LINE =
+  "Muhammad Saqeeb is running to bring new leadership, transparency, and a student-first perspective to the East Brunswick Board of Education.";
+
+/** Card list shown under the intro. */
+export const CREDENTIALS = [
+  "Excellence in Community Leadership and Transparency",
+  "Advocate for Struggling Students",
+  "Supporter of Early Learning Education",
+  "Innovative and Future-Oriented",
+];
+
+/** Short platform highlights shown with checkmarks on the home page. */
+export const PLATFORM_HIGHLIGHTS = [
+  {
+    id: "students-first",
+    title: "Students First",
+    text: "Meaningful student voice, fair academic opportunity, and preparation for an AI-driven future.",
+  },
+  {
+    id: "student-support",
+    title: "Student Support",
+    text: "Strong mental health services, special education, early intervention, and affordable early learning.",
+  },
+  {
+    id: "safe-schools",
+    title: "Safe & Welcoming Schools",
+    text: "Schools where every student is protected, respected, included, and able to belong.",
+  },
+  {
+    id: "transparent-leadership",
+    title: "Transparent Leadership",
+    text: "Clear budgets, accountable vendors, accessible decisions, and stronger community participation.",
+  },
+];
+
 /** Breakdown of the district's $229M operating budget. */
 export const BUDGET_TOTAL = 229_000_000;
 
