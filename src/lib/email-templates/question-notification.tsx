@@ -30,7 +30,7 @@ export function QuestionNotification({
         <Container style={{ padding: '24px', maxWidth: '560px' }}>
           <Heading
             style={{
-              color: '#58150C',
+              color: '#0E351A',
               fontSize: '22px',
               margin: '0 0 4px',
               letterSpacing: '0.02em',
@@ -38,10 +38,10 @@ export function QuestionNotification({
           >
             New question from the campaign site
           </Heading>
-          <Text style={{ color: '#58150C', fontSize: '14px', margin: '0 0 16px' }}>
+          <Text style={{ color: '#0E351A', fontSize: '14px', margin: '0 0 16px' }}>
             {name} &lt;{email}&gt;
           </Text>
-          <Hr style={{ borderColor: '#FDCD01', borderWidth: '2px' }} />
+          <Hr style={{ borderColor: '#0E351A', borderWidth: '2px' }} />
           <Section>
             <Text style={{ color: '#2b2b2b', fontSize: '16px', lineHeight: '24px', whiteSpace: 'pre-wrap' }}>
               {message}
