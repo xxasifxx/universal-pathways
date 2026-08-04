@@ -38,7 +38,7 @@ const contributionSchema = z.object({
   occupation: z.string().trim().min(1, "Occupation is required").max(120),
   employer: z.string().trim().min(1, "Employer is required").max(160),
   amount: z.number().positive("Enter an amount").max(3000, "The legal limit is $3,000"),
-  method: z.enum(["bank_transfer", "zelle", "check"]),
+  method: z.enum(["bank_transfer", "check"]),
   certifiesOwnFunds: z.literal(true),
   certifiesUsPerson: z.literal(true),
   note: z.string().trim().max(500).optional().or(z.literal("")),

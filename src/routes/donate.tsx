@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { DonateForm } from "@/components/donate-form";
-import { CONTACT_EMAIL, DONATION } from "@/lib/campaign";
+import { GivebutterEmbed } from "@/components/givebutter-embed";
+import { CONTACT_EMAIL, DONATION, GIVEBUTTER_CAMPAIGN } from "@/lib/campaign";
 
 const TITLE = "Donate to Saqeeb for East Brunswick BOE";
 const DESCRIPTION =
-  "Chip in directly to the campaign account — bank transfer, Zelle, or a check in the mail. No processing service takes a cut.";
+  "Chip in to the campaign — give by card, or send a zero-fee bank transfer or check straight to the campaign account.";
 
 export const Route = createFileRoute("/donate")({
   head: () => ({
@@ -41,11 +42,26 @@ function Donate() {
       <section className="py-14 sm:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] lg:items-start">
           <div className="order-2 lg:order-1">
-            <h2 className="font-display text-2xl font-extrabold">Tell us what you&apos;re sending</h2>
+            {GIVEBUTTER_CAMPAIGN ? (
+              <div className="mb-10">
+                <h2 className="font-display text-2xl font-extrabold">Give by card</h2>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                  Card, Apple Pay or Google Pay, processed securely by Givebutter. You stay right
+                  here on this page.
+                </p>
+                <div className="mt-6">
+                  <GivebutterEmbed />
+                </div>
+              </div>
+            ) : null}
+
+            <h2 className="font-display text-2xl font-extrabold">
+              {GIVEBUTTER_CAMPAIGN ? "Prefer zero fees?" : "Tell us what you're sending"}
+            </h2>
             <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              Fill this in and we&apos;ll email you the account details right away — plus the
-              campaign gets the contributor information New Jersey requires it to report, so
-              nobody has to chase you for it later.
+              Send a bank transfer or a check and no processor takes a cut. Fill this in and
+              we&apos;ll email you the details right away — plus the campaign gets the contributor
+              information New Jersey requires it to report, so nobody has to chase you for it later.
             </p>
             <div className="mt-6">
               <DonateForm />
@@ -56,17 +72,19 @@ function Donate() {
             <div className="rounded-lg border border-border bg-card p-6">
               <h2 className="font-display text-xl font-extrabold">Ways to give</h2>
               <dl className="mt-4 space-y-4 text-base">
-                <div>
-                  <dt className="font-semibold text-foreground">Zelle</dt>
-                  <dd className="text-muted-foreground">
-                    Instant and free. Send to {DONATION.zelle}, recipient {DONATION.committeeName}.
-                  </dd>
-                </div>
+                {GIVEBUTTER_CAMPAIGN ? (
+                  <div>
+                    <dt className="font-semibold text-foreground">Card</dt>
+                    <dd className="text-muted-foreground">
+                      Card, Apple Pay or Google Pay through Givebutter, right on this page.
+                    </dd>
+                  </div>
+                ) : null}
                 <div>
                   <dt className="font-semibold text-foreground">Bank transfer</dt>
                   <dd className="text-muted-foreground">
-                    We&apos;ll email you the account and routing numbers for{" "}
-                    {DONATION.bank.accountName}.
+                    Zero fees. We&apos;ll email you the account and routing numbers for{" "}
+                    {DONATION.bank.accountName} at {DONATION.bank.name}.
                   </dd>
                 </div>
                 <div>

@@ -101,7 +101,7 @@ export function DonateForm() {
         data: {
           ...values,
           amount: effectiveAmount as number,
-          method: method as "bank_transfer" | "zelle" | "check",
+          method: method as "bank_transfer" | "check",
           certifiesOwnFunds: true,
           certifiesUsPerson: true,
           anonId: getAnonId(),

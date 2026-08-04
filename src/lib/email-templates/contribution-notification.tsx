@@ -27,7 +27,6 @@ interface ContributionNotificationProps {
 
 const METHOD_LABELS: Record<string, string> = {
   bank_transfer: 'Bank transfer (ACH)',
-  zelle: 'Zelle',
   check: 'Check by mail',
 }
 
@@ -123,7 +122,7 @@ export const template = {
     occupation: 'Pharmacist',
     employer: 'Rutgers Health',
     amount: 250,
-    method: 'zelle',
+    method: 'bank_transfer',
     note: 'Happy to host a coffee too.',
   },
 } satisfies TemplateEntry
