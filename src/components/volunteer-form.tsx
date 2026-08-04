@@ -209,7 +209,7 @@ export function VolunteerForm({ defaultHelp = [] as string[] }) {
       <button
         type="submit"
         disabled={pending}
-        className="mt-2 rounded-md bg-gold px-5 py-3 font-display text-base font-bold text-gold-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+        className="mt-2 rounded-md bg-primary px-5 py-3 font-display text-base font-bold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
       >
         {pending ? t("form.submitting") : t("form.submit.volunteer")}
       </button>
