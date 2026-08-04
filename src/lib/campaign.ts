@@ -38,7 +38,7 @@ export const DONATION = {
  */
 export const GIVEBUTTER_CAMPAIGN = "";
 
-export const DONATION_AMOUNTS = [25, 50, 100, 250, 500, 1000];
+export const DONATION_AMOUNTS = [5, 10, 25, 50, 100, 250];
 
 export const DONATION_METHODS = [
   {
