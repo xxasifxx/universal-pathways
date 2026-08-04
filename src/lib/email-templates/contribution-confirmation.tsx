@@ -52,14 +52,6 @@ export function ContributionConfirmation({
             campaign account — no processing service takes a cut. Here&apos;s how to send it.
           </Text>
 
-          {method === 'zelle' ? (
-            <Section>
-              <Text style={labelStyle}>Zelle</Text>
-              <Text style={valueStyle}>{DONATION.zelle}</Text>
-              <Text style={valueStyle}>Recipient name: {DONATION.committeeName}</Text>
-            </Section>
-          ) : null}
-
           {method === 'bank_transfer' ? (
             <Section>
               <Text style={labelStyle}>Bank</Text>
@@ -101,5 +93,5 @@ export const template = {
   component: ContributionConfirmation,
   displayName: 'Contribution instructions (to donor)',
   subject: 'How to send your contribution — Saqeeb for East Brunswick BOE',
-  previewData: { name: 'Priya', amount: 250, method: 'zelle' },
+  previewData: { name: 'Priya', amount: 250, method: 'bank_transfer' },
 } satisfies TemplateEntry
