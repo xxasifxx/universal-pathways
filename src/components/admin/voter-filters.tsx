@@ -27,7 +27,7 @@ export function toInput(filters: Filters): VoterFilterInput {
 }
 
 const TURNOUT_STEPS = [0, 0.25, 0.5, 0.75, 1];
-const PARTIES = ["Democrat", "Republican", "Unaffiliated"];
+const PARTIES = ["Democratic", "Republican", "Unaffiliated", "Libertarian", "Green Party"];
 
 const field =
   "mt-1 w-full rounded-md border border-border bg-card px-3 py-2 text-sm font-normal";
