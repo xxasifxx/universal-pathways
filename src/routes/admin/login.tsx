@@ -50,7 +50,7 @@ function AdminLogin() {
       redirectTo: `${window.location.origin}/reset-password`,
     });
     if (error) toast.error(error.message);
-    else toast.success("Check your email for a reset link.");
+    else toast.success("Check your email — the link lets you set a new password.");
   }
 
   return (
