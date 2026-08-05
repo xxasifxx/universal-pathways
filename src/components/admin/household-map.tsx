@@ -23,7 +23,7 @@ declare global {
 
 const EB_CENTER = { lat: 40.4276, lng: -74.4157 };
 
-function loadMaps(): Promise<any> {
+export function loadMaps(): Promise<any> {
   if (typeof window === "undefined") return Promise.reject(new Error("no window"));
   if (window.google?.maps?.Map) return Promise.resolve(window.google);
   const key = import.meta.env["VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY"];
