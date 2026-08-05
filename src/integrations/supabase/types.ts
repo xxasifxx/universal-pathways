@@ -123,6 +123,63 @@ export type Database = {
           },
         ]
       }
+      households: {
+        Row: {
+          avg_turnout_pct: number
+          city: string | null
+          created_at: string
+          district: number | null
+          geocode_error: string | null
+          geocode_status: string
+          hh_key: string
+          id: string
+          lat: number | null
+          lng: number | null
+          matched_count: number
+          street_name: string | null
+          street_num: string | null
+          updated_at: string
+          voter_count: number
+          zip: string | null
+        }
+        Insert: {
+          avg_turnout_pct?: number
+          city?: string | null
+          created_at?: string
+          district?: number | null
+          geocode_error?: string | null
+          geocode_status?: string
+          hh_key: string
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          matched_count?: number
+          street_name?: string | null
+          street_num?: string | null
+          updated_at?: string
+          voter_count?: number
+          zip?: string | null
+        }
+        Update: {
+          avg_turnout_pct?: number
+          city?: string | null
+          created_at?: string
+          district?: number | null
+          geocode_error?: string | null
+          geocode_status?: string
+          hh_key?: string
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          matched_count?: number
+          street_name?: string | null
+          street_num?: string | null
+          updated_at?: string
+          voter_count?: number
+          zip?: string | null
+        }
+        Relationships: []
+      }
       lead_signals: {
         Row: {
           anon_id: string | null
@@ -187,6 +244,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      petition_signers: {
+        Row: {
+          address: string | null
+          created_at: string
+          first_name: string | null
+          id: string
+          last_name: string | null
+          signed: boolean
+          town: string | null
+          verified: boolean
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          signed?: boolean
+          town?: string | null
+          verified?: boolean
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          signed?: boolean
+          town?: string | null
+          verified?: boolean
+        }
+        Relationships: []
       }
       pointer_samples: {
         Row: {
@@ -272,6 +362,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      turnout_history: {
+        Row: {
+          turnout_pct: number
+          voted: number
+          year: number
+        }
+        Insert: {
+          turnout_pct?: number
+          voted?: number
+          year: number
+        }
+        Update: {
+          turnout_pct?: number
+          voted?: number
+          year?: number
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {
@@ -446,6 +554,111 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      voters: {
+        Row: {
+          apt_unit: string | null
+          city: string | null
+          created_at: string
+          display_id: string
+          district: number | null
+          first_name: string | null
+          hh_key: string | null
+          household_size: number
+          id: string
+          impact_score: number | null
+          is_matched: boolean
+          is_petition_signer: boolean
+          last_name: string | null
+          leg_id: string | null
+          middle_name: string | null
+          party: string | null
+          phone: string | null
+          reg_date: string | null
+          status: string | null
+          street_name: string | null
+          street_num: string | null
+          turnout_pct: number
+          voted_2018: boolean
+          voted_2019: boolean
+          voted_2020: boolean
+          voted_2021: boolean
+          voted_2022: boolean
+          voted_2023: boolean
+          voted_2024: boolean
+          voted_2025: boolean
+          ward: string | null
+          zip: string | null
+        }
+        Insert: {
+          apt_unit?: string | null
+          city?: string | null
+          created_at?: string
+          display_id: string
+          district?: number | null
+          first_name?: string | null
+          hh_key?: string | null
+          household_size?: number
+          id?: string
+          impact_score?: number | null
+          is_matched?: boolean
+          is_petition_signer?: boolean
+          last_name?: string | null
+          leg_id?: string | null
+          middle_name?: string | null
+          party?: string | null
+          phone?: string | null
+          reg_date?: string | null
+          status?: string | null
+          street_name?: string | null
+          street_num?: string | null
+          turnout_pct?: number
+          voted_2018?: boolean
+          voted_2019?: boolean
+          voted_2020?: boolean
+          voted_2021?: boolean
+          voted_2022?: boolean
+          voted_2023?: boolean
+          voted_2024?: boolean
+          voted_2025?: boolean
+          ward?: string | null
+          zip?: string | null
+        }
+        Update: {
+          apt_unit?: string | null
+          city?: string | null
+          created_at?: string
+          display_id?: string
+          district?: number | null
+          first_name?: string | null
+          hh_key?: string | null
+          household_size?: number
+          id?: string
+          impact_score?: number | null
+          is_matched?: boolean
+          is_petition_signer?: boolean
+          last_name?: string | null
+          leg_id?: string | null
+          middle_name?: string | null
+          party?: string | null
+          phone?: string | null
+          reg_date?: string | null
+          status?: string | null
+          street_name?: string | null
+          street_num?: string | null
+          turnout_pct?: number
+          voted_2018?: boolean
+          voted_2019?: boolean
+          voted_2020?: boolean
+          voted_2021?: boolean
+          voted_2022?: boolean
+          voted_2023?: boolean
+          voted_2024?: boolean
+          voted_2025?: boolean
+          ward?: string | null
+          zip?: string | null
+        }
+        Relationships: []
       }
     }
     Views: {
