@@ -209,7 +209,11 @@ async function geocodeOne(address: string): Promise<GeocodeResult> {
   return loc ? { lat: loc.lat, lng: loc.lng } : null;
 }
 
-/** Geocode a batch of pending households. Returns how many were handled. */
+/**
+ * Server-side geocoding path. Only works with an unrestricted Maps server key;
+ * the Lovable-managed key is referrer-restricted, so the admin UI geocodes in
+ * the browser and posts coordinates back instead.
+ */
 export async function geocodeBatch(supabase: DB, batchSize: number) {
   const { data: rows } = await supabase
     .from("households")
