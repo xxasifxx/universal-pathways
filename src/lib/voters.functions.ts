@@ -99,3 +99,62 @@ export const runGeocodeBatch = createServerFn({ method: "POST" })
     const progress = await geocodeProgress(supabaseAdmin);
     return { ...result, progress };
   });
+
+export const readPendingHouseholds = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { limit?: number }) =>
+    z.object({ limit: z.number().int().min(1).max(200).default(50) }).parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    const { assertAdmin } = await import("./admin.server");
+    await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: rows } = await supabaseAdmin
+      .from("households")
+      .select("id, street_num, street_name, city, zip")
+      .eq("geocode_status", "pending")
+      .limit(data.limit);
+    return (rows ?? []) as Array<{
+      id: string;
+      street_num: string | null;
+      street_name: string | null;
+      city: string | null;
+      zip: string | null;
+    }>;
+  });
+
+export const saveGeocodes = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator(
+    (input: {
+      results: Array<{ id: string; lat?: number; lng?: number; error?: string }>;
+    }) =>
+      z
+        .object({
+          results: z
+            .array(
+              z.object({
+                id: z.string().uuid(),
+                lat: z.number().min(-90).max(90).optional(),
+                lng: z.number().min(-180).max(180).optional(),
+                error: z.string().max(200).optional(),
+              }),
+            )
+            .max(200),
+        })
+        .parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    const { assertAdmin } = await import("./admin.server");
+    await assertAdmin(context.supabase, context.userId);
+    const { geocodeProgress } = await import("./voters.server");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    for (const row of data.results) {
+      const patch =
+        row.lat !== undefined && row.lng !== undefined
+          ? { lat: row.lat, lng: row.lng, geocode_status: "ok", geocode_error: null }
+          : { geocode_status: "failed", geocode_error: row.error ?? "No result" };
+      await supabaseAdmin.from("households").update(patch).eq("id", row.id);
+    }
+    return { saved: data.results.length, progress: await geocodeProgress(supabaseAdmin) };
+  });
