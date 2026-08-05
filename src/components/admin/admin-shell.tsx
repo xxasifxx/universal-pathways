@@ -9,6 +9,8 @@ import { isTrackingDisabled, setStaffDevice, setTrackingDisabled } from "@/lib/t
 const TABS = [
   { to: "/admin/intent", label: "Intent" },
   { to: "/admin/heatmaps", label: "Heatmaps" },
+  { to: "/admin/voters", label: "Voters" },
+  { to: "/admin/voter-map", label: "Household map" },
   { to: "/admin/export", label: "Export" },
 ] as const;
 
