@@ -559,6 +559,7 @@ export type Database = {
         Row: {
           apt_unit: string | null
           city: string | null
+          contact_name: string | null
           created_at: string
           display_id: string
           district: number | null
@@ -568,6 +569,7 @@ export type Database = {
           id: string
           impact_score: number | null
           is_matched: boolean
+          is_personal_contact: boolean
           is_petition_signer: boolean
           last_name: string | null
           leg_id: string | null
@@ -593,6 +595,7 @@ export type Database = {
         Insert: {
           apt_unit?: string | null
           city?: string | null
+          contact_name?: string | null
           created_at?: string
           display_id: string
           district?: number | null
@@ -602,6 +605,7 @@ export type Database = {
           id?: string
           impact_score?: number | null
           is_matched?: boolean
+          is_personal_contact?: boolean
           is_petition_signer?: boolean
           last_name?: string | null
           leg_id?: string | null
@@ -627,6 +631,7 @@ export type Database = {
         Update: {
           apt_unit?: string | null
           city?: string | null
+          contact_name?: string | null
           created_at?: string
           display_id?: string
           district?: number | null
@@ -636,6 +641,7 @@ export type Database = {
           id?: string
           impact_score?: number | null
           is_matched?: boolean
+          is_personal_contact?: boolean
           is_petition_signer?: boolean
           last_name?: string | null
           leg_id?: string | null

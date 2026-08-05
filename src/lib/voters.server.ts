@@ -7,6 +7,7 @@ export type VoterFilters = {
   district: number | null;
   matchedOnly: boolean;
   petitionOnly: boolean;
+  contactsOnly: boolean;
   hasPhone: boolean;
   minTurnout: number;
   party: string | null;
@@ -18,6 +19,7 @@ export const DEFAULT_FILTERS: VoterFilters = {
   district: null,
   matchedOnly: false,
   petitionOnly: false,
+  contactsOnly: false,
   hasPhone: false,
   minTurnout: 0,
   party: null,
@@ -26,12 +28,13 @@ export const DEFAULT_FILTERS: VoterFilters = {
 };
 
 const VOTER_COLUMNS =
-  "id, display_id, first_name, last_name, middle_name, party, status, street_num, street_name, apt_unit, city, zip, district, phone, turnout_pct, household_size, hh_key, is_matched, is_petition_signer, impact_score, voted_2018, voted_2019, voted_2020, voted_2021, voted_2022, voted_2023, voted_2024, voted_2025";
+  "id, display_id, first_name, last_name, middle_name, party, status, street_num, street_name, apt_unit, city, zip, district, phone, turnout_pct, household_size, hh_key, is_matched, is_petition_signer, is_personal_contact, contact_name, impact_score, voted_2018, voted_2019, voted_2020, voted_2021, voted_2022, voted_2023, voted_2024, voted_2025";
 
 function applyFilters(query: any, f: VoterFilters) {
   if (f.district !== null) query = query.eq("district", f.district);
   if (f.matchedOnly) query = query.eq("is_matched", true);
   if (f.petitionOnly) query = query.eq("is_petition_signer", true);
+  if (f.contactsOnly) query = query.eq("is_personal_contact", true);
   if (f.hasPhone) query = query.neq("phone", "");
   if (f.minTurnout > 0) query = query.gte("turnout_pct", f.minTurnout);
   if (f.party) query = query.eq("party", f.party);
@@ -80,6 +83,8 @@ export async function exportVoters(supabase: DB, filters: VoterFilters, limit = 
     impact_score: Number(v["impact_score"]).toFixed(3),
     matched: v["is_matched"] ? "yes" : "",
     petition_signer: v["is_petition_signer"] ? "yes" : "",
+    personal_contact: v["is_personal_contact"] ? "yes" : "",
+    contact_name: v["contact_name"] ?? "",
   }));
 }
 

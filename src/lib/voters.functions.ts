@@ -7,6 +7,7 @@ const filterSchema = z.object({
   district: z.number().int().min(1).max(60).nullable().default(null),
   matchedOnly: z.boolean().default(false),
   petitionOnly: z.boolean().default(false),
+  contactsOnly: z.boolean().default(false),
   hasPhone: z.boolean().default(false),
   minTurnout: z.number().min(0).max(1).default(0),
   party: z.string().max(60).nullable().default(null),

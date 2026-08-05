@@ -148,6 +148,14 @@ function VotersTab() {
                         Petition
                       </span>
                     ) : null}
+                    {v["is_personal_contact"] ? (
+                      <span
+                        title={String(v["contact_name"] ?? "")}
+                        className="rounded-full bg-foreground px-2 py-0.5 text-[11px] font-bold text-background"
+                      >
+                        Contact{v["contact_name"] ? `: ${String(v["contact_name"])}` : ""}
+                      </span>
+                    ) : null}
                   </span>
                 </td>
               </tr>
