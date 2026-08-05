@@ -4,6 +4,7 @@ export type Filters = Required<{
   district: number | null;
   matchedOnly: boolean;
   petitionOnly: boolean;
+  contactsOnly: boolean;
   hasPhone: boolean;
   minTurnout: number;
   party: string | null;
@@ -15,6 +16,7 @@ export const DEFAULT_FILTERS: Filters = {
   district: null,
   matchedOnly: false,
   petitionOnly: false,
+  contactsOnly: false,
   hasPhone: false,
   minTurnout: 0,
   party: null,
@@ -132,6 +134,15 @@ export function VoterFilters({
             className="size-4 accent-primary"
           />
           Petition signers
+        </label>
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={value.contactsOnly}
+            onChange={(e) => set({ contactsOnly: e.target.checked })}
+            className="size-4 accent-primary"
+          />
+          My contacts only
         </label>
         <label className="flex items-center gap-2">
           <input
