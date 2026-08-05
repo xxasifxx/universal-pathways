@@ -20,6 +20,7 @@ import { Route as AdminExportRouteImport } from './routes/admin/export'
 import { Route as AdminHeatmapsRouteImport } from './routes/admin/heatmaps'
 import { Route as AdminIntentRouteImport } from './routes/admin/intent'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminVotersRouteImport } from './routes/admin/voters'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
 import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
@@ -82,6 +83,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminVotersRoute = AdminVotersRouteImport.update({
+  id: '/admin/voters',
+  path: '/admin/voters',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicIngestPointerRoute = ApiPublicIngestPointerRouteImport.update({
   id: '/api/public/ingest-pointer',
   path: '/api/public/ingest-pointer',
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/admin/heatmaps': typeof AdminHeatmapsRoute
   '/admin/intent': typeof AdminIntentRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/voters': typeof AdminVotersRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/admin/heatmaps': typeof AdminHeatmapsRoute
   '/admin/intent': typeof AdminIntentRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/voters': typeof AdminVotersRoute
   '/admin': typeof AdminIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/admin/heatmaps': typeof AdminHeatmapsRoute
   '/admin/intent': typeof AdminIntentRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/voters': typeof AdminVotersRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/admin/heatmaps'
     | '/admin/intent'
     | '/admin/login'
+    | '/admin/voters'
     | '/admin/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
@@ -204,6 +214,7 @@ export interface FileRouteTypes {
     | '/admin/heatmaps'
     | '/admin/intent'
     | '/admin/login'
+    | '/admin/voters'
     | '/admin'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
@@ -223,6 +234,7 @@ export interface FileRouteTypes {
     | '/admin/heatmaps'
     | '/admin/intent'
     | '/admin/login'
+    | '/admin/voters'
     | '/admin/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
@@ -243,6 +255,7 @@ export interface RootRouteChildren {
   AdminHeatmapsRoute: typeof AdminHeatmapsRoute
   AdminIntentRoute: typeof AdminIntentRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminVotersRoute: typeof AdminVotersRoute
   AdminIndexRoute: typeof AdminIndexRoute
   ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
   ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
@@ -331,6 +344,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/voters': {
+      id: '/admin/voters'
+      path: '/admin/voters'
+      fullPath: '/admin/voters'
+      preLoaderRoute: typeof AdminVotersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/ingest-pointer': {
       id: '/api/public/ingest-pointer'
       path: '/api/public/ingest-pointer'
@@ -387,6 +407,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminHeatmapsRoute: AdminHeatmapsRoute,
   AdminIntentRoute: AdminIntentRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminVotersRoute: AdminVotersRoute,
   AdminIndexRoute: AdminIndexRoute,
   ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
   ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
@@ -398,13 +419,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
