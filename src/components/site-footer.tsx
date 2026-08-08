@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
 import {
+  ACTBLUE_DONATION_URL,
   CANDIDATE_NAME,
   CONTACT_EMAIL,
   REGISTRATION_DEADLINE,
@@ -53,7 +54,7 @@ export function SiteFooter() {
               {CONTACT_EMAIL}
             </a>
             <a
-              href="https://secure.actblue.com/donate/saqeeb"
+              href={ACTBLUE_DONATION_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="w-fit font-semibold hover:text-gold"

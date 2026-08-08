@@ -4,6 +4,7 @@ import { ArrowRight, Check, Heart, Instagram } from "lucide-react";
 import heroAsset from "@/assets/saqeeb-portrait.jpg.asset.json";
 import { AskQuestionForm } from "@/components/ask-question-form";
 import {
+  ACTBLUE_DONATION_URL,
   CANDIDATE_NAME,
   CONTACT_EMAIL,
   CREDENTIALS,
@@ -210,7 +211,7 @@ function Index() {
             {DONATION_AMOUNTS.map((amount) => (
               <li key={amount}>
                 <a
-                  href="https://secure.actblue.com/donate/saqeeb"
+                  href={ACTBLUE_DONATION_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center rounded-full bg-primary-foreground px-6 py-4 text-lg font-bold text-primary transition-opacity hover:opacity-90"
@@ -221,7 +222,7 @@ function Index() {
             ))}
             <li>
               <a
-                href="https://secure.actblue.com/donate/saqeeb"
+                href={ACTBLUE_DONATION_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center rounded-full bg-primary-foreground px-6 py-4 text-lg font-bold text-primary transition-opacity hover:opacity-90"

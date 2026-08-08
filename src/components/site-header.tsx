@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-import { CANDIDATE_NAME } from "@/lib/campaign";
+import { ACTBLUE_DONATION_URL, CANDIDATE_NAME } from "@/lib/campaign";
 import { LOCALES, useI18n, type LocaleCode } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -73,7 +73,7 @@ export function SiteHeader() {
             <LanguageSelect />
           </div>
           <a
-            href="https://secure.actblue.com/donate/saqeeb"
+            href={ACTBLUE_DONATION_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}

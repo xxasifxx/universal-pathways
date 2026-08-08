@@ -27,7 +27,7 @@ export function ContributionConfirmation({ name = 'there', amount = 0 }: Contrib
             Thank you, {name}.
           </Heading>
           <Text style={{ color: '#2b2b2b', fontSize: '15px', lineHeight: '1.6', margin: '0 0 22px' }}>
-            We received your ${formatted} contribution information. Secure contributions are handled
+            We received your {formatted} contribution information. Secure contributions are handled
             through ActBlue.
           </Text>
           <Hr style={{ borderColor: '#eeeeee' }} />
