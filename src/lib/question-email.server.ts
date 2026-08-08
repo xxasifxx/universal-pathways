@@ -73,35 +73,3 @@ export async function notifyVolunteer(input: {
   return notification;
 }
 
-/**
- * Legacy contribution notification kept for existing records. New donations
- * are sent directly to ActBlue from the public donation page.
- */
-export async function notifyContribution(input: {
-  name: string;
-  email: string;
-  phone?: string | null;
-  addressLine1: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  occupation: string;
-  employer: string;
-  amount: number;
-  method: string;
-  note?: string | null;
-  id?: string;
-}) {
-  const { sendTemplateEmail } = await import("./email-templates/send-email");
-  const key = input.id ?? `${input.email}-${Date.now()}`;
-
-  return sendTemplateEmail("contribution-notification", "ask@saqeeb.org", {
-    templateData: {
-      ...input,
-      phone: input.phone ?? "",
-      note: input.note ?? "",
-    },
-    idempotencyKey: `contribution-notification-${key}`,
-    replyTo: input.email,
-  });
-}

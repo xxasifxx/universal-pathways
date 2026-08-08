@@ -24,27 +24,6 @@ const contactSchema = z.object({
   fpHash: z.string().max(120).optional().nullable(),
 });
 
-const contributionSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Enter a valid email").max(255),
-  phone: z.string().trim().max(30).optional().or(z.literal("")),
-  addressLine1: z.string().trim().min(1, "Street address is required").max(160),
-  city: z.string().trim().min(1, "City is required").max(80),
-  state: z.string().trim().min(2, "State is required").max(30),
-  zipCode: z
-    .string()
-    .trim()
-    .regex(/^\d{5}(-\d{4})?$/, "Enter a valid US zip code"),
-  occupation: z.string().trim().min(1, "Occupation is required").max(120),
-  employer: z.string().trim().min(1, "Employer is required").max(160),
-  amount: z.number().positive("Enter an amount").max(3000, "The legal limit is $3,000"),
-  method: z.enum(["bank_transfer", "check"]),
-  certifiesOwnFunds: z.literal(true),
-  certifiesUsPerson: z.literal(true),
-  note: z.string().trim().max(500).optional().or(z.literal("")),
-  anonId: z.string().max(80).optional().nullable(),
-  fpHash: z.string().max(120).optional().nullable(),
-});
 
 export type VolunteerInput = z.input<typeof volunteerSchema>;
 export type ContactInput = z.input<typeof contactSchema>;
