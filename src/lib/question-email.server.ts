@@ -74,8 +74,8 @@ export async function notifyVolunteer(input: {
 }
 
 /**
- * A contribution pledge: the campaign gets the full ELEC-reportable record,
- * and the donor gets the instructions for actually sending the money.
+ * Legacy contribution notification kept for existing records. New donations
+ * are sent directly to ActBlue from the public donation page.
  */
 export async function notifyContribution(input: {
   name: string;
@@ -95,7 +95,7 @@ export async function notifyContribution(input: {
   const { sendTemplateEmail } = await import("./email-templates/send-email");
   const key = input.id ?? `${input.email}-${Date.now()}`;
 
-  const notification = await sendTemplateEmail("contribution-notification", "ask@saqeeb.org", {
+  return sendTemplateEmail("contribution-notification", "ask@saqeeb.org", {
     templateData: {
       ...input,
       phone: input.phone ?? "",
@@ -104,20 +104,4 @@ export async function notifyContribution(input: {
     idempotencyKey: `contribution-notification-${key}`,
     replyTo: input.email,
   });
-
-  try {
-    await sendTemplateEmail("contribution-confirmation", input.email, {
-      templateData: {
-        name: input.name,
-        amount: input.amount,
-        method: input.method,
-      },
-      idempotencyKey: `contribution-confirmation-${key}`,
-      replyTo: "ask@saqeeb.org",
-    });
-  } catch (error) {
-    console.error("contribution confirmation email failed", error);
-  }
-
-  return notification;
 }
