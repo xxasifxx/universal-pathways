@@ -8,7 +8,28 @@ export const CONTACT_EMAIL = "ask@saqeeb.org";
 export const REGISTRATION_DEADLINE = "October 13th";
 
 /** Secure contribution page managed by ActBlue. */
-export const ACTBLUE_DONATION_URL = "https://secure.actblue.com/donate/saqeeb";
+export const ACTBLUE_DONATION_URL = "https://secure.actblue.com/donate/muhammad-saqeeb-1";
+
+/** Campaign identifier used for UTM tagging in GA4. */
+export const UTM_CAMPAIGN = "saqeeb2026";
+
+/**
+ * Build an ActBlue link tagged with UTM parameters so GA4 (and ActBlue's own
+ * refcode reporting) can attribute the contribution to the page it came from.
+ *
+ * @param medium  where the link lives (e.g. "header", "footer", "home-donate")
+ * @param content optional detail (e.g. the preset amount clicked)
+ */
+export function actblueUrl(medium: string, content?: string): string {
+  const params = new URLSearchParams({
+    utm_source: "saqeeb.org",
+    utm_medium: medium,
+    utm_campaign: UTM_CAMPAIGN,
+  });
+  if (content) params.set("utm_content", content);
+  params.set("refcode", content ? `${medium}-${content}` : medium);
+  return `${ACTBLUE_DONATION_URL}?${params.toString()}`;
+}
 
 export const DONATION = {
   committeeName: "Friends Of Saqeeb",
