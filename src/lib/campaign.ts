@@ -8,7 +8,7 @@ export const CONTACT_EMAIL = "ask@saqeeb.org";
 export const REGISTRATION_DEADLINE = "October 13th";
 
 /** Secure contribution page managed by ActBlue. */
-export const ACTBLUE_DONATION_URL = "https://secure.actblue.com/donate/muhammad-saqeeb-1";
+export const ACTBLUE_DONATION_URL = "https://secure.actblue.com/donate/saqeebforeb";
 
 /** Campaign identifier used for UTM tagging in GA4. */
 export const UTM_CAMPAIGN = "saqeeb2026";
