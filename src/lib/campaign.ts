@@ -13,6 +13,7 @@ export const ACTBLUE_DONATION_URL = "https://secure.actblue.com/donate/muhammad-
 /** Campaign identifier used for UTM tagging in GA4. */
 export const UTM_CAMPAIGN = "saqeeb2026";
 
+
 /**
  * Build an ActBlue link tagged with UTM parameters so GA4 (and ActBlue's own
  * refcode reporting) can attribute the contribution to the page it came from.
