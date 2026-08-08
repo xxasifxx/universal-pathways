@@ -23,6 +23,7 @@ import { Route as AdminIntentRouteImport } from './routes/admin/intent'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminVoterMapRouteImport } from './routes/admin/voter-map'
 import { Route as AdminVotersRouteImport } from './routes/admin/voters'
+import { Route as DonateThanksRouteImport } from './routes/donate.thanks'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
 import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
@@ -100,6 +101,11 @@ const AdminVotersRoute = AdminVotersRouteImport.update({
   path: '/admin/voters',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DonateThanksRoute = DonateThanksRouteImport.update({
+  id: '/thanks',
+  path: '/thanks',
+  getParentRoute: () => DonateRoute,
+} as any)
 const ApiPublicIngestPointerRoute = ApiPublicIngestPointerRouteImport.update({
   id: '/api/public/ingest-pointer',
   path: '/api/public/ingest-pointer',
@@ -135,7 +141,7 @@ const LovableEmailTransactionalPreviewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/donate': typeof DonateRoute
+  '/donate': typeof DonateRouteWithChildren
   '/priorities': typeof PrioritiesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -146,6 +152,7 @@ export interface FileRoutesByFullPath {
   '/admin/login': typeof AdminLoginRoute
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
+  '/donate/thanks': typeof DonateThanksRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
@@ -157,7 +164,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/donate': typeof DonateRoute
+  '/donate': typeof DonateRouteWithChildren
   '/priorities': typeof PrioritiesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -168,6 +175,7 @@ export interface FileRoutesByTo {
   '/admin/login': typeof AdminLoginRoute
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
+  '/donate/thanks': typeof DonateThanksRoute
   '/admin': typeof AdminIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
@@ -180,7 +188,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/donate': typeof DonateRoute
+  '/donate': typeof DonateRouteWithChildren
   '/priorities': typeof PrioritiesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -191,6 +199,7 @@ export interface FileRoutesById {
   '/admin/login': typeof AdminLoginRoute
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
+  '/donate/thanks': typeof DonateThanksRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
@@ -215,6 +224,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/voter-map'
     | '/admin/voters'
+    | '/donate/thanks'
     | '/admin/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/voter-map'
     | '/admin/voters'
+    | '/donate/thanks'
     | '/admin'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
@@ -259,6 +270,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/voter-map'
     | '/admin/voters'
+    | '/donate/thanks'
     | '/admin/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
@@ -271,7 +283,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
-  DonateRoute: typeof DonateRoute
+  DonateRoute: typeof DonateRouteWithChildren
   PrioritiesRoute: typeof PrioritiesRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -391,6 +403,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminVotersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/donate/thanks': {
+      id: '/donate/thanks'
+      path: '/thanks'
+      fullPath: '/donate/thanks'
+      preLoaderRoute: typeof DonateThanksRouteImport
+      parentRoute: typeof DonateRoute
+    }
     '/api/public/ingest-pointer': {
       id: '/api/public/ingest-pointer'
       path: '/api/public/ingest-pointer'
@@ -436,10 +455,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DonateRouteChildren {
+  DonateThanksRoute: typeof DonateThanksRoute
+}
+
+const DonateRouteChildren: DonateRouteChildren = {
+  DonateThanksRoute: DonateThanksRoute,
+}
+
+const DonateRouteWithChildren =
+  DonateRoute._addFileChildren(DonateRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
-  DonateRoute: DonateRoute,
+  DonateRoute: DonateRouteWithChildren,
   PrioritiesRoute: PrioritiesRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
@@ -461,3 +491,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
