@@ -4,6 +4,7 @@ import { ArrowRight, Check, Heart, Instagram } from "lucide-react";
 import heroAsset from "@/assets/saqeeb-portrait.jpg.asset.json";
 import { AskQuestionForm } from "@/components/ask-question-form";
 import {
+  ACTBLUE_DONATION_URL,
   CANDIDATE_NAME,
   CONTACT_EMAIL,
   CREDENTIALS,
@@ -209,21 +210,25 @@ function Index() {
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {DONATION_AMOUNTS.map((amount) => (
               <li key={amount}>
-                <Link
-                  to="/donate"
+                <a
+                  href={ACTBLUE_DONATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center rounded-full bg-primary-foreground px-6 py-4 text-lg font-bold text-primary transition-opacity hover:opacity-90"
                 >
                   ${amount}
-                </Link>
+                </a>
               </li>
             ))}
             <li>
-              <Link
-                to="/donate"
+              <a
+                href={ACTBLUE_DONATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center rounded-full bg-primary-foreground px-6 py-4 text-lg font-bold text-primary transition-opacity hover:opacity-90"
               >
                 Other Amount
-              </Link>
+              </a>
             </li>
           </ul>
           <p className="mt-8 text-lg">

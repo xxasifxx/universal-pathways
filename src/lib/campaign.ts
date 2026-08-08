@@ -7,47 +7,18 @@ export const OFFICE = "East Brunswick Board of Education";
 export const CONTACT_EMAIL = "ask@saqeeb.org";
 export const REGISTRATION_DEADLINE = "October 13th";
 
-/**
- * Contributions go straight to the campaign bank account — no ActBlue.
- * Card giving runs through Givebutter; bank transfer and check are zero-fee.
- *
- * NOTE: the routing and account numbers below are never rendered on a public
- * page. They appear only in the confirmation email sent to someone who has
- * pledged a bank transfer.
- */
+/** Secure contribution page managed by ActBlue. */
+export const ACTBLUE_DONATION_URL = "https://secure.actblue.com/donate/saqeeb";
+
 export const DONATION = {
   committeeName: "Friends Of Saqeeb",
   /** NJ ELEC individual limit per election for a school board candidate committee. */
   maxIndividual: 3000,
   /** Contributions at or above this amount require occupation and employer on the report. */
   reportingThreshold: 300,
-  bank: {
-    name: "Provident Bank",
-    accountName: "Friends Of Saqeeb",
-    routingNumber: "221272303",
-    accountNumber: "103601292",
-  },
-  checkPayableTo: "Friends Of Saqeeb",
-  mailingAddress: ["406 Ryders Lane", "East Brunswick, NJ 08816"],
 } as const;
 
-/**
- * Givebutter campaign identifier (the slug/ID from the campaign's embed code).
- * Leave empty until the committee's Givebutter campaign exists — the donate
- * page then shows the bank/check path only, with no broken widget.
- */
-export const GIVEBUTTER_CAMPAIGN = "";
-
 export const DONATION_AMOUNTS = [5, 10, 25, 50, 100, 250];
-
-export const DONATION_METHODS = [
-  {
-    id: "bank_transfer",
-    label: "Bank transfer (ACH)",
-    hint: "We'll email you the account and routing numbers.",
-  },
-  { id: "check", label: "Check by mail", hint: "Made payable to the committee." },
-] as const;
 
 /** Campaign social profiles. Set a URL to null to hide that link. */
 export const SOCIAL_LINKS: { id: string; label: string; url: string | null }[] = [

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
 import {
+  ACTBLUE_DONATION_URL,
   CANDIDATE_NAME,
   CONTACT_EMAIL,
   REGISTRATION_DEADLINE,
@@ -52,9 +53,14 @@ export function SiteFooter() {
             <a href={`mailto:${CONTACT_EMAIL}`} className="w-fit font-semibold hover:text-gold">
               {CONTACT_EMAIL}
             </a>
-            <Link to="/donate" className="w-fit font-semibold hover:text-gold">
+            <a
+              href={ACTBLUE_DONATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-fit font-semibold hover:text-gold"
+            >
               {t("nav.donate")}
-            </Link>
+            </a>
           </div>
         </div>
 
