@@ -72,13 +72,15 @@ export function SiteHeader() {
           <div className="hidden sm:block">
             <LanguageSelect />
           </div>
-          <Link
-            to="/donate"
+          <a
+            href="https://secure.actblue.com/donate/saqeeb"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setOpen(false)}
             className="rounded-md bg-primary px-4 py-2 font-display text-base tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
           >
             {t("nav.donate")}
-          </Link>
+          </a>
           <button
             type="button"
             aria-expanded={open}
