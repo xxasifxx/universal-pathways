@@ -27,68 +27,6 @@ const contactSchema = z.object({
 
 export type VolunteerInput = z.input<typeof volunteerSchema>;
 export type ContactInput = z.input<typeof contactSchema>;
-export type ContributionInput = z.input<typeof contributionSchema>;
-
-export const submitContribution = createServerFn({ method: "POST" })
-  .inputValidator((input: ContributionInput) => contributionSchema.parse(input))
-  .handler(async ({ data }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { attachIdentity } = await import("./identity.server");
-    const visitorId = await attachIdentity(supabaseAdmin, {
-      anon_id: data.anonId,
-      fp_hash: data.fpHash,
-      name: data.name,
-      email: data.email,
-      phone: data.phone || null,
-    });
-
-    const { data: inserted, error } = await supabaseAdmin
-      .from("contributions")
-      .insert({
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        address_line1: data.addressLine1,
-        city: data.city,
-        state: data.state,
-        zip_code: data.zipCode,
-        occupation: data.occupation,
-        employer: data.employer,
-        amount_cents: Math.round(data.amount * 100),
-        method: data.method,
-        certifies_own_funds: data.certifiesOwnFunds,
-        certifies_us_person: data.certifiesUsPerson,
-        note: data.note || null,
-        visitor_id: visitorId,
-      })
-      .select("id")
-      .single();
-    if (error) throw new Error("Could not save contribution");
-
-    try {
-      const { notifyContribution } = await import("./question-email.server");
-      await notifyContribution({
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        addressLine1: data.addressLine1,
-        city: data.city,
-        state: data.state,
-        zipCode: data.zipCode,
-        occupation: data.occupation,
-        employer: data.employer,
-        amount: data.amount,
-        method: data.method,
-        note: data.note || null,
-        id: inserted?.id,
-      });
-    } catch (mailError) {
-      // A mail failure must never lose the pledge — it is already saved.
-      console.error("contribution email failed", mailError);
-    }
-
-    return { ok: true as const };
-  });
 
 export const submitVolunteer = createServerFn({ method: "POST" })
   .inputValidator((input: VolunteerInput) => volunteerSchema.parse(input))
