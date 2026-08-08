@@ -23,6 +23,7 @@ import { Route as AdminIntentRouteImport } from './routes/admin/intent'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminVoterMapRouteImport } from './routes/admin/voter-map'
 import { Route as AdminVotersRouteImport } from './routes/admin/voters'
+import { Route as DonateIndexRouteImport } from './routes/donate.index'
 import { Route as DonateThanksRouteImport } from './routes/donate.thanks'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
@@ -101,6 +102,11 @@ const AdminVotersRoute = AdminVotersRouteImport.update({
   path: '/admin/voters',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DonateIndexRoute = DonateIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DonateRoute,
+} as any)
 const DonateThanksRoute = DonateThanksRouteImport.update({
   id: '/thanks',
   path: '/thanks',
@@ -154,6 +160,7 @@ export interface FileRoutesByFullPath {
   '/admin/voters': typeof AdminVotersRoute
   '/donate/thanks': typeof DonateThanksRoute
   '/admin/': typeof AdminIndexRoute
+  '/donate/': typeof DonateIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -164,7 +171,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/donate': typeof DonateRouteWithChildren
   '/priorities': typeof PrioritiesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -177,6 +183,7 @@ export interface FileRoutesByTo {
   '/admin/voters': typeof AdminVotersRoute
   '/donate/thanks': typeof DonateThanksRoute
   '/admin': typeof AdminIndexRoute
+  '/donate': typeof DonateIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -201,6 +208,7 @@ export interface FileRoutesById {
   '/admin/voters': typeof AdminVotersRoute
   '/donate/thanks': typeof DonateThanksRoute
   '/admin/': typeof AdminIndexRoute
+  '/donate/': typeof DonateIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -226,6 +234,7 @@ export interface FileRouteTypes {
     | '/admin/voters'
     | '/donate/thanks'
     | '/admin/'
+    | '/donate/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -236,7 +245,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dashboard'
-    | '/donate'
     | '/priorities'
     | '/reset-password'
     | '/sitemap.xml'
@@ -249,6 +257,7 @@ export interface FileRouteTypes {
     | '/admin/voters'
     | '/donate/thanks'
     | '/admin'
+    | '/donate'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -272,6 +281,7 @@ export interface FileRouteTypes {
     | '/admin/voters'
     | '/donate/thanks'
     | '/admin/'
+    | '/donate/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -403,6 +413,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminVotersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/donate/': {
+      id: '/donate/'
+      path: '/'
+      fullPath: '/donate/'
+      preLoaderRoute: typeof DonateIndexRouteImport
+      parentRoute: typeof DonateRoute
+    }
     '/donate/thanks': {
       id: '/donate/thanks'
       path: '/thanks'
@@ -457,10 +474,12 @@ declare module '@tanstack/react-router' {
 
 interface DonateRouteChildren {
   DonateThanksRoute: typeof DonateThanksRoute
+  DonateIndexRoute: typeof DonateIndexRoute
 }
 
 const DonateRouteChildren: DonateRouteChildren = {
   DonateThanksRoute: DonateThanksRoute,
+  DonateIndexRoute: DonateIndexRoute,
 }
 
 const DonateRouteWithChildren =
