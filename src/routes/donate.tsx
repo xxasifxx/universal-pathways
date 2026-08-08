@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { ACTBLUE_DONATION_URL, CONTACT_EMAIL, DONATION } from "@/lib/campaign";
+import { actblueUrl, CONTACT_EMAIL, DONATION } from "@/lib/campaign";
 
 const TITLE = "Donate to Saqeeb for East Brunswick BOE";
 const DESCRIPTION =
@@ -34,7 +34,7 @@ function Donate() {
         </p>
 
         <a
-          href={ACTBLUE_DONATION_URL}
+          href={actblueUrl("donate-page")}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 inline-flex items-center justify-center rounded-md bg-gold px-6 py-3 font-display text-lg tracking-wide text-gold-foreground transition-opacity hover:opacity-90"
