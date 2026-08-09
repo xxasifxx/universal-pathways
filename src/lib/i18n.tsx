@@ -41,7 +41,7 @@ const en = {
     "Register to vote by October 13th to have a say in who runs East Brunswick's schools.",
   "footer.register.cta": "Register to vote in New Jersey",
   "footer.tagline":
-    "An independent campaign for the East Brunswick Board of Education. No party line, no consultants.",
+    "An independent, community-run campaign for the East Brunswick Board of Education. No party line, no consultants.",
   "footer.rights": "Paid for by Saqeeb for East Brunswick.",
 
   "home.hero.headline": "Hi, I'm Saqeeb.",
@@ -49,7 +49,7 @@ const en = {
   "home.hero.cta.primary": "Read my priorities",
   "home.hero.cta.secondary": "Volunteer",
   "home.hero.badge": "East Brunswick Board of Education · 2026",
-  "home.hero.social": "Follow the campaign",
+  "home.hero.social": "Follow our campaign",
 
   "budget.eyebrow": "Follow the money",
   "budget.title": "Where East Brunswick's $229 million actually goes",
@@ -59,10 +59,10 @@ const en = {
   "budget.total": "Total operating budget",
   "budget.share": "share of budget",
   "budget.disclaimer":
-    "Illustrative breakdown of the adopted 2024\u20132025 operating budget, grouped from publicly reported district figures. Line items shift from year to year, so treat these as approximate until the district publishes something better. I'd like it to.",
+    "Illustrative breakdown of the adopted 2024\u20132025 operating budget, grouped from publicly reported district figures. Line items shift from year to year, so treat these as approximate until the district publishes something better. We'd like it to.",
 
-  "priorities.eyebrow": "Saqeeb's platform",
-  "priorities.title": "Saqeeb's platform for East Brunswick schools",
+  "priorities.eyebrow": "Our platform",
+  "priorities.title": "Our platform for East Brunswick schools",
 
   "volunteer.title": "Powered by Neighbors",
 

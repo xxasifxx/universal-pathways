@@ -29,7 +29,7 @@ export function VolunteerConfirmation({
             Thanks, {name}!
           </Heading>
           <Text style={{ color: '#2b2b2b', fontSize: '15px', lineHeight: '1.6', margin: '0 0 20px' }}>
-            Your signup came through. Someone from the campaign will reach out with next
+            Your signup came through. Someone from our campaign will reach out with next
             steps and timing.
           </Text>
           {helpWith.length ? (

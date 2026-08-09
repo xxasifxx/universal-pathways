@@ -17,7 +17,7 @@ import {
 
 const TITLE = "Muhammad Saqeeb for East Brunswick Board of Education";
 const DESCRIPTION =
-  "Muhammad Saqeeb's campaign platform: affordable schools, fair access for students, and lower costs through better facilities and public oversight.";
+  "Our campaign platform: affordable schools, fair access for students, and lower costs through better facilities and public oversight.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -178,7 +178,7 @@ function Index() {
             to="/priorities"
             className="mt-12 inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
           >
-            See all of Saqeeb&apos;s promises
+            See all of our promises
             <ArrowRight aria-hidden="true" className="size-4" />
           </Link>
         </div>
