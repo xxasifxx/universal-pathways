@@ -5,7 +5,7 @@ import { CANDIDATE_NAME, CONTACT_EMAIL } from "@/lib/campaign";
 
 const TITLE = "Thank You for Supporting Saqeeb";
 const DESCRIPTION =
-  "Thank you for supporting Muhammad Saqeeb's campaign for the East Brunswick Board of Education. Find the next way to get involved.";
+  "Thank you for supporting our campaign for the East Brunswick Board of Education. Find the next way to get involved.";
 
 export const Route = createFileRoute("/donate/thanks")({
   head: () => ({
@@ -36,7 +36,7 @@ function DonationThanks() {
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-relaxed text-primary-foreground/90 sm:text-xl">
             If you just completed your contribution through ActBlue, your receipt will come from
-            them by email. Your support gives this grassroots campaign more room to reach students,
+            them by email. Your support gives our grassroots campaign more room to reach students,
             families, and educators across our community.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
