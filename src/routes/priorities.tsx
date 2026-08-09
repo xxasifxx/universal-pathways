@@ -4,9 +4,9 @@ import { Check } from "lucide-react";
 import { PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
-const TITLE = "Saqeeb's Platform for East Brunswick Schools";
+const TITLE = "Our Platform for East Brunswick Schools";
 const DESCRIPTION =
-  "Muhammad Saqeeb's platform: affordable schools, fair access for students, and lower costs through better facilities and public oversight.";
+  "Our platform for East Brunswick schools: affordable schools, fair access for students, and lower costs through better facilities and public oversight.";
 
 export const Route = createFileRoute("/priorities")({
   head: () => ({
@@ -32,10 +32,10 @@ function Priorities() {
       <section className="bg-primary py-14 text-primary-foreground sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h1 className="max-w-4xl text-4xl leading-[1.05] sm:text-6xl">
-            Saqeeb&apos;s platform for East Brunswick schools
+            Our platform for East Brunswick schools
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/90">
-            Affordable for all. Students first. Reduce our costs.
+            What we are running on: affordable for all, students first, reduce our costs.
           </p>
         </div>
       </section>
