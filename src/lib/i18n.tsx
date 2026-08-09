@@ -49,7 +49,7 @@ const en = {
   "home.hero.cta.primary": "Read my priorities",
   "home.hero.cta.secondary": "Volunteer",
   "home.hero.badge": "East Brunswick Board of Education · 2026",
-  "home.hero.social": "Follow the campaign",
+  "home.hero.social": "Follow our campaign",
 
   "budget.eyebrow": "Follow the money",
   "budget.title": "Where East Brunswick's $229 million actually goes",
