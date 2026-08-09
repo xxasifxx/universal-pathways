@@ -72,7 +72,7 @@ export const template = {
   displayName: 'Volunteer signup notification',
   subject: (data: Record<string, any>) =>
     `New volunteer signup: ${data['name'] ?? 'the campaign site'}`,
-  to: 'ask@saqeeb.org',
+  to: 'saqeebforeb@gmail.com',
   previewData: {
     name: 'Dan Alvarez',
     email: 'dan@example.com',

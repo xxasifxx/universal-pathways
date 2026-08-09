@@ -62,7 +62,7 @@ export const template = {
   displayName: 'Question notification',
   subject: (data: Record<string, any>) =>
     `New question from ${data['name'] ?? 'the campaign site'}`,
-  to: 'ask@saqeeb.org',
+  to: 'saqeebforeb@gmail.com',
   previewData: {
     name: 'Priya Raman',
     email: 'priya@example.com',

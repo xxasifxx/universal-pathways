@@ -5,6 +5,8 @@
  * Every submission is saved to the campaign inbox before these run, so a mail
  * failure is logged and swallowed by the caller — it never loses a submission.
  */
+const NOTIFICATION_EMAIL = "saqeebforeb@gmail.com";
+
 export async function notifyQuestion(input: {
   name: string;
   email: string;
@@ -14,7 +16,7 @@ export async function notifyQuestion(input: {
   const { sendTemplateEmail } = await import("./email-templates/send-email");
   const key = input.id ?? `${input.email}-${Date.now()}`;
 
-  const notification = await sendTemplateEmail("question-notification", "ask@saqeeb.org", {
+  const notification = await sendTemplateEmail("question-notification", NOTIFICATION_EMAIL, {
     templateData: { name: input.name, email: input.email, message: input.message },
     idempotencyKey: `question-notification-${key}`,
     replyTo: input.email,
@@ -54,7 +56,7 @@ export async function notifyVolunteer(input: {
     helpWith: input.helpWith,
   };
 
-  const notification = await sendTemplateEmail("volunteer-notification", "ask@saqeeb.org", {
+  const notification = await sendTemplateEmail("volunteer-notification", NOTIFICATION_EMAIL, {
     templateData,
     idempotencyKey: `volunteer-notification-${key}`,
     replyTo: input.email,
