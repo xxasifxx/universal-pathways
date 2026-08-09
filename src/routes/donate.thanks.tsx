@@ -100,7 +100,7 @@ function DonationThanks() {
               <p className="font-display text-3xl text-primary">03</p>
               <h3 className="mt-3 text-2xl uppercase">Stay connected</h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                Follow the campaign on Instagram for updates, events, and ways to show up locally.
+                Follow our campaign on Instagram for updates, events, and ways to show up locally.
               </p>
               <a
                 href="https://www.instagram.com/saqeeb4eb"
@@ -108,7 +108,7 @@ function DonationThanks() {
                 rel="noopener noreferrer"
                 className="mt-5 inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
               >
-                Follow the campaign
+                Follow our campaign
                 <ArrowRight aria-hidden="true" className="size-4" />
               </a>
             </div>
