@@ -154,7 +154,7 @@ function Index() {
       <section aria-labelledby="platform-heading" className="pb-14 sm:pb-20">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <h2 id="platform-heading" className="text-4xl uppercase sm:text-5xl">
-            Saqeeb&apos;s platform
+            OUR platform
           </h2>
           <ul className="mt-12 grid gap-12">
             {PLATFORM_HIGHLIGHTS.map((item, i) => (
@@ -165,7 +165,7 @@ function Index() {
                 <span className="mx-auto grid size-14 place-items-center rounded-full border-2 border-primary text-primary">
                   <Check aria-hidden="true" className="size-7" />
                 </span>
-                <h3 className="mt-6 text-2xl uppercase text-primary sm:text-3xl">
+                <h3 className="mt-6 text-4xl uppercase text-primary sm:text-6xl">
                   {item.title}
                 </h3>
                 <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-foreground/90">
