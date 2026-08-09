@@ -6,7 +6,7 @@ import { useI18n } from "@/lib/i18n";
 
 const TITLE = "Volunteer or Request a Yard Sign";
 const DESCRIPTION =
-  "Sign up to help the campaign in East Brunswick, or request a yard sign for your street.";
+  "Sign up to help our campaign in East Brunswick, or request a yard sign for your street.";
 
 export const Route = createFileRoute("/volunteer")({
   head: () => ({
