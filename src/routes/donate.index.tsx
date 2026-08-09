@@ -4,7 +4,7 @@ import { actblueUrl, CONTACT_EMAIL, DONATION } from "@/lib/campaign";
 
 const TITLE = "Donate to Saqeeb for East Brunswick BOE";
 const DESCRIPTION =
-  "Support Muhammad Saqeeb's campaign for the East Brunswick Board of Education through the secure ActBlue contribution page.";
+  "Support our grassroots campaign for the East Brunswick Board of Education through the secure ActBlue contribution page.";
 
 export const Route = createFileRoute("/donate/")({
   head: () => ({
@@ -24,12 +24,12 @@ function Donate() {
   return (
     <section className="border-b border-border py-16 sm:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <p className="eyebrow text-primary">Support the campaign</p>
+        <p className="eyebrow text-primary">Support our campaign</p>
         <h1 className="mt-3 max-w-2xl text-4xl leading-[1.05] sm:text-6xl">
           Help build a stronger future for East Brunswick schools.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Contributions support this grassroots campaign for the East Brunswick Board of Education.
+          Contributions support our grassroots campaign for the East Brunswick Board of Education.
           Secure contributions are handled through ActBlue.
         </p>
 
@@ -49,7 +49,7 @@ function Donate() {
             <li>No corporate or union money, and nothing from another person&apos;s funds.</li>
             <li>
               Give more than ${DONATION.reportingThreshold} and your name, address, occupation and
-              employer appear on the campaign&apos;s public ELEC report.
+              employer appear on our public ELEC report.
             </li>
             <li>Contributions are not tax deductible.</li>
           </ul>
