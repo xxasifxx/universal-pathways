@@ -4,9 +4,9 @@ import { Check } from "lucide-react";
 import { PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
-const TITLE = "Five Priorities for East Brunswick Schools";
+const TITLE = "Saqeeb's Platform for East Brunswick Schools";
 const DESCRIPTION =
-  "Students first, mental health and special education, safe and inclusive schools, transparent leadership, and long-term facilities investment.";
+  "Muhammad Saqeeb's platform: affordable schools, fair access for students, and lower costs through better facilities and public oversight.";
 
 export const Route = createFileRoute("/priorities")({
   head: () => ({
@@ -15,7 +15,11 @@ export const Route = createFileRoute("/priorities")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://saqeeb.org/priorities" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://saqeeb.org/priorities" }],
   }),
   component: Priorities,
 });
@@ -28,11 +32,10 @@ function Priorities() {
       <section className="bg-primary py-14 text-primary-foreground sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h1 className="max-w-4xl text-4xl leading-[1.05] sm:text-6xl">
-            Five priorities for East Brunswick schools
+            Saqeeb&apos;s platform for East Brunswick schools
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/90">
-            A focused, student-first agenda built around student voice, mental health and special
-            education, belonging, transparency, and responsible long-term investment.
+            Affordable for all. Students first. Reduce our costs.
           </p>
         </div>
       </section>

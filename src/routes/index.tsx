@@ -17,7 +17,7 @@ import {
 
 const TITLE = "Muhammad Saqeeb for East Brunswick Board of Education";
 const DESCRIPTION =
-  "A student-first campaign for East Brunswick schools: student voice, mental health and special education, safe and inclusive schools, and transparent leadership.";
+  "Muhammad Saqeeb's campaign platform: affordable schools, fair access for students, and lower costs through better facilities and public oversight.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,7 +26,11 @@ export const Route = createFileRoute("/")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://saqeeb.org/" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://saqeeb.org/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -150,7 +154,7 @@ function Index() {
       <section aria-labelledby="platform-heading" className="pb-14 sm:pb-20">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <h2 id="platform-heading" className="text-4xl uppercase sm:text-5xl">
-            Together, we&apos;ll bring to East Brunswick
+            Saqeeb&apos;s platform
           </h2>
           <ul className="mt-12 grid gap-12">
             {PLATFORM_HIGHLIGHTS.map((item, i) => (
@@ -174,7 +178,7 @@ function Index() {
             to="/priorities"
             className="mt-12 inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
           >
-            See the full platform
+            See all of Saqeeb&apos;s promises
             <ArrowRight aria-hidden="true" className="size-4" />
           </Link>
         </div>

@@ -74,24 +74,19 @@ export const CREDENTIALS = [
 /** Short platform highlights shown with checkmarks on the home page. */
 export const PLATFORM_HIGHLIGHTS = [
   {
+    id: "affordable-for-all",
+    title: "Affordable for All",
+    text: "Universally paid full-day Pre-K, zero fees for student activities, fully funded schools, and an end to lunch debt.",
+  },
+  {
     id: "students-first",
     title: "Students First",
-    text: "Meaningful student voice, fair academic opportunity, and preparation for an AI-driven future.",
+    text: "Fair access to advanced courses, language programs for new families, learning that values students' work, and responsible AI literacy.",
   },
   {
-    id: "student-support",
-    title: "Student Support",
-    text: "Strong mental health services, special education, early intervention, and affordable early learning.",
-  },
-  {
-    id: "safe-schools",
-    title: "Safe & Welcoming Schools",
-    text: "Schools where every student is protected, respected, included, and able to belong.",
-  },
-  {
-    id: "transparent-leadership",
-    title: "Transparent Leadership",
-    text: "Clear budgets, accountable vendors, accessible decisions, and stronger community participation.",
+    id: "reduce-our-costs",
+    title: "Reduce Our Costs",
+    text: "A new 9th–12th high school, better and more sustainable facilities, state construction bonds, and public oversight of the master plan.",
   },
 ];
 
@@ -168,64 +163,49 @@ export type Priority = {
 
 export const PRIORITIES: Priority[] = [
   {
-    id: "students-first",
+    id: "affordable-for-all",
     number: "01",
-    title: "Students First",
-    summary:
-      "Students should have a real voice in the decisions that shape their education, and fair access to the courses that open doors.",
+    title: "Affordable for All",
+    summary: "Every student should be able to take part, get support, and learn without families paying for basic opportunities.",
     points: [
-      "Create meaningful student advisory committees and regular opportunities for students to speak before major Board decisions.",
-      "Review rigid placement systems, including the district matrix, and expand fair access to advanced and higher-level courses.",
-      "Review homework, grading, and assessment policies so grades better reflect learning, creativity, effort, and critical thinking.",
-      "Prepare students for an AI-driven future by teaching responsible AI use, digital literacy, and independent thinking.",
+      "Universally paid full-day Pre-K.",
+      "Zero fees on student clubs & activities, including arts & sports.",
+      "Fully funded schools so parents aren’t paying out of pocket for basic opportunities.",
+      "Hire teaching support staff in-house, not outside providers.",
+      "Protect and improve special education, mental health, and early intervention.",
+      "Better language programs for incoming families.",
+      "End lunch debt.",
     ],
   },
   {
-    id: "mental-health",
+    id: "students-first",
     number: "02",
-    title: "Mental Health, Special Education & Early Learning",
-    summary:
-      "The staff who support students day to day are not an add-on. They are what makes everything else work.",
+    title: "Students First",
+    summary: "Students deserve fair access, meaningful learning, and schools where they are safe and supported.",
     points: [
-      "Maintain and strengthen school psychologists, counselors, social workers, and other essential mental health staff.",
-      "Protect and improve special education staffing, services, early intervention, and communication with families.",
-      "Recognize that special education professionals strengthen the entire school community by supporting students, classrooms, educators, and families.",
-      "Protect the Early Learning Program and work to keep it affordable by supporting it through the school budget rather than placing excessive costs on families.",
+      "End the rigid matrix and expand fair access to advanced courses.",
+      "Allow placement exams, including languages.",
+      "Arts and science above grade level by request, with early access to instruments.",
+      "Language bridge program for new families.",
+      "Grade students on their work, not their homes: more in-school assignments and performance, less homework for evaluation.",
+      "Responsible AI literacy for creative, independent projects and critical thinking.",
+      "Train staff and administration to spot racism, sexism, Islamophobia, and antisemitism.",
+      "ICE out of schools. Police/SROs out of schools.",
+      "Student oversight of mental health and facilities.",
     ],
   },
   {
-    id: "safe-inclusive",
+    id: "reduce-our-costs",
     number: "03",
-    title: "Safe, Inclusive & Welcoming Schools",
-    summary:
-      "Every student deserves to feel safe, respected, and represented in East Brunswick schools.",
+    title: "Reduce Our Costs",
+    summary: "Invest in better schools and use public oversight to make long-term facilities decisions responsibly.",
     points: [
-      "Keep schools safe from bullying, discrimination, hate incidents, and routine immigration enforcement.",
-      "Build meaningful cultural and religious inclusion by creating more opportunities for students to learn from East Brunswick's diverse communities.",
-      "Expand inclusive cafeteria choices, including dependable halal and kosher meal options.",
-    ],
-  },
-  {
-    id: "transparent-leadership",
-    number: "04",
-    title: "Transparent, Responsible & Community-Focused Leadership",
-    summary:
-      "Public money and public decisions should be understandable to the public paying for them.",
-    points: [
-      "Make budgets, contracts, policy changes, and major Board decisions easier for residents to understand.",
-      "Hold consultants, vendors, and private contractors accountable for cost, quality, and measurable results.",
-      "Improve communication and participation for parents, educators, immigrant families, and multilingual communities.",
-    ],
-  },
-  {
-    id: "facilities",
-    number: "05",
-    title: "Strong Facilities & Long-Term Investment",
-    summary:
-      "Buildings are a generational decision. They deserve an honest conversation about value and cost.",
-    points: [
-      "Carefully evaluate every school facilities proposal based on long-term educational value, total cost, enrollment needs, and the burden placed on taxpayers.",
-      "Recognize that a new high school may provide greater long-term value than repeated temporary fixes, while being honest that residents may be asked to fund much of the project, and work with state legislators to secure stronger state funding for new school facilities.",
+      "A new high school for 9th through 12th.",
+      "State-of-the-art schools with better technology, facilities, and programs.",
+      "Use state construction bonds to build better, more sustainable facilities with lower maintenance.",
+      "Remove lead and address TMAs.",
+      "Build facilities that can house excellence in programs.",
+      "Audit the master plan, with public dashboards and community oversight.",
     ],
   },
 ];
