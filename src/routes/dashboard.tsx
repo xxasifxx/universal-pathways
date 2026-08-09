@@ -28,8 +28,8 @@ function Dashboard() {
             Where the money goes
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Families deserve clear, accessible information about how public money is spent. Here is
-            the district budget in plain language.
+            Families deserve clear, accessible information about how our schools spend public
+            money. Here is the district budget in plain language.
           </p>
         </div>
       </section>
