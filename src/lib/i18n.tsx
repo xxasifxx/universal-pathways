@@ -61,8 +61,8 @@ const en = {
   "budget.disclaimer":
     "Illustrative breakdown of the adopted 2024\u20132025 operating budget, grouped from publicly reported district figures. Line items shift from year to year, so treat these as approximate until the district publishes something better. I'd like it to.",
 
-  "priorities.eyebrow": "Our five priorities",
-  "priorities.title": "Five priorities for East Brunswick schools",
+  "priorities.eyebrow": "Saqeeb's platform",
+  "priorities.title": "Saqeeb's platform for East Brunswick schools",
 
   "volunteer.title": "Powered by Neighbors",
 
