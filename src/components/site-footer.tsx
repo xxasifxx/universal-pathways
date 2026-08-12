@@ -1,11 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import {
-  actblueUrl,
-  CANDIDATE_NAME,
-  CONTACT_EMAIL,
-  REGISTRATION_DEADLINE,
-} from "@/lib/campaign";
+import { actblueUrl, CANDIDATE_NAME, CONTACT_EMAIL } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
 export function SiteFooter() {
