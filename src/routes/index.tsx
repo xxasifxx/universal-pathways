@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Heart, Instagram } from "lucide-react";
+import { ArrowRight, Check, Heart, Instagram, School, Users, HeartPulse } from "lucide-react";
 
 import heroAsset from "@/assets/saqeeb-campaign-hero.jpg.asset.json";
 import { AskQuestionForm } from "@/components/ask-question-form";
@@ -9,15 +9,17 @@ import {
   CONTACT_EMAIL,
   CREDENTIALS,
   DONATION_AMOUNTS,
+  FIGHT_FOR,
   INTRO_LINE,
+  PITCH,
   PLATFORM_HIGHLIGHTS,
   REGISTRATION_DEADLINE,
   SOCIAL_LINKS,
 } from "@/lib/campaign";
 
-const TITLE = "Muhammad Saqeeb for East Brunswick Board of Education";
+const TITLE = "A Voice for Excellence | Muhammad Saqeeb for East Brunswick BOE";
 const DESCRIPTION =
-  "Our campaign platform: affordable schools, fair access for students, and lower costs through better facilities and public oversight.";
+  "Muhammad Saqeeb is running for East Brunswick Board of Education, Column #1. A voice for excellence: public Pre-K, a modern 9-12 high school, and better healthcare for school staff.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -57,6 +59,12 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const FIGHT_ICONS = {
+  users: Users,
+  school: School,
+  "heart-pulse": HeartPulse,
+} as const;
+
 function Index() {
   return (
     <>
@@ -64,10 +72,19 @@ function Index() {
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2 lg:gap-14">
           <div className="min-w-0">
-            <h1 className="text-[2.5rem] uppercase leading-[0.95] [text-wrap:balance] sm:text-6xl lg:text-7xl">
-              <span className="block">Running for</span>
-              <span className="block">East Brunswick Board of Education.</span>
+            <p className="font-display text-lg uppercase tracking-wide text-primary-foreground/80 sm:text-xl">
+              {PITCH.eyebrow}
+            </p>
+
+            <h1 className="mt-3 text-[2.75rem] uppercase leading-[0.95] [text-wrap:balance] sm:text-6xl lg:text-7xl">
+              {PITCH.headline}
             </h1>
+
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center rounded-full border-2 border-gold bg-gold px-4 py-1.5 font-display text-lg font-bold tracking-wide text-gold-foreground sm:text-xl">
+                {PITCH.badge}
+              </span>
+            </div>
 
             <div className="mt-8 h-1 w-28 bg-primary-foreground sm:w-36" />
 
@@ -76,45 +93,45 @@ function Index() {
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-            <Link
-              to="/volunteer"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-primary-foreground px-6 py-4 font-semibold text-primary transition-opacity hover:opacity-90"
-            >
-              Volunteer
-              <ArrowRight aria-hidden="true" className="size-4" />
-            </Link>
-            <a
-              href={actblueUrl("hero", "hero-donate")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-primary-foreground px-6 py-4 font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
-            >
-              Donate
-              <ArrowRight aria-hidden="true" className="size-4" />
-            </a>
+              <Link
+                to="/volunteer"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-primary-foreground px-6 py-4 font-semibold text-primary transition-opacity hover:opacity-90"
+              >
+                Volunteer
+                <ArrowRight aria-hidden="true" className="size-4" />
+              </Link>
+              <a
+                href={actblueUrl("hero", "hero-donate")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-primary-foreground px-6 py-4 font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
+              >
+                Donate
+                <ArrowRight aria-hidden="true" className="size-4" />
+              </a>
             </div>
 
-          {SOCIAL_LINKS.some((s) => s.url) ? (
-            <ul className="mt-8 flex flex-wrap gap-3">
-              {SOCIAL_LINKS.filter((s) => s.url).map((s) => (
-                <li key={s.id}>
-                  <a
-                    href={s.url!}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="grid size-12 place-items-center rounded-full border border-primary-foreground/70 text-sm font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
-                  >
-                    {s.id === "instagram" ? (
-                      <Instagram aria-hidden="true" className="size-5" />
-                    ) : (
-                      <span aria-hidden="true">{s.label.slice(0, 2)}</span>
-                    )}
-                    <span className="sr-only">{s.label}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : null}
+            {SOCIAL_LINKS.some((s) => s.url) ? (
+              <ul className="mt-8 flex flex-wrap gap-3">
+                {SOCIAL_LINKS.filter((s) => s.url).map((s) => (
+                  <li key={s.id}>
+                    <a
+                      href={s.url!}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="grid size-12 place-items-center rounded-full border border-primary-foreground/70 text-sm font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
+                    >
+                      {s.id === "instagram" ? (
+                        <Instagram aria-hidden="true" className="size-5" />
+                      ) : (
+                        <span aria-hidden="true">{s.label.slice(0, 2)}</span>
+                      )}
+                      <span className="sr-only">{s.label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
 
           <figure className="mx-auto w-full max-w-md lg:max-w-none">
@@ -130,28 +147,47 @@ function Index() {
         </div>
       </section>
 
-      {/* Intro + credentials */}
-      <section aria-label="About the candidate" className="py-14 sm:py-20">
+      {/* Pitch */}
+      <section aria-label="Why Saqeeb is running" className="py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <p className="text-center text-2xl font-bold leading-snug text-primary sm:text-3xl">
-            {INTRO_LINE}
+          <p className="text-center text-lg leading-relaxed text-foreground/90 sm:text-xl">
+            {PITCH.problem}
           </p>
-          <ul className="mt-10 grid gap-5">
-            {CREDENTIALS.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border-l-8 border-primary bg-secondary px-6 py-8 text-center"
-              >
-                <span aria-hidden="true" className="mx-auto block size-2.5 rounded-full bg-primary" />
-                <p className="mt-4 text-xl font-bold leading-snug text-primary">{item}</p>
-              </li>
-            ))}
+          <p className="mt-8 text-center text-2xl font-bold leading-snug text-primary sm:text-3xl">
+            {PITCH.ask}
+          </p>
+        </div>
+      </section>
+
+      {/* Saqeeb will fight for */}
+      <section aria-labelledby="fight-for-heading" className="bg-primary py-14 text-primary-foreground sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <h2 id="fight-for-heading" className="text-center text-4xl uppercase leading-[1.05] sm:text-5xl">
+            Saqeeb will fight for:
+          </h2>
+          <ul className="mt-12 grid gap-8 sm:grid-cols-3">
+            {FIGHT_FOR.map((item) => {
+              const Icon = FIGHT_ICONS[item.icon];
+              return (
+                <li
+                  key={item.id}
+                  className="flex flex-col items-center text-center"
+                >
+                  <span className="grid size-20 place-items-center rounded-full border-2 border-gold bg-gold text-gold-foreground sm:size-24">
+                    <Icon aria-hidden="true" className="size-9 sm:size-11" />
+                  </span>
+                  <h3 className="mt-6 font-display text-2xl font-bold uppercase leading-tight sm:text-3xl">
+                    {item.label}
+                  </h3>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>
 
       {/* Platform highlights */}
-      <section aria-labelledby="platform-heading" className="pb-14 sm:pb-20">
+      <section aria-labelledby="platform-heading" className="py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <h2 id="platform-heading" className="text-4xl uppercase sm:text-5xl">
             OUR platform
@@ -184,7 +220,27 @@ function Index() {
         </div>
       </section>
 
-      <section id="ask" aria-labelledby="ask-heading" className="scroll-mt-20 bg-secondary py-14 sm:py-20">
+      {/* Credentials */}
+      <section aria-label="About the candidate" className="bg-secondary py-14 sm:py-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+          <p className="text-center text-2xl font-bold leading-snug text-primary sm:text-3xl">
+            {INTRO_LINE}
+          </p>
+          <ul className="mt-10 grid gap-5">
+            {CREDENTIALS.map((item) => (
+              <li
+                key={item}
+                className="rounded-xl border-l-8 border-primary bg-card px-6 py-8 text-center"
+              >
+                <span aria-hidden="true" className="mx-auto block size-2.5 rounded-full bg-primary" />
+                <p className="mt-4 text-xl font-bold leading-snug text-primary">{item}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="ask" aria-labelledby="ask-heading" className="scroll-mt-20 py-14 sm:py-20">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
           <h2 id="ask-heading" className="text-3xl sm:text-4xl">
             Ask Muhammad a question
