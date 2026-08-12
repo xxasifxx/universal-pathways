@@ -25,23 +25,46 @@ Each section gets a single primary action; everything else is visually secondary
 
 Every button gets literal, outcome-based text: "Volunteer", "Donate", "Request a yard sign", "Register to vote", "Send question".
 
-### 2. Rebuild the volunteer page around three real choices
-Lead with what you can sign up for, each with a one-line description of the actual commitment:
+### 2. Make the volunteer form progressive — each choice unlocks the fields it actually needs
+
+Pick one or more ways to help. Every choice you check adds its own small block of questions to the same form, and it all submits together as one signup.
 
 ```text
-1. Request a yard sign   - we drop one at your address
-2. Join a canvassing day - weekend door-knocking, ~2 hours, we pair you up
-3. Phone / text bank     - from home, on your own schedule
+Step 1 - shared, always shown
+  Name, email, zip code
+
+Step 2 - check what you want to do (one or more)
+
+  [x] Request a yard sign
+        -> Street address (required)
+        -> Any placement notes (optional)
+
+  [x] Join a canvassing day
+        -> Which days work: Sat morning / Sat afternoon /
+           Sun morning / Sun afternoon / Weekday evening
+        -> Can you drive to a turf? yes / no
+
+  [x] Phone or text bank
+        -> Mobile number (required)
+        -> Best times to reach you: weekday day / weekday evening / weekend
+        -> Prefer calls or texting?
+
+Step 3
+  Anything else you want us to know (optional)
+  Submit -> "Count me in"
 ```
 
-Picking a card scrolls to the form with that option pre-selected.
+Rules:
+- Nothing extra is shown until its box is checked; the form starts short and grows only as much as the person opted into.
+- Fields required only when their block is open — address is required for yard signs, mobile for phone banking, at least one day for canvassing.
+- Checking nothing blocks submit with a clear message: "Pick at least one way to help."
+- Blocks animate open in place, under the checkbox, so it stays one form and one submit button.
+- The volunteer page above the form lists the three options as short cards with the real commitment (yard sign: we drop one off; canvassing: weekend door-knocking, about 2 hours, we pair you up; phone/text bank: from home, your own schedule). Clicking a card checks that box and scrolls to the form.
 
-### 3. Rebuild the form itself
-- Replace pill toggles with real checkboxes plus their descriptions, so choices are unmissable and screen-reader correct.
-- Require at least one choice, with a clear error if none is picked.
-- Show the street-address field only when yard sign is selected, and require it then.
-- Tighten copy: heading "Sign up to help", submit button "Count me in".
-- Keep the existing submit path, database write, and email notification exactly as they are.
+### 3. Store and email the extra detail
+- Checkboxes replace the pill toggles, so the choices are unmissable and screen-reader correct.
+- The per-option answers are saved with the signup and included in the alert email, grouped by option, so Saqeeb sees "Canvassing - Sat AM, Sun AM, has a car" instead of just a label.
+- Storage uses a JSON detail column on the existing signups table; the existing insert, notification, and admin list keep working unchanged.
 
 ### 4. Disclaimer
 Change the footer disclaimer to "Paid for by Friends of Saqeeb." across all language files.
