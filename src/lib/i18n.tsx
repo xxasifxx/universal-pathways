@@ -44,12 +44,18 @@ const en = {
     "An independent, community-run campaign for the East Brunswick Board of Education. No party line, no consultants.",
   "footer.rights": "Paid for by Friends of Saqeeb.",
 
-  "home.hero.headline": "Hi, I'm Saqeeb.",
-  "home.hero.sub": "Nice to meet you!",
-  "home.hero.cta.primary": "Read my priorities",
-  "home.hero.cta.secondary": "Volunteer",
-  "home.hero.badge": "East Brunswick Board of Education · 2026",
+  "home.hero.headline": "A Voice for Excellence",
+  "home.hero.sub": "Muhammad Saqeeb for East Brunswick Board of Education",
+  "home.hero.cta.primary": "Volunteer",
+  "home.hero.cta.secondary": "Donate",
+  "home.hero.badge": "Column #1",
   "home.hero.social": "Follow our campaign",
+
+  "pitch.problem":
+    "Across the country, schools are being squeezed by rising healthcare premiums, growing special education costs, and aging facilities. Too many boards respond by cutting programs, reducing staff, and adding new fees, leaving families to pay more out of pocket. East Brunswick deserves a different path.",
+  "pitch.ask":
+    "We need an advocate willing to take on corruption, put students first, and make our schools affordable for every family.",
+  "fightFor.heading": "Saqeeb will fight for:",
 
   "budget.eyebrow": "Follow the money",
   "budget.title": "Where East Brunswick's $229 million actually goes",
