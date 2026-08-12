@@ -328,10 +328,14 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
               <h3 className="text-sm font-bold">Form submissions</h3>
               <ul className="mt-1 space-y-1 text-sm text-muted-foreground">
                 {d.leads.volunteer.map((l: Record<string, unknown>) => (
-                  <li key={String(l["id"])}>Volunteer · {String(l["name"])} · {String(l["email"])}</li>
+                  <li key={String(l["id"])}>
+                    Volunteer · {String(l["name"])} · {String(l["email"])} <AlertBadge status={l["notify_status"]} />
+                  </li>
                 ))}
                 {d.leads.contact.map((l: Record<string, unknown>) => (
-                  <li key={String(l["id"])}>Message · {String(l["name"])} · {String(l["role"])}</li>
+                  <li key={String(l["id"])}>
+                    Message · {String(l["name"])} · {String(l["role"])} <AlertBadge status={l["notify_status"]} />
+                  </li>
                 ))}
               </ul>
             </div>
@@ -399,5 +403,22 @@ function Signals() {
         </table>
       </div>
     </div>
+  );
+}
+/** Shows whether the campaign alert email for a submission actually went out. */
+function AlertBadge({ status }: { status: unknown }) {
+  const value = typeof status === "string" ? status : "";
+  if (!value) return null;
+  const ok = value === "sent";
+  return (
+    <span
+      className={
+        "ml-1 rounded px-1.5 py-0.5 text-[11px] font-semibold " +
+        (ok ? "bg-primary/10 text-primary" : "bg-destructive/10 text-destructive")
+      }
+      title={value}
+    >
+      {ok ? "emailed" : "not emailed"}
+    </span>
   );
 }
