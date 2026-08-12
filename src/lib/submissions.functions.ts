@@ -55,9 +55,10 @@ export const submitVolunteer = createServerFn({ method: "POST" })
       .single();
     if (error) throw new Error("Could not save signup");
 
+    let notifyStatus = "unknown";
     try {
       const { notifyVolunteer } = await import("./question-email.server");
-      await notifyVolunteer({
+      const result = await notifyVolunteer({
         name: data.name,
         email: data.email,
         zipCode: data.zipCode,
@@ -66,10 +67,13 @@ export const submitVolunteer = createServerFn({ method: "POST" })
         helpWith: data.helpWith,
         id: inserted?.id,
       });
+      notifyStatus = result?.sent ? "sent" : (result?.reason ?? "not_sent");
     } catch (mailError) {
       // A mail failure must never lose the signup — it is already saved.
       console.error("volunteer email failed", mailError);
+      notifyStatus = `failed: ${mailError instanceof Error ? mailError.message : String(mailError)}`.slice(0, 300);
     }
+    await recordNotifyOutcome(supabaseAdmin, "volunteer_signups", inserted?.id, notifyStatus);
 
     return { ok: true as const };
   });
@@ -99,18 +103,22 @@ export const submitContact = createServerFn({ method: "POST" })
       .single();
     if (error) throw new Error("Could not save message");
 
+    let notifyStatus = "unknown";
     try {
       const { notifyQuestion } = await import("./question-email.server");
-      await notifyQuestion({
+      const result = await notifyQuestion({
         name: data.name,
         email: data.email,
         message: data.message,
         id: inserted?.id,
       });
+      notifyStatus = result?.sent ? "sent" : (result?.reason ?? "not_sent");
     } catch (mailError) {
       // A mail failure must never lose the question — it is already saved.
       console.error("question email failed", mailError);
+      notifyStatus = `failed: ${mailError instanceof Error ? mailError.message : String(mailError)}`.slice(0, 300);
     }
+    await recordNotifyOutcome(supabaseAdmin, "contact_messages", inserted?.id, notifyStatus);
 
     return { ok: true as const };
   });
