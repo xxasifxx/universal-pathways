@@ -1,39 +1,30 @@
-# Question form email — what the delivery records show
+# Send all form alerts to ask@saqeeb.org
 
-## Finding
+## What the records show
 
-The question email was not dropped by the site. Your test question from Asif Muhammad was saved at 17:35:24 UTC today, and one second later two emails were accepted and sent:
+Both of today's tests were accepted and sent — the question test at 17:35:25 and the volunteer test at 17:35:47, each producing an alert plus a confirmation to the submitter. Neither went to ask@saqeeb.org; both alerts went to the Gmail address, because notifications were switched to Gmail on Aug 9. No bounce, rejection, or suppression is recorded for any of them.
 
-- the alert to saqeebforeb@gmail.com
-- the confirmation to the asker (ooasifoo@gmail.com)
+You want alerts back on ask@saqeeb.org, so that's the change. The plan also makes a missed alert visible inside the app instead of depending on an inbox.
 
-The volunteer test 22 seconds later produced the same pair. All four are recorded as sent, with no bounce, no rejection, and no suppression on any address.
+## Changes
 
-So the send path works for both forms. The question alert was handed to Gmail and then didn't show up where you looked — that's an inbox-side placement issue (Spam, Promotions, a filter, or the message collapsed into an existing thread), not a code failure.
+1. **Alerts go to ask@saqeeb.org.** Question and volunteer notifications are delivered to the campaign address. Confirmations to the submitter stay as they are, with replies pointing at ask@saqeeb.org.
 
-## What to check first (no code change)
+2. **Distinct subject lines.** Question alerts become `[Question] <name>` and volunteer alerts `[Volunteer] <name>`, so they can't collapse into one another's threads and are easy to filter or search.
 
-1. Search the Gmail account for `from:notify.saqeeb.org` including Spam and All Mail — the 17:35:25 message will be there.
-2. If it's in Spam, mark "Not spam" and add a filter: from `notify.saqeeb.org` → never send to Spam, apply a "Campaign" label.
+3. **Record the send outcome.** Today a mail failure is only written to a server log, so a submission can look fine while no alert went out. Each saved submission gets the delivery outcome written back to it — sent, suppressed, or failed with the reason.
 
-If that search turns up nothing at all, tell me and I'll dig further with the message ID.
+4. **Show it in the admin area.** The submissions view gets an "Alert" status badge, so you can tell at a glance whether each question or signup was emailed out.
 
-## Changes worth making anyway
+## One thing to confirm on your side
 
-These reduce the chance of a question alert being missed again:
-
-- **Distinct, scannable subject.** Question alerts become `[Question] <name> — Saqeeb for EB` so they never thread with volunteer alerts or older replies, and are easy to filter on.
-- **Fail loudly, not silently.** Right now an email error is only written to the server console. Record the send outcome (sent / suppressed / failed) on the saved submission so the admin area can show which submissions were emailed and which weren't.
-- **Admin visibility.** Add an "Emailed" column/badge to the submissions view in the admin area, so a missed alert is visible in the app itself rather than depending on the inbox.
-- **Optional second recipient.** If you want alerts to also reach ask@saqeeb.org as a backup copy, I'll add it as a second notification address.
+ask@saqeeb.org has to be a real, monitored mailbox at your mail provider — the site can send to it, but it can't create it. If it's an alias that forwards nowhere, alerts will vanish again. Once this ships, submit one test question and confirm it lands there.
 
 ## Technical notes
 
-- `src/lib/email-templates/question-notification.tsx`: change the `subject` function to the prefixed format.
-- Migration: add `notified_at timestamptz` and `notify_status text` to `contact_messages` and `volunteer_signups` (nullable, no RLS/policy change — both tables are written server-side with the admin client).
-- `src/lib/submissions.functions.ts`: after `notifyQuestion` / `notifyVolunteer` resolve or throw, write the outcome back to the row; keep the existing behavior where a mail failure never loses the submission.
+- `src/lib/question-email.server.ts`: change `NOTIFICATION_EMAIL` to `ask@saqeeb.org`.
+- `src/lib/email-templates/question-notification.tsx` and `volunteer-notification.tsx`: update the fixed `to` in template metadata and the `subject` functions to the prefixed format.
+- Migration: add nullable `notified_at timestamptz` and `notify_status text` to `contact_messages` and `volunteer_signups`. No RLS or grant changes — both tables are written server-side with the admin client.
+- `src/lib/submissions.functions.ts`: after `notifyQuestion` / `notifyVolunteer` resolves or throws, write the outcome back to the inserted row. A mail failure must still never fail or lose the submission.
 - Admin submissions list: render the new status.
-
-## Not included
-
-Nothing about DNS or domain setup changes — `notify.saqeeb.org` is verified and delivering. Publishing is needed for the subject change to apply to the live site.
+- Publish is required for the change to take effect on the live site; verify with one real submission afterward.
