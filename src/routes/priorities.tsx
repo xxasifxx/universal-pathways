@@ -31,11 +31,17 @@ function Priorities() {
     <>
       <section className="bg-primary py-14 text-primary-foreground sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h1 className="max-w-4xl text-4xl leading-[1.05] sm:text-6xl">
-            Our platform for East Brunswick schools
+          <p className="font-display text-lg uppercase tracking-wide text-primary-foreground/80 sm:text-xl">
+            {PITCH.eyebrow}
+          </p>
+          <h1 className="mt-3 max-w-4xl text-4xl leading-[1.05] sm:text-6xl">
+            {PITCH.headline}
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/90">
-            What we are running on: affordable for all, students first, reduce our costs.
+            {PITCH.problem}
+          </p>
+          <p className="mt-5 max-w-2xl text-xl font-bold leading-snug text-primary-foreground sm:text-2xl">
+            {PITCH.ask}
           </p>
         </div>
       </section>
