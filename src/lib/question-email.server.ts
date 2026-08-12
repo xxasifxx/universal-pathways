@@ -7,6 +7,28 @@
  */
 const NOTIFICATION_EMAIL = "ask@saqeeb.org";
 
+/**
+ * Writes the alert-delivery outcome back onto the saved submission so a
+ * missed notification is visible in the admin area, not only in server logs.
+ */
+export async function recordNotifyOutcome(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  table: "contact_messages" | "volunteer_signups",
+  id: string | undefined,
+  status: string,
+) {
+  if (!id) return;
+  try {
+    await supabase
+      .from(table)
+      .update({ notified_at: new Date().toISOString(), notify_status: status })
+      .eq("id", id);
+  } catch (error) {
+    console.error("could not record notify outcome", error);
+  }
+}
+
 export async function notifyQuestion(input: {
   name: string;
   email: string;

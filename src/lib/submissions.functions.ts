@@ -56,8 +56,8 @@ export const submitVolunteer = createServerFn({ method: "POST" })
     if (error) throw new Error("Could not save signup");
 
     let notifyStatus = "unknown";
+    const { notifyVolunteer, recordNotifyOutcome } = await import("./question-email.server");
     try {
-      const { notifyVolunteer } = await import("./question-email.server");
       const result = await notifyVolunteer({
         name: data.name,
         email: data.email,
@@ -104,8 +104,8 @@ export const submitContact = createServerFn({ method: "POST" })
     if (error) throw new Error("Could not save message");
 
     let notifyStatus = "unknown";
+    const { notifyQuestion, recordNotifyOutcome } = await import("./question-email.server");
     try {
-      const { notifyQuestion } = await import("./question-email.server");
       const result = await notifyQuestion({
         name: data.name,
         email: data.email,
