@@ -54,7 +54,7 @@ export const submitVolunteer = createServerFn({ method: "POST" })
         mobile: data.mobile || null,
         zone: data.zone || null,
         help_with: data.helpWith,
-        help_details: data.helpDetails ?? {},
+        help_details: (data.helpDetails ?? {}) as never,
         visitor_id: visitorId,
       })
       .select("id")
