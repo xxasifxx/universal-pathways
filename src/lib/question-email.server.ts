@@ -5,7 +5,7 @@
  * Every submission is saved to the campaign inbox before these run, so a mail
  * failure is logged and swallowed by the caller — it never loses a submission.
  */
-const NOTIFICATION_EMAIL = "saqeebforeb@gmail.com";
+const NOTIFICATION_EMAIL = "ask@saqeeb.org";
 
 export async function notifyQuestion(input: {
   name: string;
