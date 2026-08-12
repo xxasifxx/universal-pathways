@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
+import logoAsset from "@/assets/saqeeb-logo.jpg.asset.json";
 import { actblueUrl, CANDIDATE_NAME } from "@/lib/campaign";
 import { LOCALES, useI18n, type LocaleCode } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
