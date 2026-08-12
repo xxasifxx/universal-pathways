@@ -211,9 +211,35 @@ export const PRIORITIES: Priority[] = [
 ];
 
 export const HELP_OPTIONS = [
-  { id: "sign-up", label: "Sign up to help" },
-  { id: "canvassing", label: "Join a canvassing day" },
-  { id: "phone-text", label: "Phone or text bank" },
+  {
+    id: "yard-sign",
+    label: "Request a yard sign",
+    blurb: "We drop one off at your house. Free, and we pick it up after the election.",
+  },
+  {
+    id: "canvassing",
+    label: "Join a canvassing day",
+    blurb: "Weekend door-knocking, about two hours. We pair you with someone experienced.",
+  },
+  {
+    id: "phone-text",
+    label: "Phone or text bank",
+    blurb: "From home, on your own schedule. We send the list and the script.",
+  },
+] as const;
+
+export const CANVASS_DAYS = [
+  "Saturday morning",
+  "Saturday afternoon",
+  "Sunday morning",
+  "Sunday afternoon",
+  "Weekday evening",
+] as const;
+
+export const CONTACT_TIMES = [
+  "Weekday daytime",
+  "Weekday evening",
+  "Weekends",
 ] as const;
 
 export const DISTRICT_STATS = [
