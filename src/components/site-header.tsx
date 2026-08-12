@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
+import logoAsset from "@/assets/saqeeb-logo.jpg.asset.json";
 import { actblueUrl, CANDIDATE_NAME } from "@/lib/campaign";
 import { LOCALES, useI18n, type LocaleCode } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -41,17 +42,15 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link to="/" className="group flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="flex min-w-0 flex-col items-center rounded-md bg-primary px-3 py-1 text-center leading-none">
-            <span className="block text-[8px] font-bold uppercase tracking-[0.28em] text-primary-foreground">
-              Muhammad
-            </span>
-            <span className="block truncate font-display text-xl tracking-[0.02em] text-primary-foreground">
-              Saqeeb
-            </span>
-          </span>
-          <span className="sr-only">{CANDIDATE_NAME} for East Brunswick Board of Education</span>
+      <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-4 px-4 py-2 sm:px-6">
+        <Link to="/" className="group flex min-w-0 items-center" onClick={() => setOpen(false)}>
+          <img
+            src={logoAsset.url}
+            alt={`${CANDIDATE_NAME} for East Brunswick Board of Education`}
+            width={220}
+            height={56}
+            className="w-36 object-contain sm:w-44"
+          />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
