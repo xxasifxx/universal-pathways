@@ -75,7 +75,7 @@ function Index() {
               Fighting to put students first.
             </p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:max-w-md">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <a
               href="#ask"
               className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-primary-foreground px-6 py-4 font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
@@ -138,10 +138,10 @@ function Index() {
             {CREDENTIALS.map((item) => (
               <li
                 key={item}
-                className="rounded-xl border-l-8 border-primary bg-secondary px-6 py-8"
+                className="rounded-xl border-l-8 border-primary bg-secondary px-6 py-8 text-center"
               >
-                <span aria-hidden="true" className="block size-2.5 rounded-full bg-primary" />
-                <p className="mt-6 text-xl font-bold leading-snug text-primary">{item}</p>
+                <span aria-hidden="true" className="mx-auto block size-2.5 rounded-full bg-primary" />
+                <p className="mt-4 text-xl font-bold leading-snug text-primary">{item}</p>
               </li>
             ))}
           </ul>
