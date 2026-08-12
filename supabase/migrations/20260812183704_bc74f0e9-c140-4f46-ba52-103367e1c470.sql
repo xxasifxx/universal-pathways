@@ -1,0 +1,1 @@
+DELETE FROM public.volunteer_signups WHERE email = 'qa@example.com';
