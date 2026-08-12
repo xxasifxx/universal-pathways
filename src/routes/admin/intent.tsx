@@ -328,10 +328,14 @@ function Detail({ visitorId, onClose }: { visitorId: string; onClose: () => void
               <h3 className="text-sm font-bold">Form submissions</h3>
               <ul className="mt-1 space-y-1 text-sm text-muted-foreground">
                 {d.leads.volunteer.map((l: Record<string, unknown>) => (
-                  <li key={String(l["id"])}>Volunteer · {String(l["name"])} · {String(l["email"])}</li>
+                  <li key={String(l["id"])}>
+                    Volunteer · {String(l["name"])} · {String(l["email"])} <AlertBadge status={l["notify_status"]} />
+                  </li>
                 ))}
                 {d.leads.contact.map((l: Record<string, unknown>) => (
-                  <li key={String(l["id"])}>Message · {String(l["name"])} · {String(l["role"])}</li>
+                  <li key={String(l["id"])}>
+                    Message · {String(l["name"])} · {String(l["role"])} <AlertBadge status={l["notify_status"]} />
+                  </li>
                 ))}
               </ul>
             </div>
