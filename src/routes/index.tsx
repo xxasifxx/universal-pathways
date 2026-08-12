@@ -62,19 +62,20 @@ function Index() {
     <>
       {/* Hero */}
       <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-          <h1 className="max-w-4xl text-5xl uppercase leading-[0.95] sm:text-7xl">
-            <span className="block">Running for</span>
-            <span className="block">East Brunswick Board of Education.</span>
-          </h1>
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2 lg:gap-14">
+          <div className="min-w-0">
+            <h1 className="text-[2.5rem] uppercase leading-[0.95] [text-wrap:balance] sm:text-6xl lg:text-7xl">
+              <span className="block">Running for</span>
+              <span className="block">East Brunswick Board of Education.</span>
+            </h1>
 
-          <div className="mt-10 h-1 w-36 bg-primary-foreground" />
+            <div className="mt-8 h-1 w-28 bg-primary-foreground sm:w-36" />
 
-          <p className="mt-8 max-w-2xl font-display text-3xl uppercase leading-[1.05] sm:text-5xl">
-            Fighting to put students first.
-          </p>
+            <p className="mt-6 font-display text-2xl uppercase leading-[1.05] sm:text-4xl lg:text-5xl">
+              Fighting to put students first.
+            </p>
 
-          <div className="mt-10 flex flex-col gap-4 sm:max-w-md">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <a
               href="#ask"
               className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-primary-foreground px-6 py-4 font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
@@ -89,10 +90,10 @@ function Index() {
               Request a Sign
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
-          </div>
+            </div>
 
           {SOCIAL_LINKS.some((s) => s.url) ? (
-            <ul className="mt-10 flex flex-wrap gap-3">
+            <ul className="mt-8 flex flex-wrap gap-3">
               {SOCIAL_LINKS.filter((s) => s.url).map((s) => (
                 <li key={s.id}>
                   <a
@@ -112,19 +113,16 @@ function Index() {
               ))}
             </ul>
           ) : null}
-        </div>
-      </section>
+          </div>
 
-      {/* Portrait */}
-      <section aria-label="Portrait" className="bg-primary">
-        <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-          <figure className="mx-auto w-full max-w-md">
+          <figure className="mx-auto w-full max-w-md lg:max-w-none">
             <img
               src={heroAsset.url}
               alt="Muhammad Saqeeb, candidate for the East Brunswick Board of Education"
-              width={1213}
-              height={1140}
-              className="w-full rounded-xl object-cover"
+              width={1600}
+              height={1600}
+              loading="eager"
+              className="h-auto w-full rounded-xl object-contain"
             />
           </figure>
         </div>
@@ -140,10 +138,10 @@ function Index() {
             {CREDENTIALS.map((item) => (
               <li
                 key={item}
-                className="rounded-xl border-l-8 border-primary bg-secondary px-6 py-8"
+                className="rounded-xl border-l-8 border-primary bg-secondary px-6 py-8 text-center"
               >
-                <span aria-hidden="true" className="block size-2.5 rounded-full bg-primary" />
-                <p className="mt-6 text-xl font-bold leading-snug text-primary">{item}</p>
+                <span aria-hidden="true" className="mx-auto block size-2.5 rounded-full bg-primary" />
+                <p className="mt-4 text-xl font-bold leading-snug text-primary">{item}</p>
               </li>
             ))}
           </ul>
@@ -185,18 +183,18 @@ function Index() {
       </section>
 
       <section id="ask" aria-labelledby="ask-heading" className="scroll-mt-20 bg-secondary py-14 sm:py-20">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6">
+        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
           <h2 id="ask-heading" className="text-3xl sm:text-4xl">
             Ask Muhammad a question
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-foreground/90">
+          <p className="mx-auto mt-3 max-w-lg text-base leading-relaxed text-foreground/90">
             It goes straight to him at{" "}
             <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-primary underline underline-offset-4">
               {CONTACT_EMAIL}
             </a>
             . He answers personally.
           </p>
-          <div className="mt-7 rounded-xl border border-border bg-background p-5 sm:p-7">
+          <div className="mt-7 rounded-xl border border-border bg-background p-5 text-left sm:p-7">
             <AskQuestionForm />
           </div>
         </div>
@@ -204,8 +202,8 @@ function Index() {
 
       {/* Donate */}
       <section aria-labelledby="donate-heading" className="bg-primary py-16 text-primary-foreground sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <span className="grid size-20 place-items-center rounded-full border-2 border-primary-foreground">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+          <span className="mx-auto grid size-20 place-items-center rounded-full border-2 border-primary-foreground">
             <Heart aria-hidden="true" className="size-8" />
           </span>
           <h2 id="donate-heading" className="mt-8 text-4xl uppercase leading-[1.05] sm:text-5xl">
@@ -235,7 +233,7 @@ function Index() {
               </a>
             </li>
           </ul>
-          <p className="mt-8 text-lg">
+          <p className="mx-auto mt-8 max-w-xl text-lg">
             Every contribution helps us build a stronger future for East Brunswick schools.
           </p>
         </div>
@@ -244,11 +242,11 @@ function Index() {
       {/* Register to vote */}
       <section aria-labelledby="register-heading" className="bg-primary pb-16 sm:pb-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <div className="rounded-2xl bg-ink p-8 text-ink-foreground sm:p-12">
+          <div className="rounded-2xl bg-ink p-8 text-center text-ink-foreground sm:p-12">
             <h2 id="register-heading" className="text-4xl uppercase leading-[1.05] sm:text-5xl">
               Register to vote by {REGISTRATION_DEADLINE}!
             </h2>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed">
+            <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed">
               Every voice matters. Make yours heard and help shape the future of our schools.
             </p>
             <a
