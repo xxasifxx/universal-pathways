@@ -49,7 +49,7 @@ export function SiteHeader() {
             alt={`${CANDIDATE_NAME} for East Brunswick Board of Education`}
             width={220}
             height={56}
-            className="w-36 object-contain sm:w-44"
+            className="h-14 w-auto object-contain sm:h-16"
           />
         </Link>
 
