@@ -76,20 +76,22 @@ function Index() {
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-            <a
-              href="#ask"
-              className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-primary-foreground px-6 py-4 font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
-            >
-              Get Involved
-              <ArrowRight aria-hidden="true" className="size-4" />
-            </a>
             <Link
               to="/volunteer"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-primary-foreground px-6 py-4 font-semibold text-primary transition-opacity hover:opacity-90"
             >
-              Request a Sign
+              Volunteer
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
+            <a
+              href={actblueUrl("hero", "hero-donate")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-primary-foreground px-6 py-4 font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
+            >
+              Donate
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </a>
             </div>
 
           {SOCIAL_LINKS.some((s) => s.url) ? (
