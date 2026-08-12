@@ -62,19 +62,20 @@ function Index() {
     <>
       {/* Hero */}
       <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-          <h1 className="max-w-4xl text-5xl uppercase leading-[0.95] sm:text-7xl">
-            <span className="block">Running for</span>
-            <span className="block">East Brunswick Board of Education.</span>
-          </h1>
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2 lg:gap-14">
+          <div className="min-w-0">
+            <h1 className="text-[2.5rem] uppercase leading-[0.95] [text-wrap:balance] sm:text-6xl lg:text-7xl">
+              <span className="block">Running for</span>
+              <span className="block">East Brunswick Board of Education.</span>
+            </h1>
 
-          <div className="mt-10 h-1 w-36 bg-primary-foreground" />
+            <div className="mt-8 h-1 w-28 bg-primary-foreground sm:w-36" />
 
-          <p className="mt-8 max-w-2xl font-display text-3xl uppercase leading-[1.05] sm:text-5xl">
-            Fighting to put students first.
-          </p>
+            <p className="mt-6 font-display text-2xl uppercase leading-[1.05] sm:text-4xl lg:text-5xl">
+              Fighting to put students first.
+            </p>
 
-          <div className="mt-10 flex flex-col gap-4 sm:max-w-md">
+            <div className="mt-8 flex flex-col gap-4 sm:max-w-md">
             <a
               href="#ask"
               className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-primary-foreground px-6 py-4 font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
@@ -89,10 +90,10 @@ function Index() {
               Request a Sign
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
-          </div>
+            </div>
 
           {SOCIAL_LINKS.some((s) => s.url) ? (
-            <ul className="mt-10 flex flex-wrap gap-3">
+            <ul className="mt-8 flex flex-wrap gap-3">
               {SOCIAL_LINKS.filter((s) => s.url).map((s) => (
                 <li key={s.id}>
                   <a
@@ -112,19 +113,16 @@ function Index() {
               ))}
             </ul>
           ) : null}
-        </div>
-      </section>
+          </div>
 
-      {/* Portrait */}
-      <section aria-label="Portrait" className="bg-primary">
-        <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-          <figure className="mx-auto w-full max-w-md">
+          <figure className="mx-auto w-full max-w-md lg:max-w-none">
             <img
               src={heroAsset.url}
               alt="Muhammad Saqeeb, candidate for the East Brunswick Board of Education"
               width={1213}
               height={1140}
-              className="w-full rounded-xl object-cover"
+              loading="eager"
+              className="aspect-[4/3] w-full rounded-xl object-cover object-top sm:aspect-[16/10] lg:aspect-[4/3]"
             />
           </figure>
         </div>
