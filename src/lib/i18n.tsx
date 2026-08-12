@@ -42,7 +42,7 @@ const en = {
   "footer.register.cta": "Register to vote in New Jersey",
   "footer.tagline":
     "An independent, community-run campaign for the East Brunswick Board of Education. No party line, no consultants.",
-  "footer.rights": "Paid for by Saqeeb for East Brunswick.",
+  "footer.rights": "Paid for by Friends of Saqeeb.",
 
   "home.hero.headline": "Hi, I'm Saqeeb.",
   "home.hero.sub": "Nice to meet you!",
@@ -80,8 +80,8 @@ const en = {
   "form.mobile": "Mobile number",
   "form.mobile.optional": "Mobile number (optional)",
   "form.address": "Street address (optional)",
-  "form.help": "How do you want to help?",
-  "form.submit.volunteer": "Sign me up",
+  "form.help": "How do you want to help? Pick one or more.",
+  "form.submit.volunteer": "Count me in",
   "form.submitting": "Sending…",
   "form.success.volunteer":
     "You're on the list. Someone will reach out this week, probably in the evening.",

@@ -65,6 +65,7 @@ export async function notifyVolunteer(input: {
   mobile?: string | null;
   zone?: string | null;
   helpWith: string[];
+  helpDetails?: Record<string, unknown>;
   id?: string;
 }) {
   const { sendTemplateEmail } = await import("./email-templates/send-email");
@@ -76,6 +77,7 @@ export async function notifyVolunteer(input: {
     mobile: input.mobile ?? "",
     zone: input.zone ?? "",
     helpWith: input.helpWith,
+    helpDetails: input.helpDetails ?? {},
   };
 
   const notification = await sendTemplateEmail("volunteer-notification", NOTIFICATION_EMAIL, {

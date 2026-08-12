@@ -1,0 +1,1 @@
+ALTER TABLE public.volunteer_signups ADD COLUMN IF NOT EXISTS help_details jsonb NOT NULL DEFAULT '{}'::jsonb;
