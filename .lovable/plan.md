@@ -1,34 +1,39 @@
-# Newsletter + Campaign News
+# Question form email — what the delivery records show
 
-Add two connected things: a place to read campaign news, and a way for supporters to get it by email.
+## Finding
 
-## 1. News section
+The question email was not dropped by the site. Your test question from Asif Muhammad was saved at 17:35:24 UTC today, and one second later two emails were accepted and sent:
 
-- New `/news` index page listing articles newest-first (date, headline, one-line summary).
-- New `/news/$slug` article page with full text, date, and share/donate/volunteer CTAs.
-- Articles are stored as typed content in code (`src/lib/news.ts`) — no database needed, fast, easy to add to.
-- First article: the August 10, 2026 press release, "Muhammad Saqeeb Draws No. 1 Ballot Position in East Brunswick Board of Education Race", published verbatim with a "FOR IMMEDIATE RELEASE" treatment.
-- Home page gets a compact "Latest news" block above the question form linking to the release.
-- Header and footer get a "News" link.
-- Sitemap includes `/news` and every article URL.
+- the alert to saqeebforeb@gmail.com
+- the confirmation to the asker (ooasifoo@gmail.com)
 
-## 2. Newsletter signup
+The volunteer test 22 seconds later produced the same pair. All four are recorded as sent, with no bounce, no rejection, and no suppression on any address.
 
-- Reusable signup form (email required, name optional) on the home page, the news index, and the footer.
-- Submissions save to a new `newsletter_subscribers` table (unique email, source page, timestamp, visitor link like the existing forms).
-- On signup: a branded welcome email to the subscriber plus an internal notification to the campaign inbox — same pattern the question and volunteer forms already use.
-- Duplicate emails are treated as success (no error shown, no duplicate email sent).
-- Validation matches the existing forms: trimmed, length-capped, validated on the server.
+So the send path works for both forms. The question alert was handed to Gmail and then didn't show up where you looked — that's an inbox-side placement issue (Spam, Promotions, a filter, or the message collapsed into an existing thread), not a code failure.
+
+## What to check first (no code change)
+
+1. Search the Gmail account for `from:notify.saqeeb.org` including Spam and All Mail — the 17:35:25 message will be there.
+2. If it's in Spam, mark "Not spam" and add a filter: from `notify.saqeeb.org` → never send to Spam, apply a "Campaign" label.
+
+If that search turns up nothing at all, tell me and I'll dig further with the message ID.
+
+## Changes worth making anyway
+
+These reduce the chance of a question alert being missed again:
+
+- **Distinct, scannable subject.** Question alerts become `[Question] <name> — Saqeeb for EB` so they never thread with volunteer alerts or older replies, and are easy to filter on.
+- **Fail loudly, not silently.** Right now an email error is only written to the server console. Record the send outcome (sent / suppressed / failed) on the saved submission so the admin area can show which submissions were emailed and which weren't.
+- **Admin visibility.** Add an "Emailed" column/badge to the submissions view in the admin area, so a missed alert is visible in the app itself rather than depending on the inbox.
+- **Optional second recipient.** If you want alerts to also reach ask@saqeeb.org as a backup copy, I'll add it as a second notification address.
 
 ## Technical notes
 
-- Routes: `src/routes/news.index.tsx`, `src/routes/news.$slug.tsx`; content and slugs in `src/lib/news.ts`.
-- Each route gets its own `head()` with unique title/description/og tags; articles emit `NewsArticle` JSON-LD.
-- Server function `subscribeNewsletter` in `src/lib/submissions.functions.ts`, using `supabaseAdmin` + `attachIdentity`, mirroring `submitContact`.
-- Migration creates `public.newsletter_subscribers` with GRANTs (`service_role` full; no anon read), RLS enabled, no public policies — writes happen server-side only.
-- Two new email templates registered in `src/lib/email-templates/registry.ts`: `newsletter-confirmation` (subscriber) and `newsletter-notification` (campaign inbox), styled with existing brand tokens.
-- No new dependencies.
+- `src/lib/email-templates/question-notification.tsx`: change the `subject` function to the prefixed format.
+- Migration: add `notified_at timestamptz` and `notify_status text` to `contact_messages` and `volunteer_signups` (nullable, no RLS/policy change — both tables are written server-side with the admin client).
+- `src/lib/submissions.functions.ts`: after `notifyQuestion` / `notifyVolunteer` resolve or throw, write the outcome back to the row; keep the existing behavior where a mail failure never loses the submission.
+- Admin submissions list: render the new status.
 
 ## Not included
 
-Blasting the list with a mass newsletter is not part of this — the built-in email system is for one-to-one app emails. This builds the list and publishes articles; mass sends would need a dedicated marketing tool later.
+Nothing about DNS or domain setup changes — `notify.saqeeb.org` is verified and delivering. Publishing is needed for the subject change to apply to the live site.
