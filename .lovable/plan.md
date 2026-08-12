@@ -36,3 +36,16 @@ Saqeeb will fight for:
 - `src/routes/priorities.tsx`: add the pitch intro.
 - `src/lib/i18n.tsx`: add strings for the new headings so the five-language switcher does not fall back to English mid-page.
 - No backend, form, or donation-flow changes.
+
+## Wording correction
+
+Use "Public full-day Pre-K" everywhere, not "Free full-day Pre-K" — in the fight-for band, the platform highlights, and the priorities page.
+
+## Header logo sizing
+
+The header is too tall right now. Fix it in `src/components/site-header.tsx`:
+
+- Logo drops to about 40px tall on mobile and 48px on desktop, so the nav bar is a normal height again instead of the current 56-64px logo driving it.
+- On scroll past ~40px, the logo shrinks further (to about 32px) and the header padding tightens, with a short CSS transition; scrolling back to the top restores full size.
+- The header keeps a subtle bottom border/shadow once scrolled so the compact state reads as intentional.
+- Implemented with a small scroll listener (passive, rAF-throttled) toggling a `scrolled` class; no layout shift because the header stays fixed-height per state.
