@@ -122,7 +122,7 @@ function Index() {
               width={1213}
               height={1140}
               loading="eager"
-              className="aspect-[4/3] w-full rounded-xl object-cover object-top sm:aspect-[16/10] lg:aspect-[4/3]"
+              className="h-auto w-full rounded-xl object-contain"
             />
           </figure>
         </div>
