@@ -185,7 +185,7 @@ export const PRIORITIES: Priority[] = [
     title: "Affordable for All",
     summary: "Every student should be able to take part, get support, and learn without families paying for basic opportunities.",
     points: [
-      "Universally paid full-day Pre-K.",
+      "Universally paid public full-day Pre-K.",
       "Zero fees on student clubs & activities, including arts & sports.",
       "Fully funded schools so parents aren’t paying out of pocket for basic opportunities.",
       "Hire teaching support staff in-house, not outside providers.",
