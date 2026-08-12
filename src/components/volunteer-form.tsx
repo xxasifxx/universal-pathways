@@ -13,6 +13,10 @@ type Errors = Partial<
   Record<"name" | "email" | "zipCode" | "help" | "address" | "mobile" | "days", string>
 >;
 
+const YARD_SIGN = HELP_OPTIONS[0].label;
+const CANVASS = HELP_OPTIONS[1].label;
+const PHONE = HELP_OPTIONS[2].label;
+
 export function VolunteerForm({ defaultHelp = [] as string[] }) {
   const { t } = useI18n();
   const [help, setHelp] = useState<string[]>(defaultHelp);
