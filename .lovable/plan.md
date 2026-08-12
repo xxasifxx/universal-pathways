@@ -57,7 +57,7 @@ Step 3
 Rules:
 - Nothing extra is shown until its box is checked; the form starts short and grows only as much as the person opted into.
 - Fields required only when their block is open — address is required for yard signs, mobile for phone banking, at least one day for canvassing.
-- Checking nothing blocks submit with a clear message: "Pick at least one way to help."
+- Checking nothing blocks submit with a clear message: "Please select an option."
 - Blocks animate open in place, under the checkbox, so it stays one form and one submit button.
 - The volunteer page above the form lists the three options as short cards with the real commitment (yard sign: we drop one off; canvassing: weekend door-knocking, about 2 hours, we pair you up; phone/text bank: from home, your own schedule). Clicking a card checks that box and scrolls to the form.
 
