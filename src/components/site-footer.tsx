@@ -14,26 +14,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-ink text-ink-foreground">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="rounded-xl border border-gold/40 bg-gold/10 p-6 sm:p-8">
-          <p className="eyebrow text-ink-foreground/75">
-            {t("footer.register.title")}
-          </p>
-          <p className="mt-3 max-w-2xl font-display text-2xl font-extrabold leading-tight sm:text-3xl">
-            Register to vote by{" "}
-            <span className="text-gold">{REGISTRATION_DEADLINE}</span> to have a say
-            in who runs East Brunswick&apos;s schools.
-          </p>
-          <a
-            href="https://www.nj.gov/state/elections/voter-registration.shtml"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex rounded-md bg-gold px-5 py-2.5 font-display text-base tracking-wide text-gold-foreground transition-opacity hover:opacity-90"
-          >
-            {t("footer.register.cta")}
-          </a>
-        </div>
-
-        <div className="mt-12 grid gap-8 sm:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-3">
           <div>
             <p className="font-display text-lg font-extrabold">{CANDIDATE_NAME}</p>
             <p className="mt-2 text-sm text-ink-foreground/85">{t("footer.tagline")}</p>
