@@ -119,8 +119,8 @@ function Index() {
             <img
               src={heroAsset.url}
               alt="Muhammad Saqeeb, candidate for the East Brunswick Board of Education"
-              width={1213}
-              height={1140}
+              width={1600}
+              height={1600}
               loading="eager"
               className="h-auto w-full rounded-xl object-contain"
             />
