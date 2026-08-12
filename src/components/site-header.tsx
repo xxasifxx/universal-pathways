@@ -43,16 +43,14 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link to="/" className="group flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="flex min-w-0 flex-col items-center rounded-md bg-primary px-3 py-1 text-center leading-none">
-            <span className="block text-[8px] font-bold uppercase tracking-[0.28em] text-primary-foreground">
-              Muhammad
-            </span>
-            <span className="block truncate font-display text-xl tracking-[0.02em] text-primary-foreground">
-              Saqeeb
-            </span>
-          </span>
-          <span className="sr-only">{CANDIDATE_NAME} for East Brunswick Board of Education</span>
+        <Link to="/" className="group flex min-w-0 items-center" onClick={() => setOpen(false)}>
+          <img
+            src={logoAsset.url}
+            alt={`${CANDIDATE_NAME} for East Brunswick Board of Education`}
+            width={220}
+            height={56}
+            className="h-12 w-auto max-w-[180px] object-contain sm:h-14 sm:max-w-[220px]"
+          />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
