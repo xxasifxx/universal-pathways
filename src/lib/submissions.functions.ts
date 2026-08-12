@@ -11,6 +11,11 @@ const volunteerSchema = z.object({
   mobile: z.string().trim().max(30).optional().or(z.literal("")),
   zone: z.string().trim().max(60).optional().or(z.literal("")),
   helpWith: z.array(z.string().trim().max(40)).max(10).default([]),
+  helpDetails: z
+    .record(z.string().max(40), z.unknown())
+    .refine((v) => JSON.stringify(v).length <= 4000, "Details too long")
+    .optional()
+    .default({}),
   anonId: z.string().max(80).optional().nullable(),
   fpHash: z.string().max(120).optional().nullable(),
 });
@@ -49,6 +54,7 @@ export const submitVolunteer = createServerFn({ method: "POST" })
         mobile: data.mobile || null,
         zone: data.zone || null,
         help_with: data.helpWith,
+        help_details: data.helpDetails ?? {},
         visitor_id: visitorId,
       })
       .select("id")
@@ -65,6 +71,7 @@ export const submitVolunteer = createServerFn({ method: "POST" })
         mobile: data.mobile || null,
         zone: data.zone || null,
         helpWith: data.helpWith,
+        helpDetails: data.helpDetails ?? {},
         id: inserted?.id,
       });
       notifyStatus = result?.sent ? "sent" : (result?.reason ?? "not_sent");
