@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Heart, Instagram } from "lucide-react";
 
-import heroAsset from "@/assets/saqeeb-portrait.jpg.asset.json";
+import heroAsset from "@/assets/saqeeb-campaign-hero.jpg.asset.json";
 import { AskQuestionForm } from "@/components/ask-question-form";
 import {
   actblueUrl,
