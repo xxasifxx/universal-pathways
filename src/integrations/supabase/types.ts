@@ -21,6 +21,8 @@ export type Database = {
           id: string
           message: string
           name: string
+          notified_at: string | null
+          notify_status: string | null
           role: string
           visitor_id: string | null
         }
@@ -30,6 +32,8 @@ export type Database = {
           id?: string
           message: string
           name: string
+          notified_at?: string | null
+          notify_status?: string | null
           role: string
           visitor_id?: string | null
         }
@@ -39,6 +43,8 @@ export type Database = {
           id?: string
           message?: string
           name?: string
+          notified_at?: string | null
+          notify_status?: string | null
           role?: string
           visitor_id?: string | null
         }
@@ -519,6 +525,8 @@ export type Database = {
           id: string
           mobile: string | null
           name: string
+          notified_at: string | null
+          notify_status: string | null
           visitor_id: string | null
           zip_code: string
           zone: string | null
@@ -530,6 +538,8 @@ export type Database = {
           id?: string
           mobile?: string | null
           name: string
+          notified_at?: string | null
+          notify_status?: string | null
           visitor_id?: string | null
           zip_code: string
           zone?: string | null
@@ -541,6 +551,8 @@ export type Database = {
           id?: string
           mobile?: string | null
           name?: string
+          notified_at?: string | null
+          notify_status?: string | null
           visitor_id?: string | null
           zip_code?: string
           zone?: string | null
