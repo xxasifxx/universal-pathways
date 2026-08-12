@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import logoAsset from "@/assets/saqeeb-logo.jpg.asset.json";
 import { actblueUrl, CANDIDATE_NAME } from "@/lib/campaign";
@@ -39,17 +39,33 @@ function LanguageSelect() {
 export function SiteHeader() {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-4 px-4 py-2 sm:px-6">
+      <div
+        className={cn(
+          "mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 transition-all duration-300 sm:px-6",
+          scrolled ? "min-h-12 py-1.5" : "min-h-16 py-2",
+        )}
+      >
         <Link to="/" className="group flex min-w-0 items-center" onClick={() => setOpen(false)}>
           <img
             src={logoAsset.url}
             alt={`${CANDIDATE_NAME} for East Brunswick Board of Education`}
             width={220}
             height={56}
-            className="w-36 object-contain sm:w-44"
+            className={cn(
+              "w-auto object-contain transition-all duration-300",
+              scrolled ? "h-8 sm:h-10" : "h-10 sm:h-12",
+            )}
           />
         </Link>
 

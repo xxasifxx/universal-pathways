@@ -59,6 +59,16 @@ export const WHY_SAQEEB = [
   "Brings students, parents, and educators into the decisions",
 ];
 
+/** Core pitch from the campaign mailer. Used on the home page and priorities page. */
+export const PITCH = {
+  eyebrow: "Muhammad Saqeeb for East Brunswick Board of Education",
+  headline: "A Voice for Excellence",
+  problem:
+    "Across the country, schools are being squeezed by rising healthcare premiums, growing special education costs, and aging facilities. Too many boards respond by cutting programs, reducing staff, and adding new fees, leaving families to pay more out of pocket. East Brunswick deserves a different path.",
+  ask: "We need an advocate willing to take on corruption, put students first, and make our schools affordable for every family.",
+  badge: "Column #1",
+} as const;
+
 /** One-line intro under the portrait on the home page. */
 export const INTRO_LINE =
   "Muhammad Saqeeb is running to bring new leadership, transparency, and a student-first perspective to the East Brunswick Board of Education.";
@@ -71,12 +81,19 @@ export const CREDENTIALS = [
   "Innovative and Future-Oriented",
 ];
 
+/** The three things Saqeeb will fight for — matching the campaign flyer. */
+export const FIGHT_FOR: { id: string; label: string; icon: "users" | "school" | "heart-pulse" }[] = [
+  { id: "public-pre-k", label: "Public full-day Pre-K", icon: "users" },
+  { id: "modern-high-school", label: "Modern 9-12 high school", icon: "school" },
+  { id: "better-healthcare", label: "Better healthcare for school staff", icon: "heart-pulse" },
+];
+
 /** Short platform highlights shown with checkmarks on the home page. */
 export const PLATFORM_HIGHLIGHTS = [
   {
     id: "affordable-for-all",
     title: "Affordable for All",
-    text: "Universally paid full-day Pre-K, zero fees for student activities, fully funded schools, and an end to lunch debt.",
+    text: "Universally paid public full-day Pre-K, zero fees for student activities, fully funded schools, and an end to lunch debt.",
   },
   {
     id: "students-first",
@@ -168,7 +185,7 @@ export const PRIORITIES: Priority[] = [
     title: "Affordable for All",
     summary: "Every student should be able to take part, get support, and learn without families paying for basic opportunities.",
     points: [
-      "Universally paid full-day Pre-K.",
+      "Universally paid public full-day Pre-K.",
       "Zero fees on student clubs & activities, including arts & sports.",
       "Fully funded schools so parents aren’t paying out of pocket for basic opportunities.",
       "Hire teaching support staff in-house, not outside providers.",

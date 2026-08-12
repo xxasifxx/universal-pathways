@@ -11,7 +11,8 @@ Problem: "Across the country, schools are being squeezed by rising healthcare pr
 Ask: "We need an advocate willing to take on corruption, put students first, and make our schools affordable for every family."
 
 Saqeeb will fight for:
-- Free full-day Pre-K
+
+- Public full-day Pre-K
 - Modern 9-12 high school
 - Better healthcare for school staff
 
