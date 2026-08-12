@@ -65,6 +65,14 @@ const en = {
   "priorities.title": "Our platform for East Brunswick schools",
 
   "volunteer.title": "Powered by Neighbors",
+  "volunteer.intro":
+    "School board races here are decided by a few hundred votes. Pick how you want to help — you can choose more than one.",
+  "volunteer.options.signup": "Sign up to help",
+  "volunteer.options.canvass": "Join a canvassing day",
+  "volunteer.options.phone": "Phone or text bank",
+  "volunteer.sign": "Request a yard sign",
+  "volunteer.sign.detail":
+    "Fill in the form and include your street address. A volunteer will drop one off. Signs are free, and we'll pick them up after the election if you'd like.",
 
   "form.name": "Name",
   "form.email": "Email",

@@ -211,11 +211,9 @@ export const PRIORITIES: Priority[] = [
 ];
 
 export const HELP_OPTIONS = [
-  { id: "yard-sign", label: "Request a yard sign" },
-  { id: "canvassing", label: "Canvassing" },
-  { id: "phone-banking", label: "Phone banking" },
-  { id: "events", label: "Events & tabling" },
-  { id: "translation", label: "Translation & outreach" },
+  { id: "sign-up", label: "Sign up to help" },
+  { id: "canvassing", label: "Join a canvassing day" },
+  { id: "phone-text", label: "Phone or text bank" },
 ] as const;
 
 export const DISTRICT_STATS = [

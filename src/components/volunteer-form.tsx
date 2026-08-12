@@ -199,7 +199,11 @@ export function VolunteerForm({ defaultHelp = [] as string[] }) {
                     : "border-border bg-background hover:border-primary",
                 )}
               >
-                {opt.label}
+                {opt.id === "sign-up"
+                  ? t("volunteer.options.signup")
+                  : opt.id === "canvassing"
+                    ? t("volunteer.options.canvass")
+                    : t("volunteer.options.phone")}
               </button>
             );
           })}

@@ -30,8 +30,7 @@ function Volunteer() {
           <p className="eyebrow text-primary">Get involved</p>
           <h1 className="mt-3 text-4xl leading-[1.05] sm:text-6xl">{t("volunteer.title")}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            School board races here are decided by a few hundred votes. Volunteer a couple of hours,
-            or just put a sign on your lawn — both help.
+            {t("volunteer.intro")}
           </p>
         </div>
       </section>
@@ -39,11 +38,9 @@ function Volunteer() {
       <section className="py-14 sm:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:items-start">
           <div>
-            <h2 className="font-display text-2xl font-extrabold">Request a yard sign</h2>
+            <h2 className="font-display text-2xl font-extrabold">{t("volunteer.sign")}</h2>
             <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
-              Fill in the form and check <strong>Request a yard sign</strong>. Include your street
-              address and a volunteer will drop one off. Signs are free, and we&apos;ll pick them up
-              after the election if you&apos;d like.
+              {t("volunteer.sign.detail")}
             </p>
             <p className="mt-6 text-base text-muted-foreground">
               Questions? Email{" "}
