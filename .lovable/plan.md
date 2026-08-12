@@ -70,6 +70,7 @@ Rules:
 Change the footer disclaimer to "Paid for by Friends of Saqeeb." across all language files.
 
 ## Technical notes
-- Files touched: `src/routes/index.tsx` (hero CTAs), `src/routes/volunteer.tsx` (choice cards + layout), `src/components/volunteer-form.tsx` (checkboxes, validation, conditional address), `src/components/site-footer.tsx` (drop duplicate register block), `src/lib/i18n.tsx` (disclaimer + new copy strings, all languages), `src/lib/campaign.ts` (description line per HELP_OPTION).
-- No database, server-function, or email changes; the submission payload shape stays identical.
+- Files touched: `src/routes/index.tsx` (hero CTAs), `src/routes/volunteer.tsx` (choice cards + layout), `src/components/volunteer-form.tsx` (checkbox blocks, conditional fields, per-block validation), `src/components/site-footer.tsx` (drop duplicate register block), `src/lib/i18n.tsx` (disclaimer + new copy strings, all languages), `src/lib/campaign.ts` (per-option description and field spec), `src/lib/submissions.functions.ts` + `src/lib/email-templates/volunteer-notification.tsx` (accept and render the detail payload).
+- One migration adds a nullable `help_details jsonb` column to `volunteer_signups`; existing rows and queries are unaffected.
+- The server function gets a zod schema for the detail object (per-option keys, string/array values, length-capped) and validates it alongside the current fields.
 - Donate links keep using `actblueUrl()` so UTM tracking stays intact; the new hero donate button gets its own medium tag.
