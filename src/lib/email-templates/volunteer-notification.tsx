@@ -17,6 +17,7 @@ interface VolunteerNotificationProps {
   mobile?: string
   zone?: string
   helpWith?: string[]
+  helpDetails?: Record<string, any>
 }
 
 const label = {
@@ -28,6 +29,46 @@ const label = {
 }
 const value = { color: '#2b2b2b', fontSize: '15px', margin: '0 0 14px' }
 
+function describe(details: Record<string, any>): { title: string; body: string }[] {
+  const rows: { title: string; body: string }[] = []
+  const sign = details['yardSign']
+  if (sign) {
+    rows.push({
+      title: 'Yard sign',
+      body: [sign.address, sign.placementNotes].filter(Boolean).join(' — ') || '—',
+    })
+  }
+  const canvass = details['canvassing']
+  if (canvass) {
+    rows.push({
+      title: 'Canvassing availability',
+      body:
+        [
+          Array.isArray(canvass.days) && canvass.days.length ? canvass.days.join(', ') : null,
+          canvass.canDrive ? `Can drive: ${canvass.canDrive}` : null,
+        ]
+          .filter(Boolean)
+          .join(' · ') || '—',
+    })
+  }
+  const phone = details['phoneBank']
+  if (phone) {
+    rows.push({
+      title: 'Phone / text bank',
+      body:
+        [
+          phone.mobile,
+          Array.isArray(phone.times) && phone.times.length ? phone.times.join(', ') : null,
+          phone.channel ? `Prefers: ${phone.channel}` : null,
+        ]
+          .filter(Boolean)
+          .join(' · ') || '—',
+    })
+  }
+  if (details['notes']) rows.push({ title: 'Notes', body: String(details['notes']) })
+  return rows
+}
+
 export function VolunteerNotification({
   name = 'A neighbor',
   email = 'unknown@example.com',
@@ -35,7 +76,9 @@ export function VolunteerNotification({
   mobile = '',
   zone = '',
   helpWith = [],
+  helpDetails = {},
 }: VolunteerNotificationProps) {
+  const detailRows = describe(helpDetails ?? {})
   return (
     <Html lang="en" dir="ltr">
       <Head />
@@ -57,6 +100,12 @@ export function VolunteerNotification({
           <Text style={value}>{zone || '—'}</Text>
           <Text style={label}>Wants to help with</Text>
           <Text style={value}>{helpWith.length ? helpWith.join(', ') : '—'}</Text>
+          {detailRows.map((row) => (
+            <div key={row.title}>
+              <Text style={label}>{row.title}</Text>
+              <Text style={value}>{row.body}</Text>
+            </div>
+          ))}
           <Hr style={{ borderColor: '#eeeeee' }} />
           <Text style={{ color: '#777777', fontSize: '12px' }}>
             Reply directly to this email to reach {name}.
@@ -79,6 +128,10 @@ export const template = {
     zipCode: '08816',
     mobile: '732-555-0134',
     zone: 'Churchill',
-    helpWith: ['Knock doors', 'Request a yard sign'],
+    helpWith: ['Request a yard sign', 'Join a canvassing day'],
+    helpDetails: {
+      yardSign: { address: '12 Cranbury Rd, East Brunswick', placementNotes: 'Near the driveway' },
+      canvassing: { days: ['Saturday morning', 'Sunday morning'], canDrive: 'Yes' },
+    },
   },
 } satisfies TemplateEntry
