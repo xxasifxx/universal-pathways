@@ -198,7 +198,7 @@ export const PRIORITIES: Priority[] = [
     id: "students-first",
     number: "02",
     title: "Students First",
-    summary: "Students deserve fair access, meaningful learning, and schools where they are safe and supported.",
+    summary: "Fair access to the courses a student is ready for, work that means something, and a school where they are safe.",
     points: [
       "End the rigid matrix and expand fair access to advanced courses.",
       "Allow placement exams, including languages.",
