@@ -89,7 +89,9 @@ export function BudgetMovement() {
           Comparing the 2024-25 actual column against the 2026-27 proposed column in the same
           filing. The tax levy went up 10.2% across those two years. Regular classroom instruction
           went up 0.2%. The difference went to benefits, to placements outside the district, and to
-          charter transfers, none of which a board controls in a single budget cycle.
+          charter transfers. None of those move quickly in a single budget cycle, and the charter
+          transfer is set by state formula rather than by a board vote, but plan design, purchasing,
+          and what the district can serve in house are decisions the board does make.
         </p>
 
         <ul className="mt-10 flex flex-col gap-3">
