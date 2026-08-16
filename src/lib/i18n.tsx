@@ -59,14 +59,16 @@ const en = {
   "fightFor.heading": "Saqeeb will fight for:",
 
   "budget.eyebrow": "District budget",
-  "budget.title": "Where East Brunswick's $229 million goes",
+  "budget.title": "Where East Brunswick's $209 million goes",
   "budget.intro":
     "The district publishes its budget under state accounting labels. The toggle below swaps those labels for a description of what each line pays for.",
   "budget.toggle": "Translate to Plain English",
-  "budget.total": "Total operating budget",
+  "budget.total": "2026\u201327 general fund",
   "budget.share": "share of budget",
-  "budget.disclaimer":
-    "Illustrative breakdown of the adopted 2024\u20132025 operating budget, grouped from publicly reported district figures. Line items shift from year to year, so treat these as approximate.",
+  "budget.revenue.title": "Where the money comes from",
+  "budget.movement.title": "What is growing, and what is not",
+  "budget.reserves.title": "What is left in the bank",
+  "budget.perpupil.title": "Cost per student",
 
   "priorities.eyebrow": "Our platform",
   "priorities.title": "Our platform for East Brunswick schools",
