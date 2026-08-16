@@ -1,41 +1,60 @@
-# Ask Saqeeb, a PILOT explainer, and a home-page aesthetic pass
+# Ask Saqeeb, a PILOT explainer, a district dashboard, and a home-page aesthetic pass
+
+The reference site (vs24corruption.com) is ugly but works because of *structure*: a single clear claim up top, then a sticky in-page nav, then receipts — side-by-side comparisons, plain-language tables, numbered allegations, and a "here's what to do about it" block. We take that information architecture and put it in the campaign's green/gold design system.
 
 ## 1. "Ask Saqeeb a question"
 
-Rename every "Ask Muhammad" label to "Ask Saqeeb" (home page section heading, the thank-you page card and its button). Form placeholder stays first-person. No logic changes.
+Rename every "Ask Muhammad" label to "Ask Saqeeb" (home section heading, thank-you page card and button). No logic changes.
 
 ## 2. Home page aesthetic pass
 
-The page currently reads as a stack of similar full-width bands. Tighten it without changing content:
+The page reads as a stack of similar full-width bands. Tighten without changing content:
 
-- Alternate section backgrounds deliberately: cream -> green -> cream -> green, and reduce the number of consecutive dark bands so the "fight for" band and the donate band don't blur together.
-- Consistent section rhythm: one shared eyebrow + heading pattern, same max width, same vertical spacing scale for every section.
-- Platform highlights: shrink the oversized 6xl titles to a heading size that sits in the layout, put the three items in a card grid instead of a long stacked list with divider rules.
-- Credentials: 2-column card grid on desktop, gold accent rule instead of the heavy 8px left border, drop the stray bullet dot.
-- Donation grid: amounts as a compact 3-across pill row rather than a tall 2-column list.
-- Hero: keep the two-column layout, add a subtle gold rule/texture behind the portrait so it doesn't float, tighten mobile heading sizes.
-- Ask section: give the form card more presence (gold top accent, slightly wider) since it is the main engagement point.
+- Deliberate background alternation (cream / green / cream / green) so the "fight for" band and the donate band don't blur together.
+- One shared section pattern: same eyebrow + heading treatment, max width, and vertical spacing scale everywhere.
+- Platform highlights: drop the 6xl titles to a sane heading size and lay them out as a 3-card grid instead of a long stacked list with rules.
+- Credentials: 2-column card grid, gold accent rule instead of the heavy 8px left border, remove the stray bullet dot.
+- Donation amounts: compact 3-across pill row instead of a tall 2-column list.
+- Hero: keep two columns, add a subtle gold rule behind the portrait, tighten mobile heading sizes.
+- Ask section: give the form card more presence (gold top accent) since it's the main engagement point.
 
-Only Tailwind classes and existing semantic tokens (primary, gold, ink, secondary) — no new colors.
+Tailwind + existing tokens only, no new colors.
 
-## 3. PILOT programs explainer
+## 3. `/pilot` — "What PILOT deals mean for our schools"
 
-Add a short, sourced section people can point to when PILOT comes up.
+Built in the reference site's receipts style:
 
-What the research shows:
-- PILOT (payment in lieu of taxes) agreements let redevelopers pay the township a negotiated annual payment instead of conventional property taxes.
-- Under NJ law the school district does not share in that payment the way it shares in a normal tax levy; it keeps only the land-value portion. Township officials argue the district still gets its approved budget through the levy, and that PILOT money can fund school-related capital work (Warnsdorfer improvements are cited as an example).
-- Residents' objection: capital dollars can't pay for staffing, programs, or recurring operating costs, and new residential development brings more students without proportional operating revenue.
-- Sources: TAPinto East Brunswick's PILOT breakdown, Eyes on EB's coverage of the Town Council PILOT discussion, township Redevelopment Agency minutes.
+- **Top claim block**: one sentence on what's at stake, plus the key number ($1.2M sitting in municipal reserve while the school budget is squeezed).
+- **Plain-English explainer**: what a PILOT agreement is, in four short steps — developer builds, township negotiates an annual payment instead of normal property taxes, the township keeps the bulk of it, the school district only shares in the small land-value portion.
+- **Side-by-side "What the township says / What residents see"** — the exact structural move from the reference site, two columns, checkmarks vs. X's:
+  - Township: schools get their approved budget; PILOT money has funded school capital work (Warnsdorfer improvements cited).
+  - Residents: capital dollars can't pay teachers, aides, or programs; new apartments bring more students without matching operating revenue; the money sits in reserve.
+- **What Saqeeb will do**: the board gets a seat at the table before agreements are signed; every PILOT agreement is published with a projected dollar impact on district operating revenue; push for terms that fund operations, not just capital.
+- **Sources** listed at the bottom with links (TAPinto East Brunswick PILOT coverage, township council/redevelopment agency minutes, Eyes on EB).
 
-Deliverable: a new `/pilot` page ("What PILOT agreements mean for our schools") with a plain-English explainer, a "what supporters say / what critics say" contrast, and Saqeeb's position — the board should have a seat at the table, publish what each agreement costs the district in projected operating revenue, and push for agreements that fund school operating needs, not just capital projects. Linked from the priorities page and the "Reduce Our Costs" highlight. Every factual claim links to its source; nothing is asserted beyond what the reporting supports.
+Every factual claim links to a source; nothing asserted beyond what the reporting supports. You get one review pass on the "What Saqeeb will do" language before it goes public.
 
-Before writing, you'll get one review pass on the position language so it's exactly what Saqeeb wants to say publicly.
+## 4. `/dashboard` — district numbers in plain English
 
-## 4. Content calendar
+A public, non-technical dashboard page in the same explainer style. Uses the budget data already in the codebase (`BUDGET_SLICES`, `$229M` total, district stats):
 
-Noted as internal-only, not published to the site. It informs the order of future content (Pre-K explainer, students-first, modern schools, inclusion, board role, affordability). The PILOT page fits the affordability/reduce-costs track.
+- Where the $229M goes — the six budget lines, each with the official jargon, a plain-English translation, the dollar amount, and a one-line "what this actually means" note.
+- A share-of-budget bar so people can see instantly that teachers + support staff are most of it and "cut the fat" isn't a real plan.
+- District context strip: 8,100 students, 11 schools, 90+ languages.
+- A short "what a dashboard should show but doesn't yet" section — the transparency ask that ties back to the PILOT page.
+
+## 5. Why Saqeeb — sharpened, not attack-style
+
+We do **not** copy the reference site's opponent-attack format. Instead the same clarity gets pointed at qualifications: a compact credentials block on the home page and the about page stating, in short plain claims, what Saqeeb brings (EB graduate, working-class immigrant family, data scientist, community organizer, attends board meetings) — with the platform promises as the receipts.
+
+## 6. Wiring
+
+Both new pages linked from the header nav and footer, cross-linked to each other and to `/priorities`, and added to the sitemap. Each gets its own head() with a unique title, description, and OG tags.
+
+## Content calendar
+
+Internal-only, not published. The PILOT page and dashboard fit the affordability / reduce-costs track in that schedule.
 
 ## Technical notes
 
-Files: `src/routes/index.tsx`, `src/routes/donate.thanks.tsx`, `src/routes/priorities.tsx`, new `src/routes/pilot.tsx`, PILOT content added to `src/lib/campaign.ts`, sitemap route updated. New route gets its own head() with unique title/description/OG tags.
+Files touched: `src/routes/index.tsx`, `src/routes/donate.thanks.tsx`, `src/routes/priorities.tsx`, `src/components/site-header.tsx`, `src/components/site-footer.tsx`, `src/routes/sitemap[.]xml.ts`; new `src/routes/pilot.tsx` and a public district dashboard route; PILOT + dashboard content added to `src/lib/campaign.ts`. Note there is an existing authenticated `src/routes/dashboard.tsx` — the public page will use a distinct path so it doesn't collide.
