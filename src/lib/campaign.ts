@@ -64,8 +64,8 @@ export const PITCH = {
   eyebrow: "Muhammad Saqeeb for East Brunswick Board of Education",
   headline: "A Voice for Excellence",
   problem:
-    "Across the country, schools are being squeezed by rising healthcare premiums, growing special education costs, and aging facilities. Too many boards respond by cutting programs, reducing staff, and adding new fees, leaving families to pay more out of pocket. East Brunswick deserves a different path.",
-  ask: "We need an advocate willing to take on corruption, put students first, and make our schools affordable for every family.",
+    "Healthcare premiums, special education costs, and repairs on aging buildings are all rising faster than school revenue, and East Brunswick is no exception. When a board runs out of room in the budget, the usual response is to trim programs, leave positions unfilled, and move costs onto families through activity fees and supply lists. Those decisions are made a line at a time, in meetings most people never see, and they add up to a school system that quietly asks parents to pay for things it used to provide.",
+  ask: "A board member should be able to explain where the money goes and push for schools families can afford to be part of.",
   badge: "Column #1",
 } as const;
 
@@ -133,7 +133,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
     jargon: "Instructional Support Services",
     plain: "Counselors, nurses & classroom aides",
     amount: 37_800_000,
-    note: "Support staff. When people tell me their kid's school feels short-handed, this is usually the line they're describing.",
+    note: "Support staff. When a school feels short-handed, this is usually the line people are describing.",
     color: "var(--color-chart-2)",
   },
   {
@@ -149,7 +149,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
     jargon: "Employee Benefits & Fixed Charges",
     plain: "Health insurance & pensions",
     amount: 30_900_000,
-    note: "Contractually locked, so anyone campaigning on finding savings here is wasting your time.",
+    note: "Set by contract and by the state pension system, so the board cannot reduce this line on its own.",
     color: "var(--color-chart-4)",
   },
   {
@@ -165,7 +165,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
     jargon: "General & School Administration",
     plain: "Principals & central office",
     amount: 16_400_000,
-    note: "Principals, directors, and the central office where most policy decisions actually get made.",
+    note: "Principals, directors, and the central office where most policy decisions are made.",
     color: "var(--color-chart-6)",
   },
 ];
