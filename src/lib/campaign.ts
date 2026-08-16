@@ -424,6 +424,13 @@ export const PRIORITIES: Priority[] = [
       "Build facilities that can house excellence in programs.",
       "Audit the master plan, with public dashboards and community oversight.",
     ],
+    detail: {
+      heading: "How building can lower a cost the district is already paying",
+      paragraphs: [
+        "Construction is not paid for out of the operating budget the dashboard breaks down. A school building program in New Jersey is financed by bonds the voters approve, with the state paying a share of the debt service, and it appears on the tax bill as debt service rather than inside the $209,216,947 general fund. The district's own capacity to pay for facilities out of pocket is close to gone: capital outlay is down 28.3% in two years and the capital reserve has fallen from $3.1 million to an estimated $256,697.",
+        "What building changes on the operating side is the recurring bill. Operations and maintenance runs $21.1 million a year in the proposed budget, and a share of that is repair work on buildings past their useful life. Whether a new building lowers that line, and by how much, is a question the district would have to answer with a facilities study; the filing does not contain the figures to answer it, and this campaign is not going to invent them.",
+      ],
+    },
   },
 ];
 
