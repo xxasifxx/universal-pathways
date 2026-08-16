@@ -128,7 +128,7 @@ export type BudgetSlice = {
 export const BUDGET_SLICES: BudgetSlice[] = [
   {
     id: "instruction",
-    jargon: "Instruction (Regular, Special Education, Basic Skills, Bilingual, Cocurricular, Athletics, Alternative Ed)",
+    jargon: "Instruction — All Programs",
     plain: "Teaching, in every program",
     amount: 73_035_382,
     note: "Regular programs $49.6M, special education $17.7M, basic skills $2.4M, bilingual $1.5M, athletics $1.3M, cocurricular $0.4M, alternative education $0.1M. Salaries in these lines, but not the benefits that go with them.",
@@ -144,7 +144,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
   },
   {
     id: "support",
-    jargon: "Undistributed Expenditures — Student Support Services",
+    jargon: "Undistributed — Student Support Services",
     plain: "Counselors, nurses & child study teams",
     amount: 23_152_279,
     note: "Extraordinary services $5.0M, guidance $4.4M, speech/OT/PT $3.7M, child study teams $3.6M, improvement of instruction $3.0M, health services $1.6M, library $1.1M, staff training $0.4M, attendance and social work $0.3M.",
@@ -152,7 +152,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
   },
   {
     id: "ops",
-    jargon: "Undistributed Expenditures — Operation and Maintenance of Plant Services",
+    jargon: "Undistributed — Operation & Maintenance of Plant",
     plain: "Keeping the buildings running",
     amount: 21_131_868,
     note: "Heat, light, roofs, and custodial staff. Down 3.9% from last year's revised figure, while capital outlay fell too.",
@@ -160,7 +160,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
   },
   {
     id: "transportation",
-    jargon: "Undistributed Expenditures — Student Transportation Services",
+    jargon: "Undistributed — Student Transportation",
     plain: "Buses",
     amount: 16_278_808,
     note: "Up 8.8% over two years. The district shares transportation services with the Union County Educational Services Commission and fuels its vehicles through the township.",
@@ -168,7 +168,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
   },
   {
     id: "admin",
-    jargon: "Undistributed Expenditures — General, School, Central and Administrative IT",
+    jargon: "Undistributed — Administration & Central Services",
     plain: "Principals & central office",
     amount: 12_738_760,
     note: "School administration $5.3M, central services $3.1M, administrative technology $2.4M, general administration $1.9M. Works out to $1,929 per pupil.",
@@ -184,7 +184,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
   },
   {
     id: "tuition",
-    jargon: "Undistributed Expenditures — Instruction (Tuition)",
+    jargon: "Undistributed — Instruction (Tuition)",
     plain: "Out-of-district placements",
     amount: 6_612_503,
     note: "Tuition paid to other districts and to private special education schools. Up 54.5% in two years, the fastest growing line in the budget.",
@@ -192,7 +192,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
   },
   {
     id: "capital",
-    jargon: "Capital Outlay — Equipment and Facilities Acquisition",
+    jargon: "Capital Outlay",
     plain: "Buildings & equipment",
     amount: 8_447_536,
     note: "Facilities work $8.1M, equipment $0.4M. Down 28.3% from two years ago, while the capital reserve fell from $3.1M to an estimated $257,000.",
