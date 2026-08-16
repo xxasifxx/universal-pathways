@@ -1,4 +1,4 @@
-# Ask Saqeeb, a PILOT explainer, a district dashboard, and a home-page aesthetic pass
+# Ask Saqeeb, a PILOT explainer, and a home-page aesthetic pass
 
 The reference site (vs24corruption.com) is ugly but works because of *structure*: a single clear claim up top, then a sticky in-page nav, then receipts — side-by-side comparisons, plain-language tables, numbered allegations, and a "here's what to do about it" block. We take that information architecture and put it in the campaign's green/gold design system.
 
@@ -34,14 +34,9 @@ Built in the reference site's receipts style:
 
 Every factual claim links to a source; nothing asserted beyond what the reporting supports. You get one review pass on the "What Saqeeb will do" language before it goes public.
 
-## 4. `/dashboard` — district numbers in plain English
+## 4. District dashboard — keep it grounded
 
-A public, non-technical dashboard page in the same explainer style. Uses the budget data already in the codebase (`BUDGET_SLICES`, `$229M` total, district stats):
-
-- Where the $229M goes — the six budget lines, each with the official jargon, a plain-English translation, the dollar amount, and a one-line "what this actually means" note.
-- A share-of-budget bar so people can see instantly that teachers + support staff are most of it and "cut the fat" isn't a real plan.
-- District context strip: 8,100 students, 11 schools, 90+ languages.
-- A short "what a dashboard should show but doesn't yet" section — the transparency ask that ties back to the PILOT page.
+The existing `/dashboard` route already does the right thing: it shows where the $229M goes, in plain English, with no projections or policy modeling. We leave the data model alone. We only polish the page to match the new section rhythm and add a short "what a real dashboard should show" transparency callout that links to the PILOT page. No lifetime-cost projections, no graduate-income estimates, no policy simulations.
 
 ## 5. Why Saqeeb — sharpened, not attack-style
 
@@ -49,12 +44,12 @@ We do **not** copy the reference site's opponent-attack format. Instead the same
 
 ## 6. Wiring
 
-Both new pages linked from the header nav and footer, cross-linked to each other and to `/priorities`, and added to the sitemap. Each gets its own head() with a unique title, description, and OG tags.
+The PILOT page linked from the header nav and footer, cross-linked to `/priorities` and `/dashboard`, and added to the sitemap. New route gets its own head() with unique title, description, and OG tags. Dashboard gets a minor metadata refresh if needed.
 
 ## Content calendar
 
-Internal-only, not published. The PILOT page and dashboard fit the affordability / reduce-costs track in that schedule.
+Internal-only, not published. The PILOT page fits the affordability / reduce-costs track in that schedule.
 
 ## Technical notes
 
-Files touched: `src/routes/index.tsx`, `src/routes/donate.thanks.tsx`, `src/routes/priorities.tsx`, `src/components/site-header.tsx`, `src/components/site-footer.tsx`, `src/routes/sitemap[.]xml.ts`; new `src/routes/pilot.tsx` and a public district dashboard route; PILOT + dashboard content added to `src/lib/campaign.ts`. Note there is an existing authenticated `src/routes/dashboard.tsx` — the public page will use a distinct path so it doesn't collide.
+Files touched: `src/routes/index.tsx`, `src/routes/donate.thanks.tsx`, `src/routes/priorities.tsx`, `src/routes/dashboard.tsx`, `src/components/site-header.tsx`, `src/components/site-footer.tsx`, `src/routes/sitemap[.]xml.ts`; new `src/routes/pilot.tsx`; PILOT content added to `src/lib/campaign.ts`.
