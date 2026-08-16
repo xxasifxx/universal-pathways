@@ -214,12 +214,16 @@ export function BudgetPerPupil() {
             </h2>
             <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
               The state calculates a comparative per-pupil cost so districts can be measured
-              against each other. East Brunswick's proposed figure is $20,731, up from $19,096 two
-              years ago. Classroom instruction accounts for $11,882 of that, administration for
+              against each other. East Brunswick's 2026-27 proposed figure is $20,731, up from
+              $19,096 in 2023-24 actual costs. Classroom instruction accounts for $11,882 of that, administration for
               $1,929. Enrollment on roll is estimated at {ENROLLMENT.onRoll2026.toLocaleString()},
               up from {ENROLLMENT.onRoll2025.toLocaleString()}, with{" "}
               {ENROLLMENT.specialEd.toLocaleString()} students in special education and{" "}
               {ENROLLMENT.privatePlacements} in private placements.
+            </p>
+
+            <p className="mt-3 text-sm text-muted-foreground">
+              Each row below runs from the 2023-24 actual cost to the 2026-27 proposed cost.
             </p>
 
             <ul className="mt-8 flex flex-col gap-2">
