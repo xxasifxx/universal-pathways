@@ -29,7 +29,11 @@ Built in the reference site's receipts style:
 - **Side-by-side "What the township says / What residents see"** — the exact structural move from the reference site, two columns, checkmarks vs. X's:
   - Township: schools get their approved budget; PILOT money has funded school capital work (Warnsdorfer improvements cited).
   - Residents: capital dollars can't pay teachers, aides, or programs; new apartments bring more students without matching operating revenue; the money sits in reserve.
-- **What Saqeeb will do**: the board gets a seat at the table before agreements are signed; every PILOT agreement is published with a projected dollar impact on district operating revenue; push for terms that fund operations, not just capital.
+- **What Saqeeb will do** — framed around the board's authority and residents' real interests:
+  - Use the board's public authority to demand and publish the operating-revenue impact of every PILOT agreement before it is signed.
+  - Ask how each deal changes the township tax base — and therefore the share residents pay versus what new development contributes.
+  - Push for terms that protect residents from higher taxes and fees, and that invest in the schools that attract families and support future resident income.
+  - No speculation, no opponent attacks; just transparency and clear questions the board is entitled to ask.
 - **Sources** listed at the bottom with links (TAPinto East Brunswick PILOT coverage, township council/redevelopment agency minutes, Eyes on EB).
 
 Every factual claim links to a source; nothing asserted beyond what the reporting supports. You get one review pass on the "What Saqeeb will do" language before it goes public.
