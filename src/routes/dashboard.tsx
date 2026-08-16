@@ -33,8 +33,8 @@ function Dashboard() {
             Where the money goes
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Families deserve clear, accessible information about how our schools spend public
-            money. Here is the district budget in plain language.
+            This is the district's operating budget, broken into the six largest groups of
+            spending and described in ordinary language.
           </p>
         </div>
       </section>

@@ -13,27 +13,33 @@ The site's writing keeps slipping into a cadence that reads as promotional and s
 ## Specific rewrites
 
 **PILOT page** (`src/routes/pilot.tsx`)
+
 - The closing line "No speculation. No opponent attacks. Just the transparency and clear questions the board is entitled to ask." is deleted outright, not rewritten. Announcing that you aren't speculating or attacking is itself a claim about your own virtue, and it invites the reader to wonder who you're denying. The action list ends on the last action.
 - Hero paragraph: keep the facts, remove the "legal — but" pivot styling in favor of a normal sentence.
 - The "$1.2 million in reserve could be helping schools" badge becomes a factual label rather than a slogan.
 - Section headings "Two ways to read the same deal" / "How a PILOT works, in plain English" are kept but the sub-copy loses the rhetorical framing.
 
 **Footer tagline** (`src/lib/i18n.tsx`)
+
 - "An independent, community-run campaign… No party line, no consultants." → drops the two-fragment ending; states independence in one sentence.
 
 **Budget dashboard copy** (`src/lib/i18n.tsx`, `src/lib/campaign.ts`)
+
 - "The district publishes these numbers, technically… Flip the toggle." → straightforward explanation of what the toggle does.
+- correct the toggle which currently is greyed out and active state but when blocked becomes colored in and the toggle shifts further to the right breaking out of the toggle background. the toggle doesn't have a proper inactive state and this caused the active state to bug out.
 - "Where East Brunswick's $229 million actually goes" → drops "actually".
 - Eyebrow "Follow the money" → a neutral label.
 - Slice notes: "anyone campaigning on finding savings here is wasting your time" → explains that these costs are set by contract and can't be cut by the board; "where most policy decisions actually get made" → drops "actually".
 - Disclaimer keeps its plain tone but loses the clipped "We'd like it to." trailer.
 
 **Home page** (`src/routes/index.tsx`, pitch copy in `src/lib/campaign.ts` / `i18n.tsx`)
+
 - "East Brunswick deserves a different path." → a sentence about what the board can do differently.
 - The ask line ("We need an advocate willing to take on corruption…") is rewritten as a normal sentence rather than a rallying triad.
 - Platform highlight blurbs are checked for comma-stacked slogan lists and given verbs where they read as fragments.
 
 **Volunteer / donate / thanks pages**
+
 - Scan for the same patterns (fragment triads, "Pick how you want to help — you can choose more than one" reads fine and stays) and fix only lines that use the punchy cadence.
 
 ## Technical notes

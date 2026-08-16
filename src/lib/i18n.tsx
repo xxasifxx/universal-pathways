@@ -42,7 +42,7 @@ const en = {
     "Register to vote by October 13th to have a say in who runs East Brunswick's schools.",
   "footer.register.cta": "Register to vote in New Jersey",
   "footer.tagline":
-    "An independent, community-run campaign for the East Brunswick Board of Education. No party line, no consultants.",
+    "An independent, community-run campaign for the East Brunswick Board of Education.",
   "footer.rights": "Paid for by Friends of Saqeeb.",
 
   "home.hero.headline": "A Voice for Excellence",
@@ -53,27 +53,27 @@ const en = {
   "home.hero.social": "Follow our campaign",
 
   "pitch.problem":
-    "Across the country, schools are being squeezed by rising healthcare premiums, growing special education costs, and aging facilities. Too many boards respond by cutting programs, reducing staff, and adding new fees, leaving families to pay more out of pocket. East Brunswick deserves a different path.",
+    "Healthcare premiums, special education costs, and repairs on aging buildings are all rising faster than school revenue, and East Brunswick is no exception. When a board runs out of room in the budget, the usual response is to trim programs, leave positions unfilled, and move costs onto families through activity fees and supply lists. Those decisions are made a line at a time, in meetings most people never see, and they add up to a school system that quietly asks parents to pay for things it used to provide.",
   "pitch.ask":
-    "We need an advocate willing to take on corruption, put students first, and make our schools affordable for every family.",
+    "A board member should be able to explain where the money goes and push for schools families can afford to be part of.",
   "fightFor.heading": "Saqeeb will fight for:",
 
-  "budget.eyebrow": "Follow the money",
-  "budget.title": "Where East Brunswick's $229 million actually goes",
+  "budget.eyebrow": "District budget",
+  "budget.title": "Where East Brunswick's $229 million goes",
   "budget.intro":
-    "The district publishes these numbers, technically. Here they are with the accounting language switched off. Flip the toggle.",
+    "The district publishes its budget under state accounting labels. The toggle below swaps those labels for a description of what each line pays for.",
   "budget.toggle": "Translate to Plain English",
   "budget.total": "Total operating budget",
   "budget.share": "share of budget",
   "budget.disclaimer":
-    "Illustrative breakdown of the adopted 2024\u20132025 operating budget, grouped from publicly reported district figures. Line items shift from year to year, so treat these as approximate until the district publishes something better. We'd like it to.",
+    "Illustrative breakdown of the adopted 2024\u20132025 operating budget, grouped from publicly reported district figures. Line items shift from year to year, so treat these as approximate.",
 
   "priorities.eyebrow": "Our platform",
   "priorities.title": "Our platform for East Brunswick schools",
 
   "volunteer.title": "Powered by Neighbors",
   "volunteer.intro":
-    "School board races here are decided by a few hundred votes. Pick how you want to help — you can choose more than one.",
+    "School board races here are decided by a few hundred votes. Pick how you want to help; you can choose more than one.",
   "volunteer.options.signup": "Sign up to help",
   "volunteer.options.canvass": "Join a canvassing day",
   "volunteer.options.phone": "Phone or text bank",
