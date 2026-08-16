@@ -25,16 +25,61 @@ export const Route = createFileRoute("/pilot")({
 
 const SOURCES = [
   {
-    label: "TAPinto East Brunswick PILOT coverage",
-    href: "https://www.tapinto.net/towns/east-brunswick",
+    label:
+      "TAPinto East Brunswick, \u201cBreak Down Of PILOT Agreements, Explaining How Redevelopment Is Financed\u201d (January 30, 2026)",
+    href: "https://www.tapinto.net/towns/east-brunswick/sections/business-and-finance/articles/break-down-of-pilot-agreements-explaining-how-redevelopment-is-financed",
   },
   {
-    label: "East Brunswick Township Redevelopment Agency meeting minutes",
-    href: "https://www.eastbrunswick.org/government/redevelopment-agency",
+    label:
+      "TAPinto East Brunswick, \u201cEast Brunswick Board of Education Receives Legislative Update on PILOT Funding, School Aid\u201d (February 13, 2026)",
+    href: "https://www.tapinto.net/towns/east-brunswick/sections/education/articles/east-brunswick-board-of-education-receives-legislative-update-on-pilot-funding-school-aid",
   },
   {
-    label: "East Brunswick Public Schools budget materials",
-    href: "https://www.ebnet.org",
+    label:
+      "Patch, \u201cEast Brunswick Mayor Touts Improved School Board Ties, Outlines Joint Projects\u201d (February 25, 2026)",
+    href: "https://patch.com/new-jersey/eastbrunswick/east-brunswick-mayor-touts-improved-school-board-ties-outlines-joint",
+  },
+  {
+    label:
+      "Eyes on EB, \u201cUnderstanding the PILOT Debate in East Brunswick After Recent Town Council Discussion\u201d (May 15, 2026)",
+    href: "https://eyesoneb.com/understanding-the-pilot-debate-in-east-brunswick-after-recent-town-council-discussion/",
+  },
+  {
+    label: "East Brunswick Redevelopment Agency minutes, August 5, 2024 (Resolution 2024013)",
+    href: "https://www.eastbrunswick.org/AgendaCenter/ViewFile/Minutes/_08052024-839",
+  },
+  {
+    label: "East Brunswick Redevelopment Agency minutes, October 21, 2024 (Resolution 2024017)",
+    href: "https://publicsafety.eastbrunswick.org/AgendaCenter/ViewFile/Minutes/_10212024-859",
+  },
+  {
+    label: "East Brunswick Redevelopment Agency, full agenda and minutes archive",
+    href: "https://www.eastbrunswick.org/AgendaCenter/Redevelopment-Agency-2",
+  },
+  {
+    label: "East Brunswick Public Schools FY2027 User Friendly Budget",
+    href: "https://www.ebnet.org/departments/financial-services/budget-information/fy2027-user-friendly-budget",
+  },
+];
+
+const SPLIT = [
+  {
+    id: "ordinary",
+    title: "An ordinary property tax bill",
+    rows: [
+      { label: "School district", value: 65 },
+      { label: "Township", value: 20 },
+      { label: "County", value: 15 },
+    ],
+  },
+  {
+    id: "pilot",
+    title: "A payment in lieu of taxes",
+    rows: [
+      { label: "School district", value: 0 },
+      { label: "Township", value: 95 },
+      { label: "County", value: 5 },
+    ],
   },
 ];
 
