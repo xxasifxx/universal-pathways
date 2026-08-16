@@ -72,16 +72,16 @@ export function BudgetDashboard() {
             aria-checked={plain}
             onClick={() => setPlain((v) => !v)}
             className={cn(
-              "relative h-9 w-16 shrink-0 rounded-md transition-colors",
-              plain ? "bg-primary" : "bg-muted",
+              "relative h-8 w-14 shrink-0 rounded-full border transition-colors",
+              plain ? "border-primary bg-primary" : "border-border bg-muted",
             )}
           >
             <span className="sr-only">{t("budget.toggle")}</span>
             <span
               aria-hidden="true"
               className={cn(
-                "absolute top-1 size-7 rounded bg-card shadow-sm transition-transform duration-300",
-                plain ? "translate-x-8" : "translate-x-1",
+                "absolute left-0.5 top-1/2 size-6 -translate-y-1/2 rounded-full bg-card shadow-sm transition-transform duration-300",
+                plain ? "translate-x-6" : "translate-x-0",
               )}
             />
           </button>

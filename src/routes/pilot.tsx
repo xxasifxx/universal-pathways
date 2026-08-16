@@ -48,13 +48,16 @@ function Pilot() {
             What PILOT agreements mean for our schools
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-primary-foreground/90 sm:text-xl">
-            East Brunswick has millions in redevelopment payments sitting in municipal accounts
-            while the school budget is squeezed. PILOT deals are legal — but the Board of Education
-            has authority to demand transparency about how they shape the tax base.
+            A payment in lieu of taxes, or PILOT, lets a developer pay the township a negotiated
+            annual amount instead of ordinary property taxes on a redeveloped site. It is a normal
+            and legal tool, and East Brunswick has used it. What is worth understanding is where
+            that money lands, because a PILOT payment is not a property tax and so it is not split
+            with the school district the way property taxes are. The Board of Education has the
+            standing to ask, in public, what each agreement does to the tax base the schools
+            depend on.
           </p>
           <div className="mt-8 inline-flex items-center gap-3 rounded-full border-2 border-gold bg-gold px-5 py-2.5 font-display text-lg font-bold text-gold-foreground">
-            <span aria-hidden="true">$</span>
-            <span>1.2 million in reserve could be helping schools</span>
+            <span>$1.2 million in reported PILOT revenue held in municipal reserve</span>
           </div>
         </div>
       </section>
@@ -102,6 +105,9 @@ function Pilot() {
           <h2 id="compare-heading" className="text-center text-3xl sm:text-4xl">
             Two ways to read the same deal
           </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-center leading-relaxed text-muted-foreground">
+            Both accounts below are accurate. They disagree about which facts matter most.
+          </p>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             <div className="rounded-2xl bg-card p-6 sm:p-8">
               <h3 className="flex items-center gap-2 text-2xl">
@@ -175,10 +181,6 @@ function Pilot() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-muted-foreground">
-            No speculation. No opponent attacks. Just the transparency and clear questions the board
-            is entitled to ask.
-          </p>
         </div>
       </section>
 
