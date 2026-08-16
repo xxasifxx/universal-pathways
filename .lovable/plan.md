@@ -13,7 +13,7 @@ The site's writing keeps slipping into a cadence that reads as promotional and s
 ## Specific rewrites
 
 **PILOT page** (`src/routes/pilot.tsx`)
-- Closing line "No speculation. No opponent attacks. Just the transparency and clear questions the board is entitled to ask." becomes a plain statement that these are questions any board member can ask in public session, and that the page sticks to published figures.
+- The closing line "No speculation. No opponent attacks. Just the transparency and clear questions the board is entitled to ask." is deleted outright, not rewritten. Announcing that you aren't speculating or attacking is itself a claim about your own virtue, and it invites the reader to wonder who you're denying. The action list ends on the last action.
 - Hero paragraph: keep the facts, remove the "legal — but" pivot styling in favor of a normal sentence.
 - The "$1.2 million in reserve could be helping schools" badge becomes a factual label rather than a slogan.
 - Section headings "Two ways to read the same deal" / "How a PILOT works, in plain English" are kept but the sub-copy loses the rhetorical framing.
