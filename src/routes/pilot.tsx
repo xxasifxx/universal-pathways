@@ -95,19 +95,66 @@ function Pilot() {
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-primary-foreground/90 sm:text-xl">
             A payment in lieu of taxes, or PILOT, lets a developer pay the township a negotiated
             annual amount instead of ordinary property taxes on a redeveloped site. It is a normal
-            and legal tool, and East Brunswick has used it. What is worth understanding is where
-            that money lands, because a PILOT payment is not a property tax and so it is not split
-            with the school district the way property taxes are. The Board of Education has the
-            standing to ask, in public, what each agreement does to the tax base the schools
-            depend on.
+            and legal tool, and East Brunswick has used it. The land underneath keeps being taxed
+            the ordinary way; it is the value of what gets built on top that converts into a
+            negotiated payment. That distinction is the whole issue, because a PILOT payment is not
+            a property tax, and so it is not divided with the school district the way a property
+            tax is. Township officials describe the ordinary split as roughly 65 percent to the
+            schools, 20 percent to the township, and 15 percent to the county. Under a PILOT they
+            describe it as about 95 percent to the township, about 5 percent to the county, and
+            none directly to the schools.
           </p>
-          <div className="mt-8 inline-flex items-center gap-3 rounded-full border-2 border-gold bg-gold px-5 py-2.5 font-display text-lg font-bold text-gold-foreground">
-            <span>$1.2 million in reported PILOT revenue held in municipal reserve</span>
+          <p className="mt-6 max-w-3xl leading-relaxed text-primary-foreground/80">
+            Everything on this page is drawn from published reporting and from the Redevelopment
+            Agency's own minutes, each linked at the bottom. Where the public record stops, the
+            page says so rather than filling the gap.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="split-heading" className="py-14 sm:py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <p className="eyebrow text-primary">The split</p>
+          <h2 id="split-heading" className="mt-3 text-3xl sm:text-4xl">
+            The same site, two different divisions
+          </h2>
+          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
+            These are the figures township officials themselves use, as reported by TAPinto in
+            January 2026. They are approximate by the township's own description, and they are the
+            clearest public statement of how the money divides.
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            {SPLIT.map((group) => (
+              <div key={group.id} className="rounded-2xl border border-border bg-card p-6">
+                <h3 className="text-xl">{group.title}</h3>
+                <ul className="mt-6 flex flex-col gap-5">
+                  {group.rows.map((row) => (
+                    <li key={row.label}>
+                      <div className="flex items-baseline justify-between gap-3">
+                        <span className="font-semibold">{row.label}</span>
+                        <span className="font-display text-xl font-bold tabular-nums">
+                          {row.value}%
+                        </span>
+                      </div>
+                      <div
+                        aria-hidden="true"
+                        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-muted"
+                      >
+                        <div
+                          className="h-full rounded-full bg-primary"
+                          style={{ width: `${row.value}%` }}
+                        />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="explainer-heading" className="py-14 sm:py-20">
+      <section aria-labelledby="explainer-heading" className="bg-secondary/50 py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <h2 id="explainer-heading" className="text-3xl sm:text-4xl">
             How a PILOT works, in plain English
@@ -127,12 +174,12 @@ function Pilot() {
               {
                 step: "03",
                 title: "Schools get only the land-value share",
-                text: "The district keeps a small portion tied to the underlying land value. The bulk of the redevelopment value stays with the township.",
+                text: "The land keeps being taxed normally, so the district keeps that share. The value of the buildings, which is most of the value, is what moves into the negotiated payment.",
               },
               {
                 step: "04",
                 title: "New residents still enroll in our schools",
-                text: "Apartments and homes bring more students, but the operating revenue to educate them does not grow proportionally.",
+                text: "Apartments and homes bring students, and the district is obliged to educate them, but no part of the payment is designated for the operating budget that pays for it.",
               },
             ].map((item) => (
               <li key={item.step} className="rounded-xl border border-border bg-card p-6">
@@ -142,6 +189,81 @@ function Pilot() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section aria-labelledby="record-heading" className="py-14 sm:py-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+          <p className="eyebrow text-primary">The record</p>
+          <h2 id="record-heading" className="mt-3 text-3xl sm:text-4xl">
+            What has actually happened here
+          </h2>
+          <div className="mt-8 flex flex-col gap-6">
+            <article className="rounded-xl border border-border bg-card p-6">
+              <h3 className="text-xl">Brightview Senior Living, Cranbury Road and Ryders Lane</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                The Redevelopment Agency recommended that the Township Council award a PILOT and
+                execute a financial agreement with Brightview Senior Living Development, LLC on
+                August 5, 2024 (Resolution 2024013), and reaffirmed that recommendation on October
+                21, 2024 (Resolution 2024017). The minutes record the recommendation and the
+                unanimous vote. They do not record an annual payment amount or a term length, and
+                neither figure appears in any document reachable from the township site.
+              </p>
+            </article>
+
+            <article className="rounded-xl border border-border bg-card p-6">
+              <h3 className="text-xl">Warnsdorfer Elementary, and what comes next</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Township Administrator Joseph Criscuolo and Mayor Brad Cohen have both said PILOT
+                money paid to repave the parking lot at Warnsdorfer Elementary. Cohen has said the
+                township plans to fund a snack bar and outdoor bathrooms at the high school
+                football field in 2026 or 2027. State law is the reason the list looks like that:
+                PILOT money directed toward schools can pay for capital work, not for the operating
+                budget that pays teachers, aides, and counselors.
+              </p>
+            </article>
+
+            <article className="rounded-xl border border-border bg-card p-6">
+              <h3 className="text-xl">What the township says</h3>
+              <blockquote className="mt-3 border-l-4 border-primary pl-4 leading-relaxed">
+                <p>&ldquo;The board of ed still gets the land value on those agreements.&rdquo;</p>
+                <p className="mt-3">&ldquo;The school system gets all the money they ask for truly.&rdquo;</p>
+                <footer className="mt-3 text-sm text-muted-foreground">
+                  Township Administrator Joseph Criscuolo, at a Town Council meeting, as reported by
+                  Eyes on EB in May 2026.
+                </footer>
+              </blockquote>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                Both statements are accurate as stated. The first is the land-value point, and the
+                land is the smaller share of a redeveloped parcel's value. The second describes a
+                budget the board itself sets, and a board that knows a request will strain the levy
+                tends to ask for less.
+              </p>
+            </article>
+
+            <article className="rounded-xl border border-border bg-card p-6">
+              <h3 className="text-xl">The law may change</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Under current law municipalities keep the majority of PILOT payments, counties take
+                a small share, and nothing is designated for school districts. A pending state
+                bill, S-1807, would require that PILOT revenue be shared with districts. The Board
+                of Education received a legislative update on exactly this in February 2026.
+              </p>
+            </article>
+
+            <article className="rounded-xl border border-dashed border-border p-6">
+              <h3 className="text-xl">What is not on the record</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                The annual payment amounts and the terms of East Brunswick's PILOT agreements are
+                not available in any document this campaign could retrieve. The relevant ordinances
+                are posted as scans that cannot be read as text, or return errors when requested.
+                An earlier version of this page carried a figure of $1.2 million said to be sitting
+                in municipal reserve. It came from a resident's comment online, and no published
+                source states it, so it has been removed. Asking the township for those numbers in
+                a public meeting is a smaller thing than a slogan and a more useful one.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -193,8 +315,8 @@ function Pilot() {
                 </li>
                 <li className="flex gap-3">
                   <X aria-hidden="true" className="mt-1 size-5 shrink-0 text-gold" />
-                  Reported PILOT revenue has sat in municipal reserve while families face fees and
-                  budget pressure.
+                  The amounts and terms of individual agreements are not posted anywhere a resident
+                  can read them.
                 </li>
               </ul>
             </div>
@@ -210,10 +332,10 @@ function Pilot() {
           </h2>
           <ul className="mt-8 flex flex-col gap-4">
             {[
-              "Use the board's public authority to demand the operating-revenue impact of every PILOT agreement before it is signed.",
+              "Use the board's public authority to ask for the annual payment, the term, and the operating-revenue impact of every PILOT agreement before it is signed.",
               "Ask how each deal changes the township tax base — and therefore the share residents pay versus what new development contributes.",
               "Push for terms that protect residents from higher taxes and fees, and that invest in the schools that attract families and support future resident income.",
-              "Publish plain-language summaries so taxpayers can see what each deal costs the district in real dollars.",
+              "Support the state legislation that would require PILOT revenue to be shared with school districts, and publish plain-language summaries of each agreement in the meantime.",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-4 rounded-xl border border-border bg-card p-5">
                 <span
@@ -264,7 +386,8 @@ function Pilot() {
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <h2 className="text-3xl sm:text-4xl">See where the money goes today</h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/90">
-            The district's $229 million operating budget, explained without the accounting jargon.
+            The district's $209 million operating budget for 2026-27, read line by line out of the
+            adopted state filing.
           </p>
           <Link
             to="/dashboard"
