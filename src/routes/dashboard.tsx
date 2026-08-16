@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 
 import { BudgetDashboard } from "@/components/budget-dashboard";
 
@@ -13,7 +14,11 @@ export const Route = createFileRoute("/dashboard")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://saqeeb.org/dashboard" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://saqeeb.org/dashboard" }],
   }),
   component: Dashboard,
 });
@@ -34,6 +39,27 @@ function Dashboard() {
         </div>
       </section>
       <BudgetDashboard />
+
+      <section className="border-t border-border py-14 sm:py-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+          <p className="eyebrow text-primary">Transparency</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl">
+            A real dashboard should show more than spending
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            Budget lines tell you where dollars went. They do not tell you what deals changed the
+            tax base, what new development costs the district in students, or whether PILOT
+            agreements are helping residents or leaving them to foot the bill.
+          </p>
+          <Link
+            to="/pilot"
+            className="mt-8 inline-flex items-center gap-2 rounded-md bg-primary px-6 py-4 font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            Read the PILOT explainer
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

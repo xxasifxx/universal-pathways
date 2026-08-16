@@ -93,7 +93,7 @@ export function AskQuestionForm() {
         role="status"
         className="rounded-lg border-2 border-primary bg-card p-6"
       >
-        <p className="font-display text-2xl tracking-wide text-primary">Muhammad got your question.</p>
+        <p className="font-display text-2xl tracking-wide text-primary">Saqeeb got your question.</p>
         <p className="mt-2 text-base leading-relaxed text-foreground/90">
           He answers these himself, usually within a couple of days. Check your inbox — the reply
           will come straight from him.
@@ -147,7 +147,7 @@ export function AskQuestionForm() {
           name="message"
           rows={5}
           maxLength={2000}
-          placeholder="Ask me anything — about the schools, the budget, a specific decision, or why I'm running."
+          placeholder="Ask Saqeeb anything — about the schools, the budget, a specific decision, or why he's running."
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? "ask-message-error" : undefined}
           className={inputClass}

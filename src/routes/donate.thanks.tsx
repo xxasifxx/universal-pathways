@@ -52,7 +52,7 @@ function DonationThanks() {
               hash="ask"
               className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-primary-foreground px-6 py-4 font-semibold transition-colors hover:bg-primary-foreground hover:text-primary"
             >
-              Ask Muhammad a question
+              Ask Saqeeb a question
               <Mail aria-hidden="true" className="size-4" />
             </Link>
           </div>
@@ -85,14 +85,14 @@ function DonationThanks() {
               <p className="font-display text-3xl text-primary">02</p>
               <h3 className="mt-3 text-2xl uppercase">Bring a question</h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                Want to know where Muhammad stands? Send a question and he will answer personally.
+                Want to know where Saqeeb stands? Send a question and he will answer personally.
               </p>
               <Link
                 to="/"
                 hash="ask"
                 className="mt-5 inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
               >
-                Ask Muhammad
+                Ask Saqeeb
                 <Mail aria-hidden="true" className="size-4" />
               </Link>
             </div>

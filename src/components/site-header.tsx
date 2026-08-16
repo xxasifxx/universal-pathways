@@ -11,6 +11,7 @@ const NAV = [
   { to: "/", key: "nav.home" },
   { to: "/priorities", key: "nav.priorities" },
   { to: "/dashboard", key: "nav.dashboard" },
+  { to: "/pilot", key: "nav.pilot" },
   { to: "/volunteer", key: "nav.volunteer" },
 ] as const;
 
