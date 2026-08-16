@@ -103,7 +103,7 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "reduce-our-costs",
     title: "Reduce Our Costs",
-    text: "Build a 9-12 high school using state construction bonds, so the district spends less on patching buildings that are past their useful life.",
+    text: "Build a 9-12 high school with state construction funding, so the district spends less each year patching buildings that are past their useful life.",
   },
 ];
 
