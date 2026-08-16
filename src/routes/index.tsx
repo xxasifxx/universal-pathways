@@ -15,6 +15,7 @@ import {
   PLATFORM_HIGHLIGHTS,
   REGISTRATION_DEADLINE,
   SOCIAL_LINKS,
+  WHY_SAQEEB,
 } from "@/lib/campaign";
 
 const TITLE = "A Voice for Excellence | Muhammad Saqeeb for East Brunswick BOE";
@@ -86,7 +87,7 @@ function Index() {
               </span>
             </div>
 
-            <div className="mt-8 h-1 w-28 bg-primary-foreground sm:w-36" />
+            <div className="mt-8 h-1 w-28 bg-gold sm:w-36" />
 
             <p className="mt-6 font-display text-2xl uppercase leading-[1.05] sm:text-4xl lg:text-5xl">
               Fighting to put students first.
@@ -95,7 +96,7 @@ function Index() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <Link
                 to="/volunteer"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-primary-foreground px-6 py-4 font-semibold text-primary transition-opacity hover:opacity-90"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-gold px-6 py-4 font-semibold text-gold-foreground transition-opacity hover:opacity-90"
               >
                 Volunteer
                 <ArrowRight aria-hidden="true" className="size-4" />
@@ -134,7 +135,8 @@ function Index() {
             ) : null}
           </div>
 
-          <figure className="mx-auto w-full max-w-md lg:max-w-none">
+          <figure className="relative mx-auto w-full max-w-md lg:max-w-none">
+            <div aria-hidden="true" className="absolute -inset-4 -z-10 rounded-3xl bg-gold/10" />
             <img
               src={heroAsset.url}
               alt="Muhammad Saqeeb, candidate for the East Brunswick Board of Education"
@@ -188,35 +190,38 @@ function Index() {
 
       {/* Platform highlights */}
       <section aria-labelledby="platform-heading" className="py-14 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <h2 id="platform-heading" className="text-4xl uppercase sm:text-5xl">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <p className="eyebrow text-primary text-center">Our platform</p>
+          <h2 id="platform-heading" className="mt-3 text-center text-4xl uppercase sm:text-5xl">
             OUR platform
           </h2>
-          <ul className="mt-12 grid gap-12">
-            {PLATFORM_HIGHLIGHTS.map((item, i) => (
+          <ul className="mt-12 grid gap-6 sm:grid-cols-3">
+            {PLATFORM_HIGHLIGHTS.map((item) => (
               <li
                 key={item.id}
-                className={i > 0 ? "border-t border-border pt-12" : undefined}
+                className="rounded-xl border border-border bg-card p-6 text-center sm:p-8"
               >
                 <span className="mx-auto grid size-14 place-items-center rounded-full border-2 border-primary text-primary">
                   <Check aria-hidden="true" className="size-7" />
                 </span>
-                <h3 className="mt-6 text-4xl uppercase text-primary sm:text-6xl">
+                <h3 className="mt-6 text-2xl uppercase text-primary sm:text-3xl">
                   {item.title}
                 </h3>
-                <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-foreground/90">
+                <p className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-foreground/90">
                   {item.text}
                 </p>
               </li>
             ))}
           </ul>
-          <Link
-            to="/priorities"
-            className="mt-12 inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
-          >
-            See all of our promises
-            <ArrowRight aria-hidden="true" className="size-4" />
-          </Link>
+          <div className="mt-10 text-center">
+            <Link
+              to="/priorities"
+              className="inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
+            >
+              See all of our promises
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -226,14 +231,21 @@ function Index() {
           <p className="text-center text-2xl font-bold leading-snug text-primary sm:text-3xl">
             {INTRO_LINE}
           </p>
-          <ul className="mt-10 grid gap-5">
+          <ul className="mt-10 grid gap-5 sm:grid-cols-2">
             {CREDENTIALS.map((item) => (
               <li
                 key={item}
-                className="rounded-xl border-l-8 border-primary bg-card px-6 py-8 text-center"
+                className="rounded-xl border-t-4 border-primary bg-card px-6 py-8 text-center"
               >
-                <span aria-hidden="true" className="mx-auto block size-2.5 rounded-full bg-primary" />
-                <p className="mt-4 text-xl font-bold leading-snug text-primary">{item}</p>
+                <p className="text-xl font-bold leading-snug text-primary">{item}</p>
+              </li>
+            ))}
+          </ul>
+          <ul className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-center">
+            {WHY_SAQEEB.map((item) => (
+              <li key={item} className="flex items-center gap-2 text-sm font-semibold text-foreground/90">
+                <span aria-hidden="true" className="size-1.5 rounded-full bg-primary" />
+                {item}
               </li>
             ))}
           </ul>
@@ -242,8 +254,9 @@ function Index() {
 
       <section id="ask" aria-labelledby="ask-heading" className="scroll-mt-20 py-14 sm:py-20">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
-          <h2 id="ask-heading" className="text-3xl sm:text-4xl">
-            Ask Muhammad a question
+          <p className="eyebrow text-primary">Get in touch</p>
+          <h2 id="ask-heading" className="mt-3 text-3xl sm:text-4xl">
+            Ask Saqeeb a question
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-base leading-relaxed text-foreground/90">
             It goes straight to him at{" "}
@@ -252,7 +265,7 @@ function Index() {
             </a>
             . He answers personally.
           </p>
-          <div className="mt-7 rounded-xl border border-border bg-background p-5 text-left sm:p-7">
+          <div className="mt-7 rounded-xl border-t-4 border-gold bg-card p-5 text-left shadow-sm sm:p-7">
             <AskQuestionForm />
           </div>
         </div>
@@ -267,14 +280,14 @@ function Index() {
           <h2 id="donate-heading" className="mt-8 text-4xl uppercase leading-[1.05] sm:text-5xl">
             Donate to our grassroots campaign!
           </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          <ul className="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-3">
             {DONATION_AMOUNTS.map((amount) => (
               <li key={amount}>
                 <a
                   href={actblueUrl("home-donate", String(amount))}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center rounded-full bg-primary-foreground px-6 py-4 text-lg font-bold text-primary transition-opacity hover:opacity-90"
+                  className="inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-primary-foreground px-6 py-3 text-lg font-bold text-primary transition-opacity hover:opacity-90"
                 >
                   ${amount}
                 </a>
@@ -285,9 +298,9 @@ function Index() {
                 href={actblueUrl("home-donate", "other")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center rounded-full bg-primary-foreground px-6 py-4 text-lg font-bold text-primary transition-opacity hover:opacity-90"
+                className="inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-primary-foreground px-6 py-3 text-lg font-bold text-primary transition-opacity hover:opacity-90"
               >
-                Other Amount
+                Other
               </a>
             </li>
           </ul>
