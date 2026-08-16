@@ -8,7 +8,7 @@ The site's writing keeps slipping into a cadence that reads as promotional and s
 - No punchy one-word sentences, no "Here's the thing", no em-dash zingers.
 - Drop knowing sneers ("technically", "actually", "wasting your time") — state the fact and let it stand.
 - Full sentences, ordinary verbs, specific nouns. Where a claim is made, the sentence says who does what.
-- Keep length roughly the same so layouts don't shift.
+- Let length vary with how much there is to say. Uneven depth is the point: the PILOT mechanics, the benefits line, and what the board can actually do get real paragraphs, because they are the parts where a reader's objection lives. Things everyone already accepts — the footer line, the volunteer intro, most slice notes — get one short sentence and no elaboration. Where a section shrinks or grows enough to affect a layout, the surrounding markup is adjusted so it still sits well rather than padding the copy to fit.
 
 ## Specific rewrites
 
