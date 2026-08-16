@@ -93,7 +93,7 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "affordable-for-all",
     title: "Affordable for All",
-    text: "Public full-day Pre-K for every family, no fees to join a club or a team, and no student carrying lunch debt.",
+    text: "Public full-day Pre-K for every family, no fees to join a club or a team, no student carrying lunch debt, and health coverage that staff can afford to use.",
   },
   {
     id: "students-first",
@@ -139,7 +139,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
     jargon: "Personal Services — Employee Benefits",
     plain: "Health insurance & pensions",
     amount: 40_357_120,
-    note: "Equal to 38.43% of salaries in the 2026-27 proposed budget, up from 30.16% in 2023-24 actuals. Set by contract and by the state pension system, so a board cannot reduce this line on its own.",
+    note: "Equal to 38.43% of salaries in the 2026-27 proposed budget, up from 30.16% in 2023-24 actuals. The pension side and the employee contribution schedule are set in Trenton. What the district chooses is where it buys coverage and how the plans are built, which is where a board still has room to move.",
     color: "var(--color-chart-2)",
   },
   {
@@ -365,6 +365,8 @@ export type Priority = {
   title: string;
   summary: string;
   points: string[];
+  /** Optional longer explanation of how a promise in this section gets done. */
+  detail?: { heading: string; paragraphs: string[] };
 };
 
 export const PRIORITIES: Priority[] = [
@@ -381,7 +383,16 @@ export const PRIORITIES: Priority[] = [
       "Protect and improve special education, mental health, and early intervention.",
       "Better language programs for incoming families.",
       "End lunch debt.",
+      "Better healthcare for school staff, through the choices the district actually makes.",
     ],
+    detail: {
+      heading: "How better healthcare for staff is possible",
+      paragraphs: [
+        "Two parts of the benefits line are not a board's to move. The employer pension contribution to the Teachers' Pension and Annuity Fund is paid by the State, and the share employees pay toward their premiums runs on a salary-tiered schedule written into state law under Chapter 78 and carried forward by Chapter 44. A candidate who promises to lower what a teacher pays out of their check by a board vote is promising something the board cannot deliver.",
+        "The rest of it is a district decision, voted on by the board. East Brunswick chooses whether to buy coverage through the state School Employees' Health Benefits Program or outside it, and boards are also allowed to form and join school-board joint insurance funds for health coverage. Even a district that stays in the state program for medical coverage may buy prescription and dental benefits separately, which means the pharmacy benefit contract is ours to bid and ours to write. Brokers and third-party administrators are procured under the Public School Contracts Law, so the terms are a board vote too.",
+        "Saqeeb's position is that those decisions should be made in public, with the cost and the coverage of each option on the table before the vote, instead of a renewal moving through the agenda without discussion. Where a plan design leaves staff paying for care they need, or the pharmacy contract is costing the district more than a competitive one would, that is the board's problem to fix. The State Comptroller's September 2025 report on health insurance funds is a reason to read those arrangements carefully rather than a reason to avoid them.",
+      ],
+    },
   },
   {
     id: "students-first",

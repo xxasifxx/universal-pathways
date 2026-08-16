@@ -92,6 +92,18 @@ function Priorities() {
                 <li key={point.slice(0, 32)}>{point}</li>
               ))}
             </ul>
+            {p.detail ? (
+              <div className="mt-8 max-w-3xl border-l-4 border-gold pl-5 sm:pl-6">
+                <h3 className="font-display text-xl uppercase leading-tight text-primary sm:text-2xl">
+                  {p.detail.heading}
+                </h3>
+                {p.detail.paragraphs.map((para) => (
+                  <p key={para.slice(0, 32)} className="mt-4 text-base leading-relaxed">
+                    {para}
+                  </p>
+                ))}
+              </div>
+            ) : null}
           </section>
         ))}
       </div>
