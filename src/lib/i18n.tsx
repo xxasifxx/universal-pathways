@@ -30,6 +30,7 @@ const en = {
   "nav.home": "Home",
   "nav.priorities": "Priorities",
   "nav.dashboard": "District dashboard",
+  "nav.pilot": "PILOT deals",
   "nav.volunteer": "Volunteer",
   "nav.donate": "Donate",
   "nav.menu": "Open menu",
