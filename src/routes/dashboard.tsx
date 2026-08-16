@@ -2,10 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import { BudgetDashboard } from "@/components/budget-dashboard";
+import {
+  BudgetMovement,
+  BudgetPerPupil,
+  BudgetReserves,
+  BudgetRevenue,
+} from "@/components/budget-insights";
 
-const TITLE = "District Dashboard — East Brunswick School Budget";
+const TITLE = "District Dashboard — East Brunswick School Budget FY2027";
 const DESCRIPTION =
-  "Where East Brunswick's $229 million school budget goes, with the accounting language switched off.";
+  "Where East Brunswick's $209 million school budget goes in 2026-27, read line by line out of the district's adopted state filing.";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -33,12 +39,18 @@ function Dashboard() {
             Where the money goes
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            This is the district's operating budget, broken into the six largest groups of
-            spending and described in ordinary language.
+            East Brunswick adopted a $209,216,947 general fund budget for 2026-27. Everything below
+            comes out of the district's own state filing: what it spends, who pays for it, which
+            lines are growing, and how much is left in reserve. The categories are grouped from
+            individual appropriation lines and reconcile to the filing's own subtotals.
           </p>
         </div>
       </section>
       <BudgetDashboard />
+      <BudgetRevenue />
+      <BudgetMovement />
+      <BudgetReserves />
+      <BudgetPerPupil />
 
       <section className="border-t border-border py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
@@ -47,9 +59,10 @@ function Dashboard() {
             A real dashboard should show more than spending
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Budget lines tell you where dollars went. They do not tell you what deals changed the
-            tax base, what new development costs the district in students, or whether PILOT
-            agreements are helping residents or leaving them to foot the bill.
+            Budget lines tell you where dollars went. They do not tell you what happened to the tax
+            base underneath them. When a redevelopment site moves onto a payment in lieu of taxes,
+            the improvements stop being taxed the ordinary way, and the school district's share of
+            that value goes with them.
           </p>
           <Link
             to="/pilot"

@@ -3,12 +3,19 @@ import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
 import { BUDGET_SLICES, BUDGET_TOTAL } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
-import { SOURCE_LINE } from "@/lib/sources";
+import { BUDGET_PDF_URL, SOURCE_LINE } from "@/lib/sources";
 import { cn } from "@/lib/utils";
 
 const usd = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
+  maximumFractionDigits: 0,
+});
+
+const compactUsd = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  notation: "compact",
   maximumFractionDigits: 0,
 });
 
@@ -129,7 +136,9 @@ export function BudgetDashboard() {
                 </>
               ) : (
                 <>
-                  <p className="font-display text-3xl font-black">$229M</p>
+                  <p className="font-display text-3xl font-black">
+                    {compactUsd.format(BUDGET_TOTAL)}
+                  </p>
                   <p className="mt-1 text-[11px] font-semibold uppercase leading-tight tracking-wide text-muted-foreground">
                     {t("budget.total")}
                   </p>
@@ -197,11 +206,17 @@ export function BudgetDashboard() {
 
         <div className="mt-8 max-w-3xl">
           <p className="text-xs leading-relaxed text-muted-foreground">
-            {t("budget.disclaimer")}
-          </p>
-          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-            <span className="font-semibold text-foreground">Source: </span>
             {SOURCE_LINE}
+            {" "}
+            <a
+              href={BUDGET_PDF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-foreground underline underline-offset-2"
+            >
+              Read the filing
+            </a>
+            .
           </p>
         </div>
       </div>
