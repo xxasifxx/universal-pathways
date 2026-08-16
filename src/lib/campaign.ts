@@ -93,17 +93,17 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "affordable-for-all",
     title: "Affordable for All",
-    text: "Universally paid public full-day Pre-K, zero fees for student activities, fully funded schools, and an end to lunch debt.",
+    text: "Public full-day Pre-K for every family, no fees to join a club or a team, and no student carrying lunch debt.",
   },
   {
     id: "students-first",
     title: "Students First",
-    text: "Fair access to advanced courses, language programs for new families, learning that values students' work, and responsible AI literacy.",
+    text: "Open up advanced courses to the students ready for them, support families arriving with a new language, and grade students on work they do in school.",
   },
   {
     id: "reduce-our-costs",
     title: "Reduce Our Costs",
-    text: "A new 9th–12th high school, better and more sustainable facilities, state construction bonds, and public oversight of the master plan.",
+    text: "Build a 9-12 high school using state construction bonds, so the district spends less on patching buildings that are past their useful life.",
   },
 ];
 
