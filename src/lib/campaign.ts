@@ -93,7 +93,7 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "affordable-for-all",
     title: "Affordable for All",
-    text: "Public full-day Pre-K for every family, no fees to join a club or a team, and no student carrying lunch debt.",
+    text: "Public full-day Pre-K for every family, no fees to join a club or a team, no student carrying lunch debt, and health coverage that staff can afford to use.",
   },
   {
     id: "students-first",
@@ -139,7 +139,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
     jargon: "Personal Services — Employee Benefits",
     plain: "Health insurance & pensions",
     amount: 40_357_120,
-    note: "Equal to 38.43% of salaries in the 2026-27 proposed budget, up from 30.16% in 2023-24 actuals. Set by contract and by the state pension system, so a board cannot reduce this line on its own.",
+    note: "Equal to 38.43% of salaries in the 2026-27 proposed budget, up from 30.16% in 2023-24 actuals. The pension side and the employee contribution schedule are set in Trenton. What the district chooses is where it buys coverage and how the plans are built, which is where a board still has room to move.",
     color: "var(--color-chart-2)",
   },
   {
