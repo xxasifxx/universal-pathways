@@ -103,7 +103,7 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "reduce-our-costs",
     title: "Reduce Our Costs",
-    text: "Build a 9-12 high school using state construction bonds, so the district spends less on patching buildings that are past their useful life.",
+    text: "Build a 9-12 high school with state construction funding, so the district spends less each year patching buildings that are past their useful life.",
   },
 ];
 
@@ -424,8 +424,101 @@ export const PRIORITIES: Priority[] = [
       "Build facilities that can house excellence in programs.",
       "Audit the master plan, with public dashboards and community oversight.",
     ],
+    detail: {
+      heading: "How building can lower a cost the district is already paying",
+      paragraphs: [
+        "Construction is not paid for out of the operating budget the dashboard breaks down. A school building program in New Jersey is financed by bonds the voters approve, with the state paying a share of the debt service, and it appears on the tax bill as debt service rather than inside the $209,216,947 general fund. The district's own capacity to pay for facilities out of pocket is close to gone: capital outlay is down 28.3% in two years and the capital reserve has fallen from $3.1 million to an estimated $256,697.",
+        "What building changes on the operating side is the recurring bill. Operations and maintenance runs $21.1 million a year in the proposed budget, and a share of that is repair work on buildings past their useful life. Whether a new building lowers that line, and by how much, is a question the district would have to answer with a facilities study; the filing does not contain the figures to answer it, and this campaign is not going to invent them.",
+      ],
+    },
   },
 ];
+
+/**
+ * What each promise touches in the adopted FY2027 filing, and what the filing
+ * does not say. No cost estimate is claimed anywhere here: the published
+ * budget does not contain the figures a real costing would need.
+ */
+export type PromiseCostLens = {
+  id: string;
+  promise: string;
+  /** The line(s) in the dashboard this promise would move. */
+  budgetLine: string;
+  /** What the filing does show about that line. */
+  filingSays: string;
+  /** What the filing does not answer, and would have to be studied. */
+  filingDoesNotSay: string;
+};
+
+export const PROMISE_COST_LENS: PromiseCostLens[] = [
+  {
+    id: "pre-k",
+    promise: "Universally paid public full-day Pre-K",
+    budgetLine: "Not in the general fund appropriations",
+    filingSays:
+      "The FY2027 filing carries no preschool appropriation and no preschool education aid in its state aid list. Enrollment on roll is counted from kindergarten up, at 8,559.",
+    filingDoesNotSay:
+      "How many three- and four-year-olds would enroll, whether the district would qualify for state preschool education aid at what per-child rate, and what classroom space, staff, and transportation a full-day program would require.",
+  },
+  {
+    id: "activity-fees",
+    promise: "Zero fees on clubs, activities, arts, and sports",
+    budgetLine: "Athletics, cocurricular, and miscellaneous revenue",
+    filingSays:
+      "Athletics is budgeted at $1.3 million and cocurricular activities at $0.4 million; extracurricular cost per pupil is $273 in 2026-27, up from $233 in 2023-24.",
+    filingDoesNotSay:
+      "How much families currently pay in participation fees. Fee income is not broken out; it sits inside $2,455,107 of miscellaneous revenue along with rentals, interest, and other local receipts.",
+  },
+  {
+    id: "lunch-debt",
+    promise: "End lunch debt",
+    budgetLine: "Outside the general fund",
+    filingSays:
+      "Food service runs as its own enterprise fund and does not appear in the $209,216,947 general fund the dashboard breaks down.",
+    filingDoesNotSay:
+      "The current unpaid meal balance, how many students carry one, and how many already qualify for free or reduced-price meals under federal eligibility.",
+  },
+  {
+    id: "support-in-house",
+    promise: "Hire teaching support staff in-house rather than through outside providers",
+    budgetLine: "Student support services, and out-of-district tuition",
+    filingSays:
+      "Student support services total $23.2 million, including $5.0 million in extraordinary services and $3.7 million in speech, occupational, and physical therapy. Out-of-district tuition is the fastest growing line in the budget, up 54.5% in two years to $6.6 million.",
+    filingDoesNotSay:
+      "How much of that work is contracted out today versus staffed in-house, and what an in-house position costs against the equivalent agency rate once benefits are counted.",
+  },
+  {
+    id: "healthcare",
+    promise: "Better healthcare for school staff",
+    budgetLine: "Personal services — employee benefits",
+    filingSays:
+      "Benefits are budgeted at $40,357,120, equal to 38.43% of salaries, up from 30.16% in 2023-24 actuals and up $4.5 million in two years.",
+    filingDoesNotSay:
+      "What each plan option would cost the district. The filing reports one total; it does not price the state program against a private or pooled alternative, and it does not separate the pharmacy benefit.",
+  },
+  {
+    id: "language",
+    promise: "Language bridge program for new families",
+    budgetLine: "Bilingual education, within instruction",
+    filingSays:
+      "Bilingual education is budgeted at $1.5 million inside the $73.0 million instruction total.",
+    filingDoesNotSay:
+      "How many students arrive each year needing language support, and what staffing a bridge program would add on top of the existing bilingual line.",
+  },
+  {
+    id: "facilities",
+    promise: "Remove lead, address TMAs, and build a new 9-12 high school",
+    budgetLine: "Operations and maintenance, capital outlay, and debt service",
+    filingSays:
+      "Operations and maintenance is $21.1 million, down 3.9%. Capital outlay is $8.4 million, down 28.3% in two years, and the capital reserve is projected at $256,697. Debt service sits outside the general fund total.",
+    filingDoesNotSay:
+      "The condition and remediation cost of each building, the scope or price of a high school project, and the state share of debt service such a project would draw. None of that is in a budget filing; it comes out of a facilities study.",
+  },
+];
+
+/** Shown with the cost lens. The campaign does not publish estimates it cannot source. */
+export const COST_STUDY_NOTE =
+  "This campaign is not going to put a dollar figure on any of these promises. A number that sounds authoritative and was reverse-engineered from a public budget filing is worse than no number, because it invites a debate about arithmetic nobody can check. Costing this properly means enrollment projections, facilities condition assessments, staffing models, and plan-by-plan benefit pricing, which is professional work and it is not free. Donations to this campaign are what pay for it, and whatever is produced will be published in full, including the parts that are inconvenient.";
 
 export const HELP_OPTIONS = [
   {
