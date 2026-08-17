@@ -366,7 +366,12 @@ export type Priority = {
   summary: string;
   points: string[];
   /** Optional longer explanation of how a promise in this section gets done. */
-  detail?: { heading: string; paragraphs: string[] };
+  detail?: {
+    heading: string;
+    paragraphs: string[];
+    /** Only URLs read directly while writing this section. */
+    links?: { label: string; href: string }[];
+  };
 };
 
 export const PRIORITIES: Priority[] = [
@@ -386,11 +391,29 @@ export const PRIORITIES: Priority[] = [
       "Better healthcare for school staff, through the choices the district actually makes.",
     ],
     detail: {
-      heading: "How better healthcare for staff is possible",
+      heading: "What better healthcare for staff actually means here",
       paragraphs: [
-        "Two parts of the benefits line are not a board's to move. The employer pension contribution to the Teachers' Pension and Annuity Fund is paid by the State, and the share employees pay toward their premiums runs on a salary-tiered schedule written into state law under Chapter 78 and carried forward by Chapter 44. A candidate who promises to lower what a teacher pays out of their check by a board vote is promising something the board cannot deliver.",
-        "The rest of it is a district decision, voted on by the board. East Brunswick chooses whether to buy coverage through the state School Employees' Health Benefits Program or outside it, and boards are also allowed to form and join school-board joint insurance funds for health coverage. Even a district that stays in the state program for medical coverage may buy prescription and dental benefits separately, which means the pharmacy benefit contract is ours to bid and ours to write. Brokers and third-party administrators are procured under the Public School Contracts Law, so the terms are a board vote too.",
-        "Saqeeb's position is that those decisions should be made in public, with the cost and the coverage of each option on the table before the vote, instead of a renewal moving through the agenda without discussion. Where a plan design leaves staff paying for care they need, or the pharmacy contract is costing the district more than a competitive one would, that is the board's problem to fix. The State Comptroller's September 2025 report on health insurance funds is a reason to read those arrangements carefully rather than a reason to avoid them.",
+        "Here is how school employee coverage in New Jersey is put together. A district joins the School Employees' Health Benefits Program by passing a resolution, and it can leave the same way. It can buy the medical plan and nothing else, in which case the state's own rules say it has to offer a stand-alone prescription drug plan to everyone eligible, and it can add or drop the dental plans by separate resolution. So the pharmacy side and the dental side are contracts a board signs, not something handed down from Trenton.",
+        "The plan menu is set by state law. P.L. 2020, c.44 says the school program offers three plans carrying medical and prescription coverage — the New Jersey Educators Health Plan and NJ Direct 10 and 15 — plus a fourth, the Garden State Health Plan, and it fixes employee contributions for the Educators and Garden State plans as a percentage of salary. That schedule is not a board's to change. Neither is the pension side: under N.J.S.A. 18A:66-90 the State pays the Teachers' Pension and Annuity Fund contribution for district staff, and the district only reimburses the State for the portion of a salary paid out of federal money.",
+        "What is left over is real money and it is decided locally. Which program the district buys through, how the plan is designed, who administers it, who brokers it, and what the pharmacy contract says. In September 2025 the State Comptroller reported that one for-profit firm had effectively taken over the contracting of the health insurance funds serving hundreds of local governments and school boards, and that the Schools Health Insurance Fund alone paid that firm and its affiliate roughly $36 million between 2021 and 2025 without the required conflict disclosures. Saqeeb wants those renewals and those broker arrangements read out loud at a public meeting, with the alternatives priced, before the board votes on them. Benefits are $40,357,120 in the adopted budget, 38.43% of salaries and up $4.5 million in two years; a line that size deserves more than a consent-agenda vote.",
+      ],
+      links: [
+        {
+          label: "P.L. 2020, c.44 — school employee health plans and contributions",
+          href: "https://pub.njleg.gov/bills/2020/PL20/44_.HTM",
+        },
+        {
+          label: "NJ Division of Pensions & Benefits — SHBP/SEHBP employer administration manual",
+          href: "https://www.nj.gov/treasury/pensions/documents/guidebooks/epbam-shbp-sehbp.pdf",
+        },
+        {
+          label: "NJ State Comptroller, September 9, 2025 — health insurance funds report",
+          href: "https://www.nj.gov/comptroller/news/2025/20250909.shtml",
+        },
+        {
+          label: "NJDOE — TPAF contributions paid by the State (N.J.S.A. 18A:66-90)",
+          href: "https://www.nj.gov/education/broadcasts/2025/aug/27/FederalProgramsPensionandSocialSecurityReimbursementtotheStateofNewJerseyforContributionsPaidbytheState.pdf",
+        },
       ],
     },
   },
@@ -425,10 +448,16 @@ export const PRIORITIES: Priority[] = [
       "Audit the master plan, with public dashboards and community oversight.",
     ],
     detail: {
-      heading: "How building can lower a cost the district is already paying",
+      heading: "How building gets paid for, and what it changes",
       paragraphs: [
-        "Construction is not paid for out of the operating budget the dashboard breaks down. A school building program in New Jersey is financed by bonds the voters approve, with the state paying a share of the debt service, and it appears on the tax bill as debt service rather than inside the $209,216,947 general fund. The district's own capacity to pay for facilities out of pocket is close to gone: capital outlay is down 28.3% in two years and the capital reserve has fallen from $3.1 million to an estimated $256,697.",
-        "What building changes on the operating side is the recurring bill. Operations and maintenance runs $21.1 million a year in the proposed budget, and a share of that is repair work on buildings past their useful life. Whether a new building lowers that line, and by how much, is a question the district would have to answer with a facilities study; the filing does not contain the figures to answer it, and this campaign is not going to invent them.",
+        "Construction does not come out of the operating budget the dashboard breaks down. A district like East Brunswick — a Regular Operating District, in the state's language — puts a project through the Department of Education for eligibility review and then to the voters, and the state's share arrives either as debt service aid on the bonds or as a grant. Under the current grant program the state pays at least 40 percent of approved eligible costs, with the percentage set by the district's own aid percentage, and the district has to show it can cover the rest. That share lands on a tax bill as debt service, outside the $209,216,947 general fund.",
+        "Paying for buildings out of pocket is no longer an option here. Capital outlay is down 28.3% in two years and the capital reserve is projected at $256,697, against $3.1 million not long ago. Meanwhile operations and maintenance runs $21.1 million a year, part of it repair work on buildings well past the point where repair is the cheaper answer. Whether a new high school lowers that number, and by how much, is a facilities study question. The budget filing does not contain the figures to answer it, and this campaign is not going to make them up.",
+      ],
+      links: [
+        {
+          label: "NJDOE — grant program for school facilities projects in Regular Operating Districts",
+          href: "https://www.nj.gov/education/facilities/projectapplication/rod.shtml",
+        },
       ],
     },
   },
