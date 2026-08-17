@@ -38,6 +38,41 @@ export const SOURCES: Source[] = [
       "Every New Jersey district files a user-friendly budget and audited financials with the state. If a figure here is off, the state filing is what proves it.",
     href: "https://www.nj.gov/education/finance/fp/",
   },
+  {
+    id: "sehbp-law",
+    label: "P.L. 2020, c.44 — school employee health benefit plans",
+    detail:
+      "The law setting which plans the School Employees' Health Benefits Program offers and how employee contributions for the Educators and Garden State plans are calculated as a percentage of salary.",
+    href: "https://pub.njleg.gov/bills/2020/PL20/44_.HTM",
+  },
+  {
+    id: "sehbp-manual",
+    label: "NJ Division of Pensions & Benefits, SHBP/SEHBP employer administration manual",
+    detail:
+      "The manual describing how a district joins or leaves the state health program by resolution, and how medical, prescription drug, and dental coverage are elected separately.",
+    href: "https://www.nj.gov/treasury/pensions/documents/guidebooks/epbam-shbp-sehbp.pdf",
+  },
+  {
+    id: "osc-hif",
+    label: "NJ Office of the State Comptroller, September 9, 2025",
+    detail:
+      "The report finding conflicts of interest and procurement violations in the health insurance funds that serve local governments and school boards, including about $36 million paid by the Schools Health Insurance Fund to one firm and its affiliate from 2021 to 2025.",
+    href: "https://www.nj.gov/comptroller/news/2025/20250909.shtml",
+  },
+  {
+    id: "tpaf",
+    label: "NJDOE, TPAF and Social Security contributions paid by the State",
+    detail:
+      "The NJDOE notice citing N.J.S.A. 18A:66-90, under which the State pays the pension contribution for district staff and districts reimburse only the portion tied to federally funded salaries.",
+    href: "https://www.nj.gov/education/broadcasts/2025/aug/27/FederalProgramsPensionandSocialSecurityReimbursementtotheStateofNewJerseyforContributionsPaidbytheState.pdf",
+  },
+  {
+    id: "rod-grants",
+    label: "NJDOE, grant program for school facilities projects in Regular Operating Districts",
+    detail:
+      "The state page setting out that districts are eligible for at least 40 percent of approved eligible project costs, with the balance raised locally.",
+    href: "https://www.nj.gov/education/facilities/projectapplication/rod.shtml",
+  },
 ];
 
 export type Assumption = {

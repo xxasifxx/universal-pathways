@@ -108,6 +108,22 @@ function Priorities() {
                     {para}
                   </p>
                 ))}
+                {p.detail.links?.length ? (
+                  <ul className="mt-5 flex flex-col gap-2 text-sm">
+                    {p.detail.links.map((link) => (
+                      <li key={link.href}>
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-primary underline underline-offset-4 hover:opacity-80"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </div>
             ) : null}
           </section>
