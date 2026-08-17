@@ -6,10 +6,12 @@ import {
   CANDIDATE_STORY,
   COST_STUDY_NOTE,
   DEBATE,
+  HELP_OPTIONS,
   LEVER_LABELS,
   PRIORITIES,
   type LeverKind,
 } from "@/lib/campaign";
+import { useVolunteerModal } from "@/components/volunteer-modal";
 
 const LEVER_TAG: Record<LeverKind, string> = {
   budget: "bg-gold text-gold-foreground",
