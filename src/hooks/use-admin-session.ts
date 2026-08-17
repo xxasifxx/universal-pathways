@@ -8,6 +8,7 @@ type AdminSessionState = {
   loading: boolean;
   session: Session | null;
   isAdmin: boolean;
+  isReviewer: boolean;
 };
 
 export function useAdminSession(): AdminSessionState {
@@ -15,6 +16,7 @@ export function useAdminSession(): AdminSessionState {
     loading: true,
     session: null,
     isAdmin: false,
+    isReviewer: false,
   });
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export function useAdminSession(): AdminSessionState {
 
     const checkRole = (session: Session | null) => {
       if (!session) {
-        if (active) setState({ loading: false, session: null, isAdmin: false });
+        if (active) setState({ loading: false, session: null, isAdmin: false, isReviewer: false });
         return;
       }
       // Never await inside the auth callback — it deadlocks the Supabase client.
@@ -31,13 +33,17 @@ export function useAdminSession(): AdminSessionState {
           .from("user_roles")
           .select("role")
           .eq("user_id", session.user.id)
-          .eq("role", "admin")
-          .maybeSingle()
           .then(({ data }) => {
             if (!active) return;
-            const isAdmin = Boolean(data);
+            const roles = (data ?? []).map((r) => String(r.role));
+            const isAdmin = roles.includes("admin");
             if (isAdmin) setTrackingDisabled(true);
-            setState({ loading: false, session, isAdmin });
+            setState({
+              loading: false,
+              session,
+              isAdmin,
+              isReviewer: isAdmin || roles.includes("reviewer"),
+            });
           });
       }, 0);
     };
