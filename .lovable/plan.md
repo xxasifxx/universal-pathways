@@ -12,23 +12,26 @@ platform, panel 3 open   active 18s  expands 3   pages 2   -> no nudge
 platform, panel 4 open   active 20s  expands 4   pages 2   -> nudge appears
 ```
 
-Twenty seconds and four clicks is not a reader. Opening four panels counts for as much as forty seconds of reading, and scroll credit restarts on every page, so someone who reads three pages halfway gets less credit than someone who jumps to the bottom of one.
+The timing is fine — someone twenty seconds in who has opened panels is interested, and that is exactly who we want to catch. The problem is what earns the credit: opening four panels counts for as much as forty seconds of reading, and scroll credit restarts on every page, so someone who reads three pages halfway gets less credit than someone who jumps to the bottom of one.
 
 ## What changes
 
-Score the thing that actually signals interest: time spent below the top of the page, added up across the whole visit.
+Keep the bar where it is — reachable in well under a minute — and make it measure time spent below the top of the page, added up across the whole visit, so a few browsing patterns all get there rather than just the one.
 
-- Track "engaged time" separately from raw active time — the clock only runs while the page is scrolled past the first screen and the tab is visible. That becomes the main input.
-- Carry engaged time, scroll credit, and panel opens across page changes in the existing session record, so following links keeps adding up instead of starting over.
-- Give scroll credit per page and total it across the visit (reading half of three pages should beat skimming the bottom of one), with a cap so no single page dominates.
-- Cut what a panel click is worth and cap it lower. Opening panels should nudge the score, never carry it.
-- Raise the floor: a nudge needs roughly a minute of engaged time across the visit, or somewhat less when spread over more than one page. Minimum session length goes from 20 seconds to 45.
+- Track "engaged time": the clock runs while the tab is visible and the page is scrolled past the first screen. Time parked on a hero counts for little; time down in the content counts.
+- Carry engaged time, scroll credit, and panel opens across page changes, so following links keeps adding up instead of restarting.
+- Total scroll credit across pages rather than per page — reading half of three pages should beat skimming the bottom of one.
+- Keep panel opens worth something but cap them lower, so opening everything is one route to the nudge and not the fastest one.
+- Keep the 20-second minimum and the roughly-30-second practical arrival. A referred visitor who reads a bit of one page should still see it.
 
-Expected result from the same walk: nothing at 20 seconds; the nudge lands once the visitor has spent around a minute below the fold, whether that came from one long page or three shorter ones.
+Then make the offer worth showing. The pill currently says "Want to help? Two hours is enough." — that asks for labour first. Lead with the free yard sign, then the volunteer ask: something like "Want a free yard sign? We'll drop one off — and there's a spot on the team if you want it." Opening it lands on the same signup form with the yard-sign option already checked.
+
+Expected result from the same walk: the nudge still lands around the 20-30 second mark, but a visitor who quietly reads two pages without clicking anything now gets there too.
 
 ## Technical notes
 
-- `src/hooks/use-reading-intent.ts` — add an `engagedMs` accumulator (ticks only when `visibilityState === "visible"` and `window.scrollY > innerHeight * 0.4`), persist `engagedMs` plus a per-path scroll map in the `lv_reading_state` session record, rebalance weights (engaged time up to ~60 pts, summed scroll depth up to ~25, expands 6 pts each capped at 18, extra pages 10 each capped at 20), `THRESHOLD` 90, `MIN_SESSION_MS` 45s.
+- `src/hooks/use-reading-intent.ts` — add an `engagedMs` accumulator (ticks only when `visibilityState === "visible"` and `window.scrollY > innerHeight * 0.4`), persist `engagedMs` plus a per-path scroll map in the `lv_reading_state` session record, rebalance weights (engaged time ~2 pts/sec capped at 55, summed scroll depth capped at 30, expands 6 pts each capped at 18, extra pages 12 each capped at 24). `THRESHOLD` stays 70, `MIN_SESSION_MS` stays 20s.
+- `src/components/volunteer-prompt.tsx` — new copy leading with the yard sign; open the modal with the yard-sign option preselected (`openVolunteer({ source: "prompt", defaultHelp: ["yard-sign"] })`, already supported by the modal's preset prop).
 - The `reading_intent_reached` signal keeps its shape; `meta` gains `engaged_ms` so the admin intent view can be checked against real visits.
 - Re-run the same scripted walk afterwards and report the observed timings.
 - Separately: the district dashboard logs a hydration mismatch (`$15M` vs `$15.0M`) from the compact currency formatter rendering differently on server and client. Fix by formatting that figure deterministically instead of through `Intl` compact notation.
