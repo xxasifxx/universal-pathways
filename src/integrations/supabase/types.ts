@@ -133,34 +133,40 @@ export type Database = {
         Row: {
           anchor: string | null
           author_email: string | null
-          author_id: string
+          author_id: string | null
           body: string
           created_at: string
           draft_key: string
           id: string
           resolved: boolean
+          reviewer_name: string | null
+          source: string
           updated_at: string
         }
         Insert: {
           anchor?: string | null
           author_email?: string | null
-          author_id: string
+          author_id?: string | null
           body: string
           created_at?: string
           draft_key: string
           id?: string
           resolved?: boolean
+          reviewer_name?: string | null
+          source?: string
           updated_at?: string
         }
         Update: {
           anchor?: string | null
           author_email?: string | null
-          author_id?: string
+          author_id?: string | null
           body?: string
           created_at?: string
           draft_key?: string
           id?: string
           resolved?: boolean
+          reviewer_name?: string | null
+          source?: string
           updated_at?: string
         }
         Relationships: []
@@ -174,6 +180,7 @@ export type Database = {
           status: string
           updated_at: string
           updated_by: string | null
+          updated_by_name: string | null
         }
         Insert: {
           created_at?: string
@@ -183,6 +190,7 @@ export type Database = {
           status?: string
           updated_at?: string
           updated_by?: string | null
+          updated_by_name?: string | null
         }
         Update: {
           created_at?: string
@@ -192,6 +200,7 @@ export type Database = {
           status?: string
           updated_at?: string
           updated_by?: string | null
+          updated_by_name?: string | null
         }
         Relationships: []
       }
