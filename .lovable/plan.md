@@ -1,36 +1,49 @@
-# Pull back the public platform until the September 30 debate
+# Lower the volume, keep the substance
 
-The detailed pages read as fixed positions this early in the race. This moves the position-taking behind a review wall, keeps the factual material public, and turns the debate date into the reason for the pause.
+The problem isn't that the site says what Saqeeb cares about — it's the register. Twenty-two promises with lever panels and budget mechanics read as a first-time candidate who has already decided how the district should run. The fix is to keep the priorities page, keep the why, and change how certain it sounds. Nothing gets hidden and nothing gets swapped out from under a reader.
 
-## 1. Public site changes
+## The why, stated once and stated well
 
-**/priorities becomes a holding page.** Countdown to the September 30 debate, a short note that the full platform is published at the conclusion of the debate, the candidate's own background in his words, and the existing question form inline ("ask a question and he'll answer it"). No promises, no lever panels.
+Saqeeb's background — Special Education placement that followed him for six years, self-advocacy alongside his immigrant parents, summa cum laude in Psychology, Master's in Data Science — is the reason he's interested in how this district sorts kids. Right now the site doesn't say it, and without it the priorities float free.
 
-**/pilot and /dashboard stay, stripped of advocacy.** Same verified figures and sources, same charts. Removed: every "what we would do", "Saqeeb will fight for" framing, the CTA blocks that push toward the platform page, and any sentence that infers a policy conclusion from a budget line. They read as explainers a resident wrote, not a manifesto.
+It goes in two places, written as his own account rather than a story about him:
+- A short version on the home page, immediately under the hero, in his voice.
+- The fuller version opening the priorities page, so every priority below it reads as something that came from somewhere.
 
-**Navigation.** Priorities, District dashboard and PILOT deals come out of the header nav. The footer keeps the dashboard and PILOT links; priorities points at the countdown page. Home page loses its "read the platform" CTA and instead points at the question form and the countdown. All three URLs stay live and stay in the sitemap so nothing already shared breaks.
+## Priorities: interests, not commitments
 
-**Home page.** The "Saqeeb will fight for" band softens into three topics he's focused on, without commitments. Add the background story from the candidate's own words.
+The three sections stay — Affordability, Students First, Reduce Costs — and so do the specific things he's interested in. What changes is the frame and the volume.
 
-## 2. Draft platform area for reviewers
+- The page opens with the why, then a plain statement: he's running for the first time, these are the things he intends to pursue, and how far each can go depends on what a board actually controls and what he learns in the seat.
+- Promise wording moves from "we would" to what he wants to look at and push for. "Universally paid full-day Pre-K" becomes his goal, not a guarantee he can deliver it.
+- The disclosure panels stay, because they're the honest part — they show the budget line or state rule involved and say what nobody can answer yet. Their tone shifts from "here's the lever we'll pull" to "here's what constrains this, and here's what I'd need to find out." The verified facts and sources stay exactly as they are.
+- The "what it would cost / fund the study" section stays but stops asking for money to prove a point; it explains why he isn't putting price tags on things he hasn't costed.
 
-The full current content — the three priorities with their lever panels, sources and open questions, plus the advocacy passages pulled out of the two explainers, plus the fifteen debate questions as a working answer sheet — moves into a private drafting area at `/admin/drafts`.
+## Explainers: facts, no conclusions
 
-Two ways in, as you asked:
-- **Reviewer accounts.** A new `reviewer` role. Reviewers see the drafts area only — never voters, intent, replays or exports. Existing admins see everything as today.
-- **Passcode link.** A private URL plus a shared passcode for outside readers, verified server-side, rotatable, read-only.
+`/dashboard` and `/pilot` keep every verified figure, chart and source. What comes out is the inference at the end of each — the sentences that take a budget line and turn it into a position. A resident should be able to read both, disagree with Saqeeb, and still find them useful. The CTA blocks that push from an explainer into the platform come out too.
 
-Reviewers can read every draft and leave a comment per section. Comments show up in the drafts view with who left them and when.
+## The debate
 
-## 3. Researcher as a volunteer option
+The first debate is September 30. Rather than gating anything, a small line on the priorities page notes that he's answering fifteen specific questions there and invites people to send their own through the contact form — which is already on the home page. It sets the expectation that his positions get sharper after he's answered publicly, without withholding what he thinks now.
 
-A fourth option in the volunteer form: "Help review the platform (research)", with a short "what background do you bring?" field so you can vet requests before handing out access. It flows through the existing submission and email path.
+## Reviewer drafts
+
+The material that shouldn't be public yet — full answers to the fifteen debate questions, and any promise language still being worked out — lives in a private drafting area at `/admin/drafts`, reachable two ways: a `reviewer` role for accounts, and a passcode link for outside readers. Reviewers see only the drafts, never voters or intent data, and can comment per section.
+
+The volunteer form gains a "Help review the platform (research)" option with a short "what background do you bring?" field so you can vet requests before handing out access.
+
+## Home page
+
+The priorities block is doing too much talking. It keeps the three headings and one line each, drops the paragraph-length elaboration, and links through to the priorities page for the rest. The "Saqeeb will fight for" band keeps its three flyer items; the verb softens.
 
 ## Technical notes
 
-- New `src/routes/priorities.tsx` holding page; the current page body and its data move to a draft-only component. Countdown is client-side against a `DEBATE_DATE` constant in `src/lib/campaign.ts`, with an SSR-safe static fallback.
-- `src/lib/campaign.ts` keeps `PRIORITIES` and `PROMISE_COST_LENS` but they are imported only by the admin drafts route, so they no longer reach public pages.
-- Migration: add `reviewer` to the `app_role` enum; new `platform_drafts` and `draft_comments` tables with grants and RLS scoped through `has_role`; a hashed passcode row checked by a server function that issues a short-lived read-only cookie. Passcode readers get read-only access; only signed-in reviewers can comment.
-- `src/components/admin/admin-shell.tsx` gains role-aware nav so reviewers see one item.
-- Volunteer form: extend `HELP_OPTIONS` with `researcher` plus a zod-validated, length-capped free-text field; notification email includes it.
-- Head metadata updated on all three public pages so the countdown page describes itself accurately and the explainers no longer advertise a platform.
+- `src/lib/campaign.ts`: rewrite the copy in `PRIORITIES` (summaries, point text, panel `mechanism` and `openQuestion` prose) — the structure, `LeverKind` tags, and every source URL stay untouched. Add a `CANDIDATE_STORY` export for the background, short and long form, and a `DEBATE` constant.
+- `src/routes/priorities.tsx`: new intro block (story + first-time framing + debate note); existing sticky nav, two-column layout and `<details>` panels unchanged.
+- `src/routes/index.tsx`: story block under the hero; trim `PLATFORM_HIGHLIGHTS` rendering to heading + one line; soften `FIGHT_FOR` verb.
+- `src/routes/dashboard.tsx`, `src/routes/pilot.tsx`, `src/components/budget-insights.tsx`: remove closing inference sections and platform CTAs; figures, charts and sources unchanged.
+- Navigation stays as it is — nothing is removed from the header, footer or sitemap.
+- Migration: add `reviewer` to the `app_role` enum; `platform_drafts` and `draft_comments` tables with grants and RLS via `has_role`; hashed passcode checked by a server function issuing a short-lived read-only cookie. `src/components/admin/admin-shell.tsx` gets role-aware nav.
+- Volunteer form: add a `researcher` entry to `HELP_OPTIONS` plus a zod-validated, length-capped free-text field, included in the notification email.
+- Update `head()` descriptions on the pages whose framing changes.
