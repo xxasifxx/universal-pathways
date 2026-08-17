@@ -454,7 +454,8 @@ export const PRIORITIES: Priority[] = [
       {
         text: "Universally paid public full-day Pre-K.",
         detail: {
-          budgetLine: "Nothing in the general fund today",
+          leverKind: "budget",
+          lever: "Nothing in the general fund today",
           mechanism: [
             "The adopted 2026-27 budget carries no preschool appropriation and no preschool education aid in its state aid list. Enrollment is counted from kindergarten up, at 8,559 students on roll. A district that wants full-day Pre-K applies to the state for preschool education aid and builds the program around what it gets.",
           ],
@@ -466,7 +467,8 @@ export const PRIORITIES: Priority[] = [
       {
         text: "Zero fees on student clubs & activities, including arts & sports.",
         detail: {
-          budgetLine: "Athletics, cocurricular activities, miscellaneous revenue",
+          leverKind: "budget",
+          lever: "Athletics, cocurricular activities, miscellaneous revenue",
           mechanism: [
             "Athletics is budgeted at $1.3 million and cocurricular activities at $0.4 million. Extracurricular cost per pupil has gone from $233 in 2023-24 to $273 in 2026-27. Participation fees are revenue, so dropping them means either finding the money elsewhere in the budget or shrinking what the program spends.",
           ],
@@ -481,7 +483,8 @@ export const PRIORITIES: Priority[] = [
       {
         text: "Hire teaching support staff in-house, not outside providers.",
         detail: {
-          budgetLine: "Student support services, out-of-district tuition",
+          leverKind: "budget",
+          lever: "Student support services, out-of-district tuition",
           mechanism: [
             "Student support services total $23.2 million, including $5.0 million in extraordinary services and $3.7 million in speech, occupational, and physical therapy. Out-of-district tuition is the fastest-growing line in the whole budget, up 54.5% in two years to $6.6 million, and the district's own budget update lists out-of-district placements and contracted services as a $2,027,781 increase for this year.",
           ],
@@ -496,7 +499,8 @@ export const PRIORITIES: Priority[] = [
       {
         text: "Better language programs for incoming families.",
         detail: {
-          budgetLine: "Bilingual education, inside instruction",
+          leverKind: "budget",
+          lever: "Bilingual education, inside instruction",
           mechanism: [
             "Bilingual education is budgeted at $1.5 million within the $73.0 million instruction total.",
           ],
@@ -508,7 +512,8 @@ export const PRIORITIES: Priority[] = [
       {
         text: "End lunch debt.",
         detail: {
-          budgetLine: "Outside the general fund",
+          leverKind: "budget",
+          lever: "Outside the general fund",
           mechanism: [
             "Food service runs as its own enterprise fund, so it does not appear in the $209,216,947 general fund the dashboard breaks down. Clearing meal balances is a board decision about that fund, not a line item competing with classroom spending.",
           ],
@@ -520,7 +525,8 @@ export const PRIORITIES: Priority[] = [
       {
         text: "Better healthcare for school staff, through the choices the district actually makes.",
         detail: {
-          budgetLine: "Personal services — employee benefits, $40,357,120",
+          leverKind: "budget",
+          lever: "Personal services — employee benefits, $40,357,120",
           mechanism: [
             "Benefits are 38.43% of salaries in the adopted budget, up from 30.16% in 2023-24, and the district's own budget update names health premiums as its largest cost driver this year: a 22% increase, $7,934,618.",
             "A district joins the state School Employees' Health Benefits Program by resolution and can leave the same way. It can buy the medical plan alone, in which case it has to offer a stand-alone prescription drug plan, and it adds or drops dental by separate resolution. The pharmacy contract, the administrator, and the broker are things a board signs.",
@@ -564,7 +570,8 @@ export const PRIORITIES: Priority[] = [
       {
         text: "A new high school for 9th through 12th.",
         detail: {
-          budgetLine: "Outside the general fund, on the tax bill as debt service",
+          leverKind: "budget",
+          lever: "Outside the general fund, on the tax bill as debt service",
           mechanism: [
             "The board reviewed the options in public on June 4. Moving the temporary classroom units from Churchill to the high school campus was put at about $11 million and could not happen before September 2027. A ninth-grade academy attached to the high school was put at roughly $45 to $49 million in construction alone, before soft costs, fees, and contingencies. A new high school was discussed at $325 to $350 million in hard costs, and a district official said a project that size cannot come out of the operating budget: it needs a bond referendum.",
             "None of that runs through the $209,216,947 general fund the dashboard breaks down. It reaches voters as a referendum and then appears on tax bills as debt service.",
@@ -578,7 +585,8 @@ export const PRIORITIES: Priority[] = [
       {
         text: "Use state construction bonds to build better, more sustainable facilities with lower maintenance.",
         detail: {
-          budgetLine: "Capital outlay $8.4 million, capital reserve $256,697",
+          leverKind: "budget",
+          lever: "Capital outlay $8.4 million, capital reserve $256,697",
           mechanism: [
             "East Brunswick is what the state calls a Regular Operating District. A project goes to the Department of Education for eligibility review and then to the voters, and the state's share comes back as debt service aid on the bonds or as a grant. Under the current grant program a district is eligible for at least 40 percent of approved eligible project costs, set by its own aid percentage, and has to show local funding for the rest.",
             "Paying out of pocket is no longer realistic here. Capital outlay is down 28.3% in two years and the capital reserve is projected at $256,697, against $3.1 million not long ago.",
@@ -591,7 +599,8 @@ export const PRIORITIES: Priority[] = [
       {
         text: "Remove lead and address TMAs.",
         detail: {
-          budgetLine: "Operations and maintenance, $21.1 million",
+          leverKind: "budget",
+          lever: "Operations and maintenance, $21.1 million",
           mechanism: [
             "Operations and maintenance runs $21.1 million a year, down 3.9%, and part of it is repair work on buildings well past the point where repair is the cheaper answer. Board members went through the high school's aging infrastructure on June 4: cafeteria and gym limits, classroom conditions, roof and plumbing issues.",
           ],
