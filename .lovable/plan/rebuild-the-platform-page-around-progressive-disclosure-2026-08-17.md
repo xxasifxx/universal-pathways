@@ -42,6 +42,10 @@ Currently verified and usable: P.L. 2020 c.44 (plan menu, salary-percentage cont
 
 If you want firmer ground before the rewrite — East Brunswick's own board minutes on the benefits renewal, the district's long-range facilities plan — say so and I will fetch those first and build the panels around them instead.
 
+&nbsp;
+
+user responds: please do so.
+
 ## Technical notes
 
 - `src/lib/campaign.ts`: each priority's `points` becomes objects (`text`, optional `budgetLine`, `filingSays`, `filingDoesNotSay`, `mechanism`, `links`). `PROMISE_COST_LENS` folds into those bullets and is deleted; the `detail` field on `Priority` is deleted and its prose redistributed, shortened, into the bullets it belongs to.

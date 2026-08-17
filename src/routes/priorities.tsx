@@ -1,13 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, ChevronRight } from "lucide-react";
 
-import {
-  actblueUrl,
-  COST_STUDY_NOTE,
-  PITCH,
-  PRIORITIES,
-  PROMISE_COST_LENS,
-} from "@/lib/campaign";
+import { actblueUrl, COST_STUDY_NOTE, PITCH, PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
 const TITLE = "Our Platform for East Brunswick Schools";
@@ -93,39 +87,65 @@ function Priorities() {
               </h2>
             </div>
             <p className="mt-5 max-w-3xl text-lg leading-relaxed">{p.summary}</p>
-            <ul className="mt-6 flex max-w-3xl list-disc flex-col gap-3 pl-5 text-base leading-relaxed text-muted-foreground">
+            <ul className="mt-6 flex max-w-3xl flex-col divide-y divide-border border-y border-border">
               {p.points.map((point) => (
-                <li key={point.slice(0, 32)}>{point}</li>
+                <li key={point.text.slice(0, 40)}>
+                  {point.detail ? (
+                    <details className="group">
+                      <summary className="flex cursor-pointer list-none items-start gap-3 py-4 text-base leading-relaxed marker:hidden hover:text-primary">
+                        <ChevronRight
+                          aria-hidden="true"
+                          className="mt-1 size-5 shrink-0 text-primary transition-transform group-open:rotate-90"
+                        />
+                        <span className="flex-1">{point.text}</span>
+                        <span className="mt-0.5 hidden shrink-0 font-display text-xs uppercase tracking-wide text-muted-foreground sm:inline">
+                          What this touches
+                        </span>
+                      </summary>
+                      <div className="pb-6 pl-8 pr-1">
+                        <p className="font-display text-sm font-bold uppercase tracking-wide text-primary">
+                          {point.detail.budgetLine}
+                        </p>
+                        {point.detail.mechanism.map((para) => (
+                          <p key={para.slice(0, 32)} className="mt-3 text-base leading-relaxed">
+                            {para}
+                          </p>
+                        ))}
+                        <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                          <span className="font-semibold text-foreground">
+                            What nobody can answer yet:{" "}
+                          </span>
+                          {point.detail.openQuestion}
+                        </p>
+                        {point.detail.sources?.length ? (
+                          <p className="mt-3 text-sm text-muted-foreground">
+                            <span className="font-semibold text-foreground">Sources: </span>
+                            {point.detail.sources.map((source, i) => (
+                              <span key={source.href}>
+                                {i > 0 ? "; " : null}
+                                <a
+                                  href={source.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="font-semibold text-primary underline underline-offset-4 hover:opacity-80"
+                                >
+                                  {source.label}
+                                </a>
+                              </span>
+                            ))}
+                          </p>
+                        ) : null}
+                      </div>
+                    </details>
+                  ) : (
+                    <p className="flex items-start gap-3 py-4 text-base leading-relaxed text-muted-foreground">
+                      <span aria-hidden="true" className="mt-1 size-5 shrink-0" />
+                      <span className="flex-1">{point.text}</span>
+                    </p>
+                  )}
+                </li>
               ))}
             </ul>
-            {p.detail ? (
-              <div className="mt-8 max-w-3xl border-l-4 border-gold pl-5 sm:pl-6">
-                <h3 className="font-display text-xl uppercase leading-tight text-primary sm:text-2xl">
-                  {p.detail.heading}
-                </h3>
-                {p.detail.paragraphs.map((para) => (
-                  <p key={para.slice(0, 32)} className="mt-4 text-base leading-relaxed">
-                    {para}
-                  </p>
-                ))}
-                {p.detail.links?.length ? (
-                  <ul className="mt-5 flex flex-col gap-2 text-sm">
-                    {p.detail.links.map((link) => (
-                      <li key={link.href}>
-                        <a
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-semibold text-primary underline underline-offset-4 hover:opacity-80"
-                        >
-                          {link.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </div>
-            ) : null}
           </section>
         ))}
       </div>
@@ -136,37 +156,10 @@ function Priorities() {
         className="scroll-mt-24 border-t border-border bg-secondary/50 py-14 sm:py-20"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="eyebrow text-primary">What it would cost</p>
-          <h2 id="cost-heading" className="mt-3 max-w-3xl text-3xl leading-[1.1] sm:text-4xl">
-            Every promise against the line it moves
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Each promise below is matched to the part of the adopted 2026-27 budget it would touch,
-            with the figure the filing actually prints and the question the filing leaves open. The
-            dashboard is the source for every dollar amount here, so the two pages say the same
-            thing.
-          </p>
-
-          <ul className="mt-10 grid gap-4 lg:grid-cols-2">
-            {PROMISE_COST_LENS.map((item) => (
-              <li key={item.id} className="rounded-xl border border-border bg-card p-6">
-                <h3 className="text-xl leading-snug">{item.promise}</h3>
-                <p className="mt-2 font-display text-sm font-bold uppercase tracking-wide text-primary">
-                  {item.budgetLine}
-                </p>
-                <p className="mt-4 text-sm leading-relaxed">{item.filingSays}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  <span className="font-semibold text-foreground">What the filing cannot tell you: </span>
-                  {item.filingDoesNotSay}
-                </p>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-10 max-w-3xl border-l-4 border-gold pl-5 sm:pl-6">
-            <h3 className="font-display text-xl uppercase leading-tight text-primary sm:text-2xl">
+          <div className="max-w-3xl border-l-4 border-gold pl-5 sm:pl-6">
+            <h2 id="cost-heading" className="font-display text-xl uppercase leading-tight text-primary sm:text-2xl">
               Why there is no price tag on this page
-            </h3>
+            </h2>
             <p className="mt-4 text-base leading-relaxed">{COST_STUDY_NOTE}</p>
             <div className="mt-6 flex flex-wrap gap-4">
               <a
