@@ -359,193 +359,237 @@ export const ENROLLMENT = {
   privatePlacements: 57,
 } as const;
 
+/** A source that was fetched and read while writing the copy it supports. */
+export type PromiseSource = { label: string; href: string };
+
+/**
+ * What sits behind a single promise: how it works, what the adopted FY2027
+ * filing prints for it, and what nobody can answer yet. No cost estimate is
+ * claimed anywhere; the published budget does not contain the figures a real
+ * costing would need.
+ */
+export type PromiseDetail = {
+  /** The line in the dashboard this promise moves, if it is in the general fund. */
+  budgetLine: string;
+  /** How the thing actually works, in plain sentences. */
+  mechanism: string[];
+  /** What the filing does not answer, and would have to be studied. */
+  openQuestion: string;
+  sources?: PromiseSource[];
+};
+
+export type PriorityPoint = {
+  text: string;
+  detail?: PromiseDetail;
+};
+
 export type Priority = {
   id: string;
   number: string;
   title: string;
   summary: string;
-  points: string[];
-  /** Optional longer explanation of how a promise in this section gets done. */
-  detail?: {
-    heading: string;
-    paragraphs: string[];
-    /** Only URLs read directly while writing this section. */
-    links?: { label: string; href: string }[];
-  };
+  points: PriorityPoint[];
 };
+
+const SRC = {
+  budget: {
+    label: "EBPS FY2027 User Friendly Budget",
+    href: "https://www.ebnet.org/departments/financial-services/budget-information/fy2027-user-friendly-budget",
+  },
+  districtSlide: {
+    label: "EBPS 2026-27 budget update, key cost drivers",
+    href: "https://resources.finalsite.net/images/v1777405230/ebnetorg/zslvknbaz9utdrzk6lhg/BudgetInformationforWebsite4152026page3.pdf",
+  },
+  ch44: {
+    label: "P.L. 2020, c.44",
+    href: "https://pub.njleg.gov/bills/2020/PL20/44_.HTM",
+  },
+  epbam: {
+    label: "NJ Pensions & Benefits, SHBP/SEHBP employer manual",
+    href: "https://www.nj.gov/treasury/pensions/documents/guidebooks/epbam-shbp-sehbp.pdf",
+  },
+  osc: {
+    label: "NJ State Comptroller, September 9, 2025",
+    href: "https://www.nj.gov/comptroller/news/2025/20250909.shtml",
+  },
+  tpaf: {
+    label: "NJDOE, TPAF contributions paid by the State",
+    href: "https://www.nj.gov/education/broadcasts/2025/aug/27/FederalProgramsPensionandSocialSecurityReimbursementtotheStateofNewJerseyforContributionsPaidbytheState.pdf",
+  },
+  rod: {
+    label: "NJDOE, facilities grants for Regular Operating Districts",
+    href: "https://www.nj.gov/education/facilities/projectapplication/rod.shtml",
+  },
+  ninthGrade: {
+    label: "Eyes on EB, June 4 board meeting on ninth grade and facilities",
+    href: "https://eyesoneb.com/what-should-east-brunswick-do-about-ninth-grade-board-reviews-multi-million-dollar-options/",
+  },
+} as const;
 
 export const PRIORITIES: Priority[] = [
   {
     id: "affordable-for-all",
     number: "01",
     title: "Affordable for All",
-    summary: "Every student should be able to take part, get support, and learn without families paying for basic opportunities.",
+    summary:
+      "Every student should be able to take part, get support, and learn without families paying for basic opportunities.",
     points: [
-      "Universally paid public full-day Pre-K.",
-      "Zero fees on student clubs & activities, including arts & sports.",
-      "Fully funded schools so parents aren’t paying out of pocket for basic opportunities.",
-      "Hire teaching support staff in-house, not outside providers.",
-      "Protect and improve special education, mental health, and early intervention.",
-      "Better language programs for incoming families.",
-      "End lunch debt.",
-      "Better healthcare for school staff, through the choices the district actually makes.",
+      {
+        text: "Universally paid public full-day Pre-K.",
+        detail: {
+          budgetLine: "Nothing in the general fund today",
+          mechanism: [
+            "The adopted 2026-27 budget carries no preschool appropriation and no preschool education aid in its state aid list. Enrollment is counted from kindergarten up, at 8,559 students on roll. A district that wants full-day Pre-K applies to the state for preschool education aid and builds the program around what it gets.",
+          ],
+          openQuestion:
+            "How many three- and four-year-olds would enroll, what per-child rate the district would qualify for, and what rooms, staff, and buses a full-day program needs. None of that is in a budget filing.",
+          sources: [SRC.budget],
+        },
+      },
+      {
+        text: "Zero fees on student clubs & activities, including arts & sports.",
+        detail: {
+          budgetLine: "Athletics, cocurricular activities, miscellaneous revenue",
+          mechanism: [
+            "Athletics is budgeted at $1.3 million and cocurricular activities at $0.4 million. Extracurricular cost per pupil has gone from $233 in 2023-24 to $273 in 2026-27. Participation fees are revenue, so dropping them means either finding the money elsewhere in the budget or shrinking what the program spends.",
+          ],
+          openQuestion:
+            "How much families actually pay. Fee income is not broken out anywhere in the filing; it sits inside $2,455,107 of miscellaneous revenue with rentals, interest, and other local receipts.",
+          sources: [SRC.budget],
+        },
+      },
+      {
+        text: "Fully funded schools so parents aren’t paying out of pocket for basic opportunities.",
+      },
+      {
+        text: "Hire teaching support staff in-house, not outside providers.",
+        detail: {
+          budgetLine: "Student support services, out-of-district tuition",
+          mechanism: [
+            "Student support services total $23.2 million, including $5.0 million in extraordinary services and $3.7 million in speech, occupational, and physical therapy. Out-of-district tuition is the fastest-growing line in the whole budget, up 54.5% in two years to $6.6 million, and the district's own budget update lists out-of-district placements and contracted services as a $2,027,781 increase for this year.",
+          ],
+          openQuestion:
+            "How much of this work is contracted out today rather than staffed in-house, and what a district position costs against the agency rate once benefits are counted.",
+          sources: [SRC.budget, SRC.districtSlide],
+        },
+      },
+      {
+        text: "Protect and improve special education, mental health, and early intervention.",
+      },
+      {
+        text: "Better language programs for incoming families.",
+        detail: {
+          budgetLine: "Bilingual education, inside instruction",
+          mechanism: [
+            "Bilingual education is budgeted at $1.5 million within the $73.0 million instruction total.",
+          ],
+          openQuestion:
+            "How many students arrive each year needing language support, and what a bridge program adds on top of the existing bilingual staffing.",
+          sources: [SRC.budget],
+        },
+      },
+      {
+        text: "End lunch debt.",
+        detail: {
+          budgetLine: "Outside the general fund",
+          mechanism: [
+            "Food service runs as its own enterprise fund, so it does not appear in the $209,216,947 general fund the dashboard breaks down. Clearing meal balances is a board decision about that fund, not a line item competing with classroom spending.",
+          ],
+          openQuestion:
+            "The current unpaid balance, how many students carry one, and how many already qualify for free or reduced-price meals.",
+          sources: [SRC.budget],
+        },
+      },
+      {
+        text: "Better healthcare for school staff, through the choices the district actually makes.",
+        detail: {
+          budgetLine: "Personal services — employee benefits, $40,357,120",
+          mechanism: [
+            "Benefits are 38.43% of salaries in the adopted budget, up from 30.16% in 2023-24, and the district's own budget update names health premiums as its largest cost driver this year: a 22% increase, $7,934,618.",
+            "A district joins the state School Employees' Health Benefits Program by resolution and can leave the same way. It can buy the medical plan alone, in which case it has to offer a stand-alone prescription drug plan, and it adds or drops dental by separate resolution. The pharmacy contract, the administrator, and the broker are things a board signs.",
+            "Two pieces are not the board's. State law fixes the plan menu — the Educators plan, NJ Direct 10 and 15, and the Garden State plan — and sets employee contributions for the Educators and Garden State plans as a percentage of salary. And the State, not the district, pays the pension contribution for teaching staff; the district reimburses only the share of a salary paid with federal money.",
+            "What is left is worth reading carefully. In September 2025 the State Comptroller found that one for-profit firm had effectively taken over contracting at the health insurance funds serving hundreds of local governments and school boards, and that the Schools Health Insurance Fund paid that firm and its affiliate about $36 million from 2021 to 2025 without the required conflict disclosures. Saqeeb wants renewals, broker arrangements, and priced alternatives read out at a public meeting before the vote.",
+          ],
+          openQuestion:
+            "What each option would actually cost here. The filing prints one benefits total. It does not price the state program against a private or pooled alternative, and it does not separate the pharmacy benefit.",
+          sources: [SRC.budget, SRC.districtSlide, SRC.ch44, SRC.epbam, SRC.tpaf, SRC.osc],
+        },
+      },
     ],
-    detail: {
-      heading: "What better healthcare for staff actually means here",
-      paragraphs: [
-        "Here is how school employee coverage in New Jersey is put together. A district joins the School Employees' Health Benefits Program by passing a resolution, and it can leave the same way. It can buy the medical plan and nothing else, in which case the state's own rules say it has to offer a stand-alone prescription drug plan to everyone eligible, and it can add or drop the dental plans by separate resolution. So the pharmacy side and the dental side are contracts a board signs, not something handed down from Trenton.",
-        "The plan menu is set by state law. P.L. 2020, c.44 says the school program offers three plans carrying medical and prescription coverage — the New Jersey Educators Health Plan and NJ Direct 10 and 15 — plus a fourth, the Garden State Health Plan, and it fixes employee contributions for the Educators and Garden State plans as a percentage of salary. That schedule is not a board's to change. Neither is the pension side: under N.J.S.A. 18A:66-90 the State pays the Teachers' Pension and Annuity Fund contribution for district staff, and the district only reimburses the State for the portion of a salary paid out of federal money.",
-        "What is left over is real money and it is decided locally. Which program the district buys through, how the plan is designed, who administers it, who brokers it, and what the pharmacy contract says. In September 2025 the State Comptroller reported that one for-profit firm had effectively taken over the contracting of the health insurance funds serving hundreds of local governments and school boards, and that the Schools Health Insurance Fund alone paid that firm and its affiliate roughly $36 million between 2021 and 2025 without the required conflict disclosures. Saqeeb wants those renewals and those broker arrangements read out loud at a public meeting, with the alternatives priced, before the board votes on them. Benefits are $40,357,120 in the adopted budget, 38.43% of salaries and up $4.5 million in two years; a line that size deserves more than a consent-agenda vote.",
-      ],
-      links: [
-        {
-          label: "P.L. 2020, c.44 — school employee health plans and contributions",
-          href: "https://pub.njleg.gov/bills/2020/PL20/44_.HTM",
-        },
-        {
-          label: "NJ Division of Pensions & Benefits — SHBP/SEHBP employer administration manual",
-          href: "https://www.nj.gov/treasury/pensions/documents/guidebooks/epbam-shbp-sehbp.pdf",
-        },
-        {
-          label: "NJ State Comptroller, September 9, 2025 — health insurance funds report",
-          href: "https://www.nj.gov/comptroller/news/2025/20250909.shtml",
-        },
-        {
-          label: "NJDOE — TPAF contributions paid by the State (N.J.S.A. 18A:66-90)",
-          href: "https://www.nj.gov/education/broadcasts/2025/aug/27/FederalProgramsPensionandSocialSecurityReimbursementtotheStateofNewJerseyforContributionsPaidbytheState.pdf",
-        },
-      ],
-    },
   },
   {
     id: "students-first",
     number: "02",
     title: "Students First",
-    summary: "Fair access to the courses a student is ready for, work that means something, and a school where they are safe.",
+    summary:
+      "Fair access to the courses a student is ready for, work that means something, and a school where they are safe.",
     points: [
-      "End the rigid matrix and expand fair access to advanced courses.",
-      "Allow placement exams, including languages.",
-      "Arts and science above grade level by request, with early access to instruments.",
-      "Language bridge program for new families.",
-      "Grade students on their work, not their homes: more in-school assignments and performance, less homework for evaluation.",
-      "Responsible AI literacy for creative, independent projects and critical thinking.",
-      "Train staff and administration to spot racism, sexism, Islamophobia, and antisemitism.",
-      "ICE out of schools. Police/SROs out of schools.",
-      "Student oversight of mental health and facilities.",
+      { text: "End the rigid matrix and expand fair access to advanced courses." },
+      { text: "Allow placement exams, including languages." },
+      { text: "Arts and science above grade level by request, with early access to instruments." },
+      { text: "Language bridge program for new families." },
+      {
+        text: "Grade students on their work, not their homes: more in-school assignments and performance, less homework for evaluation.",
+      },
+      { text: "Responsible AI literacy for creative, independent projects and critical thinking." },
+      { text: "Train staff and administration to spot racism, sexism, Islamophobia, and antisemitism." },
+      { text: "ICE out of schools. Police/SROs out of schools." },
+      { text: "Student oversight of mental health and facilities." },
     ],
   },
   {
     id: "reduce-our-costs",
     number: "03",
     title: "Reduce Our Costs",
-    summary: "Invest in better schools and use public oversight to make long-term facilities decisions responsibly.",
+    summary:
+      "Invest in better schools and use public oversight to make long-term facilities decisions responsibly.",
     points: [
-      "A new high school for 9th through 12th.",
-      "State-of-the-art schools with better technology, facilities, and programs.",
-      "Use state construction bonds to build better, more sustainable facilities with lower maintenance.",
-      "Remove lead and address TMAs.",
-      "Build facilities that can house excellence in programs.",
-      "Audit the master plan, with public dashboards and community oversight.",
-    ],
-    detail: {
-      heading: "How building gets paid for, and what it changes",
-      paragraphs: [
-        "Construction does not come out of the operating budget the dashboard breaks down. A district like East Brunswick — a Regular Operating District, in the state's language — puts a project through the Department of Education for eligibility review and then to the voters, and the state's share arrives either as debt service aid on the bonds or as a grant. Under the current grant program the state pays at least 40 percent of approved eligible costs, with the percentage set by the district's own aid percentage, and the district has to show it can cover the rest. That share lands on a tax bill as debt service, outside the $209,216,947 general fund.",
-        "Paying for buildings out of pocket is no longer an option here. Capital outlay is down 28.3% in two years and the capital reserve is projected at $256,697, against $3.1 million not long ago. Meanwhile operations and maintenance runs $21.1 million a year, part of it repair work on buildings well past the point where repair is the cheaper answer. Whether a new high school lowers that number, and by how much, is a facilities study question. The budget filing does not contain the figures to answer it, and this campaign is not going to make them up.",
-      ],
-      links: [
-        {
-          label: "NJDOE — grant program for school facilities projects in Regular Operating Districts",
-          href: "https://www.nj.gov/education/facilities/projectapplication/rod.shtml",
+      {
+        text: "A new high school for 9th through 12th.",
+        detail: {
+          budgetLine: "Outside the general fund, on the tax bill as debt service",
+          mechanism: [
+            "The board reviewed the options in public on June 4. Moving the temporary classroom units from Churchill to the high school campus was put at about $11 million and could not happen before September 2027. A ninth-grade academy attached to the high school was put at roughly $45 to $49 million in construction alone, before soft costs, fees, and contingencies. A new high school was discussed at $325 to $350 million in hard costs, and a district official said a project that size cannot come out of the operating budget: it needs a bond referendum.",
+            "None of that runs through the $209,216,947 general fund the dashboard breaks down. It reaches voters as a referendum and then appears on tax bills as debt service.",
+          ],
+          openQuestion:
+            "Which option the district picks, and what the state's share of it would be. Those are decisions ahead of the board, not figures printed anywhere yet.",
+          sources: [SRC.ninthGrade, SRC.budget],
         },
-      ],
-    },
+      },
+      { text: "State-of-the-art schools with better technology, facilities, and programs." },
+      {
+        text: "Use state construction bonds to build better, more sustainable facilities with lower maintenance.",
+        detail: {
+          budgetLine: "Capital outlay $8.4 million, capital reserve $256,697",
+          mechanism: [
+            "East Brunswick is what the state calls a Regular Operating District. A project goes to the Department of Education for eligibility review and then to the voters, and the state's share comes back as debt service aid on the bonds or as a grant. Under the current grant program a district is eligible for at least 40 percent of approved eligible project costs, set by its own aid percentage, and has to show local funding for the rest.",
+            "Paying out of pocket is no longer realistic here. Capital outlay is down 28.3% in two years and the capital reserve is projected at $256,697, against $3.1 million not long ago.",
+          ],
+          openQuestion:
+            "East Brunswick's own aid percentage, and therefore the state share of any specific project. That comes out of the eligibility review, not the budget filing.",
+          sources: [SRC.rod, SRC.budget],
+        },
+      },
+      {
+        text: "Remove lead and address TMAs.",
+        detail: {
+          budgetLine: "Operations and maintenance, $21.1 million",
+          mechanism: [
+            "Operations and maintenance runs $21.1 million a year, down 3.9%, and part of it is repair work on buildings well past the point where repair is the cheaper answer. Board members went through the high school's aging infrastructure on June 4: cafeteria and gym limits, classroom conditions, roof and plumbing issues.",
+          ],
+          openQuestion:
+            "The condition and remediation cost building by building, and how much of the maintenance line a replacement would actually retire. That is a facilities study, and this campaign is not going to invent the number.",
+          sources: [SRC.budget, SRC.ninthGrade],
+        },
+      },
+      { text: "Build facilities that can house excellence in programs." },
+      { text: "Audit the master plan, with public dashboards and community oversight." },
+    ],
   },
 ];
 
-/**
- * What each promise touches in the adopted FY2027 filing, and what the filing
- * does not say. No cost estimate is claimed anywhere here: the published
- * budget does not contain the figures a real costing would need.
- */
-export type PromiseCostLens = {
-  id: string;
-  promise: string;
-  /** The line(s) in the dashboard this promise would move. */
-  budgetLine: string;
-  /** What the filing does show about that line. */
-  filingSays: string;
-  /** What the filing does not answer, and would have to be studied. */
-  filingDoesNotSay: string;
-};
-
-export const PROMISE_COST_LENS: PromiseCostLens[] = [
-  {
-    id: "pre-k",
-    promise: "Universally paid public full-day Pre-K",
-    budgetLine: "Not in the general fund appropriations",
-    filingSays:
-      "The FY2027 filing carries no preschool appropriation and no preschool education aid in its state aid list. Enrollment on roll is counted from kindergarten up, at 8,559.",
-    filingDoesNotSay:
-      "How many three- and four-year-olds would enroll, whether the district would qualify for state preschool education aid at what per-child rate, and what classroom space, staff, and transportation a full-day program would require.",
-  },
-  {
-    id: "activity-fees",
-    promise: "Zero fees on clubs, activities, arts, and sports",
-    budgetLine: "Athletics, cocurricular, and miscellaneous revenue",
-    filingSays:
-      "Athletics is budgeted at $1.3 million and cocurricular activities at $0.4 million; extracurricular cost per pupil is $273 in 2026-27, up from $233 in 2023-24.",
-    filingDoesNotSay:
-      "How much families currently pay in participation fees. Fee income is not broken out; it sits inside $2,455,107 of miscellaneous revenue along with rentals, interest, and other local receipts.",
-  },
-  {
-    id: "lunch-debt",
-    promise: "End lunch debt",
-    budgetLine: "Outside the general fund",
-    filingSays:
-      "Food service runs as its own enterprise fund and does not appear in the $209,216,947 general fund the dashboard breaks down.",
-    filingDoesNotSay:
-      "The current unpaid meal balance, how many students carry one, and how many already qualify for free or reduced-price meals under federal eligibility.",
-  },
-  {
-    id: "support-in-house",
-    promise: "Hire teaching support staff in-house rather than through outside providers",
-    budgetLine: "Student support services, and out-of-district tuition",
-    filingSays:
-      "Student support services total $23.2 million, including $5.0 million in extraordinary services and $3.7 million in speech, occupational, and physical therapy. Out-of-district tuition is the fastest growing line in the budget, up 54.5% in two years to $6.6 million.",
-    filingDoesNotSay:
-      "How much of that work is contracted out today versus staffed in-house, and what an in-house position costs against the equivalent agency rate once benefits are counted.",
-  },
-  {
-    id: "healthcare",
-    promise: "Better healthcare for school staff",
-    budgetLine: "Personal services — employee benefits",
-    filingSays:
-      "Benefits are budgeted at $40,357,120, equal to 38.43% of salaries, up from 30.16% in 2023-24 actuals and up $4.5 million in two years.",
-    filingDoesNotSay:
-      "What each plan option would cost the district. The filing reports one total; it does not price the state program against a private or pooled alternative, and it does not separate the pharmacy benefit.",
-  },
-  {
-    id: "language",
-    promise: "Language bridge program for new families",
-    budgetLine: "Bilingual education, within instruction",
-    filingSays:
-      "Bilingual education is budgeted at $1.5 million inside the $73.0 million instruction total.",
-    filingDoesNotSay:
-      "How many students arrive each year needing language support, and what staffing a bridge program would add on top of the existing bilingual line.",
-  },
-  {
-    id: "facilities",
-    promise: "Remove lead, address TMAs, and build a new 9-12 high school",
-    budgetLine: "Operations and maintenance, capital outlay, and debt service",
-    filingSays:
-      "Operations and maintenance is $21.1 million, down 3.9%. Capital outlay is $8.4 million, down 28.3% in two years, and the capital reserve is projected at $256,697. Debt service sits outside the general fund total.",
-    filingDoesNotSay:
-      "The condition and remediation cost of each building, the scope or price of a high school project, and the state share of debt service such a project would draw. None of that is in a budget filing; it comes out of a facilities study.",
-  },
-];
-
-/** Shown with the cost lens. The campaign does not publish estimates it cannot source. */
+/** Shown under the priorities. The campaign does not publish estimates it cannot source. */
 export const COST_STUDY_NOTE =
   "This campaign is not going to put a dollar figure on any of these promises. A number that sounds authoritative and was reverse-engineered from a public budget filing is worse than no number, because it invites a debate about arithmetic nobody can check. Costing this properly means enrollment projections, facilities condition assessments, staffing models, and plan-by-plan benefit pricing, which is professional work and it is not free. Donations to this campaign are what pay for it, and whatever is produced will be published in full, including the parts that are inconvenient.";
 
