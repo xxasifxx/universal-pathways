@@ -34,9 +34,16 @@ The healthcare block stood out because it argues with an imaginary opponent ("a 
 - Every factual claim traces to a verifiable public page. Nothing is predicted, inferred, or rounded into existence; if a source can't be produced for a sentence, the sentence goes.
 - No dollar estimate of any promise anywhere.
 
-## Sourcing
+## Sourcing: research happens first, and no URL is ever typed from memory
 
-Before rewriting, confirm each healthcare and facilities claim against a live public page: NJ Division of Pensions and Benefits on SEHBP and the employer pension contribution, the NJ statutes for Chapter 78 / Chapter 44 and the Public School Contracts Law, the Comptroller's September 2025 report on school health insurance funds, and NJDOE / School Development Authority material on bond-financed construction and state debt service aid. Anything that doesn't check out is dropped rather than softened. Verified sources get added to `SOURCES` in `src/lib/sources.ts` so the explainer can link them; budget figures keep citing the FY2027 filing already listed there.
+No link goes on the site unless this session actually fetched it and read the claim in the returned text. The order is fixed:
+
+1. **Fetch, then write.** Search and fetch the pages first, and keep a working note of every URL that was actually retrieved along with the sentence it supports. A URL that was not fetched in this session does not exist for the purposes of this rewrite — not from memory, not "the obvious nj.gov path", not reconstructed from a search snippet without opening the page.
+2. **The note drives the copy.** Each claim in the rewritten blocks is written from the fetched text and carries the URL that was fetched. If a claim ends up with no fetched page behind it, the claim is cut. The block gets shorter; nothing gets softened into a vague version to survive.
+3. **Expected topics, not promised links.** The things worth checking are the employer pension contribution to TPAF, the Chapter 78 / Chapter 44 employee premium schedule, SEHBP participation and the alternatives (outside carrier, school-board joint insurance fund), separate bidding of prescription and dental, procurement of brokers and administrators, the Comptroller's 2025 report on school health insurance funds, and how New Jersey school construction is financed through voter-approved bonds with state debt service aid. Some of these may not turn up a citable public page. That outcome is acceptable and gets reported plainly — the corresponding sentence is dropped rather than backed by a guessed link.
+4. **Report before editing.** Before any file is touched, list what was found and what was not, with the retrieved URLs, so the drop list is visible rather than silently applied.
+
+Verified sources get added to `SOURCES` in `src/lib/sources.ts`, each entry holding the URL as fetched. Budget figures keep citing the FY2027 filing already listed there.
 
 ## Technical notes
 
