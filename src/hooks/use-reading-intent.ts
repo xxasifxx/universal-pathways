@@ -66,6 +66,7 @@ export function useReadingIntent(): Score {
           meta: { score: value, scroll_pct: maxScroll, expands, pages },
         });
       }
+      (window as unknown as { __ri?: unknown }).__ri = { value, activeMs, maxScroll, pages, reached: reached.current };
       setScore({ value, reached: reached.current });
     };
 
