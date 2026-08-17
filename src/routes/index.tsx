@@ -6,13 +6,11 @@ import { AskQuestionForm } from "@/components/ask-question-form";
 import { useVolunteerModal } from "@/components/volunteer-modal";
 import {
   actblueUrl,
-  CANDIDATE_STORY,
+  ABOUT_SAQEEB,
   CANDIDATE_NAME,
   CONTACT_EMAIL,
-  CREDENTIALS,
   DONATION_AMOUNTS,
   FIGHT_FOR,
-  INTRO_LINE,
   PITCH,
   PLATFORM_HIGHLIGHTS,
   REGISTRATION_DEADLINE,
@@ -153,44 +151,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Pitch */}
-      <section aria-label="Why Saqeeb is running" className="py-14 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <p className="text-center font-display text-2xl uppercase leading-tight text-primary sm:text-3xl">
-            Why I'm running
-          </p>
-          <p className="mt-5 text-lg leading-relaxed text-foreground/90 sm:text-xl">
-            {CANDIDATE_STORY.short}
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-foreground/90 sm:text-xl">
-            I found my way out of that by learning to advocate for myself, with my parents behind
-            me. Not every student does, and I don't think that's because educators here don't care.
-            It's that systems decide things about children before anyone knows who those children
-            are going to be. That's the part I want to work on.
-          </p>
-          <p className="mt-6 text-center">
-            <Link
-              to="/priorities"
-              className="inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
-            >
-              Read the longer version, and what I want the board to take up
-              <ArrowRight aria-hidden="true" className="size-4" />
-            </Link>
-          </p>
-        </div>
-      </section>
-
-      <section aria-label="The ask" className="pb-14 sm:pb-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <p className="text-center text-lg leading-relaxed text-foreground/90 sm:text-xl">
-            {PITCH.problem}
-          </p>
-          <p className="mt-8 text-center text-2xl font-bold leading-snug text-primary sm:text-3xl">
-            {PITCH.ask}
-          </p>
-        </div>
-      </section>
-
       {/* Saqeeb will fight for */}
       <section aria-labelledby="fight-for-heading" className="bg-primary py-14 text-primary-foreground sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -255,23 +215,20 @@ function Index() {
         </div>
       </section>
 
-      {/* Credentials */}
-      <section aria-label="About the candidate" className="bg-secondary py-14 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <p className="text-center text-2xl font-bold leading-snug text-primary sm:text-3xl">
-            {INTRO_LINE}
-          </p>
-          <ul className="mt-10 grid gap-5 sm:grid-cols-2">
-            {CREDENTIALS.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border-t-4 border-primary bg-card px-6 py-8 text-center"
-              >
-                <p className="text-xl font-bold leading-snug text-primary">{item}</p>
-              </li>
+      {/* About */}
+      <section aria-labelledby="about-heading" className="bg-secondary py-14 sm:py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <h2 id="about-heading" className="text-center text-3xl uppercase text-primary sm:text-4xl">
+            About Saqeeb
+          </h2>
+          <div className="mt-6 space-y-3">
+            {ABOUT_SAQEEB.map((line) => (
+              <p key={line.slice(0, 24)} className="text-lg leading-relaxed text-foreground/90">
+                {line}
+              </p>
             ))}
-          </ul>
-          <ul className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-center">
+          </div>
+          <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-center">
             {WHY_SAQEEB.map((item) => (
               <li key={item} className="flex items-center gap-2 text-sm font-semibold text-foreground/90">
                 <span aria-hidden="true" className="size-1.5 rounded-full bg-primary" />
@@ -279,6 +236,15 @@ function Index() {
               </li>
             ))}
           </ul>
+          <p className="mt-8 text-center">
+            <Link
+              to="/priorities"
+              className="inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
+            >
+              More about why I'm running
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
+          </p>
         </div>
       </section>
 

@@ -48,10 +48,10 @@ function Priorities() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="eyebrow text-primary-foreground/70">Why I'm running</p>
           <h1 className="mt-3 max-w-3xl text-4xl leading-[1.05] sm:text-5xl">
-            I was one of the kids this district sorted
+            I went through these schools, and I want to fix what they got wrong with me
           </h1>
           <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-primary-foreground/90">
-            {CANDIDATE_STORY.long.slice(1).map((para) => (
+            {CANDIDATE_STORY.long.map((para) => (
               <p key={para.slice(0, 32)}>{para}</p>
             ))}
           </div>

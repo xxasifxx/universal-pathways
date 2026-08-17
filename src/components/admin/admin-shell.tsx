@@ -14,7 +14,8 @@ const TABS = [
   { to: "/admin/export", label: "Export" },
 ] as const;
 
-const REVIEWER_TAB = { to: "/admin/drafts", label: "Review room" } as const;
+/** The review room is passcode-gated at /review and is not part of admin auth. */
+const REVIEW_ROOM_HREF = "/review";
 
 function RecordingToggle() {
   const [off, setOff] = useState(true);
@@ -35,18 +36,11 @@ function RecordingToggle() {
   );
 }
 
-export function AdminShell({
-  children,
-  allow = "admin",
-}: {
-  children: ReactNode;
-  /** "reviewer" also lets accounts holding only the reviewer role through. */
-  allow?: "admin" | "reviewer";
-}) {
-  const { loading, session, isAdmin, isReviewer } = useAdminSession();
+export function AdminShell({ children }: { children: ReactNode }) {
+  const { loading, session, isAdmin } = useAdminSession();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const permitted = allow === "reviewer" ? isReviewer : isAdmin;
+  const permitted = isAdmin;
 
   // An admin's own browsing is instrumentation, not audience behaviour.
   useEffect(() => {
@@ -77,11 +71,7 @@ export function AdminShell({
     return (
       <div className="mx-auto max-w-md px-4 py-16 text-center">
         <h1 className="font-display text-xl font-extrabold">Access denied</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          {allow === "reviewer"
-            ? "This account hasn't been given review access yet."
-            : "This account doesn't have the admin role."}
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">This account doesn't have the admin role.</p>
         <button
           type="button"
           onClick={() => void signOut()}
@@ -97,7 +87,7 @@ export function AdminShell({
     <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6">
       <header className="sticky top-16 z-20 mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-border bg-background/95 py-3 backdrop-blur">
         <nav aria-label="Admin sections" className="flex flex-wrap gap-1">
-          {(isAdmin ? [...TABS, REVIEWER_TAB] : [REVIEWER_TAB]).map((tab) => (
+          {TABS.map((tab) => (
             <Link
               key={tab.to}
               to={tab.to}
@@ -107,6 +97,12 @@ export function AdminShell({
               {tab.label}
             </Link>
           ))}
+          <a
+            href={REVIEW_ROOM_HREF}
+            className="rounded-full px-3 py-1.5 text-sm font-semibold text-foreground/75 hover:bg-secondary"
+          >
+            Review room
+          </a>
         </nav>
         <div className="flex items-center gap-2">
           <RecordingToggle />

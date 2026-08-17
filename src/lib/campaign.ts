@@ -14,15 +14,26 @@ export const REGISTRATION_DEADLINE = "October 13th";
  */
 export const CANDIDATE_STORY = {
   short:
-    "I was one of the kids this district sorted. I grew up in East Brunswick in a working-class immigrant family and went through the public schools as a Special Education student — not because I couldn't do the work, but because I was a difficult kid at times, and the label stayed with me for nearly six years.",
+    "I grew up in East Brunswick, in a working-class immigrant family, and went through the public schools here. For nearly six years of that I was a special education student — not because I couldn't do the work, but because I was a difficult kid at times, and once the label was there it stayed.",
   long: [
-    "I was one of the kids this district sorted.",
-    "I grew up here in East Brunswick, in a working-class immigrant family, and went through East Brunswick Public Schools as a Special Education student. I wasn't placed there because I couldn't do the work. I was a difficult kid at times, and instead of always understanding what was behind that, I was placed into a system that followed me for nearly six years. Once that label was there, it began shaping which opportunities were available to me and which decisions were made about my education.",
-    "Eventually I found my way forward by learning to advocate for myself, alongside my immigrant parents. I pursued independent study to get ahead, challenged the expectations that had been set for me, and graduated summa cum laude with a degree in Psychology before earning my Master's in Data Science.",
-    "Not every student finds that path. I don't believe that's because educators don't care. I believe it's because systems can sometimes make decisions about children before we fully understand who they are, what they need, or what they're capable of becoming.",
-    "That experience stayed with me, and it's a large part of why I'm running.",
+    "I grew up here in East Brunswick, in a working-class immigrant family, and I went through East Brunswick Public Schools from elementary school through graduation.",
+    "For close to six years I was a special education student. I wasn't placed there because I couldn't do the work. I was a difficult kid at times, and the placement that followed shaped which classes were open to me and what people expected of me long after the behavior had changed.",
+    "I got out of it by learning to advocate for myself, with my parents pushing alongside me. I took independent study to catch up, and I graduated summa cum laude with a degree in psychology before finishing a master's in data science.",
+    "Plenty of students don't find that path, and I don't think that's because educators here don't care — I had teachers who went out of their way for me. It's that placement decisions get made early, on thin information, and rarely get revisited.",
+    "That's the part of the job I care most about, and it's a large part of why I'm running.",
   ],
 } as const;
+
+/**
+ * The home page's About block. Four short lines a visitor can read cold,
+ * written in the third person because a stranger is meeting him here.
+ */
+export const ABOUT_SAQEEB = [
+  "Muhammad Saqeeb grew up in East Brunswick, the son of working-class immigrants, and went through East Brunswick Public Schools from elementary school through graduation.",
+  "He spent close to six years of that as a special education student, worked his way out of the placement, and graduated summa cum laude in psychology before finishing a master's in data science.",
+  "He analyzes data for a living, and he has spent the past stretch of board meetings and budget filings learning where this district's money actually goes.",
+  "He is running for the East Brunswick Board of Education, Column #1.",
+];
 
 /** The first candidates' debate. Referenced publicly as a date, nothing more. */
 export const DEBATE = {
