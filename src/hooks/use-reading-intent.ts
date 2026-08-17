@@ -5,7 +5,7 @@ import { logSignal } from "@/lib/analytics";
 import { isTrackingDisabled } from "@/lib/tracking-consent";
 
 const PAGES_KEY = "lv_reading_pages";
-const THRESHOLD = 100;
+const THRESHOLD = 80;
 const MIN_SESSION_MS = 20_000;
 
 /** Routes where a nudge would be noise rather than help. */
@@ -49,7 +49,7 @@ export function useReadingIntent(): Score {
 
     const compute = () => {
       // Roughly: a minute of attentive reading, or half that plus real depth.
-      const timePts = Math.min(60, (activeMs / 1000) * 1.2);
+      const timePts = Math.min(60, (activeMs / 1000) * 1.5);
       const scrollPts = maxScroll >= 75 ? 30 : maxScroll >= 50 ? 18 : maxScroll >= 25 ? 8 : 0;
       const expandPts = Math.min(30, expands * 12);
       const pagePts = Math.min(20, Math.max(0, pages - 1) * 12);
