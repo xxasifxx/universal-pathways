@@ -32,6 +32,11 @@ export const SIGNAL_EVENTS = [
   "form_started",
   "form_submitted",
   "donate_click",
+  "reading_intent_reached",
+  "volunteer_prompt_shown",
+  "volunteer_prompt_dismissed",
+  "volunteer_prompt_opened",
+  "volunteer_modal_opened",
 ] as const;
 
 export type SignalEvent = (typeof SIGNAL_EVENTS)[number];

@@ -15,6 +15,8 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Toaster } from "@/components/ui/sonner";
 import { Tracking } from "@/components/tracking";
+import { VolunteerModalProvider } from "@/components/volunteer-modal";
+import { VolunteerPrompt } from "@/components/volunteer-prompt";
 import { I18nProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
@@ -133,6 +135,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
+        <VolunteerModalProvider>
         <div className="flex min-h-dvh flex-col">
           <a
             href="#main-content"
@@ -149,6 +152,8 @@ function RootComponent() {
         </div>
         <Toaster position="top-center" />
         <Tracking />
+        <VolunteerPrompt />
+        </VolunteerModalProvider>
       </I18nProvider>
     </QueryClientProvider>
   );

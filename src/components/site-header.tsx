@@ -3,6 +3,7 @@ import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import logoAsset from "@/assets/saqeeb-logo.jpg.asset.json";
+import { useVolunteerModal } from "@/components/volunteer-modal";
 import { actblueUrl, CANDIDATE_NAME } from "@/lib/campaign";
 import { LOCALES, useI18n, type LocaleCode } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -39,6 +40,7 @@ function LanguageSelect() {
 
 export function SiteHeader() {
   const { t } = useI18n();
+  const { open: openVolunteer } = useVolunteerModal();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -71,7 +73,21 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
-          {NAV.map((item) => (
+          {NAV.map((item) =>
+            item.to === "/volunteer" ? (
+              <a
+                key={item.to}
+                href="/volunteer"
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
+                  openVolunteer({ source: "header" });
+                }}
+                className="rounded-md px-3 py-2 text-sm font-semibold text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground"
+              >
+                {t(item.key)}
+              </a>
+            ) : (
             <Link
               key={item.to}
               to={item.to}
@@ -81,7 +97,8 @@ export function SiteHeader() {
             >
               {t(item.key)}
             </Link>
-          ))}
+            ),
+          )}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -118,7 +135,22 @@ export function SiteHeader() {
         )}
       >
         <nav aria-label="Mobile" className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6">
-          {NAV.map((item) => (
+          {NAV.map((item) =>
+            item.to === "/volunteer" ? (
+              <a
+                key={item.to}
+                href="/volunteer"
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
+                  setOpen(false);
+                  openVolunteer({ source: "header-mobile" });
+                }}
+                className="rounded-md px-3 py-2.5 font-display text-base font-bold text-foreground"
+              >
+                {t(item.key)}
+              </a>
+            ) : (
             <Link
               key={item.to}
               to={item.to}
@@ -129,7 +161,8 @@ export function SiteHeader() {
             >
               {t(item.key)}
             </Link>
-          ))}
+            ),
+          )}
           <div className="pt-2 sm:hidden">
             <LanguageSelect />
           </div>
