@@ -8,7 +8,7 @@ The healthcare block stood out because it argues with an imaginary opponent ("a 
 - Cut the strawman sentence entirely.
 - Keep the substance in plain terms: the pension piece and what comes out of a teacher's paycheck are set in Trenton, not here. What East Brunswick decides is who we buy coverage from — the state program, an outside carrier, or a pool of districts — and we can bid the prescription-drug piece separately even if the medical side stays with the state.
 - Keep the ask: those options get priced and discussed in public before the board votes, instead of a renewal sliding through on the agenda.
-- Drop the Comptroller-report sentence and the Chapter 78/44 citation from the body; the point survives without the statute numbers.
+- Keep the sourced facts and state them outright instead of only describing what they prevent: the State pays the employer pension contribution to the Teachers' Pension and Annuity Fund; the employee premium share follows the salary-tiered schedule in Chapter 78 as carried forward by Chapter 44; districts may join the state School Employees' Health Benefits Program, buy outside it, or join a school-board joint insurance fund; prescription and dental coverage can be bid separately from medical; brokers and third-party administrators are procured under the Public School Contracts Law; the State Comptroller reported on school health insurance funds in September 2025. Statute names stay, in plain sentences, each tied to a link a reader can open.
 - New heading in the same voice, e.g. "What the board can actually change about staff healthcare."
 
 **2. "How building can lower a cost the district is already paying" (Reduce Our Costs)**
@@ -30,11 +30,17 @@ The healthcare block stood out because it argues with an imaginary opponent ("a 
 
 - Nothing invented, nothing dropped: every dollar amount, percentage, and factual claim survives.
 - No slogans, no punchy fragments, no "not X, but Y" cadence — the failure mode of the last tone pass.
-- Contractions and ordinary words. Statute names only where a reader would go look it up.
+- Contractions and ordinary words, but the facts lead. Where a source establishes something, state the fact first and its consequence second, rather than only narrating the constraint.
+- Every factual claim traces to a verifiable public page. Nothing is predicted, inferred, or rounded into existence; if a source can't be produced for a sentence, the sentence goes.
 - No dollar estimate of any promise anywhere.
+
+## Sourcing
+
+Before rewriting, confirm each healthcare and facilities claim against a live public page: NJ Division of Pensions and Benefits on SEHBP and the employer pension contribution, the NJ statutes for Chapter 78 / Chapter 44 and the Public School Contracts Law, the Comptroller's September 2025 report on school health insurance funds, and NJDOE / School Development Authority material on bond-financed construction and state debt service aid. Anything that doesn't check out is dropped rather than softened. Verified sources get added to `SOURCES` in `src/lib/sources.ts` so the explainer can link them; budget figures keep citing the FY2027 filing already listed there.
 
 ## Technical notes
 
 - `src/lib/campaign.ts`: rewrite both `detail` blocks, the `PRIORITIES[0].points` healthcare bullet, and the `PROMISE_COST_LENS` strings plus `COST_STUDY_NOTE`.
-- `src/routes/priorities.tsx`: the "What it would cost" intro paragraph is inline in the component.
+- `src/routes/priorities.tsx`: the "What it would cost" intro paragraph is inline in the component; the detail blocks gain a short line of source links under the paragraphs.
+- `src/lib/sources.ts`: add the verified healthcare and construction-financing sources.
 - `src/components/budget-insights.tsx` and `src/routes/pilot.tsx`: prose-only edits if the consistency check turns up clashes.
