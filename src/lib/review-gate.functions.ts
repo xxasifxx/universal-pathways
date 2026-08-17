@@ -14,7 +14,13 @@ function sessionConfig() {
     password: process.env["REVIEW_SESSION_SECRET"]!,
     name: "review-gate",
     maxAge: 60 * 60 * 24 * 30,
-    cookie: { httpOnly: true, secure: true, sameSite: "lax" as const, path: "/" },
+    cookie: {
+      httpOnly: true,
+      // Local preview is served over plain http; a secure-only cookie is dropped there.
+      secure: process.env["NODE_ENV"] === "production",
+      sameSite: "lax" as const,
+      path: "/",
+    },
   };
 }
 
