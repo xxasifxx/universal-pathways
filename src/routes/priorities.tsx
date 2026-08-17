@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, ChevronRight } from "lucide-react";
 
 import { actblueUrl, COST_STUDY_NOTE, PITCH, PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
@@ -156,34 +156,7 @@ function Priorities() {
         className="scroll-mt-24 border-t border-border bg-secondary/50 py-14 sm:py-20"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="eyebrow text-primary">What it would cost</p>
-          <h2 id="cost-heading" className="mt-3 max-w-3xl text-3xl leading-[1.1] sm:text-4xl">
-            Every promise against the line it moves
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Each promise below is matched to the part of the adopted 2026-27 budget it would touch,
-            with the figure the filing actually prints and the question the filing leaves open. The
-            dashboard is the source for every dollar amount here, so the two pages say the same
-            thing.
-          </p>
-
-          <ul className="mt-10 grid gap-4 lg:grid-cols-2">
-            {PROMISE_COST_LENS.map((item) => (
-              <li key={item.id} className="rounded-xl border border-border bg-card p-6">
-                <h3 className="text-xl leading-snug">{item.promise}</h3>
-                <p className="mt-2 font-display text-sm font-bold uppercase tracking-wide text-primary">
-                  {item.budgetLine}
-                </p>
-                <p className="mt-4 text-sm leading-relaxed">{item.filingSays}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  <span className="font-semibold text-foreground">What the filing cannot tell you: </span>
-                  {item.filingDoesNotSay}
-                </p>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-10 max-w-3xl border-l-4 border-gold pl-5 sm:pl-6">
+          <div className="max-w-3xl border-l-4 border-gold pl-5 sm:pl-6">
             <h3 className="font-display text-xl uppercase leading-tight text-primary sm:text-2xl">
               Why there is no price tag on this page
             </h3>
