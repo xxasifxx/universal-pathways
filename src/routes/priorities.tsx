@@ -1,8 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, ChevronRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 
-import { actblueUrl, COST_STUDY_NOTE, PITCH, PRIORITIES } from "@/lib/campaign";
-import { useI18n } from "@/lib/i18n";
+import {
+  actblueUrl,
+  COST_STUDY_NOTE,
+  LEVER_LABELS,
+  PRIORITIES,
+  type LeverKind,
+} from "@/lib/campaign";
+
+const LEVER_TAG: Record<LeverKind, string> = {
+  budget: "bg-gold text-gold-foreground",
+  policy: "bg-primary text-primary-foreground",
+  "state-rule": "border border-primary/40 bg-transparent text-primary",
+  practice: "bg-secondary text-secondary-foreground",
+};
 
 const TITLE = "Our Platform for East Brunswick Schools";
 const DESCRIPTION =
@@ -25,45 +37,40 @@ export const Route = createFileRoute("/priorities")({
 });
 
 function Priorities() {
-  const { t } = useI18n();
-
   return (
     <>
-      <section className="bg-primary py-14 text-primary-foreground sm:py-20">
+      <header className="border-b border-border bg-primary py-12 text-primary-foreground sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="font-display text-lg uppercase tracking-wide text-primary-foreground/80 sm:text-xl">
-            {PITCH.eyebrow}
-          </p>
-          <h1 className="mt-3 max-w-4xl text-4xl leading-[1.05] sm:text-6xl">
-            {PITCH.headline}
+          <p className="eyebrow text-primary-foreground/70">Our platform</p>
+          <h1 className="mt-3 max-w-3xl text-4xl leading-[1.05] sm:text-5xl">
+            What we would do, and what it takes to do it
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/90">
-            {PITCH.problem}
-          </p>
-          <p className="mt-5 max-w-2xl text-xl font-bold leading-snug text-primary-foreground sm:text-2xl">
-            {PITCH.ask}
+            Open any promise to see the lever behind it: the budget line it moves, the board policy
+            that would have to change, or the state rule that limits what a district can do on its
+            own. Where the answer is not public, the panel says so instead of guessing.
           </p>
         </div>
-      </section>
+      </header>
 
-      <nav aria-label="Priorities" className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-          <p className="eyebrow text-primary">{t("priorities.eyebrow")}</p>
-          <ul className="mt-4 flex flex-col">
-            {PRIORITIES.map((p) => (
-              <li key={p.id} className="border-t border-border">
-                <Link
-                  to="/priorities"
-                  hash={p.id}
-                  className="flex items-baseline gap-3 py-3 font-display text-base font-extrabold uppercase tracking-wide text-primary hover:underline sm:text-lg"
-                >
-                  <span className="text-sm">{p.number}</span>
-                  {p.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <nav
+        aria-label="Priorities"
+        className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur"
+      >
+        <ul className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-3 sm:gap-2 sm:px-6">
+          {PRIORITIES.map((p) => (
+            <li key={p.id}>
+              <Link
+                to="/priorities"
+                hash={p.id}
+                className="flex items-baseline gap-2 whitespace-nowrap rounded-full px-3 py-2 font-display text-sm uppercase tracking-wide text-primary hover:bg-secondary sm:text-base"
+              >
+                <span className="text-xs text-muted-foreground">{p.number}</span>
+                {p.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </nav>
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -72,80 +79,82 @@ function Priorities() {
             key={p.id}
             id={p.id}
             aria-labelledby={`${p.id}-heading`}
-            className="scroll-mt-24 border-b border-border py-12 last:border-b-0 sm:py-16"
+            className="scroll-mt-20 py-14 sm:py-20"
           >
-            <p className="eyebrow text-primary">Priority {p.number}</p>
-            <div className="mt-3 flex items-start gap-4">
-              <span
-                aria-hidden="true"
-                className="mt-1 grid size-10 shrink-0 place-items-center rounded-full border-2 border-primary text-primary"
-              >
-                <Check className="size-5" />
-              </span>
-              <h2 id={`${p.id}-heading`} className="text-3xl sm:text-4xl">
-                {p.title}
-              </h2>
-            </div>
-            <p className="mt-5 max-w-3xl text-lg leading-relaxed">{p.summary}</p>
-            <ul className="mt-6 flex max-w-3xl flex-col divide-y divide-border border-y border-border">
-              {p.points.map((point) => (
-                <li key={point.text.slice(0, 40)}>
-                  {point.detail ? (
-                    <details className="group">
-                      <summary className="flex cursor-pointer list-none items-start gap-3 py-4 text-base leading-relaxed marker:hidden hover:text-primary">
-                        <ChevronRight
-                          aria-hidden="true"
-                          className="mt-1 size-5 shrink-0 text-primary transition-transform group-open:rotate-90"
-                        />
-                        <span className="flex-1">{point.text}</span>
-                        <span className="mt-0.5 hidden shrink-0 font-display text-xs uppercase tracking-wide text-muted-foreground sm:inline">
-                          What this touches
-                        </span>
-                      </summary>
-                      <div className="pb-6 pl-8 pr-1">
-                        <p className="font-display text-sm font-bold uppercase tracking-wide text-primary">
-                          {point.detail.budgetLine}
-                        </p>
-                        {point.detail.mechanism.map((para) => (
-                          <p key={para.slice(0, 32)} className="mt-3 text-base leading-relaxed">
-                            {para}
-                          </p>
-                        ))}
-                        <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                          <span className="font-semibold text-foreground">
-                            What nobody can answer yet:{" "}
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-12">
+              <div className="lg:sticky lg:top-24 lg:self-start">
+                <p className="font-display text-5xl leading-none text-gold sm:text-6xl">
+                  {p.number}
+                </p>
+                <h2 id={`${p.id}-heading`} className="mt-3 text-3xl leading-tight sm:text-4xl">
+                  {p.title}
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">{p.summary}</p>
+              </div>
+
+              <ul className="flex flex-col gap-3">
+                {p.points.map((point) => (
+                  <li key={point.text.slice(0, 40)}>
+                    {point.detail ? (
+                      <details className="group rounded-xl border border-border bg-card open:border-primary/40 open:shadow-sm">
+                        <summary className="flex cursor-pointer list-none flex-col gap-2 p-5 marker:hidden sm:flex-row sm:items-start sm:gap-4">
+                          <span className="flex flex-1 items-start gap-3 text-lg leading-snug">
+                            <Plus
+                              aria-hidden="true"
+                              className="mt-1 size-5 shrink-0 text-primary transition-transform group-open:rotate-45"
+                            />
+                            {point.text}
                           </span>
-                          {point.detail.openQuestion}
-                        </p>
-                        {point.detail.sources?.length ? (
-                          <p className="mt-3 text-sm text-muted-foreground">
-                            <span className="font-semibold text-foreground">Sources: </span>
-                            {point.detail.sources.map((source, i) => (
-                              <span key={source.href}>
-                                {i > 0 ? "; " : null}
-                                <a
-                                  href={source.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="font-semibold text-primary underline underline-offset-4 hover:opacity-80"
-                                >
-                                  {source.label}
-                                </a>
-                              </span>
-                            ))}
+                          <span
+                            className={`ml-8 w-fit shrink-0 rounded-full px-3 py-1 font-display text-xs uppercase tracking-wide sm:ml-0 sm:mt-1 ${LEVER_TAG[point.detail.leverKind]}`}
+                          >
+                            {LEVER_LABELS[point.detail.leverKind]}
+                          </span>
+                        </summary>
+                        <div className="border-t border-border px-5 pb-6 pt-5 sm:px-6">
+                          <p className="font-display text-sm font-bold uppercase tracking-wide text-primary">
+                            {point.detail.lever}
                           </p>
-                        ) : null}
-                      </div>
-                    </details>
-                  ) : (
-                    <p className="flex items-start gap-3 py-4 text-base leading-relaxed text-muted-foreground">
-                      <span aria-hidden="true" className="mt-1 size-5 shrink-0" />
-                      <span className="flex-1">{point.text}</span>
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ul>
+                          {point.detail.mechanism.map((para) => (
+                            <p key={para.slice(0, 32)} className="mt-3 text-base leading-relaxed">
+                              {para}
+                            </p>
+                          ))}
+                          <p className="mt-4 border-l-4 border-gold pl-4 text-base leading-relaxed text-muted-foreground">
+                            <span className="font-semibold text-foreground">
+                              What nobody can answer yet:{" "}
+                            </span>
+                            {point.detail.openQuestion}
+                          </p>
+                          {point.detail.sources?.length ? (
+                            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                              <span className="font-semibold text-foreground">Sources: </span>
+                              {point.detail.sources.map((source, i) => (
+                                <span key={source.href}>
+                                  {i > 0 ? "; " : null}
+                                  <a
+                                    href={source.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-semibold text-primary underline underline-offset-4 hover:opacity-80"
+                                  >
+                                    {source.label}
+                                  </a>
+                                </span>
+                              ))}
+                            </p>
+                          ) : null}
+                        </div>
+                      </details>
+                    ) : (
+                      <p className="rounded-xl border border-dashed border-border px-5 py-4 text-lg leading-snug text-muted-foreground">
+                        {point.text}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
         ))}
       </div>
