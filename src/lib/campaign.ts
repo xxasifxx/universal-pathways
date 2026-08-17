@@ -441,6 +441,42 @@ const SRC = {
     label: "Eyes on EB, June 4 board meeting on ninth grade and facilities",
     href: "https://eyesoneb.com/what-should-east-brunswick-do-about-ninth-grade-board-reviews-multi-million-dollar-options/",
   },
+  ebGrading: {
+    label: "EB Board Policy 2624, Grading System",
+    href: "https://www.straussesmay.com/seportal/Public/DistrictPolicy.aspx?PolicyID=2624&id=84d05e65e6894462a30f3195857be2c5",
+  },
+  ebGifted: {
+    label: "EB Board Policy 2464, Gifted and Talented Students",
+    href: "https://www.straussesmay.com/seportal/Public/DistrictPolicy.aspx?PolicyID=2464&id=84d05e65e6894462a30f3195857be2c5",
+  },
+  ebStudentReps: {
+    label: "EB Board Policy 0143.2, Student Representatives to the Board",
+    href: "https://www.straussesmay.com/seportal/Public/DistrictPolicy.aspx?PolicyID=0143.2&id=84d05e65e6894462a30f3195857be2c5",
+  },
+  ebPlacement: {
+    label: "EBPS course sequences and placement",
+    href: "https://www.ebnet.org/academics/courseguide2425/course-sequences-and-placement",
+  },
+  giftedAct: {
+    label: "NJDOE, Strengthening Gifted and Talented Education Act",
+    href: "https://www.nj.gov/education/standards/programs/gifted/legislation.shtml",
+  },
+  njAi: {
+    label: "NJDOE Office of Innovation, artificial intelligence in education",
+    href: "https://www.nj.gov/education/innovation/ai/index.shtml",
+  },
+  hibTraining: {
+    label: "NJDOE, mandated professional development on prevention",
+    href: "https://www.nj.gov/education/profdev/requirements/topics/prevention.shtml",
+  },
+  schoolPoliceMoa: {
+    label: "NJDOE, education and law enforcement memorandum of agreement",
+    href: "https://www.nj.gov/education/safety/sandp/schoolsafety/moa.shtml",
+  },
+  immigrantTrust: {
+    label: "State of New Jersey, Immigrant Trust Directive",
+    href: "https://www.nj.gov/knowyourrights/immigrant-trust-directive/",
+  },
 } as const;
 
 export const PRIORITIES: Priority[] = [
