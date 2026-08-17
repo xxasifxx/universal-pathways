@@ -3,7 +3,9 @@ import { ArrowRight, Plus } from "lucide-react";
 
 import {
   actblueUrl,
+  CANDIDATE_STORY,
   COST_STUDY_NOTE,
+  DEBATE,
   LEVER_LABELS,
   PRIORITIES,
   type LeverKind,
@@ -16,9 +18,9 @@ const LEVER_TAG: Record<LeverKind, string> = {
   practice: "bg-secondary text-secondary-foreground",
 };
 
-const TITLE = "Our Platform for East Brunswick Schools";
+const TITLE = "What Saqeeb Wants to Work On | East Brunswick Schools";
 const DESCRIPTION =
-  "Our platform for East Brunswick schools: affordable schools, fair access for students, and lower costs through better facilities and public oversight.";
+  "Muhammad Saqeeb on what he wants East Brunswick's schools to work on: affordability, fair access for students, and honest facilities decisions.";
 
 export const Route = createFileRoute("/priorities")({
   head: () => ({
@@ -37,18 +39,26 @@ export const Route = createFileRoute("/priorities")({
 });
 
 function Priorities() {
+  const { open: openVolunteer } = useVolunteerModal();
   return (
     <>
       <header className="border-b border-border bg-primary py-12 text-primary-foreground sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="eyebrow text-primary-foreground/70">Our platform</p>
+          <p className="eyebrow text-primary-foreground/70">Why I'm running</p>
           <h1 className="mt-3 max-w-3xl text-4xl leading-[1.05] sm:text-5xl">
-            What we would do, and what it takes to do it
+            I was one of the kids this district sorted
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/90">
-            Open any promise to see the lever behind it: the budget line it moves, the board policy
-            that would have to change, or the state rule that limits what a district can do on its
-            own. Where the answer is not public, the panel says so instead of guessing.
+          <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-primary-foreground/90">
+            {CANDIDATE_STORY.long.slice(1).map((para) => (
+              <p key={para.slice(0, 32)}>{para}</p>
+            ))}
+          </div>
+          <p className="mt-8 max-w-2xl border-l-4 border-gold pl-5 text-base leading-relaxed text-primary-foreground/90">
+            Below is what I want the board to work on, and underneath each one, the lever it
+            actually runs through: the budget line, the board policy, or the state rule that
+            decides how far a district can go on its own. These are the things I intend to pursue,
+            not guarantees. Where a figure isn't public, the panel says so rather than filling the
+            gap.
           </p>
         </div>
       </header>
@@ -170,14 +180,25 @@ function Priorities() {
               Why there is no price tag on this page
             </h2>
             <p className="mt-4 text-base leading-relaxed">{COST_STUDY_NOTE}</p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              {DEBATE.note}
+            </p>
             <div className="mt-6 flex flex-wrap gap-4">
+              <button
+                type="button"
+                onClick={() => openVolunteer({ preset: [HELP_OPTIONS[3].label], source: "priorities-review" })}
+                className="inline-flex items-center gap-2 rounded-md bg-gold px-6 py-4 font-semibold text-gold-foreground transition-opacity hover:opacity-90"
+              >
+                Help review this before it goes further
+                <ArrowRight aria-hidden="true" className="size-4" />
+              </button>
               <a
                 href={actblueUrl("priorities", "cost-study")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-gold px-6 py-4 font-semibold text-gold-foreground transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-md border-2 border-primary px-6 py-4 font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
               >
-                Fund the study
+                Chip in toward the research
                 <ArrowRight aria-hidden="true" className="size-4" />
               </a>
               <Link
