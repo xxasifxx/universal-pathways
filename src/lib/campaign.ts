@@ -363,17 +363,34 @@ export const ENROLLMENT = {
 export type PromiseSource = { label: string; href: string };
 
 /**
- * What sits behind a single promise: how it works, what the adopted FY2027
- * filing prints for it, and what nobody can answer yet. No cost estimate is
+ * Not every promise is a money promise. Some move an appropriation, some move
+ * a board policy, some run into a rule set in Trenton, and some are just how
+ * the district has always done it. `leverKind` says which, so a reader can see
+ * at a glance what kind of decision they are voting for.
+ */
+export type LeverKind = "budget" | "policy" | "state-rule" | "practice";
+
+export const LEVER_LABELS: Record<LeverKind, string> = {
+  budget: "Budget line",
+  policy: "Board policy",
+  "state-rule": "State rule",
+  practice: "District practice",
+};
+
+/**
+ * What sits behind a single promise: which lever it pulls, how the change
+ * actually happens, and what nobody can answer yet. No cost estimate is
  * claimed anywhere; the published budget does not contain the figures a real
  * costing would need.
  */
 export type PromiseDetail = {
-  /** The line in the dashboard this promise moves, if it is in the general fund. */
-  budgetLine: string;
+  /** Which kind of decision this is. */
+  leverKind: LeverKind;
+  /** The specific line, policy, or rule this promise moves. */
+  lever: string;
   /** How the thing actually works, in plain sentences. */
   mechanism: string[];
-  /** What the filing does not answer, and would have to be studied. */
+  /** What is not answered anywhere public, and would have to be studied or asked. */
   openQuestion: string;
   sources?: PromiseSource[];
 };
