@@ -1,13 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 
-import {
-  actblueUrl,
-  COST_STUDY_NOTE,
-  PITCH,
-  PRIORITIES,
-  PROMISE_COST_LENS,
-} from "@/lib/campaign";
+import { actblueUrl, COST_STUDY_NOTE, PITCH, PRIORITIES } from "@/lib/campaign";
 import { useI18n } from "@/lib/i18n";
 
 const TITLE = "Our Platform for East Brunswick Schools";
