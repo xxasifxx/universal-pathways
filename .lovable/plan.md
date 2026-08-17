@@ -1,8 +1,22 @@
-# Passcode-gated review room (no accounts)
+# Fix the home page, then passcode-gate the review room
+
+## Part 1 — Put the home page back to something a stranger can skim
+
+What's wrong now: after the hero the page drops into an essay opening with "I was one of the kids this district sorted." A visitor who has never heard of Saqeeb has no idea what that means — it's a line from the middle of a story used as an opening. Then a paragraph about systems deciding things about children, then another block, and only then the platform. It reads as a personal essay, not a candidate page.
+
+A person landing on "X for school board" wants five things: who is this, is he from here, what does he want to do, when do I vote, how do I help. Nothing else.
+
+- Restore the earlier rhythm: hero → three "will fight for" icons → platform cards → ask a question → registration deadline → donate. No wall-of-text sections between them.
+- Replace the essay with a short About block, about four lines, readable cold: grew up in East Brunswick, went through EB schools, was a special education student here, psychology degree and a master's in data science, has been showing up at board meetings. The special-ed line lands as a fact about him rather than a thesis he's arguing.
+- One link out — "More about why I'm running" → /priorities. The long version lives there.
+- Keep the ask-a-question form as the page's main action; that's what the candidate wanted the home page to do.
+- Fix the hydration warning on the platform cards while in that file.
+
+Same treatment at the top of /priorities: plain autobiography first, then what that experience makes him want the board to look at. No opening line that assumes the reader already knows the argument.
+
+## Part 2 — Passcode-gated review room (no accounts)
 
 Replace the reviewer-login idea with a single shared passcode. You get the passcode, you share it with people you trust, they open one link, type it once, and can read the drafts and leave notes under whatever name they type.
-
-## What changes
 
 ### 1. Review room moves out from behind the admin login
 - New route `/review` (noindex), server-gated by passcode. It holds exactly what `/admin/drafts` holds today: every long policy panel, the debate prep questions, status chips, and threaded notes.
