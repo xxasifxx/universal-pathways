@@ -155,6 +155,32 @@ function Index() {
       {/* Pitch */}
       <section aria-label="Why Saqeeb is running" className="py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
+          <p className="text-center font-display text-2xl uppercase leading-tight text-primary sm:text-3xl">
+            Why I'm running
+          </p>
+          <p className="mt-5 text-lg leading-relaxed text-foreground/90 sm:text-xl">
+            {CANDIDATE_STORY.short}
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-foreground/90 sm:text-xl">
+            I found my way out of that by learning to advocate for myself, with my parents behind
+            me. Not every student does, and I don't think that's because educators here don't care.
+            It's that systems decide things about children before anyone knows who those children
+            are going to be. That's the part I want to work on.
+          </p>
+          <p className="mt-6 text-center">
+            <Link
+              to="/priorities"
+              className="inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
+            >
+              Read the longer version, and what I want the board to take up
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      <section aria-label="The ask" className="pb-14 sm:pb-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <p className="text-center text-lg leading-relaxed text-foreground/90 sm:text-xl">
             {PITCH.problem}
           </p>
@@ -221,7 +247,7 @@ function Index() {
               to="/priorities"
               className="inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
             >
-              See all of our promises
+              See what each of these runs through
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           </div>
