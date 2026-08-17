@@ -5,7 +5,7 @@ import { logSignal } from "@/lib/analytics";
 import { isTrackingDisabled } from "@/lib/tracking-consent";
 
 const PAGES_KEY = "lv_reading_pages";
-const THRESHOLD = 80;
+const THRESHOLD = 70;
 const MIN_SESSION_MS = 20_000;
 
 /** Routes where a nudge would be noise rather than help. */
@@ -66,7 +66,6 @@ export function useReadingIntent(): Score {
           meta: { score: value, scroll_pct: maxScroll, expands, pages },
         });
       }
-      (window as unknown as { __ri?: unknown }).__ri = { value, activeMs, maxScroll, pages, reached: reached.current };
       setScore({ value, reached: reached.current });
     };
 
