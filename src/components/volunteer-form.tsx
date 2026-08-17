@@ -17,7 +17,13 @@ const YARD_SIGN = HELP_OPTIONS[0].label;
 const CANVASS = HELP_OPTIONS[1].label;
 const PHONE = HELP_OPTIONS[2].label;
 
-export function VolunteerForm({ defaultHelp = [] as string[] }) {
+export function VolunteerForm({
+  defaultHelp = [] as string[],
+  onSubmitted,
+}: {
+  defaultHelp?: string[];
+  onSubmitted?: () => void;
+}) {
   const { t } = useI18n();
   const [help, setHelp] = useState<string[]>(defaultHelp);
   const [address, setAddress] = useState("");
@@ -126,6 +132,7 @@ export function VolunteerForm({ defaultHelp = [] as string[] }) {
       });
       setDone(true);
       submitted.current = true;
+      onSubmitted?.();
       logSignal({
         event: "form_submitted",
         service_group: "volunteer",
