@@ -508,7 +508,7 @@ export const PRIORITIES: Priority[] = [
     number: "01",
     title: "Affordable for All",
     summary:
-      "Every student should be able to take part, get support, and learn without families paying for basic opportunities.",
+      "Taking part in school shouldn't depend on what a family can pay, and staff shouldn't be priced out of their own health coverage.",
     points: [
       {
         text: "Universally paid public full-day Pre-K.",
@@ -625,7 +625,7 @@ export const PRIORITIES: Priority[] = [
     number: "02",
     title: "Students First",
     summary:
-      "Fair access to the courses a student is ready for, work that means something, and a school where they are safe.",
+      "A student should get into the course they're ready for on the strength of what they can do, and be graded on work they actually did.",
     points: [
       {
         text: "End the rigid matrix and expand fair access to advanced courses.",
