@@ -868,15 +868,13 @@ export const HELP_OPTIONS = [
     label: "Phone or text bank",
     blurb: "From home, on your own schedule. We send the list and the script.",
   },
+  {
+    id: "researcher",
+    label: "Help review the platform",
+    blurb:
+      "Read the longer policy drafts before they go public and tell us where they're weak, unsourced, or overconfident. About an hour, from home.",
+  },
 ] as const;
-
-/** The research ask is deliberate: reviewers vet unpublished platform drafts. */
-export const RESEARCHER_OPTION = {
-  id: "researcher",
-  label: "Help review the platform (research)",
-  blurb:
-    "Read the longer policy drafts before they go public and tell us where they're weak, unsourced, or overconfident. An hour, from your couch.",
-} as const;
 
 /**
  * Questions Saqeeb is preparing for ahead of the first debate. Working
