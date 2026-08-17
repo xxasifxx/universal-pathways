@@ -12,7 +12,7 @@ So a reader who wants the healthcare detail gets it forced on them, and a reader
 
 ## What progressive disclosure looks like here
 
-One object per promise, three depths, reader chooses the depth.
+One object per promise, two depths, and nothing else.
 
 ```text
 Priority 01  Affordable for All
@@ -21,28 +21,31 @@ Priority 01  Affordable for All
   - Zero fees on clubs & activities                   [what this touches v]
   - Better healthcare for staff                       [what this touches v]
   ...
-      expanded:  budget line + the figure the filing prints
-                 what the filing cannot answer
-                 [read the full explanation ->]  (only where one exists)
+      expanded:  how it actually works, in a few sentences, with the
+                 budget line and the figure the filing prints, each
+                 fact linked to the document it came from, ending
+                 with what nobody can answer yet
 ```
 
 - **Depth 1 — the promise.** The bullet, as now. Every bullet stays visible; nothing important hides.
-- **Depth 2 — what it touches.** The cost-lens content moves out of the bottom section and becomes a collapsible panel on the bullet it belongs to. Closed by default, opens in place. Bullets with no lens entry stay plain bullets and get no affordance, so a disclosure arrow always means there is something behind it.
-- **Depth 3 — the argument.** The two long explainers (staff healthcare, how construction is financed) stop sitting inline. They become their own anchored sections after all three priorities, reached from a link inside the relevant depth-2 panel. The reader gets there by asking for it.
+- **Depth 2 — what it touches.** One panel per bullet, closed by default, opening in place. It carries the mechanism, the budget line and figure, and the open question. Bullets with nothing behind them stay plain, so a disclosure arrow always means something is there.
 
-Section order becomes: hero → three priorities with inline disclosure → "Why there is no price tag" note and the donate/dashboard actions → the two long explainers → sources.
+There is no third layer. The healthcare and construction explainers only became separate blocks because the healthcare one was written as a defense of the promise instead of an explanation of it, and it grew until it needed its own room; the construction one was then built to match. Strip the defensive framing and each is three or four sentences of mechanism — which is exactly what depth 2 holds. So they get absorbed: the healthcare material into the "better healthcare for staff" bullet, the financing material into the new high school and state-construction-bonds bullets. The standalone explainer blocks disappear entirely.
+
+Section order becomes: hero → three priorities with inline disclosure → "Why there is no price tag" note with the donate and dashboard actions → sources.
 
 ## Sourcing
 
-You are right that the sourcing is uneven. Every factual sentence in the two explainers gets an inline link to the specific document, at the sentence, rather than a list of four links parked at the bottom of the block. The rule stays: only URLs fetched and read in the session get cited, and any sentence that cannot carry one gets cut rather than softened.
+You are right that the sourcing is uneven. Every factual sentence inside a panel gets an inline link on the sentence itself, rather than a list of links parked at the bottom of a block. The rule stays: only URLs fetched and read in the session get cited, and any sentence that cannot carry one gets cut rather than softened.
 
-Currently verified and usable: P.L. 2020 c.44 (plan menu, salary-percentage contributions), the SHBP/SEHBP employer administration manual (join/leave by resolution, medical vs. prescription vs. dental elected separately), the Comptroller's September 9 2025 report (conflicts, the $36M figure), the NJDOE notice on State-paid TPAF contributions, and the NJDOE ROD page (at least 40 percent of eligible costs). Everything else in those blocks either traces to the FY2027 filing already cited on the dashboard, or comes out.
+Currently verified and usable: P.L. 2020 c.44 (plan menu, salary-percentage contributions), the SHBP/SEHBP employer administration manual (join or leave by resolution, medical vs. prescription vs. dental elected separately), the Comptroller's September 9 2025 report (conflicts, the $36M figure), the NJDOE notice on State-paid TPAF contributions, and the NJDOE ROD page (at least 40 percent of eligible costs). Everything else either traces to the FY2027 filing already cited on the dashboard, or comes out.
 
-If you want more verified ground before the rewrite — East Brunswick's own board minutes on the benefits renewal, the district's long-range facilities plan — say so and I will fetch those first and build the depth-3 sections around them instead.
+If you want firmer ground before the rewrite — East Brunswick's own board minutes on the benefits renewal, the district's long-range facilities plan — say so and I will fetch those first and build the panels around them instead.
 
 ## Technical notes
 
-- `src/lib/campaign.ts`: give each `PromiseCostLens` entry a `priorityId` and a `promiseIndex` (or match on the bullet text) so the lens attaches to a bullet instead of living in a flat list. Promote the two `detail` blocks to standalone exported explainers with an `id` and a `sourceLinks` array, keyed back from the lens entries.
-- `src/routes/priorities.tsx`: bullets become `<details>`/`<summary>` (native, keyboard-accessible, works without JS, prints expanded) styled to match the page. Drop the standalone `PROMISE_COST_LENS` grid. Render the explainers as anchored sections below the priorities, with `scroll-mt-24` so deep links land correctly.
+- `src/lib/campaign.ts`: each priority's `points` becomes objects (`text`, optional `budgetLine`, `filingSays`, `filingDoesNotSay`, `mechanism`, `links`). `PROMISE_COST_LENS` folds into those bullets and is deleted; the `detail` field on `Priority` is deleted and its prose redistributed, shortened, into the bullets it belongs to.
+- `src/routes/priorities.tsx`: bullets become `<details>`/`<summary>` (native, keyboard-accessible, works without JS, prints expanded) styled to match the page. The standalone cost-lens grid and the inline detail blocks both come out.
+- Check the other importers of `PRIORITIES` (home page highlights) against the new bullet shape.
 - Keep `COST_STUDY_NOTE`, the ActBlue button, and the dashboard link; they move up to sit directly under the priorities.
 - No new dependencies, no data changes, no dollar estimates added.
