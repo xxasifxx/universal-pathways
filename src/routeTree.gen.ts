@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as DonateRouteImport } from './routes/donate'
 import { Route as PilotRouteImport } from './routes/pilot'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
@@ -24,8 +23,6 @@ import { Route as AdminIntentRouteImport } from './routes/admin/intent'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminVoterMapRouteImport } from './routes/admin/voter-map'
 import { Route as AdminVotersRouteImport } from './routes/admin/voters'
-import { Route as DonateIndexRouteImport } from './routes/donate.index'
-import { Route as DonateThanksRouteImport } from './routes/donate.thanks'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
 import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
@@ -41,11 +38,6 @@ const IndexRoute = IndexRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DonateRoute = DonateRouteImport.update({
-  id: '/donate',
-  path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PilotRoute = PilotRouteImport.update({
@@ -108,16 +100,6 @@ const AdminVotersRoute = AdminVotersRouteImport.update({
   path: '/admin/voters',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DonateIndexRoute = DonateIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DonateRoute,
-} as any)
-const DonateThanksRoute = DonateThanksRouteImport.update({
-  id: '/thanks',
-  path: '/thanks',
-  getParentRoute: () => DonateRoute,
-} as any)
 const ApiPublicIngestPointerRoute = ApiPublicIngestPointerRouteImport.update({
   id: '/api/public/ingest-pointer',
   path: '/api/public/ingest-pointer',
@@ -153,7 +135,6 @@ const LovableEmailTransactionalPreviewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/donate': typeof DonateRouteWithChildren
   '/pilot': typeof PilotRoute
   '/priorities': typeof PrioritiesRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -165,9 +146,7 @@ export interface FileRoutesByFullPath {
   '/admin/login': typeof AdminLoginRoute
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
-  '/donate/thanks': typeof DonateThanksRoute
   '/admin/': typeof AdminIndexRoute
-  '/donate/': typeof DonateIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -189,9 +168,7 @@ export interface FileRoutesByTo {
   '/admin/login': typeof AdminLoginRoute
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
-  '/donate/thanks': typeof DonateThanksRoute
   '/admin': typeof AdminIndexRoute
-  '/donate': typeof DonateIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -203,7 +180,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/donate': typeof DonateRouteWithChildren
   '/pilot': typeof PilotRoute
   '/priorities': typeof PrioritiesRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -215,9 +191,7 @@ export interface FileRoutesById {
   '/admin/login': typeof AdminLoginRoute
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
-  '/donate/thanks': typeof DonateThanksRoute
   '/admin/': typeof AdminIndexRoute
-  '/donate/': typeof DonateIndexRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -230,7 +204,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
-    | '/donate'
     | '/pilot'
     | '/priorities'
     | '/reset-password'
@@ -242,9 +215,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/voter-map'
     | '/admin/voters'
-    | '/donate/thanks'
     | '/admin/'
-    | '/donate/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -266,9 +237,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/voter-map'
     | '/admin/voters'
-    | '/donate/thanks'
     | '/admin'
-    | '/donate'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -279,7 +248,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
-    | '/donate'
     | '/pilot'
     | '/priorities'
     | '/reset-password'
@@ -291,9 +259,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/voter-map'
     | '/admin/voters'
-    | '/donate/thanks'
     | '/admin/'
-    | '/donate/'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -305,7 +271,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
-  DonateRoute: typeof DonateRouteWithChildren
   PilotRoute: typeof PilotRoute
   PrioritiesRoute: typeof PrioritiesRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
@@ -340,13 +305,6 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/donate': {
-      id: '/donate'
-      path: '/donate'
-      fullPath: '/donate'
-      preLoaderRoute: typeof DonateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pilot': {
@@ -433,20 +391,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminVotersRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/donate/': {
-      id: '/donate/'
-      path: '/'
-      fullPath: '/donate/'
-      preLoaderRoute: typeof DonateIndexRouteImport
-      parentRoute: typeof DonateRoute
-    }
-    '/donate/thanks': {
-      id: '/donate/thanks'
-      path: '/thanks'
-      fullPath: '/donate/thanks'
-      preLoaderRoute: typeof DonateThanksRouteImport
-      parentRoute: typeof DonateRoute
-    }
     '/api/public/ingest-pointer': {
       id: '/api/public/ingest-pointer'
       path: '/api/public/ingest-pointer'
@@ -492,23 +436,9 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface DonateRouteChildren {
-  DonateThanksRoute: typeof DonateThanksRoute
-  DonateIndexRoute: typeof DonateIndexRoute
-}
-
-const DonateRouteChildren: DonateRouteChildren = {
-  DonateThanksRoute: DonateThanksRoute,
-  DonateIndexRoute: DonateIndexRoute,
-}
-
-const DonateRouteWithChildren =
-  DonateRoute._addFileChildren(DonateRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
-  DonateRoute: DonateRouteWithChildren,
   PilotRoute: PilotRoute,
   PrioritiesRoute: PrioritiesRoute,
   ResetPasswordRoute: ResetPasswordRoute,
