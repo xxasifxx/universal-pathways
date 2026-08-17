@@ -6,6 +6,7 @@ import { AskQuestionForm } from "@/components/ask-question-form";
 import { useVolunteerModal } from "@/components/volunteer-modal";
 import {
   actblueUrl,
+  CANDIDATE_STORY,
   CANDIDATE_NAME,
   CONTACT_EMAIL,
   CREDENTIALS,
