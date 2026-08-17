@@ -3,6 +3,7 @@ import { ArrowRight, Check, Heart, Instagram, School, Users, HeartPulse } from "
 
 import heroAsset from "@/assets/saqeeb-campaign-hero.jpg.asset.json";
 import { AskQuestionForm } from "@/components/ask-question-form";
+import { useVolunteerModal } from "@/components/volunteer-modal";
 import {
   actblueUrl,
   CANDIDATE_NAME,
@@ -67,6 +68,7 @@ const FIGHT_ICONS = {
 } as const;
 
 function Index() {
+  const { open: openVolunteer } = useVolunteerModal();
   return (
     <>
       {/* Hero */}
@@ -94,13 +96,14 @@ function Index() {
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-              <Link
-                to="/volunteer"
+              <button
+                type="button"
+                onClick={() => openVolunteer({ source: "hero" })}
                 className="inline-flex items-center justify-center gap-2 rounded-md bg-gold px-6 py-4 font-semibold text-gold-foreground transition-opacity hover:opacity-90"
               >
                 Volunteer
                 <ArrowRight aria-hidden="true" className="size-4" />
-              </Link>
+              </button>
               <a
                 href={actblueUrl("hero", "hero-donate")}
                 target="_blank"
