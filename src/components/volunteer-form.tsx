@@ -403,6 +403,50 @@ export function VolunteerForm({
                     </div>
                   </div>
                 ) : null}
+
+                {on && opt.id === "researcher" ? (
+                  <div className="mt-4 grid gap-4 border-t border-border pt-4">
+                    <div>
+                      <span className="text-sm font-semibold">What could you look at?</span>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {RESEARCH_AREAS.map((v) => (
+                          <button
+                            key={v}
+                            type="button"
+                            aria-pressed={areas.includes(v)}
+                            onClick={() => toggleIn(areas, setAreas, v)}
+                            className={chipClass(areas.includes(v))}
+                          >
+                            {v}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <label>
+                      <span className="text-sm font-semibold">
+                        A line about your background
+                      </span>
+                      <textarea
+                        value={background}
+                        onChange={(e) => setBackground(e.target.value)}
+                        maxLength={600}
+                        rows={3}
+                        placeholder="Retired school business administrator, twelve years in a K-12 district."
+                        aria-invalid={Boolean(errors.background)}
+                        className={inputClass}
+                      />
+                      <span className="mt-1 block text-xs text-muted-foreground">
+                        Drafts are shared with people we know something about. This is how we
+                        decide what to send you.
+                      </span>
+                      {errors.background ? (
+                        <span role="alert" className={errorClass}>
+                          {errors.background}
+                        </span>
+                      ) : null}
+                    </label>
+                  </div>
+                ) : null}
               </div>
             );
           })}
