@@ -10,12 +10,22 @@ import { getAnonId } from "@/lib/visitor";
 import { cn } from "@/lib/utils";
 
 type Errors = Partial<
-  Record<"name" | "email" | "zipCode" | "help" | "address" | "mobile" | "days", string>
+  Record<"name" | "email" | "zipCode" | "help" | "address" | "mobile" | "days" | "background", string>
 >;
 
 const YARD_SIGN = HELP_OPTIONS[0].label;
 const CANVASS = HELP_OPTIONS[1].label;
 const PHONE = HELP_OPTIONS[2].label;
+const RESEARCH = HELP_OPTIONS[3].label;
+
+const RESEARCH_AREAS = [
+  "School budgets or municipal finance",
+  "Teaching or school administration",
+  "Special education",
+  "Law or public policy",
+  "Facilities, construction, or planning",
+  "Parent of a student in the district",
+] as const;
 
 export function VolunteerForm({
   defaultHelp = [] as string[],
@@ -33,6 +43,8 @@ export function VolunteerForm({
   const [mobile, setMobile] = useState("");
   const [times, setTimes] = useState<string[]>([]);
   const [channel, setChannel] = useState("Either");
+  const [areas, setAreas] = useState<string[]>([]);
+  const [background, setBackground] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [pending, setPending] = useState(false);
   const [done, setDone] = useState(false);
@@ -83,6 +95,7 @@ export function VolunteerForm({
     const wantsSign = help.includes(YARD_SIGN);
     const wantsCanvass = help.includes(CANVASS);
     const wantsPhone = help.includes(PHONE);
+    const wantsResearch = help.includes(RESEARCH);
 
     const helpDetails: Record<string, unknown> = {};
     if (wantsSign) {
@@ -96,6 +109,9 @@ export function VolunteerForm({
     }
     if (wantsPhone) {
       helpDetails["phoneBank"] = { mobile: mobile.trim(), times, channel };
+    }
+    if (wantsResearch) {
+      helpDetails["research"] = { areas, background: background.trim().slice(0, 600) };
     }
     const extra = String(form.get("notes") ?? "").trim().slice(0, 500);
     if (extra) helpDetails["notes"] = extra;
@@ -118,6 +134,8 @@ export function VolunteerForm({
     if (wantsSign && address.trim().length < 5) next.address = "We need a street address to drop the sign off.";
     if (wantsCanvass && days.length === 0) next.days = "Pick at least one day that works.";
     if (wantsPhone && mobile.trim().length < 7) next.mobile = "We need a mobile number for phone or text banking.";
+    if (wantsResearch && background.trim().length < 10)
+      next.background = "Tell us a line or two about what you'd be reviewing from.";
     setErrors(next);
     if (Object.keys(next).length > 0) {
       toast.error("Please fix the highlighted fields.");
