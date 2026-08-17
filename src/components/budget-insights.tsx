@@ -15,12 +15,19 @@ const usd = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
 
-const compact = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  notation: "compact",
-  maximumFractionDigits: 1,
-});
+/**
+ * Deterministic compact currency. `Intl` compact notation drops a trailing
+ * ".0" on some ICU builds and keeps it on others, which shows up as a
+ * server/client hydration mismatch ("$15M" vs "$15.0M").
+ */
+const compact = {
+  format(value: number): string {
+    const millions = value / 1_000_000;
+    const rounded = Math.round(millions * 10) / 10;
+    const digits = Number.isInteger(rounded) ? 0 : 1;
+    return `$${rounded.toFixed(digits)}M`;
+  },
+};
 
 function pctChange(from: number, to: number) {
   return ((to - from) / from) * 100;
