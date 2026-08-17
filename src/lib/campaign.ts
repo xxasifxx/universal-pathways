@@ -850,7 +850,7 @@ export const PRIORITIES: Priority[] = [
 
 /** Shown under the priorities. The campaign does not publish estimates it cannot source. */
 export const COST_STUDY_NOTE =
-  "This campaign is not going to put a dollar figure on any of these promises. A number that sounds authoritative and was reverse-engineered from a public budget filing is worse than no number, because it invites a debate about arithmetic nobody can check. Costing this properly means enrollment projections, facilities condition assessments, staffing models, and plan-by-plan benefit pricing, which is professional work and it is not free. Donations to this campaign are what pay for it, and whatever is produced will be published in full, including the parts that are inconvenient.";
+  "I'm not going to put a dollar figure next to any of this. A number reverse-engineered from a public budget filing sounds authoritative and isn't, and it invites an argument about arithmetic nobody can check. Costing these properly takes enrollment projections, a facilities condition assessment, staffing models, and plan-by-plan benefit pricing — professional work, done by people who do it for a living. Until that exists, what you'll get from me is the budget line involved and an honest note about what isn't known yet.";
 
 export const HELP_OPTIONS = [
   {
@@ -868,6 +868,29 @@ export const HELP_OPTIONS = [
     label: "Phone or text bank",
     blurb: "From home, on your own schedule. We send the list and the script.",
   },
+] as const;
+
+/**
+ * Questions Saqeeb is preparing for ahead of the first debate. Working
+ * material — imported by the private drafting area only, never by a public
+ * route.
+ */
+export const DEBATE_QUESTIONS = [
+  "What specific steps would you take to reduce healthcare costs for East Brunswick teachers and staff without shifting those costs onto employees?",
+  "Do you support universal full-day Pre-K in East Brunswick? If so, how would you implement and fund it?",
+  "When the district faces budget pressure, what programs and services should be protected from cuts, and where should the Board look for savings first?",
+  "What would you do to improve teacher recruitment and retention in East Brunswick?",
+  "What is your position on outsourcing school services versus employing staff directly through the district?",
+  "What should East Brunswick's long-term facilities plan look like, including the future of the high school?",
+  "Should families have to pay participation fees for athletics, clubs, arts, or other school activities?",
+  "How would you improve special education while controlling rising costs?",
+  "How much discretion should teachers have over instruction, grading, homework, and classroom practices?",
+  "What responsibility does a Board member have to advocate in Trenton for additional school funding or statewide policy changes?",
+  "What specific changes would you make to ensure teachers and staff have a stronger voice in district decision-making?",
+  "How should the district balance competitive employee compensation with concerns about property taxes and affordability?",
+  "What investments in early intervention would you prioritize to reduce the need for more costly services later?",
+  "How should the Board evaluate whether outside contracts and consultants are providing taxpayers and educators good value?",
+  "What would you do to make advanced courses and educational opportunities more accessible to students who may not fit traditional placement criteria?",
 ] as const;
 
 export const CANVASS_DAYS = [
