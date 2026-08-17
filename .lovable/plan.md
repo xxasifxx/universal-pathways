@@ -1,17 +1,40 @@
-# Cut the healthcare self-rebuttal
+# Tone pass on the explainer blocks
 
-The detail block under "Affordable for All" reads like the campaign arguing with an accusation nobody made. The first paragraph literally says "a candidate who promises to lower what a teacher pays out of their check by a board vote is promising something the board cannot deliver" — a hypothetical straw candidate, in Saqeeb's own platform. That goes.
+The healthcare block stood out because it argues with an imaginary opponent ("a candidate who promises... is promising something the board cannot deliver"). Nobody made that promise, so the paragraph reads like the site defending itself. But the register is the real problem, and it runs through all the long-form blocks: statute names, filing vocabulary, and clause-stacked sentences aimed at a reader who has already read the budget PDF. Rewrite them the way Saqeeb would say it out loud to a parent, keeping every specific fact and figure.
 
-## What changes
+## What gets rewritten
 
-1. **Bullet** returns to the flyer wording: "Better healthcare for school staff." Drop the trailing "through the choices the district actually makes" hedge.
-2. **Remove the three-paragraph "How better healthcare for staff is possible" detail block** entirely. No pension-law caveats, no Chapter 78/44 explainer, no Comptroller citation on a platform page.
-3. **Replace it with nothing, or one short forward statement** — the plan's default is one sentence in Saqeeb's voice inside the existing bullet list, e.g. that he will put every health plan option, its cost, and its coverage in front of the board and the public before a renewal vote instead of letting it pass on the consent agenda. Stated as what he will do, not as a defense of whether he can.
-4. **Home page** "Affordable for All" highlight: keep the healthcare mention but drop the "that staff can afford to use" qualifier if it reads as hedging; plain "better healthcare for staff."
-5. **Dashboard benefits note** stays factual about where the money goes; no cross-reference to the promise, no "board cannot" framing either way.
-6. **Cost-lens entry** for the healthcare promise stays — that section is about the budget line, not about defending the promise.
+**1. "How better healthcare for staff is possible" (Affordable for All)**
+- Cut the strawman sentence entirely.
+- Keep the substance in plain terms: the pension piece and what comes out of a teacher's paycheck are set in Trenton, not here. What East Brunswick decides is who we buy coverage from — the state program, an outside carrier, or a pool of districts — and we can bid the prescription-drug piece separately even if the medical side stays with the state.
+- Keep the ask: those options get priced and discussed in public before the board votes, instead of a renewal sliding through on the agenda.
+- Drop the Comptroller-report sentence and the Chapter 78/44 citation from the body; the point survives without the statute numbers.
+- New heading in the same voice, e.g. "What the board can actually change about staff healthcare."
+
+**2. "How building can lower a cost the district is already paying" (Reduce Our Costs)**
+- Same treatment. Lead with the thing people get wrong: a new building isn't paid for out of the budget on the dashboard — voters approve bonds, the state chips in on the payments, and it shows up on the tax bill as debt service.
+- Keep every figure: $209,216,947 general fund, capital outlay down 28.3%, capital reserve at $256,697, operations and maintenance at $21.1 million.
+- Keep the honest ending, said plainly: we don't know how much a new building would take off the maintenance bill, that takes a facilities study, and we're not going to make a number up.
+
+**3. "What it would cost" section intro and the eight cost-lens entries**
+- Same conversational pass. "The filing does not say" phrasing becomes ordinary speech; "appropriation," "enterprise fund," "miscellaneous revenue" get a few words of plain explanation where they carry weight. Figures unchanged.
+- The "Why there is no price tag on this page" note gets the same treatment.
+
+**4. Priority bullet**
+- "Better healthcare for school staff, through the choices the district actually makes." goes back to the flyer's "Better healthcare for school staff." The hedge belongs in the explainer, not the promise.
+
+**5. Consistency check on the neighbours**
+- Read the dashboard section paragraphs and the PILOT explainer for the same tics (filing-speak, self-defending asides) and fix any that clash with the new register. No figures change on either page.
+
+## Rules for the rewrite
+
+- Nothing invented, nothing dropped: every dollar amount, percentage, and factual claim survives.
+- No slogans, no punchy fragments, no "not X, but Y" cadence — the failure mode of the last tone pass.
+- Contractions and ordinary words. Statute names only where a reader would go look it up.
+- No dollar estimate of any promise anywhere.
 
 ## Technical notes
 
-- `src/lib/campaign.ts`: edit `PRIORITIES[0].points`, delete `PRIORITIES[0].detail`, adjust the `affordable-for-all` highlight text and the `benefits` note.
-- `src/routes/priorities.tsx`: the optional `detail` renderer stays (priority 03 still uses it); no component change needed.
+- `src/lib/campaign.ts`: rewrite both `detail` blocks, the `PRIORITIES[0].points` healthcare bullet, and the `PROMISE_COST_LENS` strings plus `COST_STUDY_NOTE`.
+- `src/routes/priorities.tsx`: the "What it would cost" intro paragraph is inline in the component.
+- `src/components/budget-insights.tsx` and `src/routes/pilot.tsx`: prose-only edits if the consistency check turns up clashes.
