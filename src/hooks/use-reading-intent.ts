@@ -5,13 +5,42 @@ import { logSignal } from "@/lib/analytics";
 import { isTrackingDisabled } from "@/lib/tracking-consent";
 
 const PAGES_KEY = "lv_reading_pages";
+const STATE_KEY = "lv_reading_state";
 const THRESHOLD = 70;
 const MIN_SESSION_MS = 20_000;
 
 /** Routes where a nudge would be noise rather than help. */
-const EXCLUDED = ["/volunteer", "/admin", "/donate"];
+const EXCLUDED = ["/volunteer", "/admin"];
 
 type Score = { value: number; reached: boolean };
+
+/** Accumulated across the whole visit, not just the current page. */
+type SessionState = { activeMs: number; expands: number; startedAt: number; reached: boolean };
+
+function readState(): SessionState {
+  const fallback: SessionState = { activeMs: 0, expands: 0, startedAt: Date.now(), reached: false };
+  try {
+    const raw = window.sessionStorage.getItem(STATE_KEY);
+    if (!raw) return fallback;
+    const parsed = JSON.parse(raw) as Partial<SessionState>;
+    return {
+      activeMs: Number(parsed.activeMs) || 0,
+      expands: Number(parsed.expands) || 0,
+      startedAt: Number(parsed.startedAt) || fallback.startedAt,
+      reached: Boolean(parsed.reached),
+    };
+  } catch {
+    return fallback;
+  }
+}
+
+function writeState(state: SessionState) {
+  try {
+    window.sessionStorage.setItem(STATE_KEY, JSON.stringify(state));
+  } catch {
+    /* ignore */
+  }
+}
 
 function countedPages(path: string): number {
   try {
@@ -34,18 +63,21 @@ export function useReadingIntent(): Score {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [score, setScore] = useState<Score>({ value: 0, reached: false });
   const reached = useRef(false);
-  const started = useRef(Date.now());
 
   useEffect(() => {
     if (isTrackingDisabled()) return;
     if (EXCLUDED.some((p) => pathname.startsWith(p))) return;
 
-    let activeMs = 0;
+    const session = readState();
+    if (session.reached) reached.current = true;
+    let activeMs = session.activeMs;
+    let expands = session.expands;
+    const startedAt = session.startedAt;
     let lastTick = Date.now();
     let maxScroll = 0;
-    let expands = 0;
     const pages = countedPages(pathname);
     let cancelled = false;
+    writeState({ activeMs, expands, startedAt, reached: reached.current });
 
     const compute = () => {
       // Roughly: a minute of attentive reading, or half that plus real depth.
@@ -56,10 +88,12 @@ export function useReadingIntent(): Score {
       const value = Math.round(timePts + scrollPts + expandPts + pagePts);
 
       if (cancelled) return;
+      writeState({ activeMs, expands, startedAt, reached: reached.current });
       const hit =
-        !reached.current && value >= THRESHOLD && Date.now() - started.current >= MIN_SESSION_MS;
+        !reached.current && value >= THRESHOLD && Date.now() - startedAt >= MIN_SESSION_MS;
       if (hit) {
         reached.current = true;
+        writeState({ activeMs, expands, startedAt, reached: true });
         logSignal({
           event: "reading_intent_reached",
           path: pathname,
@@ -101,6 +135,9 @@ export function useReadingIntent(): Score {
 
     return () => {
       cancelled = true;
+      const now = Date.now();
+      if (document.visibilityState === "visible") activeMs += now - lastTick;
+      writeState({ activeMs, expands, startedAt, reached: reached.current });
       window.clearInterval(interval);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("toggle", onToggle, true);
