@@ -752,7 +752,20 @@ export const PRIORITIES: Priority[] = [
           sources: [SRC.ninthGrade, SRC.budget],
         },
       },
-      { text: "State-of-the-art schools with better technology, facilities, and programs." },
+      {
+        text: "State-of-the-art schools with better technology, facilities, and programs.",
+        detail: {
+          leverKind: "budget",
+          lever: "Operations and maintenance, $21.1 million, and capital outlay, $8.4 million",
+          mechanism: [
+            "Maintenance runs $21.1 million a year and is down 3.9%, while capital outlay is down 28.3% in two years. When the repair budget and the replacement budget both shrink, the work does not disappear; it moves to next year at a higher price.",
+            "The choice in front of the board is whether to keep patching buildings that are past the point where patching is the cheaper answer, or to put a plan in front of voters.",
+          ],
+          openQuestion:
+            "What each building needs and when. That is a facilities condition assessment, and the district has not published one.",
+          sources: [SRC.budget],
+        },
+      },
       {
         text: "Use state construction bonds to build better, more sustainable facilities with lower maintenance.",
         detail: {
@@ -780,8 +793,34 @@ export const PRIORITIES: Priority[] = [
           sources: [SRC.budget, SRC.ninthGrade],
         },
       },
-      { text: "Build facilities that can house excellence in programs." },
-      { text: "Audit the master plan, with public dashboards and community oversight." },
+      {
+        text: "Build facilities that can house excellence in programs.",
+        detail: {
+          leverKind: "practice",
+          lever: "Program requirements written into the design",
+          mechanism: [
+            "Board members walked through the high school's limits in public on June 4: cafeteria and gym capacity, classroom conditions, roof and plumbing. Those constraints decide which programs can exist, so a design brief that starts from the programs the district wants produces a different building than one that starts from a square footage target.",
+            "The board's leverage is at the beginning, in what the architect is asked for, not at the end when it is voting on a finished plan.",
+          ],
+          openQuestion:
+            "Which programs are being turned away or capped today for lack of space. Nobody has published that list.",
+          sources: [SRC.ninthGrade],
+        },
+      },
+      {
+        text: "Audit the master plan, with public dashboards and community oversight.",
+        detail: {
+          leverKind: "practice",
+          lever: "What the district publishes, and how",
+          mechanism: [
+            "Everything on this website was built from documents that are already public: the adopted budget filing, the district's own budget slides, board meeting coverage. It took a lot of reading, which is the point. A resident who wants to know what the district spends on out-of-district placements should not have to reverse-engineer it from a 64-page PDF.",
+            "Publishing the same numbers in a form people can actually read costs the district almost nothing and is entirely within the board's control.",
+          ],
+          openQuestion:
+            "Nothing, really. This one is a decision rather than a study.",
+          sources: [SRC.budget],
+        },
+      },
     ],
   },
 ];
