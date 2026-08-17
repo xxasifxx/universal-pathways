@@ -74,7 +74,7 @@ export function VolunteerPrompt() {
     >
       <div className="flex w-full max-w-sm items-center gap-2 rounded-full border border-border bg-card py-2 pl-4 pr-2 shadow-lg">
         <p className="min-w-0 flex-1 text-sm leading-snug text-foreground">
-          Want to help? Two hours is enough.
+          Want a free yard sign? We&rsquo;ll drop one off.
         </p>
         <button
           type="button"
@@ -86,11 +86,11 @@ export function VolunteerPrompt() {
             });
             markDismissed();
             setVisible(false);
-            open({ source: "reading-prompt" });
+            open({ source: "reading-prompt", defaultHelp: ["yard-sign"] });
           }}
           className="shrink-0 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
         >
-          Get involved
+          Yes, please
         </button>
         <button
           type="button"
