@@ -7,6 +7,29 @@ export const OFFICE = "East Brunswick Board of Education";
 export const CONTACT_EMAIL = "ask@saqeeb.org";
 export const REGISTRATION_DEADLINE = "October 13th";
 
+/**
+ * Saqeeb's own account of why he is running, in the first person. The short
+ * form runs on the home page; the long form opens the priorities page so what
+ * follows it reads as something he lived rather than an opinion from nowhere.
+ */
+export const CANDIDATE_STORY = {
+  short:
+    "I was one of the kids this district sorted. I grew up in East Brunswick in a working-class immigrant family and went through the public schools as a Special Education student — not because I couldn't do the work, but because I was a difficult kid at times, and the label stayed with me for nearly six years.",
+  long: [
+    "I was one of the kids this district sorted.",
+    "I grew up here in East Brunswick, in a working-class immigrant family, and went through East Brunswick Public Schools as a Special Education student. I wasn't placed there because I couldn't do the work. I was a difficult kid at times, and instead of always understanding what was behind that, I was placed into a system that followed me for nearly six years. Once that label was there, it began shaping which opportunities were available to me and which decisions were made about my education.",
+    "Eventually I found my way forward by learning to advocate for myself, alongside my immigrant parents. I pursued independent study to get ahead, challenged the expectations that had been set for me, and graduated summa cum laude with a degree in Psychology before earning my Master's in Data Science.",
+    "Not every student finds that path. I don't believe that's because educators don't care. I believe it's because systems can sometimes make decisions about children before we fully understand who they are, what they need, or what they're capable of becoming.",
+    "That experience stayed with me, and it's a large part of why I'm running.",
+  ],
+} as const;
+
+/** The first candidates' debate. Referenced publicly as a date, nothing more. */
+export const DEBATE = {
+  date: "September 30",
+  note: "The first candidates' debate is on September 30. I'll have answered a lot of this in front of people by then, and what I think will be sharper for it. If there's something you want me to address, send it and I'll take it with me.",
+} as const;
+
 /** Secure contribution page managed by ActBlue. */
 export const ACTBLUE_DONATION_URL = "https://secure.actblue.com/donate/saqeebforeb";
 
@@ -93,17 +116,17 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "affordable-for-all",
     title: "Affordable for All",
-    text: "Public full-day Pre-K for every family, no fees to join a club or a team, no student carrying lunch debt, and health coverage that staff can afford to use.",
+    text: "Pre-K, activities, and staff health coverage that families and employees can afford.",
   },
   {
     id: "students-first",
     title: "Students First",
-    text: "Open up advanced courses to the students ready for them, support families arriving with a new language, and grade students on work they do in school.",
+    text: "Fair access to the courses a student is ready for, whatever their transcript says.",
   },
   {
     id: "reduce-our-costs",
     title: "Reduce Our Costs",
-    text: "Build a 9-12 high school with state construction funding, so the district spends less each year patching buildings that are past their useful life.",
+    text: "Facilities decisions that stop the district paying twice for buildings past their life.",
   },
 ];
 
