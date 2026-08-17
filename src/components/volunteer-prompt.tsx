@@ -5,12 +5,16 @@ import { useEffect, useState } from "react";
 import { hasVolunteered, useVolunteerModal } from "@/components/volunteer-modal";
 import { useReadingIntent } from "@/hooks/use-reading-intent";
 import { logSignal } from "@/lib/analytics";
+import { HELP_OPTIONS } from "@/lib/campaign";
 import { isTrackingDisabled } from "@/lib/tracking-consent";
 import { cn } from "@/lib/utils";
 
 const DISMISS_KEY = "lv_volunteer_prompt";
 const SESSION_KEY = "lv_volunteer_prompt_session";
 const SUPPRESS_DAYS = 30;
+
+const YARD_SIGN_LABEL =
+  HELP_OPTIONS.find((o) => o.id === "yard-sign")?.label ?? "Request a yard sign";
 
 function suppressed(): boolean {
   try {
@@ -74,7 +78,7 @@ export function VolunteerPrompt() {
     >
       <div className="flex w-full max-w-sm items-center gap-2 rounded-full border border-border bg-card py-2 pl-4 pr-2 shadow-lg">
         <p className="min-w-0 flex-1 text-sm leading-snug text-foreground">
-          Want to help? Two hours is enough.
+          Want a free yard sign? We&rsquo;ll drop one off.
         </p>
         <button
           type="button"
@@ -86,11 +90,11 @@ export function VolunteerPrompt() {
             });
             markDismissed();
             setVisible(false);
-            open({ source: "reading-prompt" });
+            open({ source: "reading-prompt", preset: [YARD_SIGN_LABEL] });
           }}
           className="shrink-0 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
         >
-          Get involved
+          Yes, please
         </button>
         <button
           type="button"

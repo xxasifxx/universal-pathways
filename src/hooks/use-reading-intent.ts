@@ -8,6 +8,8 @@ const PAGES_KEY = "lv_reading_pages";
 const STATE_KEY = "lv_reading_state";
 const THRESHOLD = 70;
 const MIN_SESSION_MS = 20_000;
+/** Below this much of the first screen, the visitor is still at the top. */
+const FOLD_RATIO = 0.4;
 
 /** Routes where a nudge would be noise rather than help. */
 const EXCLUDED = ["/volunteer", "/admin"];
@@ -15,24 +17,47 @@ const EXCLUDED = ["/volunteer", "/admin"];
 type Score = { value: number; reached: boolean };
 
 /** Accumulated across the whole visit, not just the current page. */
-type SessionState = { activeMs: number; expands: number; startedAt: number; reached: boolean };
+type SessionState = {
+  engagedMs: number;
+  expands: number;
+  startedAt: number;
+  reached: boolean;
+  /** Deepest scroll reached on each path this visit. */
+  scroll: Record<string, number>;
+};
 
 function readState(): SessionState {
-  const fallback: SessionState = { activeMs: 0, expands: 0, startedAt: Date.now(), reached: false };
+  const fallback: SessionState = {
+    engagedMs: 0,
+    expands: 0,
+    startedAt: Date.now(),
+    reached: false,
+    scroll: {},
+  };
   try {
     const raw = window.sessionStorage.getItem(STATE_KEY);
     if (!raw) return fallback;
     const parsed = JSON.parse(raw) as Partial<SessionState>;
     return {
-      activeMs: Number(parsed.activeMs) || 0,
+      engagedMs: Number(parsed.engagedMs) || 0,
       expands: Number(parsed.expands) || 0,
       startedAt: Number(parsed.startedAt) || fallback.startedAt,
       reached: Boolean(parsed.reached),
+      scroll:
+        parsed.scroll && typeof parsed.scroll === "object" ? { ...parsed.scroll } : {},
     };
   } catch {
     return fallback;
   }
 }
+/** Depth credit for one page: half of a page read is worth most of it. */
+function depthPoints(pct: number): number {
+  if (pct >= 70) return 14;
+  if (pct >= 45) return 10;
+  if (pct >= 20) return 5;
+  return 0;
+}
+
 
 function writeState(state: SessionState) {
   try {
@@ -56,8 +81,10 @@ function countedPages(path: string): number {
 
 /**
  * Derives a "this person is actually reading" score from behaviour we already
- * watch: active time, scroll depth, opened disclosures, and pages visited.
- * No extra network traffic — it only reports once, when the bar is crossed.
+ * watch. The main input is engaged time — the tab visible and the page scrolled
+ * past the first screen — added up across the whole visit, alongside scroll
+ * depth per page, opened disclosures, and pages seen. It reports once, when the
+ * bar is crossed, so there is no extra network traffic.
  */
 export function useReadingIntent(): Score {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -70,34 +97,49 @@ export function useReadingIntent(): Score {
 
     const session = readState();
     if (session.reached) reached.current = true;
-    let activeMs = session.activeMs;
+    let engagedMs = session.engagedMs;
     let expands = session.expands;
     const startedAt = session.startedAt;
+    const scroll = session.scroll;
     let lastTick = Date.now();
-    let maxScroll = 0;
+    let maxScroll = scroll[pathname] ?? 0;
     const pages = countedPages(pathname);
     let cancelled = false;
-    writeState({ activeMs, expands, startedAt, reached: reached.current });
+
+    const snapshot = (): SessionState => ({
+      engagedMs,
+      expands,
+      startedAt,
+      reached: reached.current,
+      scroll: { ...scroll, [pathname]: maxScroll },
+    });
+
+    writeState(snapshot());
 
     const compute = () => {
-      // Roughly: a minute of attentive reading, or half that plus real depth.
-      const timePts = Math.min(60, (activeMs / 1000) * 1.5);
-      const scrollPts = maxScroll >= 75 ? 30 : maxScroll >= 50 ? 18 : maxScroll >= 25 ? 8 : 0;
-      const expandPts = Math.min(30, expands * 12);
-      const pagePts = Math.min(20, Math.max(0, pages - 1) * 12);
+      // About half a minute spent down in the content gets there on its own;
+      // depth across pages and opened panels shorten it.
+      const timePts = Math.min(55, (engagedMs / 1000) * 2);
+      const depths = { ...scroll, [pathname]: maxScroll };
+      const scrollPts = Math.min(
+        30,
+        Object.values(depths).reduce((sum, pct) => sum + depthPoints(pct), 0),
+      );
+      const expandPts = Math.min(18, expands * 6);
+      const pagePts = Math.min(24, Math.max(0, pages - 1) * 12);
       const value = Math.round(timePts + scrollPts + expandPts + pagePts);
 
       if (cancelled) return;
-      writeState({ activeMs, expands, startedAt, reached: reached.current });
+      writeState(snapshot());
       const hit =
         !reached.current && value >= THRESHOLD && Date.now() - startedAt >= MIN_SESSION_MS;
       if (hit) {
         reached.current = true;
-        writeState({ activeMs, expands, startedAt, reached: true });
+        writeState(snapshot());
         logSignal({
           event: "reading_intent_reached",
           path: pathname,
-          meta: { score: value, scroll_pct: maxScroll, expands, pages },
+          meta: { score: value, scroll_pct: maxScroll, engaged_ms: engagedMs, expands, pages },
         });
       }
       setScore({ value, reached: reached.current });
@@ -124,7 +166,8 @@ export function useReadingIntent(): Score {
 
     const interval = window.setInterval(() => {
       const now = Date.now();
-      if (document.visibilityState === "visible") activeMs += now - lastTick;
+      const belowFold = window.scrollY > window.innerHeight * FOLD_RATIO;
+      if (document.visibilityState === "visible" && belowFold) engagedMs += now - lastTick;
       lastTick = now;
       compute();
     }, 2000);
@@ -136,8 +179,9 @@ export function useReadingIntent(): Score {
     return () => {
       cancelled = true;
       const now = Date.now();
-      if (document.visibilityState === "visible") activeMs += now - lastTick;
-      writeState({ activeMs, expands, startedAt, reached: reached.current });
+      const belowFold = window.scrollY > window.innerHeight * FOLD_RATIO;
+      if (document.visibilityState === "visible" && belowFold) engagedMs += now - lastTick;
+      writeState(snapshot());
       window.clearInterval(interval);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("toggle", onToggle, true);
