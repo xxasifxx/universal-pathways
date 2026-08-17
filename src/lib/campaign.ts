@@ -515,6 +515,16 @@ export const PRIORITIES: Priority[] = [
       },
       {
         text: "Fully funded schools so parents aren’t paying out of pocket for basic opportunities.",
+        detail: {
+          leverKind: "practice",
+          lever: "Supply lists, activity fees, and trip costs, none of them itemized",
+          mechanism: [
+            "What families pay out of pocket does not appear as a line anywhere. Classroom supply lists, activity fees, trip costs, and instrument rental are decided school by school and program by program, and the money mostly never touches the district's books, so a budget filing cannot show it.",
+            "The first step is an inventory: what each school asks families to buy or pay in a year, collected once and published. Until that exists, nobody on the board can say how much of a family's school year is being paid for privately.",
+          ],
+          openQuestion:
+            "The total households actually spend. That is a survey and a document request, not a figure anyone can pull out of the budget.",
+        },
       },
       {
         text: "Hire teaching support staff in-house, not outside providers.",
@@ -531,6 +541,17 @@ export const PRIORITIES: Priority[] = [
       },
       {
         text: "Protect and improve special education, mental health, and early intervention.",
+        detail: {
+          leverKind: "budget",
+          lever: "Student support services, $23.2 million",
+          mechanism: [
+            "Student support services run $23.2 million, with $5.0 million in extraordinary services and $3.7 million in speech, occupational, and physical therapy. The district counts 1,365 students in special education and 57 in private placements out of 8,559 on roll.",
+            "Protecting this means treating it as the last place to look for savings when the budget gets tight, and saying that out loud during the adoption vote rather than after the reductions are made.",
+          ],
+          openQuestion:
+            "Caseloads and wait times. The filing prints totals, not how long a family waits for an evaluation or how many students one counselor carries.",
+          sources: [SRC.budget],
+        },
       },
       {
         text: "Better language programs for incoming families.",
@@ -583,17 +604,131 @@ export const PRIORITIES: Priority[] = [
     summary:
       "Fair access to the courses a student is ready for, work that means something, and a school where they are safe.",
     points: [
-      { text: "End the rigid matrix and expand fair access to advanced courses." },
-      { text: "Allow placement exams, including languages." },
-      { text: "Arts and science above grade level by request, with early access to instruments." },
-      { text: "Language bridge program for new families." },
+      {
+        text: "End the rigid matrix and expand fair access to advanced courses.",
+        detail: {
+          leverKind: "practice",
+          lever: "Course placement criteria, published in the course guide",
+          mechanism: [
+            "The placement rules are not in state law and they are not in a board policy. They live in the district's course placement criteria, published alongside the course guide, where a prior-year grade sets whether a student stays on a track or moves up one. Because they are administrative, the board can direct that they be revised without waiting for Trenton.",
+            "The district's own gifted and talented policy already asks for more than a single cutoff. It directs an ongoing K-12 identification process using multiple measures, and says the process must consider all students, including English language learners and students with an IEP or 504 plan.",
+          ],
+          openQuestion:
+            "How many students clear or miss each cutoff, and how that breaks down by school, income, and language background. The district has the data and does not publish it.",
+          sources: [SRC.ebPlacement, SRC.ebGifted, SRC.giftedAct],
+        },
+      },
+      {
+        text: "Allow placement exams, including languages.",
+        detail: {
+          leverKind: "practice",
+          lever: "Placement criteria and the world language sequence",
+          mechanism: [
+            "A placement exam is an alternative route into a course for a student whose transcript does not describe what they can do: a child who learned a language at home, or who covered material at another school. Adding one is a change to the placement criteria and a scheduling question about who administers it and when.",
+            "The board's role is to ask for the option to exist and to require that it be advertised to families rather than granted case by case to whoever knows to ask.",
+          ],
+          openQuestion:
+            "Which subjects already allow a challenge exam today. That is an administrative practice, not a published rule.",
+          sources: [SRC.ebPlacement],
+        },
+      },
+      {
+        text: "Arts and science above grade level by request, with early access to instruments.",
+        detail: {
+          leverKind: "policy",
+          lever: "Board Policy 2464, instructional adaptation",
+          mechanism: [
+            "Policy 2464 already defines an instructional adaptation as teaching a student \"at the instructional level of the student, not just the student's grade level,\" and directs the Superintendent to ensure those adaptations are designed. The 2019 state law it implements requires districts to identify gifted students in every grade from kindergarten up and to provide the services.",
+            "So the promise is not a new authority. It is asking that the policy already on the books produce a scheduling answer for a fourth grader ready for older science, and an instrument in a younger student's hands.",
+          ],
+          openQuestion:
+            "How many students receive an above-grade placement now, in which buildings, and whether the answer is the same across the elementary schools.",
+          sources: [SRC.ebGifted, SRC.giftedAct],
+        },
+      },
+      {
+        text: "Language bridge program for new families.",
+        detail: {
+          leverKind: "budget",
+          lever: "Bilingual education, $1.5 million",
+          mechanism: [
+            "Bilingual education is budgeted at $1.5 million inside the $73.0 million instruction total. A bridge program is the part that sits around it: the first weeks for a family that has just arrived, translated material, and someone whose job is to make sure a new student is placed correctly rather than parked.",
+          ],
+          openQuestion:
+            "How many students arrive mid-year needing language support, and what the current caseload per teacher is.",
+          sources: [SRC.budget],
+        },
+      },
       {
         text: "Grade students on their work, not their homes: more in-school assignments and performance, less homework for evaluation.",
+        detail: {
+          leverKind: "policy",
+          lever: "Board Policy 2624, Grading System",
+          mechanism: [
+            "This one is unusually concrete, because the board has already written most of it. Policy 2624, last edited in September 2025, caps homework completion at no more than ten percent of a grade, says grades must reflect proficiency against the state standards and the district's own objectives, and gives a student who thinks a grade is unjust an appeal to the principal and then to the assistant superintendent.",
+            "The policy also assigns the Superintendent responsibility for the procedures that put it into practice at each level. That is where the difference between the written rule and a student's actual experience lives, and it is a fair thing for a board member to ask about in public.",
+          ],
+          openQuestion:
+            "Whether the ten percent cap is being applied consistently across schools and departments. Nothing published tracks that.",
+          sources: [SRC.ebGrading],
+        },
       },
-      { text: "Responsible AI literacy for creative, independent projects and critical thinking." },
-      { text: "Train staff and administration to spot racism, sexism, Islamophobia, and antisemitism." },
-      { text: "ICE out of schools. Police/SROs out of schools." },
-      { text: "Student oversight of mental health and facilities." },
+      {
+        text: "Responsible AI literacy for creative, independent projects and critical thinking.",
+        detail: {
+          leverKind: "policy",
+          lever: "Local curriculum and acceptable use, with state guidance only",
+          mechanism: [
+            "New Jersey has not mandated anything here. The Department of Education's innovation office publishes guidance on AI terms and classroom use, and leaves the decisions to districts, which means East Brunswick's rules are whatever the board and administration adopt.",
+            "Two things follow. Teachers need to know what is allowed before they are asked to enforce it, and students should be taught to use these tools on work that is theirs rather than only being told when using them counts as cheating.",
+          ],
+          openQuestion:
+            "What East Brunswick's current rule actually is, building by building, and whether staff have had training on it.",
+          sources: [SRC.njAi],
+        },
+      },
+      {
+        text: "Train staff and administration to spot racism, sexism, Islamophobia, and antisemitism.",
+        detail: {
+          leverKind: "state-rule",
+          lever: "Mandated HIB training, and what the state does not require",
+          mechanism: [
+            "Training on harassment, intimidation, and bullying is a state-mandated professional development topic, so East Brunswick already does some of this and has to.",
+            "Training specifically on recognizing bias against a religion or an ethnicity is not separately mandated. A district that wants it adds it, pays for it out of professional development, and decides who has to attend. In a district where families come from as many places as they do here, that is worth choosing to do rather than waiting to be told.",
+          ],
+          openQuestion:
+            "What training staff currently receive beyond the state minimum, and how incidents are reported back to the board.",
+          sources: [SRC.hibTraining],
+        },
+      },
+      {
+        text: "ICE out of schools. Police/SROs out of schools.",
+        detail: {
+          leverKind: "policy",
+          lever: "The district's agreement with local law enforcement",
+          mechanism: [
+            "There are two separate things here. Immigration enforcement is governed by the state's Immigrant Trust Directive, which limits how New Jersey law enforcement may assist federal immigration authorities and bars stopping or detaining someone solely on immigration status. A district's part is knowing the rule, telling families it exists, and having a written answer ready before someone shows up at a school office.",
+            "Police presence is more local. Every district has a memorandum of agreement with its municipal police department, required by state regulation and built on a state model, and that agreement is what defines when officers come into a building and what happens when they do. It is signed by the district and the police, which means it can be read in public, questioned, and renegotiated.",
+          ],
+          openQuestion:
+            "What East Brunswick's current agreement says. It is a public document and this campaign has not been able to obtain the signed version.",
+          sources: [SRC.immigrantTrust, SRC.schoolPoliceMoa],
+        },
+      },
+      {
+        text: "Student oversight of mental health and facilities.",
+        detail: {
+          leverKind: "policy",
+          lever: "Board Bylaw 0143.2, student representatives to the board",
+          mechanism: [
+            "The board already seats at least one nonvoting student representative from grades nine to twelve, chosen by the student body, serving a one-year term. The bylaw gives that student three duties: attend meetings, bring student concerns to the board, and report back monthly to the student council.",
+            "Extending that into the two areas students actually experience first, counseling and the condition of the buildings, means giving them a standing place in those discussions instead of a report at the end. That is a bylaw and committee change the board makes on its own.",
+          ],
+          openQuestion:
+            "Whether one representative for the whole district is enough, and how students are picked in practice.",
+          sources: [SRC.ebStudentReps],
+        },
+      },
     ],
   },
   {
