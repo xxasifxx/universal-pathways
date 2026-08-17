@@ -14,6 +14,8 @@ const TABS = [
   { to: "/admin/export", label: "Export" },
 ] as const;
 
+const REVIEWER_TAB = { to: "/admin/drafts", label: "Review room" } as const;
+
 function RecordingToggle() {
   const [off, setOff] = useState(true);
   useEffect(() => setOff(isTrackingDisabled()), []);
@@ -33,10 +35,18 @@ function RecordingToggle() {
   );
 }
 
-export function AdminShell({ children }: { children: ReactNode }) {
-  const { loading, session, isAdmin } = useAdminSession();
+export function AdminShell({
+  children,
+  allow = "admin",
+}: {
+  children: ReactNode;
+  /** "reviewer" also lets accounts holding only the reviewer role through. */
+  allow?: "admin" | "reviewer";
+}) {
+  const { loading, session, isAdmin, isReviewer } = useAdminSession();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const permitted = allow === "reviewer" ? isReviewer : isAdmin;
 
   // An admin's own browsing is instrumentation, not audience behaviour.
   useEffect(() => {
@@ -63,12 +73,14 @@ export function AdminShell({ children }: { children: ReactNode }) {
 
   if (!session) return null;
 
-  if (!isAdmin) {
+  if (!permitted) {
     return (
       <div className="mx-auto max-w-md px-4 py-16 text-center">
         <h1 className="font-display text-xl font-extrabold">Access denied</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          This account doesn't have the admin role.
+          {allow === "reviewer"
+            ? "This account hasn't been given review access yet."
+            : "This account doesn't have the admin role."}
         </p>
         <button
           type="button"
@@ -85,7 +97,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
     <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6">
       <header className="sticky top-16 z-20 mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-border bg-background/95 py-3 backdrop-blur">
         <nav aria-label="Admin sections" className="flex flex-wrap gap-1">
-          {TABS.map((tab) => (
+          {(isAdmin ? [...TABS, REVIEWER_TAB] : [REVIEWER_TAB]).map((tab) => (
             <Link
               key={tab.to}
               to={tab.to}

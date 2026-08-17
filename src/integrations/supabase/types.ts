@@ -129,6 +129,72 @@ export type Database = {
           },
         ]
       }
+      draft_comments: {
+        Row: {
+          anchor: string | null
+          author_email: string | null
+          author_id: string
+          body: string
+          created_at: string
+          draft_key: string
+          id: string
+          resolved: boolean
+          updated_at: string
+        }
+        Insert: {
+          anchor?: string | null
+          author_email?: string | null
+          author_id: string
+          body: string
+          created_at?: string
+          draft_key: string
+          id?: string
+          resolved?: boolean
+          updated_at?: string
+        }
+        Update: {
+          anchor?: string | null
+          author_email?: string | null
+          author_id?: string
+          body?: string
+          created_at?: string
+          draft_key?: string
+          id?: string
+          resolved?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      draft_status: {
+        Row: {
+          created_at: string
+          draft_key: string
+          id: string
+          note: string | null
+          status: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          draft_key: string
+          id?: string
+          note?: string | null
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          draft_key?: string
+          id?: string
+          note?: string | null
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       households: {
         Row: {
           avg_turnout_pct: number
@@ -686,6 +752,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      can_review: { Args: { _user_id: string }; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -696,7 +763,7 @@ export type Database = {
       purge_tracking_data: { Args: never; Returns: undefined }
     }
     Enums: {
-      app_role: "admin"
+      app_role: "admin" | "reviewer"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -824,7 +891,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin"],
+      app_role: ["admin", "reviewer"],
     },
   },
 } as const

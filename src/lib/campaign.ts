@@ -7,6 +7,29 @@ export const OFFICE = "East Brunswick Board of Education";
 export const CONTACT_EMAIL = "ask@saqeeb.org";
 export const REGISTRATION_DEADLINE = "October 13th";
 
+/**
+ * Saqeeb's own account of why he is running, in the first person. The short
+ * form runs on the home page; the long form opens the priorities page so what
+ * follows it reads as something he lived rather than an opinion from nowhere.
+ */
+export const CANDIDATE_STORY = {
+  short:
+    "I was one of the kids this district sorted. I grew up in East Brunswick in a working-class immigrant family and went through the public schools as a Special Education student — not because I couldn't do the work, but because I was a difficult kid at times, and the label stayed with me for nearly six years.",
+  long: [
+    "I was one of the kids this district sorted.",
+    "I grew up here in East Brunswick, in a working-class immigrant family, and went through East Brunswick Public Schools as a Special Education student. I wasn't placed there because I couldn't do the work. I was a difficult kid at times, and instead of always understanding what was behind that, I was placed into a system that followed me for nearly six years. Once that label was there, it began shaping which opportunities were available to me and which decisions were made about my education.",
+    "Eventually I found my way forward by learning to advocate for myself, alongside my immigrant parents. I pursued independent study to get ahead, challenged the expectations that had been set for me, and graduated summa cum laude with a degree in Psychology before earning my Master's in Data Science.",
+    "Not every student finds that path. I don't believe that's because educators don't care. I believe it's because systems can sometimes make decisions about children before we fully understand who they are, what they need, or what they're capable of becoming.",
+    "That experience stayed with me, and it's a large part of why I'm running.",
+  ],
+} as const;
+
+/** The first candidates' debate. Referenced publicly as a date, nothing more. */
+export const DEBATE = {
+  date: "September 30",
+  note: "The first candidates' debate is on September 30. I'll have answered a lot of this in front of people by then, and what I think will be sharper for it. If there's something you want me to address, send it and I'll take it with me.",
+} as const;
+
 /** Secure contribution page managed by ActBlue. */
 export const ACTBLUE_DONATION_URL = "https://secure.actblue.com/donate/saqeebforeb";
 
@@ -93,17 +116,17 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "affordable-for-all",
     title: "Affordable for All",
-    text: "Public full-day Pre-K for every family, no fees to join a club or a team, no student carrying lunch debt, and health coverage that staff can afford to use.",
+    text: "Pre-K, activities, and staff health coverage that families and employees can afford.",
   },
   {
     id: "students-first",
     title: "Students First",
-    text: "Open up advanced courses to the students ready for them, support families arriving with a new language, and grade students on work they do in school.",
+    text: "Fair access to the courses a student is ready for, whatever their transcript says.",
   },
   {
     id: "reduce-our-costs",
     title: "Reduce Our Costs",
-    text: "Build a 9-12 high school with state construction funding, so the district spends less each year patching buildings that are past their useful life.",
+    text: "Facilities decisions that stop the district paying twice for buildings past their life.",
   },
 ];
 
@@ -485,7 +508,7 @@ export const PRIORITIES: Priority[] = [
     number: "01",
     title: "Affordable for All",
     summary:
-      "Every student should be able to take part, get support, and learn without families paying for basic opportunities.",
+      "Taking part in school shouldn't depend on what a family can pay, and staff shouldn't be priced out of their own health coverage.",
     points: [
       {
         text: "Universally paid public full-day Pre-K.",
@@ -602,7 +625,7 @@ export const PRIORITIES: Priority[] = [
     number: "02",
     title: "Students First",
     summary:
-      "Fair access to the courses a student is ready for, work that means something, and a school where they are safe.",
+      "A student should get into the course they're ready for on the strength of what they can do, and be graded on work they actually did.",
     points: [
       {
         text: "End the rigid matrix and expand fair access to advanced courses.",
@@ -827,7 +850,7 @@ export const PRIORITIES: Priority[] = [
 
 /** Shown under the priorities. The campaign does not publish estimates it cannot source. */
 export const COST_STUDY_NOTE =
-  "This campaign is not going to put a dollar figure on any of these promises. A number that sounds authoritative and was reverse-engineered from a public budget filing is worse than no number, because it invites a debate about arithmetic nobody can check. Costing this properly means enrollment projections, facilities condition assessments, staffing models, and plan-by-plan benefit pricing, which is professional work and it is not free. Donations to this campaign are what pay for it, and whatever is produced will be published in full, including the parts that are inconvenient.";
+  "I'm not going to put a dollar figure next to any of this. A number reverse-engineered from a public budget filing sounds authoritative and isn't, and it invites an argument about arithmetic nobody can check. Costing these properly takes enrollment projections, a facilities condition assessment, staffing models, and plan-by-plan benefit pricing — professional work, done by people who do it for a living. Until that exists, what you'll get from me is the budget line involved and an honest note about what isn't known yet.";
 
 export const HELP_OPTIONS = [
   {
@@ -845,6 +868,35 @@ export const HELP_OPTIONS = [
     label: "Phone or text bank",
     blurb: "From home, on your own schedule. We send the list and the script.",
   },
+  {
+    id: "researcher",
+    label: "Help review the platform",
+    blurb:
+      "Read the longer policy drafts before they go public and tell us where they're weak, unsourced, or overconfident. About an hour, from home.",
+  },
+] as const;
+
+/**
+ * Questions Saqeeb is preparing for ahead of the first debate. Working
+ * material — imported by the private drafting area only, never by a public
+ * route.
+ */
+export const DEBATE_QUESTIONS = [
+  "What specific steps would you take to reduce healthcare costs for East Brunswick teachers and staff without shifting those costs onto employees?",
+  "Do you support universal full-day Pre-K in East Brunswick? If so, how would you implement and fund it?",
+  "When the district faces budget pressure, what programs and services should be protected from cuts, and where should the Board look for savings first?",
+  "What would you do to improve teacher recruitment and retention in East Brunswick?",
+  "What is your position on outsourcing school services versus employing staff directly through the district?",
+  "What should East Brunswick's long-term facilities plan look like, including the future of the high school?",
+  "Should families have to pay participation fees for athletics, clubs, arts, or other school activities?",
+  "How would you improve special education while controlling rising costs?",
+  "How much discretion should teachers have over instruction, grading, homework, and classroom practices?",
+  "What responsibility does a Board member have to advocate in Trenton for additional school funding or statewide policy changes?",
+  "What specific changes would you make to ensure teachers and staff have a stronger voice in district decision-making?",
+  "How should the district balance competitive employee compensation with concerns about property taxes and affordability?",
+  "What investments in early intervention would you prioritize to reduce the need for more costly services later?",
+  "How should the Board evaluate whether outside contracts and consultants are providing taxpayers and educators good value?",
+  "What would you do to make advanced courses and educational opportunities more accessible to students who may not fit traditional placement criteria?",
 ] as const;
 
 export const CANVASS_DAYS = [
