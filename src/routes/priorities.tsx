@@ -157,9 +157,9 @@ function Priorities() {
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-3xl border-l-4 border-gold pl-5 sm:pl-6">
-            <h3 className="font-display text-xl uppercase leading-tight text-primary sm:text-2xl">
+            <h2 id="cost-heading" className="font-display text-xl uppercase leading-tight text-primary sm:text-2xl">
               Why there is no price tag on this page
-            </h3>
+            </h2>
             <p className="mt-4 text-base leading-relaxed">{COST_STUDY_NOTE}</p>
             <div className="mt-6 flex flex-wrap gap-4">
               <a
