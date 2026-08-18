@@ -73,6 +73,47 @@ export const SOURCES: Source[] = [
       "The state page setting out that districts are eligible for at least 40 percent of approved eligible project costs, with the balance raised locally.",
     href: "https://www.nj.gov/education/facilities/projectapplication/rod.shtml",
   },
+  {
+    id: "ufb-archive-2122",
+    label: "East Brunswick Twp advertised enrollments, 2021–22 User Friendly Budget (state copy)",
+    detail:
+      "The state's own copy of the district filing, which carries the on-roll counts for the earlier years: 8,416 on 10/15/2019 and 8,277 on 10/15/2020. Useful because the current filing only shows two years at a time.",
+    href: "https://www.nj.gov/education/budget/ufb/2122/reports/23/UFB22_1170.pdf",
+  },
+  {
+    id: "ufb-archive-1920",
+    label: "East Brunswick Twp, 2019–20 User Friendly Budget (state copy)",
+    detail: "Carries the 10/13/2017 on-roll count of 8,201, the oldest figure currently sourced here.",
+    href: "https://www.nj.gov/education/budget/ufb/1920/reports/23/UFB20_1170.pdf",
+  },
+  {
+    id: "district-acfr",
+    label: "East Brunswick Public Schools Annual Comprehensive Financial Report",
+    detail:
+      "The audited financials filed with the state. Its enrollment table is compiled differently from the budget filing's on-roll count, which is why the two do not match year for year.",
+    href: "https://www.nj.gov/education/finance/fp/acfr/search/25/1170.pdf",
+  },
+  {
+    id: "rutgers-multipliers",
+    label: "David Listokin, \u201cWho Lives in New Jersey Housing?\u201d, Rutgers CUPR, November 2018",
+    detail:
+      "The standard New Jersey demographic multiplier study, built on 2012\u20132016 American Community Survey microdata. It reports school-age children per unit by structure type, tenure, and bedroom count, and it documents the long decline in those rates \u2014 the average four-bedroom single-family detached home went from 1.21 public school children in 1980 to 0.85 in 2016.",
+    href: "https://waynetownship.com/wp-content/uploads/2021/02/Who%20lives%20in%20New%20Jersey%20Housing%20-%202018.pdf",
+  },
+  {
+    id: "patch-route18",
+    label: "Patch, \u201cRt. 18 Project To Give East Brunswick A \u2018Cohesive Look\u2019: Officials\u201d",
+    detail:
+      "Coverage of the October 2022 council update by Michael Hughes of the East Brunswick Redevelopment Agency, including his statement that the PILOT program does not affect what the school district receives, and the Vermella figures: about $1 million in taxes from the site before, roughly $4.5 million projected to the township afterward.",
+    href: "https://patch.com/new-jersey/eastbrunswick/rt-18-project-give-east-brunswick-cohesive-look-official",
+  },
+  {
+    id: "patch-golden-triangle",
+    label: "Patch, \u201cMayor Unveils Golden Triangle Deal\u201d",
+    detail:
+      "The 2011 settlement with Toll Brothers at Route 18 and Tices Lane: a concept for roughly 200 to 400 residential units capped at 10 percent three-bedroom, with a PILOT starting at $550,000 a year and rising as units are completed.",
+    href: "https://patch.com/new-jersey/eastbrunswick/mayor-unveils-golden-triangle-deal",
+  },
 ];
 
 export type Assumption = {
