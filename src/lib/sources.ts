@@ -114,6 +114,35 @@ export const SOURCES: Source[] = [
       "The 2011 settlement with Toll Brothers at Route 18 and Tices Lane: a concept for roughly 200 to 400 residential units capped at 10 percent three-bedroom, with a PILOT starting at $550,000 a year and rising as units are completed.",
     href: "https://patch.com/new-jersey/eastbrunswick/mayor-unveils-golden-triangle-deal",
   },
+  {
+    id: "eb-mayor-press-2024",
+    label: "Press Release from the Office of the Mayor, March 28, 2024",
+    detail:
+      "Mayor Brad Cohen's summary of the revisions to the Route 18 South redevelopment plan presented to the council on March 14, 2024: apartments cut from the original 1,280 proposed to 535, a reduction of 745 units; 218 townhouses marketed as for-sale; several acres dedicated to parks and community use; a hotel with retail and a conference center in place of a planned third township parking garage.",
+    href: "https://www.eastbrunswick.org/DocumentCenter/View/8429/Press-Release-from-the-Office-of-the-Mayor-32824",
+  },
+  {
+    id: "eb-rt18-plan-2023",
+    label: "Route 18 Corridor Redevelopment Plan, amended November 2023",
+    detail:
+      "The township's adopted redevelopment plan for the corridor from Ruth Street to Lake Avenue, prepared by DMR Architects, listing the blocks and lots covered and the permitted uses and densities the Vermella project is built under.",
+    href: "https://www.eastbrunswick.org/DocumentCenter/View/8430/East-Brunswick-Redevelopment-Plan-Amendment---Rt-18-Corridor",
+  },
+  {
+    id: "eb-resolution-25-63",
+    label: "Township of East Brunswick Resolution 25-63, adopted January 6, 2025",
+    detail:
+      "The resolution adopting the township's Fourth Round affordable housing obligations under P.L. 2024, c.2. It records the state Department of Community Affairs' non-binding calculation of 170 present need and 314 prospective need, the council's acceptance of the 170, and its determination of a reduced prospective need of 265 for 2025 through 2035.",
+    href: "https://www.eastbrunswick.org/DocumentCenter/View/9644/Resolution-25-63---Resolution-Adopting-the-Fourth-Round-of-Affordable-Housing-Obligations",
+  },
+  {
+    id: "eb-court-order-2025",
+    label:
+      "Superior Court of New Jersey, Middlesex County, Docket MID-L-000119-25, filed April 24, 2025",
+    detail:
+      "The order fixing East Brunswick's present need and prospective need obligations for the Fourth Round housing cycle, following the township's declaratory judgment action under the Fair Housing Act. The obligation is court-supervised and runs through 2035.",
+    href: "https://www.eastbrunswick.org/DocumentCenter/View/10061",
+  },
 ];
 
 export type Assumption = {
