@@ -1,38 +1,35 @@
 # Growth without choking: one synthesis, written as an argument
 
-The last pass filed the research as a checklist of what is verified and what is missing. That is a work log, not a piece of writing. This rewrite turns the same material into a single continuous argument: here is what East Brunswick has built, here is what it did and did not do to our schools, here is where the money actually goes, and here is what the board should change so the town keeps growing without the schools absorbing the cost of it.
+The last pass filed the research as a checklist of verified and missing items. That is a work log, not a piece of writing. This rewrite turns the same material into a single continuous argument, written from where the campaign actually stands: East Brunswick is growing on purpose, that growth is worth having, and the schools are the part of the arrangement nobody has built a planning process around.
 
-It stays in the review room for now, keyed `growth:apartments-enrollment`, same as the existing draft. Reviewers see the argument first; a public page gets planned once they clear it.
+It stays in the review room, keyed `growth:apartments-enrollment`. A public page gets planned once reviewers clear it.
 
 ## The through-line
 
-The synthesis rests on a tension the sources actually carry, rather than on the assumption we started with:
+The town converted tired corridor property into housing under redevelopment and long-term tax exemption law, and it did that deliberately and lawfully. New residents are how a community stays alive. The problem is not that they are coming.
 
-- The town has been converting tired corridor property into apartments under redevelopment and long-term tax exemption law, and it has been doing that deliberately.
-- Enrollment across nine years of district filings is flat — roughly 8,200 to 8,560, no sustained climb. The feared surge has not shown up in the record yet.
-- Meanwhile 76.4% of a $209 million school budget is raised locally, and a payment in lieu of taxes is distributed by a formula that does not run through the school levy the way an ordinary tax bill does.
-
-So the honest argument is not "apartments are flooding our schools." It is that the town has taken on long-dated financial commitments whose school-side consequences arrive later than the buildings do, and nobody has published the numbers that would let a board member see them coming.
+The problem is that the schools carry 76.4% of a $209 million budget on the local levy, the district plans against enrollment counts published once a year, and the financial agreements that shape the next twenty years of the tax base are negotiated on a track the board does not sit on. Housing decisions are made in one building with a twenty-year horizon; school capacity is managed in another with a one-year horizon. That gap is the subject.
 
 ## Structure of the rewritten section
 
-1. **Where we actually are** — the growth story and the flat enrollment record side by side, with the years named. States plainly that the alarm version of this argument is not supported by the data we have.
-2. **Why flat enrollment is not the end of the argument** — the buildings are recent, occupancy dates are unpublished, bedroom mix drives student generation far more than unit count, and the Rutgers multiplier work shows rates falling but not to zero. What is coming is a question of timing, not of whether.
-3. **Where the money goes** — the statutory service charge under the Long Term Tax Exemption Law against the ordinary levy split, plus the township's own position on the record (Hughes: the program "does not impact the funds the school district... receive[s] from taxes") and the genuine counterargument that keeping exempt improvements out of the equalization tables protects state aid. Both sides stated; neither resolved by assertion.
-4. **What the board should change** — the reform section, and the point of the whole page. Concrete, board-level, and none of it requires a promise the board cannot keep:
-   - An annual enrollment-and-development report the board publishes itself: units approved, units occupied, bedroom mix, and enrollment by grade in the same document.
-   - A standing seat at the table before a financial agreement is signed, so the board comments on school impact while terms are still open rather than after.
-   - Refreshed demographic projections tied to actual occupancy dates, updated on a cycle rather than once a decade.
-   - Capacity reported by building, not district-wide, since "not at capacity" as a district average can hide a full elementary school.
-   - Every PILOT's term, escalator, and expiration published in one place a resident can read.
-5. **What still has to be nailed down before this is public** — kept, but short and at the end, where a reader who wants it can find it: the statutory distribution read from the statute itself, the unit inventory, the multipliers by bedroom count, the minutes citation for the capacity remark, the 2022 forecasting study.
+1. **What the town built, and why** — redevelopment on the corridor, the projects the record names, the revenue case the township makes for them, in its own words. Written as a description of a strategy, not a complaint about one.
+2. **What the schools know, and when they know it** — nine years of on-roll counts from district filings, the two incompatible NJDOE and budget-filing series, the once-a-year snapshot, the 2022 forecasting study nobody has updated publicly. The point: the district's picture of its own future arrives late, in pieces, and after occupancy rather than before approval.
+3. **What actually determines the school-age children in a building** — bedroom mix over unit count, the Rutgers CUPR multiplier work and its declining rates, and the fact that East Brunswick's mix is unpublished. Establishes that this is knowable in advance and simply is not being calculated here.
+4. **How the money arrives, and on what schedule** — the annual service charge under the Long Term Tax Exemption Law against the ordinary levy split, the township's stated position that the program does not affect school funding, and the real countervailing point that exempt improvements stay out of the equalization tables, which protects state aid. Both positions stated as they are held.
+5. **What the board should change** — the point of the page:
+   - An annual enrollment-and-development report the board publishes itself: units approved, units occupied, bedroom mix, enrollment by grade, one document.
+   - Board comment on school impact entered into the record before a financial agreement is signed, while terms are still open.
+   - Demographic projections refreshed on a cycle and tied to actual occupancy dates.
+   - Capacity reported building by building, since a district-wide average hides a full elementary school.
+   - Every agreement's term, escalator, and expiration published somewhere a resident can read in one sitting.
+6. **What still has to be nailed down** — short, at the end: the statutory distribution read from the statute, the unit inventory, multipliers by bedroom count, a minutes citation for the capacity remark, the 2022 study.
 
 ## Rules held from the PILOT explainer
 
-No projected enrollment figures. No per-pupil cost multiplied into a scary total. No attributing a trend to a cause the record does not establish. No opponent framing — the township acted lawfully and says so publicly; the disagreement is about what gets measured and published.
+No projected enrollment figures. No per-pupil cost multiplied into a total. No attributing a trend to a cause the record does not establish. No arguing against a position nobody holds — the township's case for redevelopment is stated as the township states it, and the disagreement is about what gets measured, published, and asked before signing.
 
 ## Technical notes
 
-- `src/lib/drafts.ts`: rewrite the blocks of the `growth:apartments-enrollment` section into the five headings above. The `sources` array added last pass stays as is.
+- `src/lib/drafts.ts`: rewrite the blocks of the `growth:apartments-enrollment` section into the six headings above. The `sources` array added last pass stays as is.
 - `src/lib/sources.ts`: unchanged — the six verified sources are already in `SOURCES`.
 - No route, navbar, sitemap, or public-page changes. `/pilot`, `/dashboard`, and `/priorities` are untouched.
