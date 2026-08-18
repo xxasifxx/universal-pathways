@@ -1,35 +1,33 @@
-# Growth without choking: one synthesis, written as an argument
+# The growth case for the platform we already have
 
-The last pass filed the research as a checklist of verified and missing items. That is a work log, not a piece of writing. This rewrite turns the same material into a single continuous argument, written from where the campaign actually stands: East Brunswick is growing on purpose, that growth is worth having, and the schools are the part of the arrangement nobody has built a planning process around.
+The research does not call for a new position. It supplies the missing evidence for three promises already on the platform, and the synthesis should be written that way: growth is the reason the reforms are urgent, not a separate subject.
 
-It stays in the review room, keyed `growth:apartments-enrollment`. A public page gets planned once reviewers clear it.
+Stays in the review room, keyed `growth:apartments-enrollment`, rewritten in the same shape the platform uses — lever, mechanism, open question — so a reviewer reads it against `/priorities` rather than as a stray essay.
 
-## The through-line
+## The argument
 
-The town converted tired corridor property into housing under redevelopment and long-term tax exemption law, and it did that deliberately and lawfully. New residents are how a community stays alive. The problem is not that they are coming.
+East Brunswick decided to grow, on the corridor, on purpose, and the town is better for having people in it. What the record shows is that the growth arrives on a twenty-year financial schedule while the schools plan on a one-year one, and that every consequence lands on promises already made:
 
-The problem is that the schools carry 76.4% of a $209 million budget on the local levy, the district plans against enrollment counts published once a year, and the financial agreements that shape the next twenty years of the tax base are negotiated on a track the board does not sit on. Housing decisions are made in one building with a twenty-year horizon; school capacity is managed in another with a one-year horizon. That gap is the subject.
+- **A new 9-12 high school.** The board priced the options in public on June 4: about $11 million to move temporary classrooms, $45 to $49 million for a ninth-grade academy, $325 to $350 million for a new school, and a bond referendum either way. The right size of that building depends on how many children the corridor housing will actually seat, and that number has never been published. A district that builds to today's flat 8,393 and gets tomorrow's occupancy wrong pays for the mistake twice.
+- **Capital capacity, going the wrong way.** Capital outlay is down 28.3% in two years, maintenance is down 3.9%, and the capital reserve is projected at $256,697 against $3.1 million not long ago. That is the balance sheet meeting the growth with. Meanwhile a payment in lieu of taxes on new construction pays the township an annual service charge instead of an ordinary tax bill, and 76.4% of the school budget is raised on the local levy.
+- **Audit the master plan, with public dashboards.** This is the promise the research most directly arms. The reason nobody can answer the question is that the answers are scattered across redevelopment agendas, state budget filings, NJDOE reports on a different counting basis, and a 2022 forecasting study nobody has updated in public. Consolidating that is the reform.
+- **Public full-day Pre-K.** Corridor apartments draw households with children below kindergarten age, and the budget carries no preschool appropriation and no preschool aid. Growth is a straightforward argument for applying.
 
 ## Structure of the rewritten section
 
-1. **What the town built, and why** — redevelopment on the corridor, the projects the record names, the revenue case the township makes for them, in its own words. Written as a description of a strategy, not a complaint about one.
-2. **What the schools know, and when they know it** — nine years of on-roll counts from district filings, the two incompatible NJDOE and budget-filing series, the once-a-year snapshot, the 2022 forecasting study nobody has updated publicly. The point: the district's picture of its own future arrives late, in pieces, and after occupancy rather than before approval.
-3. **What actually determines the school-age children in a building** — bedroom mix over unit count, the Rutgers CUPR multiplier work and its declining rates, and the fact that East Brunswick's mix is unpublished. Establishes that this is knowable in advance and simply is not being calculated here.
-4. **How the money arrives, and on what schedule** — the annual service charge under the Long Term Tax Exemption Law against the ordinary levy split, the township's stated position that the program does not affect school funding, and the real countervailing point that exempt improvements stay out of the equalization tables, which protects state aid. Both positions stated as they are held.
-5. **What the board should change** — the point of the page:
-   - An annual enrollment-and-development report the board publishes itself: units approved, units occupied, bedroom mix, enrollment by grade, one document.
-   - Board comment on school impact entered into the record before a financial agreement is signed, while terms are still open.
-   - Demographic projections refreshed on a cycle and tied to actual occupancy dates.
-   - Capacity reported building by building, since a district-wide average hides a full elementary school.
-   - Every agreement's term, escalator, and expiration published somewhere a resident can read in one sitting.
-6. **What still has to be nailed down** — short, at the end: the statutory distribution read from the statute, the unit inventory, multipliers by bedroom count, a minutes citation for the capacity remark, the 2022 study.
+1. **Growth is the plan, and it is working** — what the town built and why, in the township's own terms, including the revenue case Hughes made on the record.
+2. **What the schools are given to plan with** — nine years of on-roll counts, two incompatible enrollment series, an annual snapshot, an unrefreshed 2022 projection. The gap is information and timing, not intent.
+3. **Where it lands on the platform** — the four promises above, each tied to its budget line and to the specific unknown that makes it hard to size.
+4. **The revenue side, both ways** — the annual service charge under the Long Term Tax Exemption Law against the ordinary levy split, and the real counterpoint that exempt improvements stay out of the equalization tables, which protects state aid.
+5. **What the board should ask for** — an annual development-and-enrollment report the district publishes itself, projections refreshed against actual occupancy dates, capacity reported building by building, and board comment on school impact entered before a financial agreement is signed.
+6. **Still to nail down** — short list at the end: the statutory distribution read from the statute, the unit inventory and bedroom mix, multipliers by bedroom count, a minutes citation for the capacity remark, the 2022 study.
 
-## Rules held from the PILOT explainer
+## Rules held
 
-No projected enrollment figures. No per-pupil cost multiplied into a total. No attributing a trend to a cause the record does not establish. No arguing against a position nobody holds — the township's case for redevelopment is stated as the township states it, and the disagreement is about what gets measured, published, and asked before signing.
+No projected enrollment, no per-pupil cost multiplied into a total, no trend attributed to a cause the record does not establish, and no argument against a position nobody holds. Consistent with `COST_STUDY_NOTE`: the page names the budget line and says honestly what is not known.
 
 ## Technical notes
 
-- `src/lib/drafts.ts`: rewrite the blocks of the `growth:apartments-enrollment` section into the six headings above. The `sources` array added last pass stays as is.
-- `src/lib/sources.ts`: unchanged — the six verified sources are already in `SOURCES`.
-- No route, navbar, sitemap, or public-page changes. `/pilot`, `/dashboard`, and `/priorities` are untouched.
+- `src/lib/drafts.ts`: rewrite the blocks of `growth:apartments-enrollment` into the six headings above; the `sources` array already added stays.
+- `src/lib/campaign.ts` and `src/lib/sources.ts`: unchanged this pass. If reviewers clear it, the follow-up is folding the growth evidence into the existing `PROMISE_DETAIL` mechanisms rather than building a separate page.
+- No route, navbar, or sitemap changes.
