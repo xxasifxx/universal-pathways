@@ -256,6 +256,78 @@ export async function geocodeBatch(supabase: DB, batchSize: number) {
   return { processed: pending.length, ok, failed };
 }
 
+/**
+ * Free, keyless bulk geocoding via the US Census Bureau batch endpoint.
+ * Handles up to ~1,000 addresses per request and needs no API key, so it is the
+ * primary path for mapping the whole voter file. Households the Census cannot
+ * match are marked failed with a reason and can still be walked by street order.
+ */
+export async function censusGeocodeBatch(supabase: DB, batchSize: number, retryFailed = false) {
+  const query = supabase
+    .from("households")
+    .select("id, street_num, street_name, city, zip")
+    .limit(batchSize);
+  const { data: rows } = retryFailed
+    ? await query.eq("geocode_status", "failed")
+    : await query.eq("geocode_status", "pending");
+
+  const pending = (rows ?? []) as Array<Record<string, any>>;
+  if (pending.length === 0) return { processed: 0, ok: 0, failed: 0 };
+
+  const csv = pending
+    .map((h) => {
+      const street = `${h["street_num"] ?? ""} ${h["street_name"] ?? ""}`.trim();
+      const city = (h["city"] as string | null) ?? "East Brunswick";
+      const zip = (h["zip"] as string | null) ?? "08816";
+      return `${h["id"]},"${street}","${city}",NJ,${zip}`;
+    })
+    .join("\n");
+
+  const form = new FormData();
+  form.append("benchmark", "Public_AR_Current");
+  form.append("addressFile", new Blob([csv], { type: "text/csv" }), "addresses.csv");
+
+  const response = await fetch(
+    "https://geocoding.geo.census.gov/geocoder/locations/addressbatch",
+    { method: "POST", body: form },
+  );
+  if (!response.ok) {
+    throw new Error(`Census geocoder failed (${response.status})`);
+  }
+  const text = await response.text();
+
+  let ok = 0;
+  let failed = 0;
+  for (const line of text.split("\n")) {
+    if (!line.trim()) continue;
+    const cells = line.match(/"([^"]*)"/g)?.map((c) => c.slice(1, -1)) ?? [];
+    const id = cells[0];
+    if (!id) continue;
+    const status = cells[2];
+    const coords = cells[5];
+    if (status === "Match" && coords?.includes(",")) {
+      const [lngText, latText] = coords.split(",");
+      const lng = Number(lngText);
+      const lat = Number(latText);
+      if (Number.isFinite(lat) && Number.isFinite(lng)) {
+        await supabase
+          .from("households")
+          .update({ lat, lng, geocode_status: "ok", geocode_error: null })
+          .eq("id", id);
+        ok += 1;
+        continue;
+      }
+    }
+    await supabase
+      .from("households")
+      .update({ geocode_status: "failed", geocode_error: status || "No Census match" })
+      .eq("id", id);
+    failed += 1;
+  }
+
+  return { processed: pending.length, ok, failed };
+}
+
 export function toCsv(rows: Record<string, unknown>[]): string {
   if (rows.length === 0) return "";
   const headers = Object.keys(rows[0]!);
