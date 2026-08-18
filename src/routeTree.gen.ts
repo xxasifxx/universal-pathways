@@ -31,7 +31,7 @@ import { Route as ApiPublicCanvassSyncRouteImport } from './routes/api/public/ca
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
 import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
-import { Route as CanvassWalkRouteImport } from './routes/canvass.walk.'
+import { Route as CanvassWalkTurfIdRouteImport } from './routes/canvass.walk.$turfId'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -146,9 +146,9 @@ const ApiPublicLogSignalRoute = ApiPublicLogSignalRouteImport.update({
   path: '/api/public/log-signal',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CanvassWalkRoute = CanvassWalkRouteImport.update({
-  id: '/canvass/walk/',
-  path: '/canvass/walk/',
+const CanvassWalkTurfIdRoute = CanvassWalkTurfIdRouteImport.update({
+  id: '/canvass/walk/$turfId',
+  path: '/canvass/walk/$turfId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
@@ -187,11 +187,11 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/canvass/': typeof CanvassIndexRoute
   '/review/': typeof ReviewIndexRoute
-  '/canvass/walk/': typeof CanvassWalkRoute
   '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/canvass/walk/$turfId': typeof CanvassWalkTurfIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -215,11 +215,11 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/canvass': typeof CanvassIndexRoute
   '/review': typeof ReviewIndexRoute
-  '/canvass/walk': typeof CanvassWalkRoute
   '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/canvass/walk/$turfId': typeof CanvassWalkTurfIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -244,11 +244,11 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/canvass/': typeof CanvassIndexRoute
   '/review/': typeof ReviewIndexRoute
-  '/canvass/walk/': typeof CanvassWalkRoute
   '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/canvass/walk/$turfId': typeof CanvassWalkTurfIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -274,11 +274,11 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/canvass/'
     | '/review/'
-    | '/canvass/walk/'
     | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/canvass/walk/$turfId'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -302,11 +302,11 @@ export interface FileRouteTypes {
     | '/admin'
     | '/canvass'
     | '/review'
-    | '/canvass/walk'
     | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/canvass/walk/$turfId'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -330,11 +330,11 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/canvass/'
     | '/review/'
-    | '/canvass/walk/'
     | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/canvass/walk/$turfId'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -359,11 +359,11 @@ export interface RootRouteChildren {
   AdminIndexRoute: typeof AdminIndexRoute
   CanvassIndexRoute: typeof CanvassIndexRoute
   ReviewIndexRoute: typeof ReviewIndexRoute
-  CanvassWalkRoute: typeof CanvassWalkRoute
   ApiPublicCanvassSyncRoute: typeof ApiPublicCanvassSyncRoute
   ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
   ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
   ApiPublicLogSignalRoute: typeof ApiPublicLogSignalRoute
+  CanvassWalkTurfIdRoute: typeof CanvassWalkTurfIdRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -525,11 +525,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicLogSignalRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/canvass/walk/': {
-      id: '/canvass/walk/'
-      path: '/canvass/walk'
-      fullPath: '/canvass/walk/'
-      preLoaderRoute: typeof CanvassWalkRouteImport
+    '/canvass/walk/$turfId': {
+      id: '/canvass/walk/$turfId'
+      path: '/canvass/walk/$turfId'
+      fullPath: '/canvass/walk/$turfId'
+      preLoaderRoute: typeof CanvassWalkTurfIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lovable/email/auth/preview': {
@@ -575,11 +575,11 @@ const rootRouteChildren: RootRouteChildren = {
   AdminIndexRoute: AdminIndexRoute,
   CanvassIndexRoute: CanvassIndexRoute,
   ReviewIndexRoute: ReviewIndexRoute,
-  CanvassWalkRoute: CanvassWalkRoute,
   ApiPublicCanvassSyncRoute: ApiPublicCanvassSyncRoute,
   ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
   ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
   ApiPublicLogSignalRoute: ApiPublicLogSignalRoute,
+  CanvassWalkTurfIdRoute: CanvassWalkTurfIdRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,

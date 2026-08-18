@@ -14,7 +14,7 @@ import {
 } from "@/lib/canvass-outbox";
 import { getTurfBundle, openTurfWithCode } from "@/lib/canvass.functions";
 
-export const Route = createFileRoute("/canvass/walk/")({
+export const Route = createFileRoute("/canvass/walk/$turfId")({
   ssr: false,
   validateSearch: (search: Record<string, unknown>) => ({
     t: typeof search["t"] === "string" ? search["t"] : "",

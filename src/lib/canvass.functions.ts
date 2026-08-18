@@ -89,6 +89,14 @@ export const getTurfBundle = createServerFn({ method: "POST" })
     };
   });
 
+export type MyTurf = {
+  id: string;
+  name: string;
+  district: number | null;
+  status: string;
+  door_count: number;
+};
+
 export const listMyTurfs = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
@@ -109,12 +117,19 @@ export const listMyTurfs = createServerFn({ method: "GET" })
         .select("id")
         .eq("user_id", context.userId)
         .maybeSingle();
-      if (!volunteer) return { isAdmin: false, turfs: [] };
+      if (!volunteer) return { isAdmin: false, turfs: [] as MyTurf[] };
       query = query.eq("volunteer_id", volunteer.id);
     }
 
     const { data } = await query.limit(100);
-    return { isAdmin: Boolean(isAdmin), turfs: (data ?? []) as Array<Record<string, unknown>> };
+    const turfs: MyTurf[] = (data ?? []).map((t) => ({
+      id: String(t.id),
+      name: String(t.name),
+      district: t.district ?? null,
+      status: String(t.status),
+      door_count: Number(t.door_count ?? 0),
+    }));
+    return { isAdmin: Boolean(isAdmin), turfs };
   });
 
 /* -------------------------------- organizer -------------------------------- */
@@ -235,14 +250,13 @@ export const upsertVolunteer = createServerFn({ method: "POST" })
     const { assertAdmin } = await import("./admin.server");
     await assertAdmin(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const row = {
+    const { error } = await supabaseAdmin.from("canvass_volunteers").upsert({
       ...(data.id ? { id: data.id } : {}),
       name: data.name,
       email: data.email || null,
       phone: data.phone || null,
       active: data.active,
-    };
-    const { error } = await supabaseAdmin.from("canvass_volunteers").upsert(row);
+    });
     if (error) throw new Error(error.message);
     return { ok: true as const };
   });
