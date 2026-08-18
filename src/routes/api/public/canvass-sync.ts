@@ -68,7 +68,15 @@ export const Route = createFileRoute("/api/public/canvass-sync")({
               outcome: v.outcome,
               visited_at: v.visited_at,
               note: v.note ?? null,
-              responses: v.responses ?? [],
+              responses: (v.responses ?? []).map((r) => ({
+                voter_id: r.voter_id,
+                support: r.support ?? null,
+                issues: r.issues ?? [],
+                wants_lawn_sign: Boolean(r.wants_lawn_sign),
+                volunteer_lead: Boolean(r.volunteer_lead),
+                vote_by_mail: Boolean(r.vote_by_mail),
+                do_not_contact: Boolean(r.do_not_contact),
+              })),
               canvasser_name: v.canvasser_name ?? session.canvasser ?? null,
             })),
           );
