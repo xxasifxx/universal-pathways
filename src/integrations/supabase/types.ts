@@ -772,7 +772,7 @@ export type Database = {
       purge_tracking_data: { Args: never; Returns: undefined }
     }
     Enums: {
-      app_role: "admin" | "reviewer"
+      app_role: "admin" | "reviewer" | "canvasser"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -900,7 +900,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "reviewer"],
+      app_role: ["admin", "reviewer", "canvasser"],
     },
   },
 } as const
