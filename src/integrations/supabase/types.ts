@@ -14,6 +14,146 @@ export type Database = {
   }
   public: {
     Tables: {
+      canvass_responses: {
+        Row: {
+          created_at: string
+          do_not_contact: boolean
+          id: string
+          issues: string[]
+          recorded_at: string
+          support: number | null
+          visit_id: string
+          volunteer_lead: boolean
+          vote_by_mail: boolean
+          voter_id: string
+          wants_lawn_sign: boolean
+        }
+        Insert: {
+          created_at?: string
+          do_not_contact?: boolean
+          id?: string
+          issues?: string[]
+          recorded_at?: string
+          support?: number | null
+          visit_id: string
+          volunteer_lead?: boolean
+          vote_by_mail?: boolean
+          voter_id: string
+          wants_lawn_sign?: boolean
+        }
+        Update: {
+          created_at?: string
+          do_not_contact?: boolean
+          id?: string
+          issues?: string[]
+          recorded_at?: string
+          support?: number | null
+          visit_id?: string
+          volunteer_lead?: boolean
+          vote_by_mail?: boolean
+          voter_id?: string
+          wants_lawn_sign?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "canvass_responses_visit_id_fkey"
+            columns: ["visit_id"]
+            isOneToOne: false
+            referencedRelation: "canvass_visits"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      canvass_visits: {
+        Row: {
+          canvasser_name: string | null
+          canvasser_user_id: string | null
+          client_id: string
+          created_at: string
+          hh_key: string
+          id: string
+          note: string | null
+          outcome: string
+          turf_id: string
+          visited_at: string
+          volunteer_id: string | null
+        }
+        Insert: {
+          canvasser_name?: string | null
+          canvasser_user_id?: string | null
+          client_id: string
+          created_at?: string
+          hh_key: string
+          id?: string
+          note?: string | null
+          outcome: string
+          turf_id: string
+          visited_at?: string
+          volunteer_id?: string | null
+        }
+        Update: {
+          canvasser_name?: string | null
+          canvasser_user_id?: string | null
+          client_id?: string
+          created_at?: string
+          hh_key?: string
+          id?: string
+          note?: string | null
+          outcome?: string
+          turf_id?: string
+          visited_at?: string
+          volunteer_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "canvass_visits_turf_id_fkey"
+            columns: ["turf_id"]
+            isOneToOne: false
+            referencedRelation: "turfs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "canvass_visits_volunteer_id_fkey"
+            columns: ["volunteer_id"]
+            isOneToOne: false
+            referencedRelation: "canvass_volunteers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      canvass_volunteers: {
+        Row: {
+          active: boolean
+          created_at: string
+          email: string | null
+          id: string
+          name: string
+          phone: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          email?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           created_at: string
@@ -444,6 +584,112 @@ export type Database = {
           },
         ]
       }
+      turf_households: {
+        Row: {
+          address: string | null
+          city: string | null
+          created_at: string
+          hh_key: string
+          id: string
+          lat: number | null
+          lng: number | null
+          sequence: number
+          turf_id: string
+          zip: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          created_at?: string
+          hh_key: string
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          sequence?: number
+          turf_id: string
+          zip?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          created_at?: string
+          hh_key?: string
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          sequence?: number
+          turf_id?: string
+          zip?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "turf_households_turf_id_fkey"
+            columns: ["turf_id"]
+            isOneToOne: false
+            referencedRelation: "turfs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      turfs: {
+        Row: {
+          allow_contact_info: boolean
+          created_at: string
+          created_by: string | null
+          district: number | null
+          door_count: number
+          id: string
+          mask_party: boolean
+          name: string
+          passcode: string | null
+          share_token: string
+          status: string
+          target_size: number
+          updated_at: string
+          volunteer_id: string | null
+        }
+        Insert: {
+          allow_contact_info?: boolean
+          created_at?: string
+          created_by?: string | null
+          district?: number | null
+          door_count?: number
+          id?: string
+          mask_party?: boolean
+          name: string
+          passcode?: string | null
+          share_token?: string
+          status?: string
+          target_size?: number
+          updated_at?: string
+          volunteer_id?: string | null
+        }
+        Update: {
+          allow_contact_info?: boolean
+          created_at?: string
+          created_by?: string | null
+          district?: number | null
+          door_count?: number
+          id?: string
+          mask_party?: boolean
+          name?: string
+          passcode?: string | null
+          share_token?: string
+          status?: string
+          target_size?: number
+          updated_at?: string
+          volunteer_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "turfs_volunteer_id_fkey"
+            columns: ["volunteer_id"]
+            isOneToOne: false
+            referencedRelation: "canvass_volunteers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       turnout_history: {
         Row: {
           turnout_pct: number
@@ -772,7 +1018,7 @@ export type Database = {
       purge_tracking_data: { Args: never; Returns: undefined }
     }
     Enums: {
-      app_role: "admin" | "reviewer"
+      app_role: "admin" | "reviewer" | "canvasser"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -900,7 +1146,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "reviewer"],
+      app_role: ["admin", "reviewer", "canvasser"],
     },
   },
 } as const

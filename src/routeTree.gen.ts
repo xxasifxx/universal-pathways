@@ -17,6 +17,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminCanvassRouteImport } from './routes/admin/canvass'
 import { Route as AdminDraftsRouteImport } from './routes/admin/drafts'
 import { Route as AdminExportRouteImport } from './routes/admin/export'
 import { Route as AdminHeatmapsRouteImport } from './routes/admin/heatmaps'
@@ -24,11 +25,14 @@ import { Route as AdminIntentRouteImport } from './routes/admin/intent'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminVoterMapRouteImport } from './routes/admin/voter-map'
 import { Route as AdminVotersRouteImport } from './routes/admin/voters'
+import { Route as CanvassIndexRouteImport } from './routes/canvass.index'
 import { Route as ReviewIndexRouteImport } from './routes/review.index'
 import { Route as ReviewUnlockRouteImport } from './routes/review.unlock'
+import { Route as ApiPublicCanvassSyncRouteImport } from './routes/api/public/canvass-sync'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
 import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
+import { Route as CanvassWalkTurfIdRouteImport } from './routes/canvass.walk.$turfId'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -73,6 +77,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminCanvassRoute = AdminCanvassRouteImport.update({
+  id: '/admin/canvass',
+  path: '/admin/canvass',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminDraftsRoute = AdminDraftsRouteImport.update({
   id: '/admin/drafts',
   path: '/admin/drafts',
@@ -108,6 +117,11 @@ const AdminVotersRoute = AdminVotersRouteImport.update({
   path: '/admin/voters',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CanvassIndexRoute = CanvassIndexRouteImport.update({
+  id: '/canvass/',
+  path: '/canvass/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReviewIndexRoute = ReviewIndexRouteImport.update({
   id: '/review/',
   path: '/review/',
@@ -116,6 +130,11 @@ const ReviewIndexRoute = ReviewIndexRouteImport.update({
 const ReviewUnlockRoute = ReviewUnlockRouteImport.update({
   id: '/review/unlock',
   path: '/review/unlock',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicCanvassSyncRoute = ApiPublicCanvassSyncRouteImport.update({
+  id: '/api/public/canvass-sync',
+  path: '/api/public/canvass-sync',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicIngestPointerRoute = ApiPublicIngestPointerRouteImport.update({
@@ -131,6 +150,11 @@ const ApiPublicIngestReplayRoute = ApiPublicIngestReplayRouteImport.update({
 const ApiPublicLogSignalRoute = ApiPublicLogSignalRouteImport.update({
   id: '/api/public/log-signal',
   path: '/api/public/log-signal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CanvassWalkTurfIdRoute = CanvassWalkTurfIdRouteImport.update({
+  id: '/canvass/walk/$turfId',
+  path: '/canvass/walk/$turfId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
@@ -158,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/canvass': typeof AdminCanvassRoute
   '/admin/drafts': typeof AdminDraftsRoute
   '/admin/export': typeof AdminExportRoute
   '/admin/heatmaps': typeof AdminHeatmapsRoute
@@ -167,10 +192,13 @@ export interface FileRoutesByFullPath {
   '/admin/voters': typeof AdminVotersRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
+  '/canvass/': typeof CanvassIndexRoute
   '/review/': typeof ReviewIndexRoute
+  '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/canvass/walk/$turfId': typeof CanvassWalkTurfIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -183,6 +211,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/canvass': typeof AdminCanvassRoute
   '/admin/drafts': typeof AdminDraftsRoute
   '/admin/export': typeof AdminExportRoute
   '/admin/heatmaps': typeof AdminHeatmapsRoute
@@ -192,10 +221,13 @@ export interface FileRoutesByTo {
   '/admin/voters': typeof AdminVotersRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin': typeof AdminIndexRoute
+  '/canvass': typeof CanvassIndexRoute
   '/review': typeof ReviewIndexRoute
+  '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/canvass/walk/$turfId': typeof CanvassWalkTurfIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -209,6 +241,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/canvass': typeof AdminCanvassRoute
   '/admin/drafts': typeof AdminDraftsRoute
   '/admin/export': typeof AdminExportRoute
   '/admin/heatmaps': typeof AdminHeatmapsRoute
@@ -218,10 +251,13 @@ export interface FileRoutesById {
   '/admin/voters': typeof AdminVotersRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
+  '/canvass/': typeof CanvassIndexRoute
   '/review/': typeof ReviewIndexRoute
+  '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
+  '/canvass/walk/$turfId': typeof CanvassWalkTurfIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -236,6 +272,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sitemap.xml'
     | '/volunteer'
+    | '/admin/canvass'
     | '/admin/drafts'
     | '/admin/export'
     | '/admin/heatmaps'
@@ -245,10 +282,13 @@ export interface FileRouteTypes {
     | '/admin/voters'
     | '/review/unlock'
     | '/admin/'
+    | '/canvass/'
     | '/review/'
+    | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/canvass/walk/$turfId'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -261,6 +301,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sitemap.xml'
     | '/volunteer'
+    | '/admin/canvass'
     | '/admin/drafts'
     | '/admin/export'
     | '/admin/heatmaps'
@@ -270,10 +311,13 @@ export interface FileRouteTypes {
     | '/admin/voters'
     | '/review/unlock'
     | '/admin'
+    | '/canvass'
     | '/review'
+    | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/canvass/walk/$turfId'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -286,6 +330,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sitemap.xml'
     | '/volunteer'
+    | '/admin/canvass'
     | '/admin/drafts'
     | '/admin/export'
     | '/admin/heatmaps'
@@ -295,10 +340,13 @@ export interface FileRouteTypes {
     | '/admin/voters'
     | '/review/unlock'
     | '/admin/'
+    | '/canvass/'
     | '/review/'
+    | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
+    | '/canvass/walk/$turfId'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -312,6 +360,7 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VolunteerRoute: typeof VolunteerRoute
+  AdminCanvassRoute: typeof AdminCanvassRoute
   AdminDraftsRoute: typeof AdminDraftsRoute
   AdminExportRoute: typeof AdminExportRoute
   AdminHeatmapsRoute: typeof AdminHeatmapsRoute
@@ -321,10 +370,13 @@ export interface RootRouteChildren {
   AdminVotersRoute: typeof AdminVotersRoute
   ReviewUnlockRoute: typeof ReviewUnlockRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  CanvassIndexRoute: typeof CanvassIndexRoute
   ReviewIndexRoute: typeof ReviewIndexRoute
+  ApiPublicCanvassSyncRoute: typeof ApiPublicCanvassSyncRoute
   ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
   ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
   ApiPublicLogSignalRoute: typeof ApiPublicLogSignalRoute
+  CanvassWalkTurfIdRoute: typeof CanvassWalkTurfIdRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -388,6 +440,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/canvass': {
+      id: '/admin/canvass'
+      path: '/admin/canvass'
+      fullPath: '/admin/canvass'
+      preLoaderRoute: typeof AdminCanvassRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/drafts': {
       id: '/admin/drafts'
       path: '/admin/drafts'
@@ -437,6 +496,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminVotersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/canvass/': {
+      id: '/canvass/'
+      path: '/canvass'
+      fullPath: '/canvass/'
+      preLoaderRoute: typeof CanvassIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/review/': {
       id: '/review/'
       path: '/review'
@@ -449,6 +515,13 @@ declare module '@tanstack/react-router' {
       path: '/review/unlock'
       fullPath: '/review/unlock'
       preLoaderRoute: typeof ReviewUnlockRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/canvass-sync': {
+      id: '/api/public/canvass-sync'
+      path: '/api/public/canvass-sync'
+      fullPath: '/api/public/canvass-sync'
+      preLoaderRoute: typeof ApiPublicCanvassSyncRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/ingest-pointer': {
@@ -470,6 +543,13 @@ declare module '@tanstack/react-router' {
       path: '/api/public/log-signal'
       fullPath: '/api/public/log-signal'
       preLoaderRoute: typeof ApiPublicLogSignalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/canvass/walk/$turfId': {
+      id: '/canvass/walk/$turfId'
+      path: '/canvass/walk/$turfId'
+      fullPath: '/canvass/walk/$turfId'
+      preLoaderRoute: typeof CanvassWalkTurfIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lovable/email/auth/preview': {
@@ -504,6 +584,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VolunteerRoute: VolunteerRoute,
+  AdminCanvassRoute: AdminCanvassRoute,
   AdminDraftsRoute: AdminDraftsRoute,
   AdminExportRoute: AdminExportRoute,
   AdminHeatmapsRoute: AdminHeatmapsRoute,
@@ -513,10 +594,13 @@ const rootRouteChildren: RootRouteChildren = {
   AdminVotersRoute: AdminVotersRoute,
   ReviewUnlockRoute: ReviewUnlockRoute,
   AdminIndexRoute: AdminIndexRoute,
+  CanvassIndexRoute: CanvassIndexRoute,
   ReviewIndexRoute: ReviewIndexRoute,
+  ApiPublicCanvassSyncRoute: ApiPublicCanvassSyncRoute,
   ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
   ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
   ApiPublicLogSignalRoute: ApiPublicLogSignalRoute,
+  CanvassWalkTurfIdRoute: CanvassWalkTurfIdRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,

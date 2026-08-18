@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -131,6 +132,20 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // The field shell is its own app: no nav, no footer, no tracking on a walk.
+  const fieldMode = pathname.startsWith("/canvass");
+
+  if (fieldMode) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <div className="min-h-dvh bg-background">
+          <Outlet />
+        </div>
+        <Toaster position="top-center" />
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

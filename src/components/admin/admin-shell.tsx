@@ -11,6 +11,7 @@ const TABS = [
   { to: "/admin/heatmaps", label: "Heatmaps" },
   { to: "/admin/voters", label: "Voters" },
   { to: "/admin/voter-map", label: "Household map" },
+  { to: "/admin/canvass", label: "Canvass" },
   { to: "/admin/export", label: "Export" },
 ] as const;
 
