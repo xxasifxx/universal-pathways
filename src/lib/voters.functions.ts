@@ -124,6 +124,25 @@ export const readPendingHouseholds = createServerFn({ method: "POST" })
     }>;
   });
 
+export const runCensusGeocode = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { batchSize?: number; retryFailed?: boolean }) =>
+    z
+      .object({
+        batchSize: z.number().int().min(1).max(1000).default(500),
+        retryFailed: z.boolean().default(false),
+      })
+      .parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    const { assertAdmin } = await import("./admin.server");
+    await assertAdmin(context.supabase, context.userId);
+    const { censusGeocodeBatch, geocodeProgress } = await import("./voters.server");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const result = await censusGeocodeBatch(supabaseAdmin, data.batchSize, data.retryFailed);
+    return { ...result, progress: await geocodeProgress(supabaseAdmin) };
+  });
+
 export const saveGeocodes = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator(

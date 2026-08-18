@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { toast } from "sonner";
 
 import { AdminShell } from "@/components/admin/admin-shell";
-import { HouseholdMap, loadMaps, type HouseholdPoint } from "@/components/admin/household-map";
+import { HouseholdMap, type HouseholdPoint } from "@/components/admin/household-map";
 import {
   DEFAULT_FILTERS,
   DISTRICTS,
@@ -15,8 +15,7 @@ import {
   readGeocodeProgress,
   readHouseholdMap,
   readHouseholdVoters,
-  readPendingHouseholds,
-  saveGeocodes,
+  runCensusGeocode,
 } from "@/lib/voters.functions";
 
 export const Route = createFileRoute("/admin/voter-map")({
@@ -49,33 +48,14 @@ function GeocodePanel() {
     setRunning(true);
     setDone(0);
     try {
-      // The managed Maps key is browser-restricted, so geocoding runs here and
-      // only the resulting coordinates go back to the server.
-      const google = await loadMaps();
-      const geocoder = new google.maps.Geocoder();
-      for (let round = 0; round < 10; round += 1) {
-        const pending = await readPendingHouseholds({ data: { limit: 50 } });
-        if (pending.length === 0) break;
-        const results: Array<{ id: string; lat?: number; lng?: number; error?: string }> = [];
-        for (const h of pending) {
-          const address = `${h.street_num ?? ""} ${h.street_name ?? ""}, ${h.city ?? "East Brunswick"}, NJ ${h.zip ?? ""}`;
-          try {
-            const response = await geocoder.geocode({ address });
-            const loc = response.results?.[0]?.geometry?.location;
-            results.push(
-              loc ? { id: h.id, lat: loc.lat(), lng: loc.lng() } : { id: h.id, error: "No result" },
-            );
-          } catch (error) {
-            const message = error instanceof Error ? error.message : "Geocode failed";
-            if (/OVER_QUERY_LIMIT/i.test(message)) throw new Error("Google Maps quota reached — try again later.");
-            results.push({ id: h.id, error: message.slice(0, 200) });
-          }
-        }
-        await saveGeocodes({ data: { results } });
-        setDone((n) => n + results.length);
+      // Free, keyless US Census batch geocoder — runs server-side, 500 doors a pass.
+      for (let round = 0; round < 6; round += 1) {
+        const result = await runCensusGeocode({ data: { batchSize: 500 } });
+        if (result.processed === 0) break;
+        setDone((n) => n + result.processed);
         await progress.refetch();
       }
-      toast.success("Geocoding batch finished.");
+      toast.success("Geocoding pass finished.");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Geocoding failed");
     } finally {
@@ -98,7 +78,7 @@ function GeocodePanel() {
         disabled={running || (p?.pending ?? 0) === 0}
         className="rounded-md bg-primary px-4 py-2 font-display text-sm font-bold text-primary-foreground disabled:opacity-60"
       >
-        {running ? `Geocoding… ${done}` : "Geocode next 500 addresses"}
+        {running ? `Geocoding… ${done}` : "Geocode next 3,000 addresses"}
       </button>
     </div>
   );
