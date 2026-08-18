@@ -143,31 +143,6 @@ export const runCensusGeocode = createServerFn({ method: "POST" })
     return { ...result, progress: await geocodeProgress(supabaseAdmin) };
   });
 
-const legacyPendingHouseholds = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
-  .inputValidator((input: { limit?: number }) =>
-    z.object({ limit: z.number().int().min(1).max(200).default(50) }).parse(input),
-  )
-  .handler(async ({ data, context }) => {
-    const { assertAdmin } = await import("./admin.server");
-    await assertAdmin(context.supabase, context.userId);
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: rows } = await supabaseAdmin
-      .from("households")
-      .select("id, street_num, street_name, city, zip")
-      .eq("geocode_status", "pending")
-      .limit(data.limit);
-    return (rows ?? []) as Array<{
-      id: string;
-      street_num: string | null;
-      street_name: string | null;
-      city: string | null;
-      zip: string | null;
-    }>;
-  });
-
-void legacyPendingHouseholds;
-
 export const saveGeocodes = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator(
