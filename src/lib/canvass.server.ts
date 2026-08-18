@@ -125,17 +125,17 @@ export type IncomingVisit = {
   client_id: string;
   hh_key: string;
   outcome: string;
-  note?: string | null;
+  note: string | null;
   visited_at: string;
-  canvasser_name?: string | null;
-  responses?: Array<{
+  canvasser_name: string | null;
+  responses: Array<{
     voter_id: string;
-    support?: number | null;
-    issues?: string[];
-    wants_lawn_sign?: boolean;
-    volunteer_lead?: boolean;
-    vote_by_mail?: boolean;
-    do_not_contact?: boolean;
+    support: number | null;
+    issues: string[];
+    wants_lawn_sign: boolean;
+    volunteer_lead: boolean;
+    vote_by_mail: boolean;
+    do_not_contact: boolean;
   }>;
 };
 
