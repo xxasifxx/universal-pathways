@@ -1,42 +1,57 @@
-# Make the canvassing app actually usable end to end
+# Make the canvassing app functional, and ingest the new target list
 
-The code for canvassing is all there — walk deck, offline outbox, sync endpoint, organizer studio, field guide — but the system is empty and cannot produce a single turf. Here is the current state, checked against the live database:
+## Why it feels incomplete right now
 
-- 29,237 voters and 11,862 households loaded.
-- 0 households have map coordinates. 11,862 are still pending, 950 failed.
-- Every failure has the same error, from the browser geocoder: `undefined is not an object (evaluating '(await e.geocode({address:t})).results')`.
-- 0 turfs, 0 turf stops, 0 volunteers, 0 recorded visits.
+Checked against the live database:
 
-Turf cutting only considers households that have coordinates, so "Create turfs" can only ever produce zero turfs today. With no turfs there are no walk lists, no share links, and no telemetry — which is exactly the "nothing is complete" feeling.
+- 29,237 voters and 11,862 households are loaded.
+- 0 households have map coordinates. 11,862 pending, 950 failed — every failure with the same browser-geocoder error.
+- Turf cutting only considers households that have coordinates, so "Create turfs" can only ever produce zero turfs.
+- Result: 0 turfs, 0 stops, 0 volunteers, 0 recorded doors. Every canvassing screen is an empty shell even though the code behind it is built.
 
-## What gets fixed
+## What gets built
 
-### 1. Replace the broken geocoder with a reliable server-side one
-The browser Google Maps path is failing on every single address and is rate-limited besides. Switch address mapping to the free US Census Bureau batch geocoder, which is built for exactly this: bulk residential addresses, no API key, thousands per request.
+### 1. Ingest the uploaded walk list
 
-- New server function that pulls pending households, submits them in batches, and writes back coordinates.
-- Addresses that the Census cannot match fall back to a ZIP-centroid position so they still appear and are still walkable, flagged as approximate.
-- Admin panel shows real progress (mapped / pending / approximate / failed) and can be re-run safely.
-- Reset the 950 rows currently marked failed so they are retried.
+The PDF is a 24-page Google Sheets export with two parts: the same base voter export already loaded, plus a second, larger target list of roughly 3,350 people carrying campaign-specific columns — district, phone, the eight general-election vote flags, a turnout percentage, and a Canvassed marker.
 
-### 2. Let turf cutting work even before every address is mapped
-Turf cutting currently requires coordinates. It will instead group by street name and house number — the order that actually matters for walking — and use coordinates only for the Navigate link when present. A volunteer can be sent out even if a few houses lack a pin.
+- Parse the second list, match each person to the existing voter records by name plus address plus date of birth, and report how many matched, how many are new, and how many are ambiguous.
+- Add a target-list flag and a canvassed flag to voters so this universe can be filtered and cut into turfs on its own.
+- Rows that do not match an existing voter are inserted so nobody on the list is lost, with the household record created alongside.
+- Pre-marked canvassed rows are recorded as already-worked so volunteers are not sent back to those doors.
 
-### 3. Get the first real turfs and volunteers in place
-Cut a starter set of turfs across the districts so the studio, the walk deck, and the dashboard all have live data the moment you open them, rather than empty states.
+### 2. Fix address mapping
 
-### 4. Walk the whole flow and fix what breaks
-End-to-end pass on a phone-sized browser: organizer cuts a turf, assigns it, copies the share link and passcode; volunteer opens the link, enters the passcode, records quick outcomes and one full "Spoke to voter" conversation; the doors sync back and show up in the studio totals and the CSV export. Anything broken on that path gets fixed in this same pass.
+Replace the failing browser Google Maps geocoder with the free US Census Bureau batch geocoder, which is built for bulk residential addresses and needs no key or quota juggling.
+
+- Server function that pulls pending households in batches, writes coordinates back, and can resume.
+- Unmatched addresses fall back to a ZIP-area position so they still appear and are still walkable, flagged as approximate.
+- Admin panel shows honest progress and re-runs safely; the 950 failed rows are reset and retried.
+
+### 3. Let turf cutting work without waiting on the map
+
+Turf cutting drops the coordinates requirement and groups by street name and house number — the order that actually matters for walking. Coordinates are used only for the Navigate button when present.
+
+### 4. Cut the first real turfs
+
+Generate a starter set of turfs from the newly ingested target list so the studio, walk deck, dashboard, and CSV export all show live data instead of empty states.
+
+### 5. Walk the whole flow and fix what breaks
+
+Phone-sized end-to-end pass: organizer cuts a turf, assigns it, copies the share link and passcode; volunteer opens the link, enters the passcode, logs quick outcomes plus one full "Spoke to voter" conversation; doors sync back and appear in the studio totals and the export. Anything broken on that path is fixed in the same pass.
 
 ## Technical notes
 
-- Census batch geocoding endpoint accepts up to 10,000 records per POST; batches run inside a server function with progress persisted per household, so it can resume.
-- `autoClusterTurfs` drops the `lat is not null` filter and sorts by parsed house number within each street run; the serpentine order stays.
-- Nothing changes in the public-facing site, and voter/household access rules stay as they are.
+- PDF parsing runs offline in the sandbox; rows go in through the insert path in batches, not through page-load code.
+- Two new voter columns (target-list membership, prior canvass) plus the household rows come in one migration with grants and policies matching the existing organizer-only access on voters and households.
+- Census batch geocoding accepts large batches per request; progress is stored per household so it resumes.
+- `autoClusterTurfs` loses the `lat is not null` filter and sorts by parsed house number within each street run; serpentine order stays.
+- No change to the public site or to the voter/household access rules.
 
 ## Order of work
 
-1. Census geocoder server function, admin progress panel, retry the failed rows.
-2. Turf cutting without a coordinate requirement.
-3. Seed the first turfs and volunteer records.
-4. Full flow test: cut, assign, walk, sync, export.
+1. Parse and ingest the target list; report matched / new / ambiguous.
+2. Census geocoder plus admin progress; retry failed rows.
+3. Turf cutting without the coordinate requirement.
+4. Cut starter turfs and add volunteer records.
+5. Full flow test: cut, assign, walk, sync, export.
