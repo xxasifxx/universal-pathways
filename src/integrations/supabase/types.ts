@@ -1015,6 +1015,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_my_turf: { Args: { _turf_id: string }; Returns: boolean }
       purge_tracking_data: { Args: never; Returns: undefined }
     }
     Enums: {
