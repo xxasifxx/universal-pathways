@@ -30,6 +30,7 @@ import { Route as ApiPublicCanvassSyncRouteImport } from './routes/api/public/ca
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
 import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
+import { Route as CanvassWalkRouteImport } from './routes/canvass.walk.'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -139,6 +140,11 @@ const ApiPublicLogSignalRoute = ApiPublicLogSignalRouteImport.update({
   path: '/api/public/log-signal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CanvassWalkRoute = CanvassWalkRouteImport.update({
+  id: '/canvass/walk/',
+  path: '/canvass/walk/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
   path: '/lovable/email/auth/preview',
@@ -174,6 +180,7 @@ export interface FileRoutesByFullPath {
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/review/': typeof ReviewIndexRoute
+  '/canvass/walk/': typeof CanvassWalkRoute
   '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
@@ -200,6 +207,7 @@ export interface FileRoutesByTo {
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin': typeof AdminIndexRoute
   '/review': typeof ReviewIndexRoute
+  '/canvass/walk': typeof CanvassWalkRoute
   '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
@@ -227,6 +235,7 @@ export interface FileRoutesById {
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/review/': typeof ReviewIndexRoute
+  '/canvass/walk/': typeof CanvassWalkRoute
   '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
@@ -255,6 +264,7 @@ export interface FileRouteTypes {
     | '/review/unlock'
     | '/admin/'
     | '/review/'
+    | '/canvass/walk/'
     | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
@@ -281,6 +291,7 @@ export interface FileRouteTypes {
     | '/review/unlock'
     | '/admin'
     | '/review'
+    | '/canvass/walk'
     | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
@@ -307,6 +318,7 @@ export interface FileRouteTypes {
     | '/review/unlock'
     | '/admin/'
     | '/review/'
+    | '/canvass/walk/'
     | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
@@ -334,6 +346,7 @@ export interface RootRouteChildren {
   ReviewUnlockRoute: typeof ReviewUnlockRoute
   AdminIndexRoute: typeof AdminIndexRoute
   ReviewIndexRoute: typeof ReviewIndexRoute
+  CanvassWalkRoute: typeof CanvassWalkRoute
   ApiPublicCanvassSyncRoute: typeof ApiPublicCanvassSyncRoute
   ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
   ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
@@ -492,6 +505,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicLogSignalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/canvass/walk/': {
+      id: '/canvass/walk/'
+      path: '/canvass/walk'
+      fullPath: '/canvass/walk/'
+      preLoaderRoute: typeof CanvassWalkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/auth/preview': {
       id: '/lovable/email/auth/preview'
       path: '/lovable/email/auth/preview'
@@ -534,6 +554,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReviewUnlockRoute: ReviewUnlockRoute,
   AdminIndexRoute: AdminIndexRoute,
   ReviewIndexRoute: ReviewIndexRoute,
+  CanvassWalkRoute: CanvassWalkRoute,
   ApiPublicCanvassSyncRoute: ApiPublicCanvassSyncRoute,
   ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
   ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
