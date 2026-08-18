@@ -75,6 +75,13 @@ function CanvassHome() {
       {session && (data?.turfs.length ?? 0) === 0 ? (
         <p className="mt-4 text-base text-foreground">No turf assigned to you yet.</p>
       ) : null}
+
+      <Link
+        to="/canvass/guide"
+        className="mt-6 inline-flex min-h-14 items-center rounded-xl border-2 border-border bg-card px-5 text-lg font-extrabold text-foreground"
+      >
+        Field guide
+      </Link>
     </div>
   );
 }

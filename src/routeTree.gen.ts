@@ -26,6 +26,7 @@ import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminVoterMapRouteImport } from './routes/admin/voter-map'
 import { Route as AdminVotersRouteImport } from './routes/admin/voters'
 import { Route as CanvassIndexRouteImport } from './routes/canvass.index'
+import { Route as CanvassGuideRouteImport } from './routes/canvass.guide'
 import { Route as ReviewIndexRouteImport } from './routes/review.index'
 import { Route as ReviewUnlockRouteImport } from './routes/review.unlock'
 import { Route as ApiPublicCanvassSyncRouteImport } from './routes/api/public/canvass-sync'
@@ -122,6 +123,11 @@ const CanvassIndexRoute = CanvassIndexRouteImport.update({
   path: '/canvass/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CanvassGuideRoute = CanvassGuideRouteImport.update({
+  id: '/canvass/guide',
+  path: '/canvass/guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReviewIndexRoute = ReviewIndexRouteImport.update({
   id: '/review/',
   path: '/review/',
@@ -190,6 +196,7 @@ export interface FileRoutesByFullPath {
   '/admin/login': typeof AdminLoginRoute
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
+  '/canvass/guide': typeof CanvassGuideRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/canvass/': typeof CanvassIndexRoute
@@ -219,6 +226,7 @@ export interface FileRoutesByTo {
   '/admin/login': typeof AdminLoginRoute
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
+  '/canvass/guide': typeof CanvassGuideRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin': typeof AdminIndexRoute
   '/canvass': typeof CanvassIndexRoute
@@ -249,6 +257,7 @@ export interface FileRoutesById {
   '/admin/login': typeof AdminLoginRoute
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
+  '/canvass/guide': typeof CanvassGuideRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/canvass/': typeof CanvassIndexRoute
@@ -280,6 +289,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/voter-map'
     | '/admin/voters'
+    | '/canvass/guide'
     | '/review/unlock'
     | '/admin/'
     | '/canvass/'
@@ -309,6 +319,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/voter-map'
     | '/admin/voters'
+    | '/canvass/guide'
     | '/review/unlock'
     | '/admin'
     | '/canvass'
@@ -338,6 +349,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/voter-map'
     | '/admin/voters'
+    | '/canvass/guide'
     | '/review/unlock'
     | '/admin/'
     | '/canvass/'
@@ -368,6 +380,7 @@ export interface RootRouteChildren {
   AdminLoginRoute: typeof AdminLoginRoute
   AdminVoterMapRoute: typeof AdminVoterMapRoute
   AdminVotersRoute: typeof AdminVotersRoute
+  CanvassGuideRoute: typeof CanvassGuideRoute
   ReviewUnlockRoute: typeof ReviewUnlockRoute
   AdminIndexRoute: typeof AdminIndexRoute
   CanvassIndexRoute: typeof CanvassIndexRoute
@@ -503,6 +516,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CanvassIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/canvass/guide': {
+      id: '/canvass/guide'
+      path: '/canvass/guide'
+      fullPath: '/canvass/guide'
+      preLoaderRoute: typeof CanvassGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/review/': {
       id: '/review/'
       path: '/review'
@@ -592,6 +612,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminLoginRoute: AdminLoginRoute,
   AdminVoterMapRoute: AdminVoterMapRoute,
   AdminVotersRoute: AdminVotersRoute,
+  CanvassGuideRoute: CanvassGuideRoute,
   ReviewUnlockRoute: ReviewUnlockRoute,
   AdminIndexRoute: AdminIndexRoute,
   CanvassIndexRoute: CanvassIndexRoute,
