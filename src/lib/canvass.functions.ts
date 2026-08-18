@@ -206,15 +206,21 @@ export const updateTurf = createServerFn({ method: "POST" })
     await assertAdmin(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    const patch: Record<string, unknown> = {};
-    if (data.status !== undefined) patch["status"] = data.status;
+    const patch: {
+      status?: string;
+      volunteer_id?: string | null;
+      passcode?: string | null;
+      mask_party?: boolean;
+      allow_contact_info?: boolean;
+    } = {};
+    if (data.status !== undefined) patch.status = data.status;
     if (data.volunteerId !== undefined) {
-      patch["volunteer_id"] = data.volunteerId;
-      if (data.status === undefined) patch["status"] = data.volunteerId ? "assigned" : "open";
+      patch.volunteer_id = data.volunteerId;
+      if (data.status === undefined) patch.status = data.volunteerId ? "assigned" : "open";
     }
-    if (data.passcode !== undefined) patch["passcode"] = data.passcode || null;
-    if (data.maskParty !== undefined) patch["mask_party"] = data.maskParty;
-    if (data.allowContactInfo !== undefined) patch["allow_contact_info"] = data.allowContactInfo;
+    if (data.passcode !== undefined) patch.passcode = data.passcode || null;
+    if (data.maskParty !== undefined) patch.mask_party = data.maskParty;
+    if (data.allowContactInfo !== undefined) patch.allow_contact_info = data.allowContactInfo;
 
     const { error } = await supabaseAdmin.from("turfs").update(patch).eq("id", data.id);
     if (error) throw new Error(error.message);
