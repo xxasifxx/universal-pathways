@@ -17,6 +17,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminCanvassRouteImport } from './routes/admin/canvass'
 import { Route as AdminDraftsRouteImport } from './routes/admin/drafts'
 import { Route as AdminExportRouteImport } from './routes/admin/export'
 import { Route as AdminHeatmapsRouteImport } from './routes/admin/heatmaps'
@@ -74,6 +75,11 @@ const VolunteerRoute = VolunteerRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCanvassRoute = AdminCanvassRouteImport.update({
+  id: '/admin/canvass',
+  path: '/admin/canvass',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminDraftsRoute = AdminDraftsRouteImport.update({
@@ -176,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/canvass': typeof AdminCanvassRoute
   '/admin/drafts': typeof AdminDraftsRoute
   '/admin/export': typeof AdminExportRoute
   '/admin/heatmaps': typeof AdminHeatmapsRoute
@@ -204,6 +211,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/canvass': typeof AdminCanvassRoute
   '/admin/drafts': typeof AdminDraftsRoute
   '/admin/export': typeof AdminExportRoute
   '/admin/heatmaps': typeof AdminHeatmapsRoute
@@ -233,6 +241,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/volunteer': typeof VolunteerRoute
+  '/admin/canvass': typeof AdminCanvassRoute
   '/admin/drafts': typeof AdminDraftsRoute
   '/admin/export': typeof AdminExportRoute
   '/admin/heatmaps': typeof AdminHeatmapsRoute
@@ -263,6 +272,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sitemap.xml'
     | '/volunteer'
+    | '/admin/canvass'
     | '/admin/drafts'
     | '/admin/export'
     | '/admin/heatmaps'
@@ -291,6 +301,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sitemap.xml'
     | '/volunteer'
+    | '/admin/canvass'
     | '/admin/drafts'
     | '/admin/export'
     | '/admin/heatmaps'
@@ -319,6 +330,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sitemap.xml'
     | '/volunteer'
+    | '/admin/canvass'
     | '/admin/drafts'
     | '/admin/export'
     | '/admin/heatmaps'
@@ -348,6 +360,7 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VolunteerRoute: typeof VolunteerRoute
+  AdminCanvassRoute: typeof AdminCanvassRoute
   AdminDraftsRoute: typeof AdminDraftsRoute
   AdminExportRoute: typeof AdminExportRoute
   AdminHeatmapsRoute: typeof AdminHeatmapsRoute
@@ -425,6 +438,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/canvass': {
+      id: '/admin/canvass'
+      path: '/admin/canvass'
+      fullPath: '/admin/canvass'
+      preLoaderRoute: typeof AdminCanvassRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/drafts': {
@@ -564,6 +584,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VolunteerRoute: VolunteerRoute,
+  AdminCanvassRoute: AdminCanvassRoute,
   AdminDraftsRoute: AdminDraftsRoute,
   AdminExportRoute: AdminExportRoute,
   AdminHeatmapsRoute: AdminHeatmapsRoute,
