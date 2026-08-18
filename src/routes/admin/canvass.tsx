@@ -101,7 +101,10 @@ function CanvassStudio() {
 
   async function exportCsv() {
     const { csv, rows } = await exportCanvassResults();
-    if (rows === 0) return toast.info("No door knocks recorded yet");
+    if (rows === 0) {
+      toast.info("No door knocks recorded yet");
+      return;
+    }
     const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
     const link = document.createElement("a");
     link.href = url;
