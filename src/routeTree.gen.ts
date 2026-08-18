@@ -26,6 +26,7 @@ import { Route as AdminVoterMapRouteImport } from './routes/admin/voter-map'
 import { Route as AdminVotersRouteImport } from './routes/admin/voters'
 import { Route as ReviewIndexRouteImport } from './routes/review.index'
 import { Route as ReviewUnlockRouteImport } from './routes/review.unlock'
+import { Route as ApiPublicCanvassSyncRouteImport } from './routes/api/public/canvass-sync'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
 import { Route as ApiPublicIngestReplayRouteImport } from './routes/api/public/ingest-replay'
 import { Route as ApiPublicLogSignalRouteImport } from './routes/api/public/log-signal'
@@ -118,6 +119,11 @@ const ReviewUnlockRoute = ReviewUnlockRouteImport.update({
   path: '/review/unlock',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicCanvassSyncRoute = ApiPublicCanvassSyncRouteImport.update({
+  id: '/api/public/canvass-sync',
+  path: '/api/public/canvass-sync',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicIngestPointerRoute = ApiPublicIngestPointerRouteImport.update({
   id: '/api/public/ingest-pointer',
   path: '/api/public/ingest-pointer',
@@ -168,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/review/': typeof ReviewIndexRoute
+  '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -193,6 +200,7 @@ export interface FileRoutesByTo {
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin': typeof AdminIndexRoute
   '/review': typeof ReviewIndexRoute
+  '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -219,6 +227,7 @@ export interface FileRoutesById {
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/review/': typeof ReviewIndexRoute
+  '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
   '/api/public/ingest-pointer': typeof ApiPublicIngestPointerRoute
   '/api/public/ingest-replay': typeof ApiPublicIngestReplayRoute
   '/api/public/log-signal': typeof ApiPublicLogSignalRoute
@@ -246,6 +255,7 @@ export interface FileRouteTypes {
     | '/review/unlock'
     | '/admin/'
     | '/review/'
+    | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -271,6 +281,7 @@ export interface FileRouteTypes {
     | '/review/unlock'
     | '/admin'
     | '/review'
+    | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -296,6 +307,7 @@ export interface FileRouteTypes {
     | '/review/unlock'
     | '/admin/'
     | '/review/'
+    | '/api/public/canvass-sync'
     | '/api/public/ingest-pointer'
     | '/api/public/ingest-replay'
     | '/api/public/log-signal'
@@ -322,6 +334,7 @@ export interface RootRouteChildren {
   ReviewUnlockRoute: typeof ReviewUnlockRoute
   AdminIndexRoute: typeof AdminIndexRoute
   ReviewIndexRoute: typeof ReviewIndexRoute
+  ApiPublicCanvassSyncRoute: typeof ApiPublicCanvassSyncRoute
   ApiPublicIngestPointerRoute: typeof ApiPublicIngestPointerRoute
   ApiPublicIngestReplayRoute: typeof ApiPublicIngestReplayRoute
   ApiPublicLogSignalRoute: typeof ApiPublicLogSignalRoute
@@ -451,6 +464,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewUnlockRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/canvass-sync': {
+      id: '/api/public/canvass-sync'
+      path: '/api/public/canvass-sync'
+      fullPath: '/api/public/canvass-sync'
+      preLoaderRoute: typeof ApiPublicCanvassSyncRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/ingest-pointer': {
       id: '/api/public/ingest-pointer'
       path: '/api/public/ingest-pointer'
@@ -514,6 +534,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReviewUnlockRoute: ReviewUnlockRoute,
   AdminIndexRoute: AdminIndexRoute,
   ReviewIndexRoute: ReviewIndexRoute,
+  ApiPublicCanvassSyncRoute: ApiPublicCanvassSyncRoute,
   ApiPublicIngestPointerRoute: ApiPublicIngestPointerRoute,
   ApiPublicIngestReplayRoute: ApiPublicIngestReplayRoute,
   ApiPublicLogSignalRoute: ApiPublicLogSignalRoute,
