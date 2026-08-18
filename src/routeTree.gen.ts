@@ -24,6 +24,7 @@ import { Route as AdminIntentRouteImport } from './routes/admin/intent'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminVoterMapRouteImport } from './routes/admin/voter-map'
 import { Route as AdminVotersRouteImport } from './routes/admin/voters'
+import { Route as CanvassIndexRouteImport } from './routes/canvass.index'
 import { Route as ReviewIndexRouteImport } from './routes/review.index'
 import { Route as ReviewUnlockRouteImport } from './routes/review.unlock'
 import { Route as ApiPublicCanvassSyncRouteImport } from './routes/api/public/canvass-sync'
@@ -110,6 +111,11 @@ const AdminVotersRoute = AdminVotersRouteImport.update({
   path: '/admin/voters',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CanvassIndexRoute = CanvassIndexRouteImport.update({
+  id: '/canvass/',
+  path: '/canvass/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReviewIndexRoute = ReviewIndexRouteImport.update({
   id: '/review/',
   path: '/review/',
@@ -179,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/admin/voters': typeof AdminVotersRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
+  '/canvass/': typeof CanvassIndexRoute
   '/review/': typeof ReviewIndexRoute
   '/canvass/walk/': typeof CanvassWalkRoute
   '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
@@ -206,6 +213,7 @@ export interface FileRoutesByTo {
   '/admin/voters': typeof AdminVotersRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin': typeof AdminIndexRoute
+  '/canvass': typeof CanvassIndexRoute
   '/review': typeof ReviewIndexRoute
   '/canvass/walk': typeof CanvassWalkRoute
   '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
@@ -234,6 +242,7 @@ export interface FileRoutesById {
   '/admin/voters': typeof AdminVotersRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
+  '/canvass/': typeof CanvassIndexRoute
   '/review/': typeof ReviewIndexRoute
   '/canvass/walk/': typeof CanvassWalkRoute
   '/api/public/canvass-sync': typeof ApiPublicCanvassSyncRoute
@@ -263,6 +272,7 @@ export interface FileRouteTypes {
     | '/admin/voters'
     | '/review/unlock'
     | '/admin/'
+    | '/canvass/'
     | '/review/'
     | '/canvass/walk/'
     | '/api/public/canvass-sync'
@@ -290,6 +300,7 @@ export interface FileRouteTypes {
     | '/admin/voters'
     | '/review/unlock'
     | '/admin'
+    | '/canvass'
     | '/review'
     | '/canvass/walk'
     | '/api/public/canvass-sync'
@@ -317,6 +328,7 @@ export interface FileRouteTypes {
     | '/admin/voters'
     | '/review/unlock'
     | '/admin/'
+    | '/canvass/'
     | '/review/'
     | '/canvass/walk/'
     | '/api/public/canvass-sync'
@@ -345,6 +357,7 @@ export interface RootRouteChildren {
   AdminVotersRoute: typeof AdminVotersRoute
   ReviewUnlockRoute: typeof ReviewUnlockRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  CanvassIndexRoute: typeof CanvassIndexRoute
   ReviewIndexRoute: typeof ReviewIndexRoute
   CanvassWalkRoute: typeof CanvassWalkRoute
   ApiPublicCanvassSyncRoute: typeof ApiPublicCanvassSyncRoute
@@ -463,6 +476,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminVotersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/canvass/': {
+      id: '/canvass/'
+      path: '/canvass'
+      fullPath: '/canvass/'
+      preLoaderRoute: typeof CanvassIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/review/': {
       id: '/review/'
       path: '/review'
@@ -553,6 +573,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminVotersRoute: AdminVotersRoute,
   ReviewUnlockRoute: ReviewUnlockRoute,
   AdminIndexRoute: AdminIndexRoute,
+  CanvassIndexRoute: CanvassIndexRoute,
   ReviewIndexRoute: ReviewIndexRoute,
   CanvassWalkRoute: CanvassWalkRoute,
   ApiPublicCanvassSyncRoute: ApiPublicCanvassSyncRoute,
