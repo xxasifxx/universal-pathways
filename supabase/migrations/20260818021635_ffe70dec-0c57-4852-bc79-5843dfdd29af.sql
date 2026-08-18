@@ -1,0 +1,2 @@
+ALTER TABLE public.voters ADD COLUMN IF NOT EXISTS is_target_list boolean NOT NULL DEFAULT false;
+CREATE INDEX IF NOT EXISTS voters_target_list_idx ON public.voters (is_target_list) WHERE is_target_list;

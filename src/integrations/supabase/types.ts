@@ -907,6 +907,7 @@ export type Database = {
           is_matched: boolean
           is_personal_contact: boolean
           is_petition_signer: boolean
+          is_target_list: boolean
           last_name: string | null
           leg_id: string | null
           middle_name: string | null
@@ -943,6 +944,7 @@ export type Database = {
           is_matched?: boolean
           is_personal_contact?: boolean
           is_petition_signer?: boolean
+          is_target_list?: boolean
           last_name?: string | null
           leg_id?: string | null
           middle_name?: string | null
@@ -979,6 +981,7 @@ export type Database = {
           is_matched?: boolean
           is_personal_contact?: boolean
           is_petition_signer?: boolean
+          is_target_list?: boolean
           last_name?: string | null
           leg_id?: string | null
           middle_name?: string | null
