@@ -1,33 +1,34 @@
-# The growth case for the platform we already have
+# Growth in East Brunswick: what the township record actually says
 
-The research does not call for a new position. It supplies the missing evidence for three promises already on the platform, and the synthesis should be written that way: growth is the reason the reforms are urgent, not a separate subject.
+Going back to the township's own documents changed the argument. This is no longer a page about whether apartments are coming. The record shows the town negotiated the apartment count *down*, and that the growth still ahead of us is largely fixed by state law through 2035 — in the unit type that puts the most children in schools. The school board is the one body with no seat at that table and no capital left to absorb it.
 
-Stays in the review room, keyed `growth:apartments-enrollment`, rewritten in the same shape the platform uses — lever, mechanism, open question — so a reviewer reads it against `/priorities` rather than as a stray essay.
+That is the synthesis to write. It goes into the review room first, rewriting `growth:apartments-enrollment`.
 
-## The argument
+## What the record shows
 
-East Brunswick decided to grow, on the corridor, on purpose, and the town is better for having people in it. What the record shows is that the growth arrives on a twenty-year financial schedule while the schools plan on a one-year one, and that every consequence lands on promises already made:
+**The town cut the apartment count itself.** The mayor's March 28, 2024 press release on the Vermella-East Brunswick redevelopment plan revisions: the original 1,280 proposed apartments were reduced to 535, a cut of 745 units, with 218 for-sale townhouses, a hotel in place of a third parking garage, and several acres of dedicated public space. The project runs 44 acres from Ruth Street to Lake Avenue along Route 18 South, is reported at roughly $500 million, and the designated redeveloper is EB Development Urban Renewal, LLC, a Russo Development and River Development Equities venture.
 
-- **A new 9-12 high school.** The board priced the options in public on June 4: about $11 million to move temporary classrooms, $45 to $49 million for a ninth-grade academy, $325 to $350 million for a new school, and a bond referendum either way. The right size of that building depends on how many children the corridor housing will actually seat, and that number has never been published. A district that builds to today's flat 8,393 and gets tomorrow's occupancy wrong pays for the mistake twice.
-- **Capital capacity, going the wrong way.** Capital outlay is down 28.3% in two years, maintenance is down 3.9%, and the capital reserve is projected at $256,697 against $3.1 million not long ago. That is the balance sheet meeting the growth with. Meanwhile a payment in lieu of taxes on new construction pays the township an annual service charge instead of an ordinary tax bill, and 76.4% of the school budget is raised on the local levy.
-- **Audit the master plan, with public dashboards.** This is the promise the research most directly arms. The reason nobody can answer the question is that the answers are scattered across redevelopment agendas, state budget filings, NJDOE reports on a different counting basis, and a 2022 forecasting study nobody has updated in public. Consolidating that is the reform.
-- **Public full-day Pre-K.** Corridor apartments draw households with children below kindergarten age, and the budget carries no preschool appropriation and no preschool aid. Growth is a straightforward argument for applying.
+**The bedroom mix is public, and it is small.** Phase 2, before the planning board in 2024: 240 apartments in a five-story building replacing retail — 8 studios, 101 one-bedroom, 24 one-bedroom-and-den, 70 two-bedroom, 7 two-bedroom-and-den, 15 three-bedroom, and 15 affordable units across those sizes. Eighteen three-bedroom units out of 240. Under the Rutgers CUPR multipliers, that mix is near the bottom of the student-generation range. This is the part of the growth that generates the fewest students.
 
-## Structure of the rewritten section
+**The part that will generate students is the part nobody voted for.** P.L. 2024, c.2 rewrote the Fair Housing Act. DCA's October 2024 report set East Brunswick's non-binding Fourth Round obligation at 170 present need and 314 prospective need; the council adopted Resolution 25-63 on January 6, 2025 accepting 170 and seeking a reduction to 265, and the Superior Court fixed the obligations in April 2025. The planning board adopted a Fourth Round Housing Element and Fair Share Plan on June 18, 2025, and in March 2026 the council passed Ordinance 26-07 creating a townhouse inclusionary TH-3 zoning district to comply. Townhouses with three bedrooms are the highest-yield residential type in the multiplier tables. The obligation runs to 2035, it is court-supervised, and no board of education vote touches it.
 
-1. **Growth is the plan, and it is working** — what the town built and why, in the township's own terms, including the revenue case Hughes made on the record.
-2. **What the schools are given to plan with** — nine years of on-roll counts, two incompatible enrollment series, an annual snapshot, an unrefreshed 2022 projection. The gap is information and timing, not intent.
-3. **Where it lands on the platform** — the four promises above, each tied to its budget line and to the specific unknown that makes it hard to size.
-4. **The revenue side, both ways** — the annual service charge under the Long Term Tax Exemption Law against the ordinary levy split, and the real counterpoint that exempt improvements stay out of the equalization tables, which protects state aid.
-5. **What the board should ask for** — an annual development-and-enrollment report the district publishes itself, projections refreshed against actual occupancy dates, capacity reported building by building, and board comment on school impact entered before a financial agreement is signed.
-6. **Still to nail down** — short list at the end: the statutory distribution read from the statute, the unit inventory and bedroom mix, multipliers by bedroom count, a minutes citation for the capacity remark, the 2022 study.
+**The schools are meeting it with nothing in reserve.** Capital outlay is down 28.3% in two years, maintenance is down 3.9%, the capital reserve is projected at $256,697 against $3.1 million not long ago, and 76.4% of the $209 million budget is raised on the local levy. Meanwhile the board is choosing among an $11 million classroom move, a $45–49 million ninth-grade academy, and a $325–350 million high school, and any of those goes to voters as a referendum. Enrollment across nine years of filings has stayed between roughly 8,200 and 8,560 — which is the reason the district can still size a building correctly if it starts now, and the reason it will not be able to if it waits until the TH-3 units are occupied.
 
-## Rules held
+## The reforms this argues for
 
-No projected enrollment, no per-pupil cost multiplied into a total, no trend attributed to a cause the record does not establish, and no argument against a position nobody holds. Consistent with `COST_STUDY_NOTE`: the page names the budget line and says honestly what is not known.
+Existing platform commitments, now with the evidence behind them:
+
+- **Size the high school against the housing plan, not last year's enrollment.** The Fair Share Plan names the districts and the unit types. That is a planning input, and it should be in the referendum case.
+- **Audit the master plan, with public dashboards.** One document a year: units approved, units occupied, bedroom mix, enrollment by grade, alongside the Fourth Round compliance schedule.
+- **A board voice on the record before a financial agreement is signed**, so school impact is discussed while terms are open.
+- **Public full-day Pre-K**, since inclusionary family housing arrives with children below kindergarten age and the budget carries no preschool appropriation and no preschool aid.
+
+## Tone rules held
+
+The township is not the antagonist here: it negotiated 745 apartments away and is complying with a state mandate it did not write. No projected enrollment figures, no per-pupil cost multiplied into a total, no attributing a trend to a cause the record does not establish.
 
 ## Technical notes
 
-- `src/lib/drafts.ts`: rewrite the blocks of `growth:apartments-enrollment` into the six headings above; the `sources` array already added stays.
-- `src/lib/campaign.ts` and `src/lib/sources.ts`: unchanged this pass. If reviewers clear it, the follow-up is folding the growth evidence into the existing `PROMISE_DETAIL` mechanisms rather than building a separate page.
-- No route, navbar, or sitemap changes.
+- `src/lib/drafts.ts`: rewrite `growth:apartments-enrollment` into the sections above, with the checklist of remaining unknowns cut down to what is genuinely still open (occupancy dates, the statutory service-charge distribution, the 2022 forecasting study).
+- `src/lib/sources.ts`: add the township and court records — the March 2024 mayor's press release, the Route 18 Corridor Redevelopment Plan (amended November 2023), Resolution 25-63, the April 2025 Superior Court order, Ordinance 26-07, and the MyCentralJersey Phase 2 coverage. Each verified by fetch before it is added.
+- No route, navbar, or sitemap changes; nothing public until reviewers clear it.
