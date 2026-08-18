@@ -216,15 +216,23 @@ export type ClusterOptions = {
   targetSize: number;
   maxTurfs: number;
   namePrefix: string;
+  /** Only include households that already have map pins. Walk order works without them. */
+  requireCoords?: boolean;
+  /** Restrict to the priority target list. */
+  targetListOnly?: boolean;
 };
 
-/** Group unassigned, geocoded households into contiguous street-run turfs. */
+/**
+ * Group unassigned households into contiguous street-run turfs.
+ * Walk order comes from odd/even house numbers, so turfs can be cut and walked
+ * before (or without) geocoding — pins only improve the map view.
+ */
 export async function autoClusterTurfs(supabase: DB, opts: ClusterOptions, createdBy: string) {
   let query = supabase
     .from("households")
     .select("hh_key, street_num, street_name, city, zip, district, lat, lng, avg_turnout_pct, matched_count")
-    .not("lat", "is", null)
     .limit(20000);
+  if (opts.requireCoords) query = query.not("lat", "is", null);
   if (opts.district !== null) query = query.eq("district", opts.district);
   if (opts.minTurnout > 0) query = query.gte("avg_turnout_pct", opts.minTurnout);
   if (opts.matchedOnly) query = query.gt("matched_count", 0);
