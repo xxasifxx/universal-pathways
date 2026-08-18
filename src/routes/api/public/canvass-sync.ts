@@ -63,7 +63,12 @@ export const Route = createFileRoute("/api/public/canvass-sync")({
             supabaseAdmin,
             session.turfId,
             parsed.data.visits.map((v) => ({
-              ...v,
+              client_id: v.client_id,
+              hh_key: v.hh_key,
+              outcome: v.outcome,
+              visited_at: v.visited_at,
+              note: v.note ?? null,
+              responses: v.responses ?? [],
               canvasser_name: v.canvasser_name ?? session.canvasser ?? null,
             })),
           );
