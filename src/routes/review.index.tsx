@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -27,6 +27,27 @@ const STATUS_TONE: Record<string, string> = {
   cleared: "border-primary bg-primary/10 text-primary",
   hold: "border-destructive bg-destructive/10 text-destructive",
 };
+
+const RESEARCH_PAGES = [
+  {
+    to: "/review/dashboard" as const,
+    label: "District budget",
+    blurb: "FY2027 filing, line by line.",
+    draftKey: "page:budget",
+  },
+  {
+    to: "/review/pilot" as const,
+    label: "PILOT explainer",
+    blurb: "What the agreements do to school revenue.",
+    draftKey: "page:pilot",
+  },
+  {
+    to: "/review/growth" as const,
+    label: "Township growth",
+    blurb: "Apartments, enrollment, and who stays.",
+    draftKey: "page:growth",
+  },
+];
 
 const NAME_KEY = "lv_reviewer_name";
 
@@ -134,6 +155,33 @@ function ReviewRoom() {
           />
         </label>
       </header>
+
+      <section aria-labelledby="research-heading" className="rounded-xl border border-border bg-card p-5">
+        <h2 id="research-heading" className="font-display text-sm font-extrabold uppercase tracking-wide text-primary">
+          Research pages
+        </h2>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Pulled off the public site. Reviewers only — each page takes notes of its own.
+        </p>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+          {RESEARCH_PAGES.map((page) => (
+            <li key={page.to}>
+              <Link
+                to={page.to}
+                className="flex h-full flex-col rounded-lg border border-border p-4 transition-colors hover:border-primary"
+              >
+                <span className="font-display text-base font-bold">{page.label}</span>
+                <span className="mt-1 text-xs text-muted-foreground">{page.blurb}</span>
+                {openCount(page.draftKey) > 0 ? (
+                  <span className="mt-3 w-fit rounded-full bg-secondary px-2 py-1 text-xs font-semibold">
+                    {openCount(page.draftKey)} open
+                  </span>
+                ) : null}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <div className="flex flex-wrap gap-2">
         {(["all", ...STATUSES] as const).map((f) => (
