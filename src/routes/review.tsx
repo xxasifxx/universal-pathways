@@ -18,11 +18,11 @@ export const Route = createFileRoute("/review")({
 });
 
 const TABS = [
-  { to: "/review", label: "Drafts", exact: true },
-  { to: "/review/dashboard", label: "District budget" },
-  { to: "/review/pilot", label: "PILOT explainer" },
-  { to: "/review/growth", label: "Township growth" },
-] as const;
+  { to: "/review" as const, label: "Drafts", exact: true },
+  { to: "/review/dashboard" as const, label: "District budget", exact: false },
+  { to: "/review/pilot" as const, label: "PILOT explainer", exact: false },
+  { to: "/review/growth" as const, label: "Township growth", exact: false },
+];
 
 function ReviewLayout() {
   const router = useRouter();
@@ -43,7 +43,7 @@ function ReviewLayout() {
                 <Link
                   key={tab.to}
                   to={tab.to}
-                  activeOptions={{ exact: "exact" in tab }}
+                  activeOptions={{ exact: tab.exact }}
                   activeProps={{ className: "border-primary bg-primary/10 text-primary" }}
                   inactiveProps={{ className: "border-transparent text-foreground/70 hover:bg-secondary" }}
                   className="rounded-full border px-3 py-1.5 text-xs font-semibold"
