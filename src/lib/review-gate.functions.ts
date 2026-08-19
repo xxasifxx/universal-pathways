@@ -162,3 +162,61 @@ export const resolveReviewComment = createServerFn({ method: "POST" })
     if (error) throw error;
     return { ok: true as const };
   });
+
+const PAGES = ["budget", "pilot", "growth"] as const;
+export type ReviewPageKey = (typeof PAGES)[number];
+
+/** Notes on a research page are stored under this key. */
+export function pageDraftKey(page: ReviewPageKey) {
+  return `page:${page}`;
+}
+
+/**
+ * Gate + research-page payload in one call. Locked visitors get nothing but a
+ * flag: the page text never leaves the server without a valid passcode session.
+ */
+export const getReviewPage = createServerFn({ method: "GET" })
+  .inputValidator((data: { page: string }) => ({ page: String(data.page ?? "") }))
+  .handler(async ({ data }) => {
+    if (!PAGES.includes(data.page as ReviewPageKey)) return { locked: true as const };
+    if (!(await isUnlocked())) return { locked: true as const };
+    const page = data.page as ReviewPageKey;
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: commentRows } = await supabaseAdmin
+      .from("draft_comments")
+      .select("id,draft_key,body,reviewer_name,author_email,resolved,created_at")
+      .eq("draft_key", pageDraftKey(page))
+      .order("created_at", { ascending: false });
+
+    const comments = (commentRows ?? []).map((c) => ({
+      id: c.id,
+      draft_key: c.draft_key,
+      body: c.body,
+      reviewer_name: c.reviewer_name ?? c.author_email ?? "reviewer",
+      resolved: c.resolved,
+      created_at: c.created_at,
+    })) satisfies ReviewComment[];
+
+    if (page === "budget") {
+      const { BUDGET_PAYLOAD } = await import("@/lib/review-content/budget.server");
+      return { locked: false as const, page, comments, budget: BUDGET_PAYLOAD };
+    }
+    if (page === "pilot") {
+      const { PILOT_PAYLOAD } = await import("@/lib/review-content/pilot.server");
+      return { locked: false as const, page, comments, pilot: PILOT_PAYLOAD };
+    }
+    const { DRAFT_SECTIONS } = await import("@/lib/drafts");
+    const section = DRAFT_SECTIONS.find((s) => s.key === "growth:apartments-enrollment");
+    return {
+      locked: false as const,
+      page,
+      comments,
+      growth: {
+        title: section?.title ?? "Growth",
+        context: section?.context ?? "",
+        blocks: (section?.blocks ?? []).map((b) => ({ heading: b.heading, body: [...b.body] })),
+        sources: (section?.sources ?? []).map((s) => ({ label: s.label, href: s.href })),
+      },
+    };
+  });
