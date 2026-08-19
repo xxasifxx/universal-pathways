@@ -54,6 +54,11 @@ export const lockReview = createServerFn({ method: "POST" }).handler(async () =>
   return { ok: true as const };
 });
 
+/** Cheap gate probe for the review layout's beforeLoad. Leaks nothing. */
+export const checkReviewUnlocked = createServerFn({ method: "GET" }).handler(async () => ({
+  unlocked: await isUnlocked(),
+}));
+
 export type ReviewComment = {
   id: string;
   draft_key: string;
