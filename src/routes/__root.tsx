@@ -133,8 +133,9 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  // The field shell is its own app: no nav, no footer, no tracking on a walk.
-  const fieldMode = pathname.startsWith("/canvass");
+  // The field shell and the review room are their own apps: no public nav,
+  // no footer, no volunteer prompts or tracking while working.
+  const fieldMode = pathname.startsWith("/canvass") || pathname.startsWith("/review");
 
   if (fieldMode) {
     return (
