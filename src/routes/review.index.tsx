@@ -6,7 +6,6 @@ import { toast } from "sonner";
 
 import {
   getReviewContent,
-  lockReview,
   postReviewComment,
   resolveReviewComment,
   setReviewStatus,
@@ -49,7 +48,6 @@ function ReviewRoom() {
   const router = useRouter();
   const queryClient = useQueryClient();
   const fetchContent = useServerFn(getReviewContent);
-  const lock = useServerFn(lockReview);
   const addComment = useServerFn(postReviewComment);
   const saveStatus = useServerFn(setReviewStatus);
   const resolveComment = useServerFn(resolveReviewComment);
