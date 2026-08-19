@@ -18,12 +18,6 @@ export function SiteFooter() {
             <Link to="/priorities" className="w-fit hover:text-gold">
               {t("nav.priorities")}
             </Link>
-            <Link to="/dashboard" className="w-fit hover:text-gold">
-              {t("nav.dashboard")}
-            </Link>
-            <Link to="/pilot" className="w-fit hover:text-gold">
-              {t("nav.pilot")}
-            </Link>
             <Link to="/volunteer" className="w-fit hover:text-gold">
               {t("nav.volunteer")}
             </Link>
