@@ -27,6 +27,9 @@ import { Route as AdminVotersRouteImport } from './routes/admin/voters'
 import { Route as CanvassIndexRouteImport } from './routes/canvass.index'
 import { Route as CanvassGuideRouteImport } from './routes/canvass.guide'
 import { Route as ReviewIndexRouteImport } from './routes/review.index'
+import { Route as ReviewDashboardRouteImport } from './routes/review.dashboard'
+import { Route as ReviewGrowthRouteImport } from './routes/review.growth'
+import { Route as ReviewPilotRouteImport } from './routes/review.pilot'
 import { Route as ReviewUnlockRouteImport } from './routes/review.unlock'
 import { Route as ApiPublicCanvassSyncRouteImport } from './routes/api/public/canvass-sync'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
@@ -127,6 +130,21 @@ const ReviewIndexRoute = ReviewIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ReviewRoute,
 } as any)
+const ReviewDashboardRoute = ReviewDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => ReviewRoute,
+} as any)
+const ReviewGrowthRoute = ReviewGrowthRouteImport.update({
+  id: '/growth',
+  path: '/growth',
+  getParentRoute: () => ReviewRoute,
+} as any)
+const ReviewPilotRoute = ReviewPilotRouteImport.update({
+  id: '/pilot',
+  path: '/pilot',
+  getParentRoute: () => ReviewRoute,
+} as any)
 const ReviewUnlockRoute = ReviewUnlockRouteImport.update({
   id: '/unlock',
   path: '/unlock',
@@ -190,6 +208,9 @@ export interface FileRoutesByFullPath {
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
   '/canvass/guide': typeof CanvassGuideRoute
+  '/review/dashboard': typeof ReviewDashboardRoute
+  '/review/growth': typeof ReviewGrowthRoute
+  '/review/pilot': typeof ReviewPilotRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/canvass/': typeof CanvassIndexRoute
@@ -218,6 +239,9 @@ export interface FileRoutesByTo {
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
   '/canvass/guide': typeof CanvassGuideRoute
+  '/review/dashboard': typeof ReviewDashboardRoute
+  '/review/growth': typeof ReviewGrowthRoute
+  '/review/pilot': typeof ReviewPilotRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin': typeof AdminIndexRoute
   '/canvass': typeof CanvassIndexRoute
@@ -248,6 +272,9 @@ export interface FileRoutesById {
   '/admin/voter-map': typeof AdminVoterMapRoute
   '/admin/voters': typeof AdminVotersRoute
   '/canvass/guide': typeof CanvassGuideRoute
+  '/review/dashboard': typeof ReviewDashboardRoute
+  '/review/growth': typeof ReviewGrowthRoute
+  '/review/pilot': typeof ReviewPilotRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/canvass/': typeof CanvassIndexRoute
@@ -279,6 +306,9 @@ export interface FileRouteTypes {
     | '/admin/voter-map'
     | '/admin/voters'
     | '/canvass/guide'
+    | '/review/dashboard'
+    | '/review/growth'
+    | '/review/pilot'
     | '/review/unlock'
     | '/admin/'
     | '/canvass/'
@@ -307,6 +337,9 @@ export interface FileRouteTypes {
     | '/admin/voter-map'
     | '/admin/voters'
     | '/canvass/guide'
+    | '/review/dashboard'
+    | '/review/growth'
+    | '/review/pilot'
     | '/review/unlock'
     | '/admin'
     | '/canvass'
@@ -336,6 +369,9 @@ export interface FileRouteTypes {
     | '/admin/voter-map'
     | '/admin/voters'
     | '/canvass/guide'
+    | '/review/dashboard'
+    | '/review/growth'
+    | '/review/pilot'
     | '/review/unlock'
     | '/admin/'
     | '/canvass/'
@@ -506,6 +542,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewIndexRouteImport
       parentRoute: typeof ReviewRoute
     }
+    '/review/dashboard': {
+      id: '/review/dashboard'
+      path: '/dashboard'
+      fullPath: '/review/dashboard'
+      preLoaderRoute: typeof ReviewDashboardRouteImport
+      parentRoute: typeof ReviewRoute
+    }
+    '/review/growth': {
+      id: '/review/growth'
+      path: '/growth'
+      fullPath: '/review/growth'
+      preLoaderRoute: typeof ReviewGrowthRouteImport
+      parentRoute: typeof ReviewRoute
+    }
+    '/review/pilot': {
+      id: '/review/pilot'
+      path: '/pilot'
+      fullPath: '/review/pilot'
+      preLoaderRoute: typeof ReviewPilotRouteImport
+      parentRoute: typeof ReviewRoute
+    }
     '/review/unlock': {
       id: '/review/unlock'
       path: '/unlock'
@@ -573,11 +630,17 @@ declare module '@tanstack/react-router' {
 }
 
 interface ReviewRouteChildren {
+  ReviewDashboardRoute: typeof ReviewDashboardRoute
+  ReviewGrowthRoute: typeof ReviewGrowthRoute
+  ReviewPilotRoute: typeof ReviewPilotRoute
   ReviewUnlockRoute: typeof ReviewUnlockRoute
   ReviewIndexRoute: typeof ReviewIndexRoute
 }
 
 const ReviewRouteChildren: ReviewRouteChildren = {
+  ReviewDashboardRoute: ReviewDashboardRoute,
+  ReviewGrowthRoute: ReviewGrowthRoute,
+  ReviewPilotRoute: ReviewPilotRoute,
   ReviewUnlockRoute: ReviewUnlockRoute,
   ReviewIndexRoute: ReviewIndexRoute,
 }

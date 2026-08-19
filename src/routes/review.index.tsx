@@ -114,20 +114,7 @@ function ReviewRoom() {
   return (
     <section className="mx-auto w-full max-w-4xl space-y-6 px-4 py-8 sm:px-6">
       <header className="rounded-xl border border-border bg-card p-5">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="font-display text-2xl font-extrabold text-primary">Review room</h1>
-          <button
-            type="button"
-            onClick={async () => {
-              await lock({});
-              queryClient.clear();
-              void router.navigate({ to: "/review/unlock", replace: true });
-            }}
-            className="rounded-md border border-border px-3 py-1.5 text-xs font-semibold"
-          >
-            Lock this device
-          </button>
-        </div>
+        <h1 className="font-display text-2xl font-extrabold text-primary">Drafts to review</h1>
         <div className="mt-3 space-y-3 text-sm leading-relaxed text-foreground/85">
           {brief.map((line) => (
             <p key={line.slice(0, 24)}>{line}</p>
