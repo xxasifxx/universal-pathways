@@ -1,12 +1,4 @@
-import {
-  BUDGET_MOVEMENT,
-  BUDGET_RESERVES,
-  BUDGET_REVENUE,
-  BUDGET_TOTAL,
-  ENROLLMENT,
-  PER_PUPIL,
-  TAX_FACTS,
-} from "@/lib/campaign";
+import type { BudgetPayload } from "@/lib/review-content/types";
 import { cn } from "@/lib/utils";
 
 const usd = new Intl.NumberFormat("en-US", {
@@ -38,7 +30,8 @@ function signed(value: number) {
 }
 
 /** Revenue side of the general fund: who actually pays for the district. */
-export function BudgetRevenue() {
+export function BudgetRevenue({ budget }: { budget: BudgetPayload }) {
+  const { revenue: BUDGET_REVENUE, total: BUDGET_TOTAL } = budget;
   const rows = BUDGET_REVENUE.map((r) => ({
     ...r,
     pct: (r.amount / BUDGET_TOTAL) * 100,
@@ -79,7 +72,8 @@ export function BudgetRevenue() {
 }
 
 /** Two-year movement by line, sorted by growth. */
-export function BudgetMovement() {
+export function BudgetMovement({ budget }: { budget: BudgetPayload }) {
+  const BUDGET_MOVEMENT = budget.movement;
   const rows = [...BUDGET_MOVEMENT]
     .map((r) => ({ ...r, change: pctChange(r.from, r.to) }))
     .sort((a, b) => b.change - a.change);
@@ -142,7 +136,8 @@ export function BudgetMovement() {
 }
 
 /** Fund balances over four years. */
-export function BudgetReserves() {
+export function BudgetReserves({ budget }: { budget: BudgetPayload }) {
+  const BUDGET_RESERVES = budget.reserves;
   return (
     <section aria-labelledby="reserves-heading" className="py-14 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -211,7 +206,8 @@ export function BudgetReserves() {
 }
 
 /** Per-pupil costs and the tax rate behind them. */
-export function BudgetPerPupil() {
+export function BudgetPerPupil({ budget }: { budget: BudgetPayload }) {
+  const { perPupil: PER_PUPIL, tax: TAX_FACTS, enrollment: ENROLLMENT } = budget;
   return (
     <section aria-labelledby="perpupil-heading" className="bg-secondary/50 py-14 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
