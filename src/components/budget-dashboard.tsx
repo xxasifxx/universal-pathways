@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
-import { BUDGET_SLICES, BUDGET_TOTAL } from "@/lib/campaign";
+import type { BudgetPayload } from "@/lib/review-content/types";
 import { useI18n } from "@/lib/i18n";
 import { BUDGET_PDF_URL, SOURCE_LINE } from "@/lib/sources";
 import { cn } from "@/lib/utils";
@@ -19,7 +19,8 @@ const compactUsd = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
 
-export function BudgetDashboard() {
+export function BudgetDashboard({ budget }: { budget: BudgetPayload }) {
+  const { slices: BUDGET_SLICES, total: BUDGET_TOTAL } = budget;
   const { t } = useI18n();
   const [plain, setPlain] = useState(false);
   const [active, setActive] = useState<string | null>(null);
@@ -56,7 +57,7 @@ export function BudgetDashboard() {
         ...s,
         pct: (s.amount / BUDGET_TOTAL) * 100,
       })),
-    [],
+    [BUDGET_SLICES, BUDGET_TOTAL],
   );
 
   const focused = data.find((d) => d.id === active) ?? null;

@@ -1,12 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import {
   getReviewContent,
-  lockReview,
   postReviewComment,
   resolveReviewComment,
   setReviewStatus,
@@ -29,6 +28,27 @@ const STATUS_TONE: Record<string, string> = {
   hold: "border-destructive bg-destructive/10 text-destructive",
 };
 
+const RESEARCH_PAGES = [
+  {
+    to: "/review/dashboard" as const,
+    label: "District budget",
+    blurb: "FY2027 filing, line by line.",
+    draftKey: "page:budget",
+  },
+  {
+    to: "/review/pilot" as const,
+    label: "PILOT explainer",
+    blurb: "What the agreements do to school revenue.",
+    draftKey: "page:pilot",
+  },
+  {
+    to: "/review/growth" as const,
+    label: "Township growth",
+    blurb: "Apartments, enrollment, and who stays.",
+    draftKey: "page:growth",
+  },
+];
+
 const NAME_KEY = "lv_reviewer_name";
 
 export const Route = createFileRoute("/review/")({
@@ -49,7 +69,6 @@ function ReviewRoom() {
   const router = useRouter();
   const queryClient = useQueryClient();
   const fetchContent = useServerFn(getReviewContent);
-  const lock = useServerFn(lockReview);
   const addComment = useServerFn(postReviewComment);
   const saveStatus = useServerFn(setReviewStatus);
   const resolveComment = useServerFn(resolveReviewComment);
@@ -114,20 +133,7 @@ function ReviewRoom() {
   return (
     <section className="mx-auto w-full max-w-4xl space-y-6 px-4 py-8 sm:px-6">
       <header className="rounded-xl border border-border bg-card p-5">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="font-display text-2xl font-extrabold text-primary">Review room</h1>
-          <button
-            type="button"
-            onClick={async () => {
-              await lock({});
-              queryClient.clear();
-              void router.navigate({ to: "/review/unlock", replace: true });
-            }}
-            className="rounded-md border border-border px-3 py-1.5 text-xs font-semibold"
-          >
-            Lock this device
-          </button>
-        </div>
+        <h1 className="font-display text-2xl font-extrabold text-primary">Drafts to review</h1>
         <div className="mt-3 space-y-3 text-sm leading-relaxed text-foreground/85">
           {brief.map((line) => (
             <p key={line.slice(0, 24)}>{line}</p>
@@ -149,6 +155,33 @@ function ReviewRoom() {
           />
         </label>
       </header>
+
+      <section aria-labelledby="research-heading" className="rounded-xl border border-border bg-card p-5">
+        <h2 id="research-heading" className="font-display text-sm font-extrabold uppercase tracking-wide text-primary">
+          Research pages
+        </h2>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Pulled off the public site. Reviewers only — each page takes notes of its own.
+        </p>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+          {RESEARCH_PAGES.map((page) => (
+            <li key={page.to}>
+              <Link
+                to={page.to}
+                className="flex h-full flex-col rounded-lg border border-border p-4 transition-colors hover:border-primary"
+              >
+                <span className="font-display text-base font-bold">{page.label}</span>
+                <span className="mt-1 text-xs text-muted-foreground">{page.blurb}</span>
+                {openCount(page.draftKey) > 0 ? (
+                  <span className="mt-3 w-fit rounded-full bg-secondary px-2 py-1 text-xs font-semibold">
+                    {openCount(page.draftKey)} open
+                  </span>
+                ) : null}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <div className="flex flex-wrap gap-2">
         {(["all", ...STATUSES] as const).map((f) => (
