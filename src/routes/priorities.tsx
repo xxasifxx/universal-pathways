@@ -203,13 +203,6 @@ function Priorities() {
                 Chip in toward the research
                 <ArrowRight aria-hidden="true" className="size-4" />
               </a>
-              <Link
-                to="/dashboard"
-                className="inline-flex items-center gap-2 rounded-md border-2 border-primary px-6 py-4 font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-              >
-                Check the figures on the dashboard
-                <ArrowRight aria-hidden="true" className="size-4" />
-              </Link>
             </div>
           </div>
         </div>
