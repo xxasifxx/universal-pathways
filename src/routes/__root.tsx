@@ -19,6 +19,30 @@ import { Tracking } from "@/components/tracking";
 import { VolunteerModalProvider } from "@/components/volunteer-modal";
 import { VolunteerPrompt } from "@/components/volunteer-prompt";
 import { I18nProvider } from "@/lib/i18n";
+import { SITE_OFFLINE } from "@/lib/site-status";
+
+function OfflineNotFound() {
+  return (
+    <div
+      style={{
+        minHeight: "100dvh",
+        display: "grid",
+        placeItems: "center",
+        background: "#fff",
+        color: "#111",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        padding: "1.5rem",
+        textAlign: "center",
+      }}
+    >
+      <div>
+        <h1 style={{ fontSize: "2rem", margin: 0, fontWeight: 600 }}>404</h1>
+        <p style={{ marginTop: "0.5rem", color: "#6b7280" }}>Page not found</p>
+      </div>
+    </div>
+  );
+}
+
 
 function NotFoundComponent() {
   return (
