@@ -220,22 +220,27 @@ export function BudgetPerPupil({ budget }: { budget: BudgetPayload }) {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] lg:items-start">
           <div>
-            <p className="eyebrow text-primary">Per student</p>
+            <p className="eyebrow text-primary">
+              FY2027 filing: per-pupil table, 2023-24 actual to 2026-27 proposed
+            </p>
             <h2 id="perpupil-heading" className="mt-3 text-3xl leading-[1.1] sm:text-4xl">
               Cost per student, and what it buys
             </h2>
             <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
               The state calculates a comparative per-pupil cost so districts can be measured
               against each other. East Brunswick's 2026-27 proposed figure is $20,731, up from
-              $19,096 in 2023-24 actual costs. Classroom instruction accounts for $11,882 of that, administration for
-              $1,929. Enrollment on roll is estimated at {ENROLLMENT.onRoll2026.toLocaleString()},
-              up from {ENROLLMENT.onRoll2025.toLocaleString()}, with{" "}
+              $19,096 in the 2023-24 actual column of the same filing. Classroom instruction
+              accounts for $11,882 of that, administration for $1,929. Enrollment on roll is
+              estimated at {ENROLLMENT.onRoll2026.toLocaleString()}, up from{" "}
+              {ENROLLMENT.onRoll2025.toLocaleString()}, with{" "}
               {ENROLLMENT.specialEd.toLocaleString()} students in special education and{" "}
               {ENROLLMENT.privatePlacements} in private placements.
             </p>
 
             <p className="mt-3 text-sm text-muted-foreground">
-              Each row below runs from the 2023-24 actual cost to the 2026-27 proposed cost.
+              The filing's Advertised Per Pupil Cost Calculations page starts at 2023-24 actual, so
+              this table uses an earlier baseline than the two-year comparison above. Each row runs
+              from the 2023-24 actual cost to the 2026-27 proposed cost.
             </p>
 
             <ul className="mt-8 flex flex-col gap-2">
