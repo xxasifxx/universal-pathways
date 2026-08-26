@@ -31,7 +31,7 @@ export const CANDIDATE_STORY = {
 export const ABOUT_SAQEEB = [
   "Muhammad Saqeeb grew up in East Brunswick, the son of working-class immigrants, and went through East Brunswick Public Schools from elementary school through graduation.",
   "He spent close to six years of that as a special education student, worked his way out of the placement, and graduated summa cum laude in psychology before finishing a master's in data science.",
-  "He analyzes data for a living, and he has spent the past stretch of board meetings and budget filings learning where this district's money actually goes.",
+  "He analyzes data for a living, and he has spent the past year at board meetings and in the district's budget filings learning where the money goes.",
   "He is running for the East Brunswick Board of Education, Column #1.",
 ];
 
@@ -88,9 +88,9 @@ export const SOCIAL_LINKS: { id: string; label: string; url: string | null }[] =
 export const WHY_SAQEEB = [
   "Raised in East Brunswick, working-class immigrant family",
   "East Brunswick Public Schools graduate",
-  "Community organizer",
   "Data scientist",
-  "Brings students, parents, and educators into the decisions",
+  "Reads the district's budget filings",
+  "Attends board meetings",
 ];
 
 /** Core pitch from the campaign mailer. Used on the home page and priorities page. */
@@ -102,18 +102,6 @@ export const PITCH = {
   ask: "A board member should be able to explain where the money goes and push for schools families can afford to be part of.",
   badge: "Column #1",
 } as const;
-
-/** One-line intro under the portrait on the home page. */
-export const INTRO_LINE =
-  "Muhammad Saqeeb went through East Brunswick's schools and is running for its Board of Education, Column #1.";
-
-/** Card list shown under the intro. */
-export const CREDENTIALS = [
-  "Excellence in Community Leadership and Transparency",
-  "Advocate for Struggling Students",
-  "Supporter of Early Learning Education",
-  "Innovative and Future-Oriented",
-];
 
 /** The three things Saqeeb will fight for — matching the campaign flyer. */
 export const FIGHT_FOR: { id: string; label: string; icon: "users" | "school" | "heart-pulse" }[] = [
@@ -209,7 +197,7 @@ export const PRIORITIES: Priority[] = [
 
 /** Shown under the priorities. The campaign does not publish estimates it cannot source. */
 export const COST_STUDY_NOTE =
-  "I'm not going to put a dollar figure next to any of this. A number reverse-engineered from a public budget filing sounds authoritative and isn't, and it invites an argument about arithmetic nobody can check. Costing these properly takes enrollment projections, a facilities condition assessment, staffing models, and plan-by-plan benefit pricing — professional work, done by people who do it for a living. Until that exists, what you'll get from me is the budget line involved and an honest note about what isn't known yet.";
+  "None of these carry a dollar figure, because a number reverse-engineered from a budget filing would not survive scrutiny. Pricing this work takes enrollment projections, a facilities condition assessment, staffing models, and plan-by-plan benefit quotes. Until the district has those, I will tell you which budget line a promise touches and what is still unknown.";
 
 export const HELP_OPTIONS = [
   {
