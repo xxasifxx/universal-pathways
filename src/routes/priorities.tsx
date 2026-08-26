@@ -1,14 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 
-import {
-  actblueUrl,
-  CANDIDATE_STORY,
-  COST_STUDY_NOTE,
-  HELP_OPTIONS,
-  PRIORITIES,
-} from "@/lib/campaign";
-import { useVolunteerModal } from "@/components/volunteer-modal";
+import { CANDIDATE_STORY, PRIORITIES } from "@/lib/campaign";
 
 const TITLE = "Priorities | Muhammad Saqeeb for East Brunswick Schools";
 const DESCRIPTION =
@@ -31,7 +23,6 @@ export const Route = createFileRoute("/priorities")({
 });
 
 function Priorities() {
-  const { open: openVolunteer } = useVolunteerModal();
   return (
     <>
       <header className="border-b border-border bg-primary py-12 text-primary-foreground sm:py-16">
@@ -102,39 +93,6 @@ function Priorities() {
         ))}
       </div>
 
-      <section
-        id="what-it-costs"
-        aria-labelledby="cost-heading"
-        className="scroll-mt-24 border-t border-border bg-secondary/50 py-14 sm:py-20"
-      >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="max-w-3xl border-l-4 border-gold pl-5 sm:pl-6">
-            <h2 id="cost-heading" className="font-display text-xl uppercase leading-tight text-primary sm:text-2xl">
-              Costs are still unknown
-            </h2>
-            <p className="mt-4 text-base leading-relaxed">{COST_STUDY_NOTE}</p>
-            <div className="mt-6 flex flex-wrap gap-4">
-              <button
-                type="button"
-                onClick={() => openVolunteer({ preset: [HELP_OPTIONS[3].label], source: "priorities-review" })}
-                className="inline-flex items-center gap-2 rounded-md bg-gold px-6 py-4 font-semibold text-gold-foreground transition-opacity hover:opacity-90"
-              >
-                Help review the cost numbers
-                <ArrowRight aria-hidden="true" className="size-4" />
-              </button>
-              <a
-                href={actblueUrl("priorities", "cost-study")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border-2 border-primary px-6 py-4 font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-              >
-                Donate
-                <ArrowRight aria-hidden="true" className="size-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
