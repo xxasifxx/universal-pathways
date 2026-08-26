@@ -19,10 +19,12 @@ export const Route = createFileRoute("/review")({
 
 const TABS = [
   { to: "/review" as const, label: "Drafts", exact: true },
+  { to: "/review/priorities" as const, label: "Priorities detail", exact: false },
   { to: "/review/dashboard" as const, label: "District budget", exact: false },
   { to: "/review/pilot" as const, label: "PILOT explainer", exact: false },
   { to: "/review/growth" as const, label: "Township growth", exact: false },
 ];
+
 
 function ReviewLayout() {
   const router = useRouter();
