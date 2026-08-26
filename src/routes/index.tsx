@@ -20,7 +20,7 @@ import {
 
 const TITLE = "A Voice for Excellence | Muhammad Saqeeb for East Brunswick BOE";
 const DESCRIPTION =
-  "Muhammad Saqeeb is running for East Brunswick Board of Education, Column #1. A voice for excellence: public Pre-K, a modern 9-12 high school, and better healthcare for school staff.";
+  "Muhammad Saqeeb is running for the East Brunswick Board of Education, Column #1: public full-day Pre-K, a modern 9-12 high school, and better healthcare for school staff.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
           name: CANDIDATE_NAME,
           jobTitle: "Candidate, East Brunswick Board of Education",
           description:
-            "East Brunswick Public Schools graduate and community advocate running for the East Brunswick Board of Education.",
+            "East Brunswick Public Schools graduate running for the East Brunswick Board of Education, Column #1.",
           homeLocation: {
             "@type": "Place",
             address: {
@@ -91,8 +91,8 @@ function Index() {
             <div className="mt-8 h-1 w-28 bg-gold sm:w-36" />
 
             <p className="mt-6 font-display text-2xl uppercase leading-[1.05] sm:text-4xl lg:text-5xl">
-              Pre-K for every family, a high school built for the next forty years, and health
-              coverage the staff can use.
+              Public full-day Pre-K, a 9-12 high school, and health coverage school staff can
+              afford to use.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
@@ -182,9 +182,9 @@ function Index() {
       {/* Platform highlights */}
       <section aria-labelledby="platform-heading" className="py-14 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="eyebrow text-primary text-center">Our platform</p>
+          <p className="eyebrow text-primary text-center">Three priorities</p>
           <h2 id="platform-heading" className="mt-3 text-center text-4xl uppercase sm:text-5xl">
-            OUR platform
+            Our platform
           </h2>
           <ul className="mt-12 grid gap-6 sm:grid-cols-3">
             {PLATFORM_HIGHLIGHTS.map((item) => (
@@ -209,7 +209,7 @@ function Index() {
               to="/priorities"
               className="inline-flex items-center gap-2 font-semibold text-primary underline underline-offset-4"
             >
-              See what each of these runs through
+              See every promise under these three
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           </div>
@@ -302,7 +302,7 @@ function Index() {
             </li>
           </ul>
           <p className="mx-auto mt-8 max-w-xl text-lg">
-            Contributions pay for signs, printing, and postage. Nothing here goes to consultants.
+            Contributions pay for yard signs, printing, and postage.
           </p>
         </div>
       </section>

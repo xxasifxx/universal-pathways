@@ -71,7 +71,7 @@ const en = {
   "priorities.eyebrow": "Our platform",
   "priorities.title": "Our platform for East Brunswick schools",
 
-  "volunteer.title": "Powered by Neighbors",
+  "volunteer.title": "Help with the campaign",
   "volunteer.intro":
     "School board races here are decided by a few hundred votes. Pick how you want to help; you can choose more than one.",
   "volunteer.options.signup": "Sign up to help",

@@ -1,4 +1,5 @@
-import { DEBATE_QUESTIONS, LEVER_LABELS, PRIORITIES } from "@/lib/campaign";
+import { DEBATE_QUESTIONS } from "@/lib/campaign";
+import { LEVER_LABELS, PRIORITY_DETAIL } from "@/lib/review-content/priorities.server";
 
 /**
  * The review room's material. Everything here is generated from the same
@@ -37,7 +38,7 @@ function slug(text: string): string {
 }
 
 export const DRAFT_SECTIONS: DraftSection[] = [
-  ...PRIORITIES.flatMap((priority) =>
+  ...PRIORITY_DETAIL.flatMap((priority) =>
     priority.points
       .filter((point) => point.detail)
       .map((point) => {

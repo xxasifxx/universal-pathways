@@ -163,7 +163,7 @@ export const resolveReviewComment = createServerFn({ method: "POST" })
     return { ok: true as const };
   });
 
-const PAGES = ["budget", "pilot", "growth"] as const;
+const PAGES = ["budget", "pilot", "growth", "priorities"] as const;
 export type ReviewPageKey = (typeof PAGES)[number];
 
 /** Notes on a research page are stored under this key. */
@@ -206,6 +206,31 @@ export const getReviewPage = createServerFn({ method: "GET" })
       const { PILOT_PAYLOAD } = await import("@/lib/review-content/pilot.server");
       return { locked: false as const, page, comments, pilot: PILOT_PAYLOAD };
     }
+    if (page === "priorities") {
+      const { PRIORITY_DETAIL, LEVER_LABELS } = await import(
+        "@/lib/review-content/priorities.server"
+      );
+      return {
+        locked: false as const,
+        page,
+        comments,
+        priorities: PRIORITY_DETAIL.map((priority) => ({
+          id: priority.id,
+          number: priority.number,
+          title: priority.title,
+          summary: priority.summary,
+          points: priority.points.map((point) => ({
+            text: point.text,
+            leverLabel: point.detail ? LEVER_LABELS[point.detail.leverKind] : null,
+            lever: point.detail?.lever ?? null,
+            mechanism: point.detail ? [...point.detail.mechanism] : [],
+            openQuestion: point.detail?.openQuestion ?? null,
+            sources: (point.detail?.sources ?? []).map((s) => ({ label: s.label, href: s.href })),
+          })),
+        })),
+      };
+    }
+
     const { DRAFT_SECTIONS } = await import("@/lib/drafts");
     const section = DRAFT_SECTIONS.find((s) => s.key === "growth:apartments-enrollment");
     return {

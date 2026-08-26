@@ -30,6 +30,7 @@ import { Route as ReviewIndexRouteImport } from './routes/review.index'
 import { Route as ReviewDashboardRouteImport } from './routes/review.dashboard'
 import { Route as ReviewGrowthRouteImport } from './routes/review.growth'
 import { Route as ReviewPilotRouteImport } from './routes/review.pilot'
+import { Route as ReviewPrioritiesRouteImport } from './routes/review.priorities'
 import { Route as ReviewUnlockRouteImport } from './routes/review.unlock'
 import { Route as ApiPublicCanvassSyncRouteImport } from './routes/api/public/canvass-sync'
 import { Route as ApiPublicIngestPointerRouteImport } from './routes/api/public/ingest-pointer'
@@ -145,6 +146,11 @@ const ReviewPilotRoute = ReviewPilotRouteImport.update({
   path: '/pilot',
   getParentRoute: () => ReviewRoute,
 } as any)
+const ReviewPrioritiesRoute = ReviewPrioritiesRouteImport.update({
+  id: '/priorities',
+  path: '/priorities',
+  getParentRoute: () => ReviewRoute,
+} as any)
 const ReviewUnlockRoute = ReviewUnlockRouteImport.update({
   id: '/unlock',
   path: '/unlock',
@@ -211,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/review/dashboard': typeof ReviewDashboardRoute
   '/review/growth': typeof ReviewGrowthRoute
   '/review/pilot': typeof ReviewPilotRoute
+  '/review/priorities': typeof ReviewPrioritiesRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/canvass/': typeof CanvassIndexRoute
@@ -242,6 +249,7 @@ export interface FileRoutesByTo {
   '/review/dashboard': typeof ReviewDashboardRoute
   '/review/growth': typeof ReviewGrowthRoute
   '/review/pilot': typeof ReviewPilotRoute
+  '/review/priorities': typeof ReviewPrioritiesRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin': typeof AdminIndexRoute
   '/canvass': typeof CanvassIndexRoute
@@ -275,6 +283,7 @@ export interface FileRoutesById {
   '/review/dashboard': typeof ReviewDashboardRoute
   '/review/growth': typeof ReviewGrowthRoute
   '/review/pilot': typeof ReviewPilotRoute
+  '/review/priorities': typeof ReviewPrioritiesRoute
   '/review/unlock': typeof ReviewUnlockRoute
   '/admin/': typeof AdminIndexRoute
   '/canvass/': typeof CanvassIndexRoute
@@ -309,6 +318,7 @@ export interface FileRouteTypes {
     | '/review/dashboard'
     | '/review/growth'
     | '/review/pilot'
+    | '/review/priorities'
     | '/review/unlock'
     | '/admin/'
     | '/canvass/'
@@ -340,6 +350,7 @@ export interface FileRouteTypes {
     | '/review/dashboard'
     | '/review/growth'
     | '/review/pilot'
+    | '/review/priorities'
     | '/review/unlock'
     | '/admin'
     | '/canvass'
@@ -372,6 +383,7 @@ export interface FileRouteTypes {
     | '/review/dashboard'
     | '/review/growth'
     | '/review/pilot'
+    | '/review/priorities'
     | '/review/unlock'
     | '/admin/'
     | '/canvass/'
@@ -563,6 +575,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewPilotRouteImport
       parentRoute: typeof ReviewRoute
     }
+    '/review/priorities': {
+      id: '/review/priorities'
+      path: '/priorities'
+      fullPath: '/review/priorities'
+      preLoaderRoute: typeof ReviewPrioritiesRouteImport
+      parentRoute: typeof ReviewRoute
+    }
     '/review/unlock': {
       id: '/review/unlock'
       path: '/unlock'
@@ -633,6 +652,7 @@ interface ReviewRouteChildren {
   ReviewDashboardRoute: typeof ReviewDashboardRoute
   ReviewGrowthRoute: typeof ReviewGrowthRoute
   ReviewPilotRoute: typeof ReviewPilotRoute
+  ReviewPrioritiesRoute: typeof ReviewPrioritiesRoute
   ReviewUnlockRoute: typeof ReviewUnlockRoute
   ReviewIndexRoute: typeof ReviewIndexRoute
 }
@@ -641,6 +661,7 @@ const ReviewRouteChildren: ReviewRouteChildren = {
   ReviewDashboardRoute: ReviewDashboardRoute,
   ReviewGrowthRoute: ReviewGrowthRoute,
   ReviewPilotRoute: ReviewPilotRoute,
+  ReviewPrioritiesRoute: ReviewPrioritiesRoute,
   ReviewUnlockRoute: ReviewUnlockRoute,
   ReviewIndexRoute: ReviewIndexRoute,
 }

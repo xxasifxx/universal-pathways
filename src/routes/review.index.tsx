@@ -30,11 +30,18 @@ const STATUS_TONE: Record<string, string> = {
 
 const RESEARCH_PAGES = [
   {
+    to: "/review/priorities" as const,
+    label: "Priorities detail",
+    blurb: "The lever, mechanism, and sources behind each promise.",
+    draftKey: "page:priorities",
+  },
+  {
     to: "/review/dashboard" as const,
     label: "District budget",
     blurb: "FY2027 filing, line by line.",
     draftKey: "page:budget",
   },
+
   {
     to: "/review/pilot" as const,
     label: "PILOT explainer",
