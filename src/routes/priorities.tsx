@@ -1,14 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 
-import {
-  actblueUrl,
-  CANDIDATE_STORY,
-  COST_STUDY_NOTE,
-  HELP_OPTIONS,
-  PRIORITIES,
-} from "@/lib/campaign";
-import { useVolunteerModal } from "@/components/volunteer-modal";
+import { CANDIDATE_STORY, PRIORITIES } from "@/lib/campaign";
 
 const TITLE = "Priorities | Muhammad Saqeeb for East Brunswick Schools";
 const DESCRIPTION =
