@@ -82,13 +82,16 @@ export function BudgetMovement({ budget }: { budget: BudgetPayload }) {
   return (
     <section aria-labelledby="movement-heading" className="bg-secondary/50 py-14 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <p className="eyebrow text-primary">Two-year change</p>
+        <p className="eyebrow text-primary">
+          FY2027 filing: 2024-25 actual column to 2026-27 proposed column
+        </p>
         <h2 id="movement-heading" className="mt-3 max-w-3xl text-3xl leading-[1.1] sm:text-4xl">
           What is growing, and what is not
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-          Comparing the 2024-25 actual column against the 2026-27 proposed column in the same
-          filing. The tax levy went up 10.2% across those two years. Regular classroom instruction
+          Both columns come from the FY2027 User Friendly Budget. The 2024-25 figures are that
+          filing's own prior-year actuals, not numbers carried over from an older budget. The tax
+          levy went up 10.2% across those two years. Regular classroom instruction
           went up 0.2%. The difference went to benefits, to placements outside the district, and to
           charter transfers. None of those move quickly in a single budget cycle, and the charter
           transfer is set by state formula rather than by a board vote, but plan design, purchasing,
