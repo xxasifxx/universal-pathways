@@ -312,10 +312,10 @@ function Index() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <div className="rounded-2xl bg-ink p-8 text-center text-ink-foreground sm:p-12">
             <h2 id="register-heading" className="text-4xl uppercase leading-[1.05] sm:text-5xl">
-              Register to vote by {REGISTRATION_DEADLINE}!
+              Register to vote by {REGISTRATION_DEADLINE}
             </h2>
             <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed">
-              School board races here are decided by a few hundred votes, so registering matters.
+              School board races here can be decided by a few hundred votes.
             </p>
             <a
               href="https://www.nj.gov/state/elections/voter-registration.shtml"

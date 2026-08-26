@@ -129,7 +129,7 @@ export const DRAFT_SECTIONS: DraftSection[] = [
         heading: "Still open",
         body: [
           "Occupancy dates for the corridor projects. Without them the enrollment series cannot be lined up against the buildings, which is why nothing here tries to.",
-          "The statutory distribution of a PILOT service charge, read directly out of N.J.S.A. 40A:20-12 rather than from how officials describe it.",
+          "The statutory distribution of a PILOT service charge under N.J.S.A. 40A:20-12.",
           "The 2022 Statistical Forecasting enrollment projection the district commissioned, and any update to it.",
           "Building-level utilization figures. Districtwide enrollment being flat says nothing about whether a particular elementary school is full.",
           "How the district's state aid has actually moved while enrollment stayed flat.",

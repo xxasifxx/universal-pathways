@@ -126,7 +126,7 @@ export const PRIORITY_DETAIL: Priority[] = [
     number: "01",
     title: "Affordable for All",
     summary:
-      "Taking part in school shouldn't depend on what a family can pay, and staff shouldn't be priced out of their own health coverage.",
+      "Remove school fees and lower healthcare costs for staff.",
     points: [
       {
         text: "Universally paid public full-day Pre-K.",
@@ -134,7 +134,7 @@ export const PRIORITY_DETAIL: Priority[] = [
           leverKind: "budget",
           lever: "Nothing in the general fund today",
           mechanism: [
-            "The adopted 2026-27 budget carries no preschool appropriation and no preschool education aid in its state aid list. Enrollment is counted from kindergarten up, at 8,559 students on roll. A district that wants full-day Pre-K applies to the state for preschool education aid and builds the program around what it gets.",
+            "The adopted 2026-27 budget has no preschool appropriation or preschool education aid. The district reports enrollment from kindergarten up, with 8,559 students on roll. To start full-day Pre-K, the district would apply for state preschool aid and set the program's size after funding is known.",
           ],
           openQuestion:
             "How many three- and four-year-olds would enroll, what per-child rate the district would qualify for, and what rooms, staff, and buses a full-day program needs. None of that is in a budget filing.",
@@ -147,7 +147,7 @@ export const PRIORITY_DETAIL: Priority[] = [
           leverKind: "budget",
           lever: "Athletics, cocurricular activities, miscellaneous revenue",
           mechanism: [
-            "Athletics is budgeted at $1.3 million and cocurricular activities at $0.4 million. Extracurricular cost per pupil has gone from $233 in the FY2027 filing's 2023-24 actual column to $273 in its 2026-27 proposed column. Participation fees are revenue, so dropping them means either finding the money elsewhere in the budget or shrinking what the program spends.",
+            "Athletics is budgeted at $1.3 million and cocurricular activities at $0.4 million. Extracurricular cost per pupil rose from $233 in the filing's 2023-24 actual column to $273 in the 2026-27 proposed column. Ending participation fees would require other revenue or lower program spending.",
           ],
           openQuestion:
             "How much families actually pay. Fee income is not broken out anywhere in the filing; it sits inside $2,455,107 of miscellaneous revenue with rentals, interest, and other local receipts.",
@@ -160,11 +160,11 @@ export const PRIORITY_DETAIL: Priority[] = [
           leverKind: "practice",
           lever: "Supply lists, activity fees, and trip costs, none of them itemized",
           mechanism: [
-            "What families pay out of pocket does not appear as a line anywhere. Classroom supply lists, activity fees, trip costs, and instrument rental are decided school by school and program by program, and the money mostly never touches the district's books, so a budget filing cannot show it.",
-            "The first step is an inventory: what each school asks families to buy or pay in a year, collected once and published. Until that exists, nobody on the board can say how much of a family's school year is being paid for privately.",
+            "The budget does not show what families pay for supply lists, activities, trips, or instrument rentals. These costs vary by school and program.",
+            "The district should collect and publish every required family payment. That is needed before the board can estimate the total cost to families.",
           ],
           openQuestion:
-            "The total households actually spend. That is a survey and a document request, not a figure anyone can pull out of the budget.",
+            "The total amount households spend. This would require a survey and district records.",
         },
       },
       {
@@ -176,7 +176,7 @@ export const PRIORITY_DETAIL: Priority[] = [
             "Student support services total $23.2 million, including $5.0 million in extraordinary services and $3.7 million in speech, occupational, and physical therapy. Out-of-district tuition is the fastest-growing line in the whole budget, up 54.5% in two years to $6.6 million, and the district's own budget update lists out-of-district placements and contracted services as a $2,027,781 increase for this year.",
           ],
           openQuestion:
-            "How much of this work is contracted out today rather than staffed in-house, and what a district position costs against the agency rate once benefits are counted.",
+            "How much work is contracted out, and how agency rates compare with district salaries and benefits.",
           sources: [SRC.budget, SRC.districtSlide],
         },
       },
@@ -187,7 +187,7 @@ export const PRIORITY_DETAIL: Priority[] = [
           lever: "Student support services, $23.2 million",
           mechanism: [
             "Student support services run $23.2 million, with $5.0 million in extraordinary services and $3.7 million in speech, occupational, and physical therapy. The district counts 1,365 students in special education and 57 in private placements out of 8,559 on roll.",
-            "Protecting this means treating it as the last place to look for savings when the budget gets tight, and saying that out loud during the adoption vote rather than after the reductions are made.",
+            "The board can identify these services as a budget priority before voting on reductions.",
           ],
           openQuestion:
             "Caseloads and wait times. The filing prints totals, not how long a family waits for an evaluation or how many students one counselor carries.",
@@ -227,9 +227,9 @@ export const PRIORITY_DETAIL: Priority[] = [
           lever: "Personal services — employee benefits, $40,357,120",
           mechanism: [
             "Benefits are 38.43% of salaries in the adopted budget, up from 30.16% in the same filing's 2023-24 actual column, and the district's own budget update names health premiums as its largest cost driver this year: a 22% increase, $7,934,618.",
-            "A district joins the state School Employees' Health Benefits Program by resolution and can leave the same way. It can buy the medical plan alone, in which case it has to offer a stand-alone prescription drug plan, and it adds or drops dental by separate resolution. The pharmacy contract, the administrator, and the broker are things a board signs.",
-            "Two pieces are not the board's. State law fixes the plan menu — the Educators plan, NJ Direct 10 and 15, and the Garden State plan — and sets employee contributions for the Educators and Garden State plans as a percentage of salary. And the State, not the district, pays the pension contribution for teaching staff; the district reimburses only the share of a salary paid with federal money.",
-            "What is left is worth reading carefully. In September 2025 the State Comptroller found that one for-profit firm had effectively taken over contracting at the health insurance funds serving hundreds of local governments and school boards, and that the Schools Health Insurance Fund paid that firm and its affiliate about $36 million from 2021 to 2025 without the required conflict disclosures. Saqeeb wants renewals, broker arrangements, and priced alternatives read out at a public meeting before the vote.",
+            "The district can join or leave the School Employees' Health Benefits Program by resolution. If it buys only the medical plan, it must offer a separate prescription plan. Dental coverage requires a separate resolution. The board approves the pharmacy, administration, and broker contracts.",
+            "State law sets the available state plans and employee contribution rates for the Educators and Garden State plans. The state pays pension contributions for teaching staff, except for the share of salaries funded by federal money.",
+            "In September 2025, the State Comptroller reported contracting and conflict-disclosure problems at health insurance funds serving local governments and school boards. The Schools Health Insurance Fund paid one firm and an affiliate about $36 million from 2021 through 2025. Saqeeb wants the district to publish renewal terms, broker arrangements, and priced alternatives before a vote.",
           ],
           openQuestion:
             "What each option would actually cost here. The filing prints one benefits total. It does not price the state program against a private or pooled alternative, and it does not separate the pharmacy benefit.",
@@ -279,7 +279,7 @@ export const PRIORITY_DETAIL: Priority[] = [
           leverKind: "policy",
           lever: "Board Policy 2464, instructional adaptation",
           mechanism: [
-            "Policy 2464 already defines an instructional adaptation as teaching a student \"at the instructional level of the student, not just the student's grade level,\" and directs the Superintendent to ensure those adaptations are designed. The 2019 state law it implements requires districts to identify gifted students in every grade from kindergarten up and to provide the services.",
+            "Policy 2464 defines an instructional adaptation as teaching at a student's instructional level. It directs the Superintendent to develop those adaptations. A 2019 state law requires districts to identify and serve gifted students in every grade from kindergarten up.",
             "The district can use this policy to place a fourth grader in a higher-level science class or give a younger student access to an instrument.",
           ],
           openQuestion:
@@ -385,8 +385,8 @@ export const PRIORITY_DETAIL: Priority[] = [
           leverKind: "budget",
           lever: "Outside the general fund, on the tax bill as debt service",
           mechanism: [
-            "The board reviewed the options in public on June 4. Moving the temporary classroom units from Churchill to the high school campus was put at about $11 million and could not happen before September 2027. A ninth-grade academy attached to the high school was put at roughly $45 to $49 million in construction alone, before soft costs, fees, and contingencies. A new high school was discussed at $325 to $350 million in hard costs, and a district official said a project that size cannot come out of the operating budget: it needs a bond referendum.",
-            "None of that runs through the $209,216,947 general fund the dashboard breaks down. It reaches voters as a referendum and then appears on tax bills as debt service.",
+            "The board reviewed the options on June 4. Moving the temporary classrooms from Churchill to the high school campus was estimated at about $11 million and could not be completed before September 2027. Construction for a ninth-grade academy was estimated at $45 to $49 million before fees and contingencies. Hard costs for a new high school were estimated at $325 to $350 million. A district official said a project of that size would require a bond referendum.",
+            "These projects are outside the $209,216,947 general fund shown on the dashboard. Voters would decide a bond referendum, and approved borrowing would appear on tax bills as debt service.",
           ],
           openQuestion:
             "Which option the district picks, and what the state's share of it would be. Those are decisions ahead of the board, not figures printed anywhere yet.",
@@ -413,8 +413,8 @@ export const PRIORITY_DETAIL: Priority[] = [
           leverKind: "budget",
           lever: "Capital outlay $8.4 million, capital reserve $256,697",
           mechanism: [
-            "East Brunswick is what the state calls a Regular Operating District. A project goes to the Department of Education for eligibility review and then to the voters, and the state's share comes back as debt service aid on the bonds or as a grant. Under the current grant program a district is eligible for at least 40 percent of approved eligible project costs, set by its own aid percentage, and has to show local funding for the rest.",
-            "Paying out of pocket is no longer realistic here. Capital outlay is down 28.3% in two years and the capital reserve is projected at $256,697, against $3.1 million not long ago.",
+            "The state classifies East Brunswick as a Regular Operating District. The Department of Education reviews a project for eligibility before it goes to voters. State support can come through debt-service aid or a grant. Under the current grant program, a district is eligible for at least 40 percent of approved eligible costs and must fund the rest locally.",
+            "Capital outlay is down 28.3% in two years. The capital reserve is projected at $256,697, down from $3.1 million.",
           ],
           openQuestion:
             "East Brunswick's own aid percentage, and therefore the state share of any specific project. That comes out of the eligibility review, not the budget filing.",
