@@ -40,7 +40,7 @@ const en = {
     "Register to vote by October 13th to have a say in who runs East Brunswick's schools.",
   "footer.register.cta": "Register to vote in New Jersey",
   "footer.tagline":
-    "An independent, community-run campaign for the East Brunswick Board of Education.",
+    "A campaign run by East Brunswick neighbors, for the East Brunswick Board of Education.",
   "footer.rights": "Paid for by Friends of Saqeeb.",
 
   "home.hero.headline": "A Voice for Excellence",

@@ -91,7 +91,8 @@ function Index() {
             <div className="mt-8 h-1 w-28 bg-gold sm:w-36" />
 
             <p className="mt-6 font-display text-2xl uppercase leading-[1.05] sm:text-4xl lg:text-5xl">
-              Fighting to put students first.
+              Pre-K for every family, a high school built for the next forty years, and health
+              coverage the staff can use.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
@@ -274,7 +275,7 @@ function Index() {
             <Heart aria-hidden="true" className="size-8" />
           </span>
           <h2 id="donate-heading" className="mt-8 text-4xl uppercase leading-[1.05] sm:text-5xl">
-            Donate to our grassroots campaign!
+            Chip in to the campaign
           </h2>
           <ul className="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-3">
             {DONATION_AMOUNTS.map((amount) => (
