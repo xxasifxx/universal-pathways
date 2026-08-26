@@ -105,20 +105,33 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  beforeLoad: () => {
+    if (SITE_OFFLINE) {
+      throw notFound();
+    }
+  },
   head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Muhammad Saqeeb for East Brunswick Board of Education" },
-      {
-        name: "description",
-        content:
-          "Muhammad Saqeeb, Column #1, is running for the East Brunswick Board of Education.",
-      },
-      { name: "author", content: "Muhammad Saqeeb" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+    meta: SITE_OFFLINE
+      ? [
+          { charSet: "utf-8" },
+          { name: "viewport", content: "width=device-width, initial-scale=1" },
+          { title: "404 — Page not found" },
+          { name: "robots", content: "noindex, nofollow" },
+        ]
+      : [
+          { charSet: "utf-8" },
+          { name: "viewport", content: "width=device-width, initial-scale=1" },
+          { title: "Muhammad Saqeeb for East Brunswick Board of Education" },
+          {
+            name: "description",
+            content:
+              "Muhammad Saqeeb, Column #1, is running for the East Brunswick Board of Education.",
+          },
+          { name: "author", content: "Muhammad Saqeeb" },
+          { property: "og:type", content: "website" },
+          { name: "twitter:card", content: "summary_large_image" },
+        ],
+
     links: [
       {
         rel: "stylesheet",
