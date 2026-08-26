@@ -339,7 +339,7 @@ export const PRIORITY_DETAIL: Priority[] = [
           lever: "Mandated HIB training, and what the state does not require",
           mechanism: [
             "Training on harassment, intimidation, and bullying is a state-mandated professional development topic, so East Brunswick already does some of this and has to.",
-            "Training specifically on recognizing bias against a religion or an ethnicity is not separately mandated. A district that wants it adds it, pays for it out of professional development, and decides who has to attend. In a district where families come from as many places as they do here, that is worth choosing to do rather than waiting to be told.",
+            "Training specifically on recognizing bias tied to religion, race, or national origin is not separately mandated. A district that wants it adds it, pays for it out of professional development, and decides who has to attend. In a district where families come from as many places as they do here, that is worth choosing to do rather than waiting to be told.",
           ],
           openQuestion:
             "What training staff currently receive beyond the state minimum, and how incidents are reported back to the board.",
