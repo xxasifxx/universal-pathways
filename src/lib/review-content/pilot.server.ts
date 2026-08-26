@@ -6,7 +6,7 @@ import type { PilotPayload } from "./types";
 
 export const PILOT_PAYLOAD: PilotPayload = {
   intro: [
-    "A payment in lieu of taxes, or PILOT, allows a developer to make a negotiated annual payment to the township on a redeveloped property. The land remains subject to ordinary property tax. The improvements are covered by the PILOT agreement. Township officials describe the ordinary property-tax split as roughly 65 percent to the schools, 20 percent to the township, and 15 percent to the county. They describe a PILOT split as about 95 percent to the township, 5 percent to the county, and no direct payment to the schools.",
+    "A payment in lieu of taxes, or PILOT, allows a developer to make a negotiated annual payment to the township on a redeveloped property. The land stays on the ordinary property tax roll. The buildings put up on it are covered by the PILOT agreement instead. Township officials describe the ordinary property-tax split as roughly 65 percent to the schools, 20 percent to the township, and 15 percent to the county. They describe a PILOT split as about 95 percent to the township, 5 percent to the county, and no direct payment to the schools.",
     "This page uses published reporting and Redevelopment Agency minutes. The sources are listed below. Some agreement amounts and terms are not available in the published records reviewed by the campaign.",
   ],
   split: [
@@ -70,7 +70,7 @@ export const PILOT_PAYLOAD: PilotPayload = {
       id: "township-says",
       title: "What the township says",
       body: [
-        "The school district continues to receive its share of tax on the land. The Board of Education sets its own budget, which is funded largely through the local tax levy.",
+        "Both statements are accurate as far as they go. The district does keep its share of the tax on the land, and the Board of Education does set its own budget. That budget is funded by the local tax levy, and a board that expects a request to push the levy up tends to ask for less than it otherwise would. So \"gets all the money it asks for\" is not the same as getting what an ordinary tax split would have produced.",
       ],
       quote: {
         lines: [
