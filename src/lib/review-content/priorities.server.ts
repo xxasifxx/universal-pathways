@@ -380,7 +380,7 @@ export const PRIORITY_DETAIL: Priority[] = [
       "Some buildings now cost more to keep patching than to replace. The board should compare the two in public before the bill arrives.",
     points: [
       {
-        text: "A new high school for 9th through 12th.",
+        text: "A new high school for ninth through twelfth grade.",
         detail: {
           leverKind: "budget",
           lever: "Outside the general fund, on the tax bill as debt service",
