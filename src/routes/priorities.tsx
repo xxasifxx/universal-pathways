@@ -23,7 +23,6 @@ export const Route = createFileRoute("/priorities")({
 });
 
 function Priorities() {
-  const { open: openVolunteer } = useVolunteerModal();
   return (
     <>
       <header className="border-b border-border bg-primary py-12 text-primary-foreground sm:py-16">
