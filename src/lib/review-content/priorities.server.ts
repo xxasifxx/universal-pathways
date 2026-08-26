@@ -250,7 +250,7 @@ export const PRIORITY_DETAIL: Priority[] = [
       "A student should get into the course they're ready for on the strength of what they can do, and be graded on work they actually did.",
     points: [
       {
-        text: "End the rigid matrix and expand fair access to advanced courses.",
+        text: "Open advanced courses to students who are ready for them, not only those who fit one tracking rule.",
         detail: {
           leverKind: "practice",
           lever: "Course placement criteria, published in the course guide",
