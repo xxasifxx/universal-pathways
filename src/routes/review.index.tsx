@@ -63,10 +63,10 @@ export const Route = createFileRoute("/review/")({
   head: () => ({
     meta: [
       { title: "Review room" },
-      { name: "description", content: "Private working area for campaign material." },
+        { name: "description", content: "Private campaign review pages." },
       { name: "robots", content: "noindex, nofollow" },
       { property: "og:title", content: "Review room" },
-      { property: "og:description", content: "Private working area for campaign material." },
+        { property: "og:description", content: "Private campaign review pages." },
     ],
   }),
   component: ReviewRoom,

@@ -56,7 +56,7 @@ function ReviewPriorities() {
                   <p className="text-lg leading-snug">{point.text}</p>
                   {point.leverLabel ? (
                     <p className="mt-2 font-display text-xs uppercase tracking-wide text-primary">
-                      {point.leverLabel} — {point.lever}
+                      {point.leverLabel}: {point.lever}
                     </p>
                   ) : null}
                   {point.mechanism.map((para) => (
