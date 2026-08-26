@@ -91,8 +91,7 @@ function Index() {
             <div className="mt-8 h-1 w-28 bg-gold sm:w-36" />
 
             <p className="mt-6 font-display text-2xl uppercase leading-[1.05] sm:text-4xl lg:text-5xl">
-              Public full-day Pre-K, a 9-12 high school, and health coverage school staff can
-              afford to use.
+              Putting Students First
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
