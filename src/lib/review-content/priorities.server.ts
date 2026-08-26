@@ -394,13 +394,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "State-of-the-art schools with better technology, facilities, and programs.",
+        text: "Better technology, facilities, and programs in the buildings we keep.",
         detail: {
           leverKind: "budget",
           lever: "Operations and maintenance, $21.1 million, and capital outlay, $8.4 million",
           mechanism: [
             "Maintenance runs $21.1 million a year and is down 3.9%, while capital outlay is down 28.3% in two years. When the repair budget and the replacement budget both shrink, the work does not disappear; it moves to next year at a higher price.",
-            "The board must compare the cost of continued repairs with the cost of a replacement plan that would go to voters.",
+            "So the comparison the board owes residents is the running cost of repairs against the cost of a replacement plan that would go to voters.",
           ],
           openQuestion:
             "What each building needs and when. That is a facilities condition assessment, and the district has not published one.",
@@ -408,13 +408,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Use state construction bonds to build better, more sustainable facilities with lower maintenance.",
+        text: "Apply for state construction grants, and build so the next twenty years of maintenance cost less.",
         detail: {
           leverKind: "budget",
           lever: "Capital outlay $8.4 million, capital reserve $256,697",
           mechanism: [
-            "The state classifies East Brunswick as a Regular Operating District. The Department of Education reviews a project for eligibility before it goes to voters. State support can come through debt-service aid or a grant. Under the current grant program, a district is eligible for at least 40 percent of approved eligible costs and must fund the rest locally.",
-            "Capital outlay is down 28.3% in two years. The capital reserve is projected at $256,697, down from $3.1 million.",
+            "The state classifies East Brunswick as a Regular Operating District. The Department of Education reviews a project for eligibility before it goes to voters, and state support then comes through debt-service aid or a grant. Under the current grant program a district is eligible for at least 40 percent of approved eligible costs and funds the rest locally.",
+            "The local share is the problem. Capital outlay is down 28.3% in two years and the capital reserve is projected at $256,697, down from $3.1 million.",
           ],
           openQuestion:
             "East Brunswick's own aid percentage, and therefore the state share of any specific project. That comes out of the eligibility review, not the budget filing.",
@@ -422,7 +422,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Remove lead and address TMAs.",
+        text: "Remove lead and deal with the temporary classroom units.",
         detail: {
           leverKind: "budget",
           lever: "Operations and maintenance, $21.1 million",
@@ -435,13 +435,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Design buildings around the programs students need.",
+        text: "Design buildings around the programs we want to offer.",
         detail: {
           leverKind: "practice",
           lever: "Program requirements written into the design",
           mechanism: [
-            "Board members discussed the high school's cafeteria and gym capacity, classroom conditions, roof, and plumbing on June 4. These limits affect which programs the school can offer.",
-            "The board should give the architect program and space requirements before design work begins.",
+            "On June 4 board members went through the high school's cafeteria and gym capacity, its classroom conditions, the roof, and the plumbing. Those limits decide what the school can offer, not just how it feels to walk through.",
+            "Which is why the program and space requirements have to reach the architect before design work starts, rather than being fitted into whatever gets drawn.",
           ],
           openQuestion:
             "Which programs are being turned away or capped today for lack of space. Nobody has published that list.",
@@ -449,13 +449,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Review the master plan and publish the findings.",
+        text: "Review the master plan and publish what it finds.",
         detail: {
           leverKind: "practice",
           lever: "What the district publishes, and how",
           mechanism: [
-            "The adopted budget, district slides, and board meeting records contain the figures used here. Residents should not have to search a 64-page filing to find spending on out-of-district placements.",
-            "The district can publish the same figures in searchable tables and short summaries.",
+            "The figures used here come from the adopted budget, the district's own slides, and board meeting records. Finding spending on out-of-district placements means reading a 64-page filing, which is not a reasonable ask of a resident.",
+            "The same numbers can be published as searchable tables with short summaries, which costs the district nothing it has not already paid for.",
           ],
           openQuestion:
             "Which reports the district will publish and how often it will update them.",
