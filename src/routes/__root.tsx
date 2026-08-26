@@ -89,7 +89,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "An independent, data-driven campaign for the East Brunswick Board of Education.",
+          "Muhammad Saqeeb, Column #1, is running for the East Brunswick Board of Education.",
       },
       { name: "author", content: "Muhammad Saqeeb" },
       { property: "og:type", content: "website" },

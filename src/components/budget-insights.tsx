@@ -82,13 +82,16 @@ export function BudgetMovement({ budget }: { budget: BudgetPayload }) {
   return (
     <section aria-labelledby="movement-heading" className="bg-secondary/50 py-14 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <p className="eyebrow text-primary">Two-year change</p>
+        <p className="eyebrow text-primary">
+          FY2027 filing: 2024-25 actual column to 2026-27 proposed column
+        </p>
         <h2 id="movement-heading" className="mt-3 max-w-3xl text-3xl leading-[1.1] sm:text-4xl">
           What is growing, and what is not
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-          Comparing the 2024-25 actual column against the 2026-27 proposed column in the same
-          filing. The tax levy went up 10.2% across those two years. Regular classroom instruction
+          Both columns come from the FY2027 User Friendly Budget. The 2024-25 figures are that
+          filing's own prior-year actuals, not numbers carried over from an older budget. The tax
+          levy went up 10.2% across those two years. Regular classroom instruction
           went up 0.2%. The difference went to benefits, to placements outside the district, and to
           charter transfers. None of those move quickly in a single budget cycle, and the charter
           transfer is set by state formula rather than by a board vote, but plan design, purchasing,
@@ -141,22 +144,26 @@ export function BudgetReserves({ budget }: { budget: BudgetPayload }) {
   return (
     <section aria-labelledby="reserves-heading" className="py-14 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <p className="eyebrow text-primary">Reserves</p>
+        <p className="eyebrow text-primary">
+          FY2027 filing: recapitulation of balances, all four columns
+        </p>
         <h2 id="reserves-heading" className="mt-3 max-w-3xl text-3xl leading-[1.1] sm:text-4xl">
           What is left in the bank
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-          The filing's recapitulation of balances shows savings being spent down. The unrestricted
-          operating balance is projected to fall by half over three years, the legal reserve is
-          projected to reach zero, and the capital reserve has already gone from $3.1 million to an
-          estimated $257,000. Using reserves to hold a levy down is a legitimate choice; it is also
-          a choice that can only be made once.
+          All four columns below are printed in the FY2027 filing's recapitulation of balances: two
+          audited years the district has already closed, then two it estimates. They show savings
+          being spent down. The unrestricted operating balance is projected to fall by half over
+          three years, the legal reserve is projected to reach zero, and the capital reserve has
+          already gone from $3.1 million to an estimated $257,000. Using reserves to hold a levy
+          down is a legitimate choice; it is also a choice that can only be made once.
         </p>
 
         <div className="mt-10 overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse text-left">
             <caption className="sr-only">
-              District fund balances, audited through June 2025 and estimated through June 2027
+              District fund balances as printed in the FY2027 User Friendly Budget: audited actuals
+              through June 2025 and district estimates through June 2027
             </caption>
             <thead>
               <tr className="border-b border-border">
@@ -213,22 +220,27 @@ export function BudgetPerPupil({ budget }: { budget: BudgetPayload }) {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] lg:items-start">
           <div>
-            <p className="eyebrow text-primary">Per student</p>
+            <p className="eyebrow text-primary">
+              FY2027 filing: per-pupil table, 2023-24 actual to 2026-27 proposed
+            </p>
             <h2 id="perpupil-heading" className="mt-3 text-3xl leading-[1.1] sm:text-4xl">
               Cost per student, and what it buys
             </h2>
             <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
               The state calculates a comparative per-pupil cost so districts can be measured
               against each other. East Brunswick's 2026-27 proposed figure is $20,731, up from
-              $19,096 in 2023-24 actual costs. Classroom instruction accounts for $11,882 of that, administration for
-              $1,929. Enrollment on roll is estimated at {ENROLLMENT.onRoll2026.toLocaleString()},
-              up from {ENROLLMENT.onRoll2025.toLocaleString()}, with{" "}
+              $19,096 in the 2023-24 actual column of the same filing. Classroom instruction
+              accounts for $11,882 of that, administration for $1,929. Enrollment on roll is
+              estimated at {ENROLLMENT.onRoll2026.toLocaleString()}, up from{" "}
+              {ENROLLMENT.onRoll2025.toLocaleString()}, with{" "}
               {ENROLLMENT.specialEd.toLocaleString()} students in special education and{" "}
               {ENROLLMENT.privatePlacements} in private placements.
             </p>
 
             <p className="mt-3 text-sm text-muted-foreground">
-              Each row below runs from the 2023-24 actual cost to the 2026-27 proposed cost.
+              The filing's Advertised Per Pupil Cost Calculations page starts at 2023-24 actual, so
+              this table uses an earlier baseline than the two-year comparison above. Each row runs
+              from the 2023-24 actual cost to the 2026-27 proposed cost.
             </p>
 
             <ul className="mt-8 flex flex-col gap-2">

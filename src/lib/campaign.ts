@@ -98,14 +98,14 @@ export const PITCH = {
   eyebrow: "Muhammad Saqeeb for East Brunswick Board of Education",
   headline: "A Voice for Excellence",
   problem:
-    "Healthcare premiums, special education costs, and repairs on aging buildings are all rising faster than school revenue, and East Brunswick is no exception. When a board runs out of room in the budget, the usual response is to trim programs, leave positions unfilled, and move costs onto families through activity fees and supply lists. Those decisions are made a line at a time, in meetings most people never see, and they add up to a school system that quietly asks parents to pay for things it used to provide.",
+    "Healthcare premiums, special education placements, and repairs on aging buildings are rising faster than school revenue. When a board runs out of room in the budget, it trims programs, leaves positions unfilled, and moves costs onto families through activity fees and supply lists. Those decisions get made one line at a time, in meetings most people never see.",
   ask: "A board member should be able to explain where the money goes and push for schools families can afford to be part of.",
   badge: "Column #1",
 } as const;
 
 /** One-line intro under the portrait on the home page. */
 export const INTRO_LINE =
-  "Muhammad Saqeeb is running to bring new leadership, transparency, and a student-first perspective to the East Brunswick Board of Education.";
+  "Muhammad Saqeeb went through East Brunswick's schools and is running for its Board of Education, Column #1.";
 
 /** Card list shown under the intro. */
 export const CREDENTIALS = [
@@ -288,7 +288,7 @@ export const PRIORITIES: Priority[] = [
           leverKind: "budget",
           lever: "Athletics, cocurricular activities, miscellaneous revenue",
           mechanism: [
-            "Athletics is budgeted at $1.3 million and cocurricular activities at $0.4 million. Extracurricular cost per pupil has gone from $233 in 2023-24 to $273 in 2026-27. Participation fees are revenue, so dropping them means either finding the money elsewhere in the budget or shrinking what the program spends.",
+            "Athletics is budgeted at $1.3 million and cocurricular activities at $0.4 million. Extracurricular cost per pupil has gone from $233 in the FY2027 filing's 2023-24 actual column to $273 in its 2026-27 proposed column. Participation fees are revenue, so dropping them means either finding the money elsewhere in the budget or shrinking what the program spends.",
           ],
           openQuestion:
             "How much families actually pay. Fee income is not broken out anywhere in the filing; it sits inside $2,455,107 of miscellaneous revenue with rentals, interest, and other local receipts.",
@@ -367,7 +367,7 @@ export const PRIORITIES: Priority[] = [
           leverKind: "budget",
           lever: "Personal services — employee benefits, $40,357,120",
           mechanism: [
-            "Benefits are 38.43% of salaries in the adopted budget, up from 30.16% in 2023-24, and the district's own budget update names health premiums as its largest cost driver this year: a 22% increase, $7,934,618.",
+            "Benefits are 38.43% of salaries in the adopted budget, up from 30.16% in the same filing's 2023-24 actual column, and the district's own budget update names health premiums as its largest cost driver this year: a 22% increase, $7,934,618.",
             "A district joins the state School Employees' Health Benefits Program by resolution and can leave the same way. It can buy the medical plan alone, in which case it has to offer a stand-alone prescription drug plan, and it adds or drops dental by separate resolution. The pharmacy contract, the administrator, and the broker are things a board signs.",
             "Two pieces are not the board's. State law fixes the plan menu — the Educators plan, NJ Direct 10 and 15, and the Garden State plan — and sets employee contributions for the Educators and Garden State plans as a percentage of salary. And the State, not the district, pays the pension contribution for teaching staff; the district reimburses only the share of a salary paid with federal money.",
             "What is left is worth reading carefully. In September 2025 the State Comptroller found that one for-profit firm had effectively taken over contracting at the health insurance funds serving hundreds of local governments and school boards, and that the Schools Health Insurance Fund paid that firm and its affiliate about $36 million from 2021 to 2025 without the required conflict disclosures. Saqeeb wants renewals, broker arrangements, and priced alternatives read out at a public meeting before the vote.",

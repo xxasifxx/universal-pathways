@@ -30,7 +30,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
     jargon: "Personal Services — Employee Benefits",
     plain: "Health insurance & pensions",
     amount: 40_357_120,
-    note: "Equal to 38.43% of salaries in the 2026-27 proposed budget, up from 30.16% in 2023-24 actuals. The pension side and the employee contribution schedule are set in Trenton. What the district chooses is where it buys coverage and how the plans are built, which is where a board still has room to move.",
+    note: "Equal to 38.43% of salaries in the 2026-27 proposed budget, up from 30.16% in the same filing's 2023-24 actual column. The pension side and the employee contribution schedule are set in Trenton. What the district chooses is where it buys coverage and how the plans are built, which is where a board still has room to move.",
     color: "var(--color-chart-2)",
   },
   {

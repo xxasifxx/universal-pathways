@@ -40,7 +40,7 @@ const en = {
     "Register to vote by October 13th to have a say in who runs East Brunswick's schools.",
   "footer.register.cta": "Register to vote in New Jersey",
   "footer.tagline":
-    "An independent, community-run campaign for the East Brunswick Board of Education.",
+    "A campaign run by East Brunswick neighbors, for the East Brunswick Board of Education.",
   "footer.rights": "Paid for by Friends of Saqeeb.",
 
   "home.hero.headline": "A Voice for Excellence",
@@ -51,7 +51,7 @@ const en = {
   "home.hero.social": "Follow our campaign",
 
   "pitch.problem":
-    "Healthcare premiums, special education costs, and repairs on aging buildings are all rising faster than school revenue, and East Brunswick is no exception. When a board runs out of room in the budget, the usual response is to trim programs, leave positions unfilled, and move costs onto families through activity fees and supply lists. Those decisions are made a line at a time, in meetings most people never see, and they add up to a school system that quietly asks parents to pay for things it used to provide.",
+    "Healthcare premiums, special education placements, and repairs on aging buildings are rising faster than school revenue. When a board runs out of room in the budget, it trims programs, leaves positions unfilled, and moves costs onto families through activity fees and supply lists. Those decisions get made one line at a time, in meetings most people never see.",
   "pitch.ask":
     "A board member should be able to explain where the money goes and push for schools families can afford to be part of.",
   "fightFor.heading": "Saqeeb will fight for:",
