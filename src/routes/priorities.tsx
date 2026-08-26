@@ -119,7 +119,7 @@ function Priorities() {
                 onClick={() => openVolunteer({ preset: [HELP_OPTIONS[3].label], source: "priorities-review" })}
                 className="inline-flex items-center gap-2 rounded-md bg-gold px-6 py-4 font-semibold text-gold-foreground transition-opacity hover:opacity-90"
               >
-                Review the draft
+                Help review the cost numbers
                 <ArrowRight aria-hidden="true" className="size-4" />
               </button>
               <a
