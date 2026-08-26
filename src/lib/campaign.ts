@@ -19,8 +19,8 @@ export const CANDIDATE_STORY = {
     "I grew up here in East Brunswick, in a working-class immigrant family, and I went through East Brunswick Public Schools from elementary school through graduation.",
     "For close to six years I was a special education student. I wasn't placed there because I couldn't do the work. I was a difficult kid at times, and the placement that followed shaped which classes were open to me and what people expected of me long after the behavior had changed.",
     "I got out of it by learning to advocate for myself, with my parents pushing alongside me. I took independent study to catch up, and I graduated summa cum laude with a degree in psychology before finishing a master's in data science.",
-    "Plenty of students don't find that path, and I don't think that's because educators here don't care — I had teachers who went out of their way for me. It's that placement decisions get made early, on thin information, and rarely get revisited.",
-    "That's the part of the job I care most about, and it's a large part of why I'm running.",
+    "Plenty of students don't find that path. I had teachers who went out of their way for me. The problem is that placements can be made early, with little information, and then stay in place for years.",
+    "I want the board to pay attention to those decisions. That is a large part of why I'm running.",
   ],
 } as const;
 
@@ -120,12 +120,12 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "students-first",
     title: "Students First",
-    text: "Fair access to the courses a student is ready for, whatever their transcript says.",
+    text: "Let students take the courses they are ready for.",
   },
   {
     id: "reduce-our-costs",
     title: "Reduce Our Costs",
-    text: "Facilities decisions that stop the district paying twice for buildings past their life.",
+    text: "Replace buildings when repeated repairs cost more.",
   },
 ];
 
@@ -165,9 +165,9 @@ export const PRIORITIES: Priority[] = [
     number: "02",
     title: "Students First",
     summary:
-      "A student should get into the course they're ready for on the strength of what they can do, and be graded on work they actually did.",
+      "Students should be able to take the courses they are ready for and earn grades based on their own work.",
     points: [
-      "Open advanced courses to students who are ready for them, not only those who fit one tracking rule.",
+      "Use more than one measure to place students in advanced courses.",
       "Allow placement exams, including languages.",
       "Arts and science above grade level by request, with early access to instruments.",
       "A language bridge program for new families.",
@@ -183,21 +183,21 @@ export const PRIORITIES: Priority[] = [
     number: "03",
     title: "Reduce Our Costs",
     summary:
-      "Buildings past the point where patching is the cheaper answer cost the district twice. Decide, in public, before the bill arrives.",
+      "Repeated repairs can cost more than replacement. The board should make those decisions in public.",
     points: [
       "A new high school for ninth through twelfth grade.",
       "Better technology, facilities, and programs in the buildings we keep.",
       "Use state construction grants to build for lower maintenance.",
       "Remove lead and address the temporary classroom units.",
       "Build facilities that can house the programs we want.",
-      "Audit the master plan, with public dashboards and community oversight.",
+      "Review the master plan and publish the findings.",
     ],
   },
 ];
 
 /** Shown under the priorities. The campaign does not publish estimates it cannot source. */
 export const COST_STUDY_NOTE =
-  "None of these carry a dollar figure, because a number reverse-engineered from a budget filing would not survive scrutiny. Pricing this work takes enrollment projections, a facilities condition assessment, staffing models, and plan-by-plan benefit quotes. Until the district has those, I will tell you which budget line a promise touches and what is still unknown.";
+  "The district has not published enough information to price these plans. Reliable estimates need enrollment projections, a building condition report, staffing plans, and health-plan quotes.";
 
 export const HELP_OPTIONS = [
   {
@@ -219,7 +219,7 @@ export const HELP_OPTIONS = [
     id: "researcher",
     label: "Help review the platform",
     blurb:
-      "Read the longer policy drafts before they go public and tell us where they're weak, unsourced, or overconfident. About an hour, from home.",
+      "Read draft proposals and flag weak claims or missing sources. About an hour, from home.",
   },
 ] as const;
 

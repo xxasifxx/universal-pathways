@@ -33,11 +33,10 @@ function ReviewPriorities() {
     <>
       <article className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
         <p className="eyebrow text-primary">Research — not public</p>
-        <h1 className="mt-3 text-4xl leading-[1.05] sm:text-5xl">What sits behind each promise</h1>
+        <h1 className="mt-3 text-4xl leading-[1.05] sm:text-5xl">Research for each promise</h1>
         <p className="mt-4 rounded-lg border border-dashed border-border p-4 text-sm leading-relaxed text-muted-foreground">
-          The public priorities page lists the promises and stops there. This is the working
-          material underneath: the budget line or policy each one runs through, how the change
-          happens, and what nobody can answer from published documents.
+          This page lists the relevant budget lines, policies, source material, and unanswered
+          questions.
         </p>
 
         {data.priorities.map((priority) => (
@@ -68,7 +67,7 @@ function ReviewPriorities() {
                   {point.openQuestion ? (
                     <p className="mt-4 border-l-4 border-gold pl-4 text-base leading-relaxed text-muted-foreground">
                       <span className="font-semibold text-foreground">
-                        What nobody can answer yet:{" "}
+                        Still unknown:{" "}
                       </span>
                       {point.openQuestion}
                     </p>

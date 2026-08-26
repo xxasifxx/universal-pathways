@@ -57,7 +57,7 @@ export function ReviewNotes({
           Notes on this page
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          {open > 0 ? `${open} open` : "Nothing open"} — notes are private to the review room.
+          {open > 0 ? `${open} open` : "No open notes"}. Only reviewers can see them.
         </p>
 
         <label className="mt-5 block">
@@ -102,7 +102,7 @@ export function ReviewNotes({
             {post.isPending ? "Saving…" : "Add note"}
           </button>
           {name.trim().length < 2 ? (
-            <p className="mt-2 text-xs text-muted-foreground">Add a name above first so notes can be attributed.</p>
+            <p className="mt-2 text-xs text-muted-foreground">Enter your name before adding a note.</p>
           ) : null}
         </form>
 

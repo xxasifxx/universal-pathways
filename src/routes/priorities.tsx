@@ -110,7 +110,7 @@ function Priorities() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-3xl border-l-4 border-gold pl-5 sm:pl-6">
             <h2 id="cost-heading" className="font-display text-xl uppercase leading-tight text-primary sm:text-2xl">
-              Why there is no price tag on this page
+              Costs are still unknown
             </h2>
             <p className="mt-4 text-base leading-relaxed">{COST_STUDY_NOTE}</p>
             <div className="mt-6 flex flex-wrap gap-4">
@@ -119,7 +119,7 @@ function Priorities() {
                 onClick={() => openVolunteer({ preset: [HELP_OPTIONS[3].label], source: "priorities-review" })}
                 className="inline-flex items-center gap-2 rounded-md bg-gold px-6 py-4 font-semibold text-gold-foreground transition-opacity hover:opacity-90"
               >
-                Help review this before it goes further
+                Review the draft
                 <ArrowRight aria-hidden="true" className="size-4" />
               </button>
               <a
@@ -128,7 +128,7 @@ function Priorities() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border-2 border-primary px-6 py-4 font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
               >
-                Chip in toward the research
+                Donate
                 <ArrowRight aria-hidden="true" className="size-4" />
               </a>
             </div>

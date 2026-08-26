@@ -32,7 +32,7 @@ const RESEARCH_PAGES = [
   {
     to: "/review/priorities" as const,
     label: "Priorities detail",
-    blurb: "The lever, mechanism, and sources behind each promise.",
+    blurb: "The policy, budget details, and sources for each promise.",
     draftKey: "page:priorities",
   },
   {
@@ -51,7 +51,7 @@ const RESEARCH_PAGES = [
   {
     to: "/review/growth" as const,
     label: "Township growth",
-    blurb: "Apartments, enrollment, and who stays.",
+    blurb: "Apartments, enrollment, and school capacity.",
     draftKey: "page:growth",
   },
 ];
@@ -168,7 +168,7 @@ function ReviewRoom() {
           Research pages
         </h2>
         <p className="mt-1 text-xs text-muted-foreground">
-          Pulled off the public site. Reviewers only — each page takes notes of its own.
+          These pages are private. Each one has its own notes.
         </p>
         <ul className="mt-4 grid gap-3 sm:grid-cols-3">
           {RESEARCH_PAGES.map((page) => (

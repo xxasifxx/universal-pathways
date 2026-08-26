@@ -71,7 +71,7 @@ export function VolunteerModalProvider({ children }: { children: ReactNode }) {
               Sign up to help
             </DialogTitle>
             <DialogDescription>
-              Check what you want to do — each one asks only for what we need to follow up.
+              Choose how you want to help. We will ask for the details we need.
             </DialogDescription>
           </DialogHeader>
           <VolunteerForm defaultHelp={preset} onSubmitted={onSubmitted} />

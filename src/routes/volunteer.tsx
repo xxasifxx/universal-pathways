@@ -71,7 +71,7 @@ function Volunteer() {
           <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
             <h2 className="font-display text-2xl font-extrabold">Sign up to help</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Check what you want to do — each one asks only for what we need to follow up.
+              Choose how you want to help. We will ask for the details we need.
             </p>
             <div className="mt-6">
               <VolunteerForm defaultHelp={preset} />
