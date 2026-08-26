@@ -315,13 +315,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Teach students how to use AI responsibly on their own work.",
+        text: "Teach students to use AI on work that is their own.",
         detail: {
           leverKind: "policy",
           lever: "Local curriculum and acceptable use, with state guidance only",
           mechanism: [
-            "New Jersey publishes guidance on classroom AI use but leaves local rules to each district.",
-            "Teachers need clear rules. Students also need instruction on using AI without passing off generated work as their own.",
+            "New Jersey publishes guidance on classroom AI use and leaves the rules to each district, so East Brunswick's rule is whatever the board and administration adopt.",
+            "Teachers need to know what is allowed before they are asked to enforce it. Students need to be taught how to use these tools on work that stays theirs, instead of only being told when using them counts as cheating.",
           ],
           openQuestion:
             "What East Brunswick's current rule actually is, building by building, and whether staff have had training on it.",
@@ -329,13 +329,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Train staff and administration to spot bias and harassment in any form.",
+        text: "Train staff to recognize bias and harassment in any form.",
         detail: {
           leverKind: "state-rule",
           lever: "Mandated HIB training, and what the state does not require",
           mechanism: [
-            "New Jersey requires staff training on harassment, intimidation, and bullying.",
-            "The district can add broader training on bias and pay for it through professional development funds.",
+            "New Jersey already requires staff training on harassment, intimidation, and bullying, so East Brunswick does some of this by law.",
+            "Training on recognizing bias is not separately required. A district that wants it adds it, pays for it out of professional development, and decides who attends.",
           ],
           openQuestion:
             "What training staff currently receive beyond the state minimum, and how incidents are reported back to the board.",
@@ -343,13 +343,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "ICE out of schools. Police/SROs out of schools.",
+        text: "ICE out of schools. Police and SROs out of schools.",
         detail: {
           leverKind: "policy",
           lever: "The district's agreement with local law enforcement",
           mechanism: [
-            "The state's Immigrant Trust Directive limits how New Jersey law enforcement may assist federal immigration authorities. It bars stops or detention based only on immigration status. The district should give staff and families written procedures for enforcement requests at schools.",
-            "State rules also require the district and municipal police to sign an agreement. That agreement sets the rules for officers entering schools. The district can publish, review, and renegotiate it.",
+            "Immigration enforcement is governed by the state's Immigrant Trust Directive, which limits how New Jersey law enforcement may assist federal immigration authorities and bars stopping or detaining someone solely on immigration status. The district's part is knowing the rule, telling families it exists, and having a written answer ready before anyone shows up at a school office.",
+            "Police presence is set locally. Every district signs an agreement with its municipal police department, required by state regulation, and that agreement defines when officers enter a building and what happens when they do. Because it is signed by both sides, it can be read in public, questioned, and renegotiated.",
           ],
           openQuestion:
             "What East Brunswick's current agreement says. It is a public document and this campaign has not been able to obtain the signed version.",
@@ -357,13 +357,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Student oversight of mental health and facilities.",
+        text: "A standing student seat in mental health and facilities decisions.",
         detail: {
           leverKind: "policy",
           lever: "Board Bylaw 0143.2, student representatives to the board",
           mechanism: [
             "The board already seats at least one nonvoting student representative from grades nine to twelve, chosen by the student body, serving a one-year term. The bylaw gives that student three duties: attend meetings, bring student concerns to the board, and report back monthly to the student council.",
-            "The board can give student representatives a regular role in discussions about counseling and school buildings. This would require a bylaw or committee change.",
+            "Counseling and the condition of the buildings are the two things students feel first, so the ask is a standing place in those discussions instead of a report at the end. That is a bylaw and committee change the board makes on its own.",
           ],
           openQuestion:
             "Whether one representative for the whole district is enough, and how students are picked in practice.",
@@ -377,7 +377,7 @@ export const PRIORITY_DETAIL: Priority[] = [
     number: "03",
     title: "Reduce Our Costs",
     summary:
-      "Plan building repairs and replacements before they become more expensive.",
+      "Some buildings now cost more to keep patching than to replace. The board should compare the two in public before the bill arrives.",
     points: [
       {
         text: "A new high school for 9th through 12th.",
