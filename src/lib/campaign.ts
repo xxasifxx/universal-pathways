@@ -173,7 +173,7 @@ export const PRIORITIES: Priority[] = [
       "A language bridge program for new families.",
       "Grade students on their work, not their homes: more in-school assignments, less homework counted for evaluation.",
       "Teach students to use AI on work that is their own.",
-      "Train staff to recognize racism, sexism, Islamophobia, and antisemitism.",
+      "Train staff to recognize bias and harassment in any form.",
       "ICE out of schools. Police and SROs out of schools.",
       "Give students a standing seat in mental health and facilities decisions.",
     ],
