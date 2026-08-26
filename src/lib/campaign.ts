@@ -141,7 +141,6 @@ export const PLATFORM_HIGHLIGHTS = [
   },
 ];
 
-/** A source that was fetched and read while writing the copy it supports. */
 export type Priority = {
   id: string;
   number: string;
