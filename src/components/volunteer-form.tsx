@@ -135,7 +135,7 @@ export function VolunteerForm({
     if (wantsCanvass && days.length === 0) next.days = "Pick at least one day that works.";
     if (wantsPhone && mobile.trim().length < 7) next.mobile = "We need a mobile number for phone or text banking.";
     if (wantsResearch && background.trim().length < 10)
-      next.background = "Tell us a line or two about what you'd be reviewing from.";
+      next.background = "Tell us about your relevant experience.";
     setErrors(next);
     if (Object.keys(next).length > 0) {
       toast.error("Please fix the highlighted fields.");
@@ -407,7 +407,7 @@ export function VolunteerForm({
                 {on && opt.id === "researcher" ? (
                   <div className="mt-4 grid gap-4 border-t border-border pt-4">
                     <div>
-                      <span className="text-sm font-semibold">What could you look at?</span>
+                      <span className="text-sm font-semibold">What can you review?</span>
                       <div className="mt-2 flex flex-wrap gap-2">
                         {RESEARCH_AREAS.map((v) => (
                           <button
@@ -436,8 +436,7 @@ export function VolunteerForm({
                         className={inputClass}
                       />
                       <span className="mt-1 block text-xs text-muted-foreground">
-                        Drafts are shared with people we know something about. This is how we
-                        decide what to send you.
+                        This helps us send you relevant drafts.
                       </span>
                       {errors.background ? (
                         <span role="alert" className={errorClass}>

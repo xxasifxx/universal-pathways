@@ -39,8 +39,7 @@ const en = {
   "footer.register.body":
     "Register to vote by October 13th to have a say in who runs East Brunswick's schools.",
   "footer.register.cta": "Register to vote in New Jersey",
-  "footer.tagline":
-    "A campaign run by East Brunswick neighbors, for the East Brunswick Board of Education.",
+  "footer.tagline": "Candidate for East Brunswick Board of Education, Column #1.",
   "footer.rights": "Paid for by Friends of Saqeeb.",
 
   "home.hero.headline": "A Voice for Excellence",
@@ -59,12 +58,12 @@ const en = {
   "budget.eyebrow": "District budget",
   "budget.title": "Where East Brunswick's $209 million goes",
   "budget.intro":
-    "The district publishes its budget under state accounting labels. The toggle below swaps those labels for a description of what each line pays for.",
-  "budget.toggle": "Translate to Plain English",
+    "The district budget uses state accounting labels. Turn on descriptions to see what each category pays for.",
+  "budget.toggle": "Show descriptions",
   "budget.total": "2026\u201327 general fund",
   "budget.share": "share of budget",
   "budget.revenue.title": "Where the money comes from",
-  "budget.movement.title": "What is growing, and what is not",
+  "budget.movement.title": "Changes since 2024-25",
   "budget.reserves.title": "What is left in the bank",
   "budget.perpupil.title": "Cost per student",
 

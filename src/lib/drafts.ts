@@ -49,8 +49,8 @@ export const DRAFT_SECTIONS: DraftSection[] = [
           kind: "published" as const,
           context: `${priority.title} · ${LEVER_LABELS[detail.leverKind]} · ${detail.lever}`,
           blocks: [
-            { heading: "Mechanism", body: [...detail.mechanism] },
-            { heading: "What nobody can answer yet", body: [detail.openQuestion] },
+            { heading: "How it would work", body: [...detail.mechanism] },
+            { heading: "Still unknown", body: [detail.openQuestion] },
           ],
           sources: detail.sources ? detail.sources.map((s) => ({ ...s })) : [],
         };
@@ -58,91 +58,89 @@ export const DRAFT_SECTIONS: DraftSection[] = [
   ),
   {
     key: "debate:prep-2026-09-30",
-    title: "Debate preparation — questions to be ready for",
+    title: "Debate questions",
     kind: "internal",
-    context: "Not published anywhere. Working answers get drafted against these.",
+    context: "Private list for drafting answers before the debate.",
     blocks: [{ heading: "Questions", body: [...DEBATE_QUESTIONS] }],
     sources: [],
   },
   {
     key: "growth:apartments-enrollment",
-    title: "Growth, and what decides who stays",
+    title: "Housing growth and school enrollment",
     kind: "internal",
     context:
-      "Not published anywhere. An argument, not a finding — read it for whether it holds up, and for anything a reader could fairly call unfair to the township.",
+      "Private draft. Check every claim and flag anything that treats an opinion as a fact.",
     blocks: [
       {
-        heading: "The question, put the right way round",
+        heading: "The question",
         body: [
-          "The usual version of this argument treats new housing as an input and children as the output: count the bedrooms, apply a multiplier, brace for the students. That is a planner's question, and it is the smaller one.",
-          "A two-bedroom apartment on Route 18 has no fixed demographic destiny. The people in it are mostly young, and within a few years they decide whether to have children here or somewhere else. They make that decision by looking at the schools. Whether the corridor matures into family neighborhoods or sorts toward seniors and short-stay renters is downstream of how good East Brunswick's schools are believed to be. The housing does not determine the schools. The schools determine what the housing becomes.",
+          "Housing projections estimate how many students new units may add. They do not show whether young residents will stay in East Brunswick when they have children.",
+          "Schools are one factor in that decision. Strong schools may help keep families in town. This is a working argument, not a documented finding about the Route 18 corridor.",
         ],
       },
       {
-        heading: "A decade of arrivals, at the age when people choose a town",
+        heading: "Housing planned through 2035",
         body: [
           "The scale is real and it is on the record. Mayor Cohen's March 28, 2024 press release describes the revised Route 18 South redevelopment plan, running from Ruth Street to Lake Avenue: apartments cut from the 1,280 originally proposed down to 535, plus 218 townhouses marketed as for-sale units, several acres of dedicated public space, and a hotel replacing a planned third township parking garage.",
           "Ahead of that, and larger over time, is the state obligation. Under P.L. 2024, c.2 the Department of Community Affairs calculated East Brunswick's Fourth Round affordable housing numbers at 170 present need and 314 prospective need. The council adopted Resolution 25-63 on January 6, 2025 accepting the 170 and determining a reduced prospective need of 265, and the Superior Court fixed the obligations in April 2025. That obligation runs from 2025 to 2035, it is court-supervised, and the township is meeting part of it by zoning for inclusionary townhouses. No board of education vote touches any of it.",
-          "The number of units is not the point of citing all this. The point is that a decade of arrivals is being seated in town at exactly the life stage where schools are the deciding factor.",
+          "These plans will bring new residents to East Brunswick over the next decade. The district should track enrollment and building capacity as the projects open.",
         ],
       },
       {
-        heading: "Enrollment has been flat, and that is the honest starting point",
+        heading: "Enrollment has been flat",
         body: [
           "Pulled from the district's own budget filings, which the state posts year by year. On-roll count as of the October snapshot: 8,201 in 2017, 8,416 in 2019, 8,277 in 2020, 8,456 in 2024, 8,393 in 2025, and 8,559 estimated for 2026.",
-          "So enrollment is essentially flat across those nine years, inside a band of about 350 students with no sustained climb. Whatever the apartments have done so far, they have not produced a surge, and this page says that before it says anything else. Anyone arguing that new housing is about to flood the schools is arguing against nine years of the district's own filings.",
-          "Flat enrollment is not the same as settled. It means the current households are the ones already committed to the town. What the next decade of arrivals does is unwritten, and the district has more influence over it than anyone else does.",
+          "Enrollment stayed within a band of about 350 students over those nine years. The district's filings do not show a surge from new housing.",
+          "Future enrollment remains uncertain. The district should compare enrollment with project occupancy dates as new housing opens.",
           "The NJDOE School Performance Reports give lower totals for the same years (8,175 in 2021-22, 8,217 in 2022-23, 8,197 in 2023-24) because they count on a different basis from the budget filing's on-roll subtotal. Do not mix the two series in one chart. Verify which basis each figure uses before printing it.",
         ],
       },
       {
-        heading: "They pay the levy, and they vote",
+        heading: "New residents pay school taxes and vote",
         body: [
-          "76.4 percent of a $209,216,947 budget is raised locally, a $159,811,059 tax levy. People moving into new housing pay into that and vote in district elections. Whether they vote as residents invested in a school system they intend to use, or as residents paying for something they have written off, depends on what they conclude in their first few years here.",
-          "A district that is merely adequate does not lose a referendum in one dramatic night. It loses slowly, to ambivalence: a majority with no particular stake declining to fund more than the minimum, which makes the district worth less to the next cohort, which makes the ambivalent majority larger. That is a slow process and it is very hard to reverse once it starts, because the households who would have argued the other way moved to a town that had already made the case.",
-          "Excellence is what has held this together. East Brunswick puts this much of its levy into schools because that reputation is the reason people move here and stay. It is not a possession; it has to be re-earned with every arriving cohort.",
+          "Local property taxes provide 76.4 percent of the $209,216,947 budget, or $159,811,059. Residents of new housing contribute to that levy and vote in district elections.",
+          "The draft needs evidence before making claims about how those residents will vote or whether they plan to use the schools.",
         ],
       },
       {
-        heading: "Pre-K is where the decision actually gets made",
+        heading: "Pre-K and family costs",
         body: [
-          "A family decides where to raise children when the first one is two or three years old, before kindergarten, at the point where they are comparing towns and pricing childcare. By the time a district can show a parent its elementary schools, the choice has usually been made somewhere else.",
-          "Universal full-day public Pre-K is the one thing a board can offer that arrives in time to matter, and it is a real cost difference for exactly the households deciding whether a two-bedroom here becomes a three-bedroom here. The FY2027 filing carries no preschool appropriation and no preschool education aid, so today the answer East Brunswick gives those families is that they are on their own for two years.",
+          "Childcare and preschool costs can affect where families live. Public full-day Pre-K would reduce that cost for participating families.",
+          "The FY2027 filing lists no preschool appropriation or preschool education aid. The district would need enrollment estimates, space, staffing, transportation plans, and state funding information before setting a program or cost.",
         ],
       },
       {
-        heading: "The high school decision gets read the same way",
+        heading: "High school options",
         body: [
-          "Nobody touring the district reads capital tables. They read whether the town is building for the next twenty years or patching for the next one. The options in front of the board — roughly $11 million to move classrooms, $45 to $49 million for a ninth-grade academy, $325 to $350 million for a high school — are capacity decisions, but they are also the town's answer to what kind of district this intends to be, and any of them goes to voters as a referendum.",
-          "The quieter answer is already in the filing: capital outlay down 28.3 percent in two years, maintenance down 3.9 percent, and a capital reserve projected at $256,697. The housing plan runs on a twenty-year horizon. The school capital plan currently runs on about one.",
+          "The board has discussed roughly $11 million to move temporary classrooms, $45 to $49 million in construction for a ninth-grade academy, and $325 to $350 million in hard costs for a new high school. A large project would require voter approval through a bond referendum.",
+          "The FY2027 filing shows capital outlay down 28.3 percent in two years, maintenance down 3.9 percent, and a projected capital reserve of $256,697. The district needs a published long-term facilities plan.",
         ],
       },
       {
         heading: "What this asks the board to do",
         body: [
-          "Nothing here is a new promise. It is the reason behind the ones already made.",
-          "Public full-day Pre-K, because it is the earliest and cheapest point at which a family decides to stay.",
-          "Decide the high school on a twenty-year horizon, because the housing plan already runs on one.",
-          "Audit the master plan and publish the dashboard: units approved and occupied, enrollment by grade, capacity by building, once a year, so the argument is about facts instead of impressions.",
-          "Put a board voice on the record before financial agreements are signed, so school impact is raised while terms are still open.",
+          "Study public full-day Pre-K, including demand, space, staffing, transportation, and state aid.",
+          "Publish a long-term high school and facilities plan.",
+          "Publish annual figures for housing units approved and occupied, enrollment by grade, and capacity by building.",
+          "Ask the township to provide the school district with proposed financial agreements before approval when they may affect school enrollment or revenue.",
         ],
       },
       {
         heading: "Still open",
         body: [
           "Occupancy dates for the corridor projects. Without them the enrollment series cannot be lined up against the buildings, which is why nothing here tries to.",
-          "The statutory distribution of a PILOT service charge, read directly out of N.J.S.A. 40A:20-12 rather than from how officials describe it.",
+          "The statutory distribution of a PILOT service charge under N.J.S.A. 40A:20-12.",
           "The 2022 Statistical Forecasting enrollment projection the district commissioned, and any update to it.",
           "Building-level utilization figures. Districtwide enrollment being flat says nothing about whether a particular elementary school is full.",
           "How the district's state aid has actually moved while enrollment stayed flat.",
         ],
       },
       {
-        heading: "Rules held while writing this",
+        heading: "Limits of this draft",
         body: [
-          "No projected enrollment, no multiplier arithmetic, no per-pupil cost multiplied out into a total. Every one of those produces a frightening number no source supports.",
-          "Nobody is the villain. The township negotiated 745 apartments out of the original plan and is complying with a state mandate it did not write.",
-          "The central claim — that school quality shapes who eventually lives in new housing — is a judgment, not a finding, and it reads as one. The figures around it are sourced; the argument is argued.",
+          "This draft does not project enrollment or multiply per-pupil spending by an estimated student count. The available sources do not support those calculations.",
+          "The township reduced the original plan by 745 apartments and is also complying with state housing requirements.",
+          "The claim that school quality affects who stays in new housing is an opinion. It should remain labeled as one unless research supports it.",
         ],
       },
     ],
@@ -221,7 +219,7 @@ export const DRAFT_SECTIONS: DraftSection[] = [
 ];
 
 export const REVIEW_BRIEF = [
-  "Read these the way an opponent would. The pages are long and detailed, and detail is exactly what gets clipped out of context.",
-  "Flag three things: a claim that isn't carried by its source, a sentence that could be quoted back as a promise Saqeeb can't keep on a nine-member board, and anything a competing campaign could lift wholesale.",
-  "If you know the local history behind a number, say so. Most of this was reconstructed from public filings, and a person who sat through the meetings knows things the filings don't record.",
+  "Check each claim against its source.",
+  "Flag promises that one board member could not deliver alone and passages that need more context.",
+  "Add relevant local history that is missing from the public record.",
 ];

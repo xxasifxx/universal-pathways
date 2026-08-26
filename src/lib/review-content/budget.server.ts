@@ -30,7 +30,7 @@ export const BUDGET_SLICES: BudgetSlice[] = [
     jargon: "Personal Services — Employee Benefits",
     plain: "Health insurance & pensions",
     amount: 40_357_120,
-    note: "Equal to 38.43% of salaries in the 2026-27 proposed budget, up from 30.16% in the same filing's 2023-24 actual column. The pension side and the employee contribution schedule are set in Trenton. What the district chooses is where it buys coverage and how the plans are built, which is where a board still has room to move.",
+    note: "Equal to 38.43% of salaries in the 2026-27 proposed budget, up from 30.16% in the filing's 2023-24 actual column. State law sets pension rules and employee contribution schedules. The district chooses its coverage provider and plan design.",
     color: "var(--color-chart-2)",
   },
   {
@@ -112,7 +112,7 @@ export const BUDGET_REVENUE = [
     id: "fund-balance",
     label: "Budgeted fund balance",
     amount: 2_322_500,
-    note: "Savings spent to close the gap rather than raise the levy further.",
+    note: "Savings used to reduce the amount raised through the levy.",
   },
   {
     id: "transfers",
@@ -154,7 +154,7 @@ export const BUDGET_MOVEMENT = [
     label: "Charter school transfer",
     from: 5_891_347,
     to: 7_462_691,
-    note: "Leaves the district with the student, whether or not the remaining costs fall with them.",
+    note: "Money transferred for East Brunswick students enrolled in charter schools.",
   },
   {
     id: "benefits",
@@ -182,14 +182,14 @@ export const BUDGET_MOVEMENT = [
     label: "Regular programs — instruction",
     from: 49_537_094,
     to: 49_628_954,
-    note: "The core classroom line. Flat in dollars, which is a cut once prices move.",
+    note: "The core classroom line rose 0.2% in two years.",
   },
   {
     id: "capital",
     label: "Capital outlay",
     from: 11_786_254,
     to: 8_447_536,
-    note: "Equipment and facilities work, cut to make room elsewhere.",
+    note: "Equipment and facilities work, down 28.3% in two years.",
   },
 ] as const;
 

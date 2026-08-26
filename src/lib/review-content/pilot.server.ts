@@ -6,8 +6,8 @@ import type { PilotPayload } from "./types";
 
 export const PILOT_PAYLOAD: PilotPayload = {
   intro: [
-    "A payment in lieu of taxes, or PILOT, lets a developer pay the township a negotiated annual amount instead of ordinary property taxes on a redeveloped site. It is a normal and legal tool, and East Brunswick has used it. The land underneath keeps being taxed the ordinary way; it is the value of what gets built on top that converts into a negotiated payment. That distinction is the whole issue, because a PILOT payment is not a property tax, and so it is not divided with the school district the way a property tax is. Township officials describe the ordinary split as roughly 65 percent to the schools, 20 percent to the township, and 15 percent to the county. Under a PILOT they describe it as about 95 percent to the township, about 5 percent to the county, and none directly to the schools.",
-    "Everything on this page is drawn from published reporting and from the Redevelopment Agency's own minutes, each linked at the bottom. Where the public record stops, the page says so rather than filling the gap.",
+    "A payment in lieu of taxes, or PILOT, allows a developer to make a negotiated annual payment to the township on a redeveloped property. The land remains subject to ordinary property tax. The improvements are covered by the PILOT agreement. Township officials describe the ordinary property-tax split as roughly 65 percent to the schools, 20 percent to the township, and 15 percent to the county. They describe a PILOT split as about 95 percent to the township, 5 percent to the county, and no direct payment to the schools.",
+    "This page uses published reporting and Redevelopment Agency minutes. The sources are listed below. Some agreement amounts and terms are not available in the published records reviewed by the campaign.",
   ],
   split: [
     {
@@ -70,7 +70,7 @@ export const PILOT_PAYLOAD: PilotPayload = {
       id: "township-says",
       title: "What the township says",
       body: [
-        "Both statements are accurate as stated. The first is the land-value point, and the land is the smaller share of a redeveloped parcel's value. The second describes a budget the board itself sets, and a board that knows a request will strain the levy tends to ask for less.",
+        "The school district continues to receive its share of tax on the land. The Board of Education sets its own budget, which is funded largely through the local tax levy.",
       ],
       quote: {
         lines: [
@@ -93,7 +93,7 @@ export const PILOT_PAYLOAD: PilotPayload = {
       title: "What is not on the record",
       dashed: true,
       body: [
-        "The annual payment amounts and the terms of East Brunswick's PILOT agreements are not available in any document this campaign could retrieve. The relevant ordinances are posted as scans that cannot be read as text, or return errors when requested. An earlier version of this page carried a figure of $1.2 million said to be sitting in municipal reserve. It came from a resident's comment online, and no published source states it, so it has been removed. Asking the township for those numbers in a public meeting is a smaller thing than a slogan and a more useful one.",
+        "The campaign could not find published annual payment amounts or term lengths for East Brunswick's PILOT agreements. Some relevant ordinances are image scans or returned errors when requested. An earlier draft cited a $1.2 million municipal reserve figure from an online comment. No published source confirmed it, so the figure was removed. The township should publish the agreement amounts and terms.",
       ],
     },
   ],
@@ -109,7 +109,7 @@ export const PILOT_PAYLOAD: PilotPayload = {
   ],
   actions: [
     "Use the board's public authority to ask for the annual payment, the term, and the operating-revenue impact of every PILOT agreement before it is signed.",
-    "Ask how each deal changes the township tax base — and therefore the share residents pay versus what new development contributes.",
+    "Ask how each deal changes the township tax base and residents' share of local taxes.",
     "Push for terms that protect residents from higher taxes and fees, and that invest in the schools that attract families and support future resident income.",
     "Support the state legislation that would require PILOT revenue to be shared with school districts, and publish plain-language summaries of each agreement in the meantime.",
   ],
