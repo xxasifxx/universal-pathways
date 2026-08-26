@@ -120,7 +120,7 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "students-first",
     title: "Students First",
-    text: "Students take the courses they are ready for, whatever one grade says.",
+    text: "Students take the courses they are ready for, even if one grade doesn't fit.",
   },
   {
     id: "reduce-our-costs",
