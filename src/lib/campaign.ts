@@ -98,14 +98,14 @@ export const PITCH = {
   eyebrow: "Muhammad Saqeeb for East Brunswick Board of Education",
   headline: "A Voice for Excellence",
   problem:
-    "Healthcare premiums, special education costs, and repairs on aging buildings are all rising faster than school revenue, and East Brunswick is no exception. When a board runs out of room in the budget, the usual response is to trim programs, leave positions unfilled, and move costs onto families through activity fees and supply lists. Those decisions are made a line at a time, in meetings most people never see, and they add up to a school system that quietly asks parents to pay for things it used to provide.",
+    "Healthcare premiums, special education placements, and repairs on aging buildings are rising faster than school revenue. When a board runs out of room in the budget, it trims programs, leaves positions unfilled, and moves costs onto families through activity fees and supply lists. Those decisions get made one line at a time, in meetings most people never see.",
   ask: "A board member should be able to explain where the money goes and push for schools families can afford to be part of.",
   badge: "Column #1",
 } as const;
 
 /** One-line intro under the portrait on the home page. */
 export const INTRO_LINE =
-  "Muhammad Saqeeb is running to bring new leadership, transparency, and a student-first perspective to the East Brunswick Board of Education.";
+  "Muhammad Saqeeb went through East Brunswick's schools and is running for its Board of Education, Column #1.";
 
 /** Card list shown under the intro. */
 export const CREDENTIALS = [
