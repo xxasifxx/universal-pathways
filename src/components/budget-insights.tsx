@@ -144,22 +144,26 @@ export function BudgetReserves({ budget }: { budget: BudgetPayload }) {
   return (
     <section aria-labelledby="reserves-heading" className="py-14 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <p className="eyebrow text-primary">Reserves</p>
+        <p className="eyebrow text-primary">
+          FY2027 filing: recapitulation of balances, all four columns
+        </p>
         <h2 id="reserves-heading" className="mt-3 max-w-3xl text-3xl leading-[1.1] sm:text-4xl">
           What is left in the bank
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-          The filing's recapitulation of balances shows savings being spent down. The unrestricted
-          operating balance is projected to fall by half over three years, the legal reserve is
-          projected to reach zero, and the capital reserve has already gone from $3.1 million to an
-          estimated $257,000. Using reserves to hold a levy down is a legitimate choice; it is also
-          a choice that can only be made once.
+          All four columns below are printed in the FY2027 filing's recapitulation of balances: two
+          audited years the district has already closed, then two it estimates. They show savings
+          being spent down. The unrestricted operating balance is projected to fall by half over
+          three years, the legal reserve is projected to reach zero, and the capital reserve has
+          already gone from $3.1 million to an estimated $257,000. Using reserves to hold a levy
+          down is a legitimate choice; it is also a choice that can only be made once.
         </p>
 
         <div className="mt-10 overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse text-left">
             <caption className="sr-only">
-              District fund balances, audited through June 2025 and estimated through June 2027
+              District fund balances as printed in the FY2027 User Friendly Budget: audited actuals
+              through June 2025 and district estimates through June 2027
             </caption>
             <thead>
               <tr className="border-b border-border">
