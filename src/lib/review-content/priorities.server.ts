@@ -126,10 +126,10 @@ export const PRIORITY_DETAIL: Priority[] = [
     number: "01",
     title: "Affordable for All",
     summary:
-      "Remove school fees and lower healthcare costs for staff.",
+      "Taking part in school shouldn't depend on what a family can pay, and staff shouldn't be priced out of their own health coverage.",
     points: [
       {
-        text: "Universally paid public full-day Pre-K.",
+        text: "Free full-day Pre-K for every family.",
         detail: {
           leverKind: "budget",
           lever: "Nothing in the general fund today",
@@ -142,7 +142,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Zero fees on student clubs & activities, including arts & sports.",
+        text: "No fees to join a club, a team, or an arts program.",
         detail: {
           leverKind: "budget",
           lever: "Athletics, cocurricular activities, miscellaneous revenue",
@@ -155,7 +155,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Fully funded schools so parents aren’t paying out of pocket for basic opportunities.",
+        text: "Schools funded well enough that parents aren't buying the basics themselves.",
         detail: {
           leverKind: "practice",
           lever: "Supply lists, activity fees, and trip costs, none of them itemized",
@@ -168,7 +168,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Hire teaching support staff in-house, not outside providers.",
+        text: "Hire teaching support staff in-house instead of contracting the work out.",
         detail: {
           leverKind: "budget",
           lever: "Student support services, out-of-district tuition",
@@ -203,7 +203,7 @@ export const PRIORITY_DETAIL: Priority[] = [
             "Bilingual education is budgeted at $1.5 million within the $73.0 million instruction total.",
           ],
           openQuestion:
-            "How many students arrive each year needing language support, and what a bridge program adds on top of the existing bilingual staffing.",
+            "How many students arrive each year needing language support, and what a bridge program would need beyond the bilingual staff already in place.",
           sources: [SRC.budget],
         },
       },
@@ -221,7 +221,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Better healthcare for school staff, through the choices the district actually makes.",
+        text: "Health coverage school staff can afford to use.",
         detail: {
           leverKind: "budget",
           lever: "Personal services — employee benefits, $40,357,120",
