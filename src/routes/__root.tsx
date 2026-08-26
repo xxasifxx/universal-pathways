@@ -133,11 +133,17 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  if (SITE_OFFLINE) {
+    return <OfflineNotFound />;
+  }
+
   // The field shell and the review room are their own apps: no public nav,
   // no footer, no volunteer prompts or tracking while working.
   const fieldMode = pathname.startsWith("/canvass") || pathname.startsWith("/review");
 
   if (fieldMode) {
+
     return (
       <QueryClientProvider client={queryClient}>
         <div className="min-h-dvh bg-background">
