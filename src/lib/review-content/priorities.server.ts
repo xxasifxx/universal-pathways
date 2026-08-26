@@ -246,13 +246,13 @@ export const PRIORITY_DETAIL: Priority[] = [
       "Students should be able to take the courses they are ready for and earn grades based on their own work.",
     points: [
       {
-        text: "Use more than one measure to place students in advanced courses.",
+        text: "A student ready for an advanced course can take it, even if one grade says otherwise.",
         detail: {
           leverKind: "practice",
           lever: "Course placement criteria, published in the course guide",
           mechanism: [
-            "The district publishes placement criteria with its course guide. A prior-year grade can determine whether a student stays on a track or moves up. The board can direct the administration to revise these criteria.",
-            "The gifted and talented policy already requires multiple measures. It also covers English language learners and students with an IEP or 504 plan.",
+            "The district publishes placement criteria alongside its course guide. Under those criteria a single prior-year grade can decide whether a student stays on a track or moves up. The board can direct the administration to revise them.",
+            "The district's gifted and talented policy already calls for more than one measure, and it applies to English language learners and to students with an IEP or 504 plan. The promise is that placement decisions follow that same approach.",
           ],
           openQuestion:
             "How many students clear or miss each cutoff, and how that breaks down by school, income, and language background. The district has the data and does not publish it.",
@@ -260,13 +260,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Allow placement exams, including languages.",
+        text: "A student who already knows the material can test into the higher course, including in world languages.",
         detail: {
           leverKind: "practice",
           lever: "Placement criteria and the world language sequence",
           mechanism: [
-            "A placement exam can show skills that a transcript misses. This may apply to a student who learned a language at home or studied the material at another school.",
-            "The district would need to decide which exams to offer, who would administer them, and when. Families should receive the same information about the option.",
+            "A transcript does not always show what a student can do. A child who learned a language at home, or who covered the material at another school, has no way to demonstrate it if the only evidence considered is a prior grade. A placement exam gives them one.",
+            "Setting this up means deciding which subjects offer an exam, who gives it, and when. It also means telling every family the option exists, so it is not limited to those who know to ask.",
           ],
           openQuestion:
             "Which subjects already allow a challenge exam today. That is an administrative practice, not a published rule.",
@@ -274,13 +274,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Arts and science above grade level by request, with early access to instruments.",
+        text: "Arts and science above grade level for students who ask, and instruments earlier.",
         detail: {
           leverKind: "policy",
           lever: "Board Policy 2464, instructional adaptation",
           mechanism: [
-            "Policy 2464 defines an instructional adaptation as teaching at a student's instructional level. It directs the Superintendent to develop those adaptations. A 2019 state law requires districts to identify and serve gifted students in every grade from kindergarten up.",
-            "The district can use this policy to place a fourth grader in a higher-level science class or give a younger student access to an instrument.",
+            "Policy 2464 defines an instructional adaptation as teaching a student at their instructional level rather than their grade level, and it directs the Superintendent to see that those adaptations are designed. The 2019 state law behind it requires districts to identify and serve gifted students in every grade from kindergarten up.",
+            "The authority is already there. What is being asked is that it produce a schedule for a fourth grader ready for older science, and an instrument for a younger student ready to play one.",
           ],
           openQuestion:
             "How many students receive an above-grade placement now, in which buildings, and whether the answer is the same across the elementary schools.",
@@ -288,12 +288,12 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Language bridge program for new families.",
+        text: "A language bridge program for families arriving mid-year.",
         detail: {
           leverKind: "budget",
           lever: "Bilingual education, $1.5 million",
           mechanism: [
-            "Bilingual education is budgeted at $1.5 million inside the $73.0 million instruction total. A bridge program would help newly arrived families during their first weeks, provide translated material, and help place students correctly.",
+            "Bilingual education is budgeted at $1.5 million inside the $73.0 million instruction total. A bridge program is what sits around that: support during a new family's first weeks, translated material, and someone responsible for placing the student correctly.",
           ],
           openQuestion:
             "How many students arrive mid-year needing language support, and what the current caseload per teacher is.",
@@ -301,13 +301,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Grade students on their work, not their homes: more in-school assignments and performance, less homework for evaluation.",
+        text: "Less of a grade riding on homework, more on the work a student does in class.",
         detail: {
           leverKind: "policy",
           lever: "Board Policy 2624, Grading System",
           mechanism: [
-            "Policy 2624, last edited in September 2025, caps homework completion at ten percent of a grade. It says grades must reflect proficiency under state standards and district objectives. Students can appeal a grade to the principal and then the assistant superintendent.",
-            "The Superintendent sets the procedures used in each school. The board can ask whether schools follow the policy consistently.",
+            "Policy 2624, last edited in September 2025, caps homework completion at ten percent of a grade and requires that grades reflect proficiency against the state standards and the district's own objectives. A student who believes a grade is unjust can appeal to the principal and then to the assistant superintendent.",
+            "The Superintendent sets the procedures that put the policy into practice in each school, which is where the written rule and a student's actual experience can diverge. The board can ask, in public, whether they match.",
           ],
           openQuestion:
             "Whether the ten percent cap is being applied consistently across schools and departments. Nothing published tracks that.",
