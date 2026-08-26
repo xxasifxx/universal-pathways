@@ -302,7 +302,7 @@ function Index() {
             </li>
           </ul>
           <p className="mx-auto mt-8 max-w-xl text-lg">
-            Every contribution helps us build a stronger future for East Brunswick schools.
+            Contributions pay for signs, printing, and postage. Nothing here goes to consultants.
           </p>
         </div>
       </section>
@@ -315,7 +315,7 @@ function Index() {
               Register to vote by {REGISTRATION_DEADLINE}!
             </h2>
             <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed">
-              Every voice matters. Make yours heard and help shape the future of our schools.
+              School board races here are decided by a few hundred votes, so registering matters.
             </p>
             <a
               href="https://www.nj.gov/state/elections/voter-registration.shtml"
