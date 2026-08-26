@@ -7,6 +7,8 @@ import {
   useRouterState,
   HeadContent,
   Scripts,
+  notFound,
+
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -19,6 +21,30 @@ import { Tracking } from "@/components/tracking";
 import { VolunteerModalProvider } from "@/components/volunteer-modal";
 import { VolunteerPrompt } from "@/components/volunteer-prompt";
 import { I18nProvider } from "@/lib/i18n";
+import { SITE_OFFLINE } from "@/lib/site-status";
+
+function OfflineNotFound() {
+  return (
+    <div
+      style={{
+        minHeight: "100dvh",
+        display: "grid",
+        placeItems: "center",
+        background: "#fff",
+        color: "#111",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        padding: "1.5rem",
+        textAlign: "center",
+      }}
+    >
+      <div>
+        <h1 style={{ fontSize: "2rem", margin: 0, fontWeight: 600 }}>404</h1>
+        <p style={{ marginTop: "0.5rem", color: "#6b7280" }}>Page not found</p>
+      </div>
+    </div>
+  );
+}
+
 
 function NotFoundComponent() {
   return (
@@ -81,20 +107,33 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  beforeLoad: () => {
+    if (SITE_OFFLINE) {
+      throw notFound();
+    }
+  },
   head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Muhammad Saqeeb for East Brunswick Board of Education" },
-      {
-        name: "description",
-        content:
-          "Muhammad Saqeeb, Column #1, is running for the East Brunswick Board of Education.",
-      },
-      { name: "author", content: "Muhammad Saqeeb" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+    meta: SITE_OFFLINE
+      ? [
+          { charSet: "utf-8" },
+          { name: "viewport", content: "width=device-width, initial-scale=1" },
+          { title: "404 — Page not found" },
+          { name: "robots", content: "noindex, nofollow" },
+        ]
+      : [
+          { charSet: "utf-8" },
+          { name: "viewport", content: "width=device-width, initial-scale=1" },
+          { title: "Muhammad Saqeeb for East Brunswick Board of Education" },
+          {
+            name: "description",
+            content:
+              "Muhammad Saqeeb, Column #1, is running for the East Brunswick Board of Education.",
+          },
+          { name: "author", content: "Muhammad Saqeeb" },
+          { property: "og:type", content: "website" },
+          { name: "twitter:card", content: "summary_large_image" },
+        ],
+
     links: [
       {
         rel: "stylesheet",
@@ -112,8 +151,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   }),
   shellComponent: RootShell,
   component: RootComponent,
-  notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
+  notFoundComponent: SITE_OFFLINE ? OfflineNotFound : NotFoundComponent,
+  errorComponent: SITE_OFFLINE ? OfflineNotFound : ErrorComponent,
+
 });
 
 function RootShell({ children }: { children: ReactNode }) {
@@ -133,11 +173,17 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  if (SITE_OFFLINE) {
+    return <OfflineNotFound />;
+  }
+
   // The field shell and the review room are their own apps: no public nav,
   // no footer, no volunteer prompts or tracking while working.
   const fieldMode = pathname.startsWith("/canvass") || pathname.startsWith("/review");
 
   if (fieldMode) {
+
     return (
       <QueryClientProvider client={queryClient}>
         <div className="min-h-dvh bg-background">

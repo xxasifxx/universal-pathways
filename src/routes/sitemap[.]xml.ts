@@ -9,11 +9,9 @@ interface SitemapEntry {
   priority?: string;
 }
 
-const entries: SitemapEntry[] = [
-  { path: "/", changefreq: "weekly", priority: "1.0" },
-  { path: "/priorities", changefreq: "monthly", priority: "0.9" },
-  { path: "/volunteer", changefreq: "monthly", priority: "0.7" },
-];
+// Site is offline: nothing should be indexed.
+const entries: SitemapEntry[] = [];
+
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
