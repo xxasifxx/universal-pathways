@@ -333,7 +333,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Train staff and administration to spot racism, sexism, Islamophobia, and antisemitism.",
+        text: "Train staff and administration to spot bias and harassment in any form.",
         detail: {
           leverKind: "state-rule",
           lever: "Mandated HIB training, and what the state does not require",
