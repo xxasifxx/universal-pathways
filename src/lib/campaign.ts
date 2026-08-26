@@ -167,7 +167,7 @@ export const PRIORITIES: Priority[] = [
     summary:
       "A student should get into the course they're ready for on the strength of what they can do, and be graded on work they actually did.",
     points: [
-      "End the rigid matrix and open advanced courses to students who are ready for them.",
+      "Open advanced courses to students who are ready for them, not only those who fit one tracking rule.",
       "Allow placement exams, including languages.",
       "Arts and science above grade level by request, with early access to instruments.",
       "A language bridge program for new families.",
