@@ -120,12 +120,12 @@ export const PLATFORM_HIGHLIGHTS = [
   {
     id: "students-first",
     title: "Students First",
-    text: "Let students take the courses they are ready for.",
+    text: "Students take the courses they are ready for, whatever one grade says.",
   },
   {
     id: "reduce-our-costs",
     title: "Reduce Our Costs",
-    text: "Replace buildings when repeated repairs cost more.",
+    text: "Compare repair costs against replacement before the repairs cost more.",
   },
 ];
 
@@ -150,14 +150,14 @@ export const PRIORITIES: Priority[] = [
     summary:
       "Taking part in school shouldn't depend on what a family can pay, and staff shouldn't be priced out of their own health coverage.",
     points: [
-      "Universally paid public full-day Pre-K.",
-      "Zero fees on student clubs and activities, including arts and sports.",
-      "Fully funded schools, so parents aren't paying out of pocket for basic opportunities.",
+      "Free full-day Pre-K for every family.",
+      "No fees to join a club, a team, or an arts program.",
+      "Schools funded well enough that parents aren't buying the basics themselves.",
       "Hire teaching support staff in-house instead of contracting the work out.",
       "Protect special education, mental health, and early intervention when the budget gets tight.",
       "Better language programs for incoming families.",
       "End lunch debt.",
-      "Better healthcare for school staff.",
+      "Health coverage school staff can afford to use.",
     ],
   },
   {
@@ -167,15 +167,15 @@ export const PRIORITIES: Priority[] = [
     summary:
       "Students should be able to take the courses they are ready for and earn grades based on their own work.",
     points: [
-      "Use more than one measure to place students in advanced courses.",
-      "Allow placement exams, including languages.",
-      "Arts and science above grade level by request, with early access to instruments.",
-      "A language bridge program for new families.",
-      "Grade students on their work, not their homes: more in-school assignments, less homework counted for evaluation.",
+      "A student ready for an advanced course can take it, even if one grade says otherwise.",
+      "A student who already knows the material can test into the higher course, including in world languages.",
+      "Arts and science above grade level for students who ask, and instruments earlier.",
+      "A language bridge program for families arriving mid-year.",
+      "Less of a grade riding on homework, more on the work a student does in class.",
       "Teach students to use AI on work that is their own.",
       "Train staff to recognize bias and harassment in any form.",
       "ICE out of schools. Police and SROs out of schools.",
-      "Give students a standing seat in mental health and facilities decisions.",
+      "A standing student seat in mental health and facilities decisions.",
     ],
   },
   {
@@ -183,17 +183,18 @@ export const PRIORITIES: Priority[] = [
     number: "03",
     title: "Reduce Our Costs",
     summary:
-      "Repeated repairs can cost more than replacement. The board should make those decisions in public.",
+      "Some buildings now cost more to keep patching than to replace. The board should compare the two in public before the bill arrives.",
     points: [
       "A new high school for ninth through twelfth grade.",
       "Better technology, facilities, and programs in the buildings we keep.",
-      "Use state construction grants to build for lower maintenance.",
-      "Remove lead and address the temporary classroom units.",
-      "Build facilities that can house the programs we want.",
-      "Review the master plan and publish the findings.",
+      "Apply for state construction grants, and build so the next twenty years of maintenance cost less.",
+      "Remove lead and deal with the temporary classroom units.",
+      "Design buildings around the programs we want to offer.",
+      "Review the master plan and publish what it finds.",
     ],
   },
 ];
+
 
 /** Shown under the priorities. The campaign does not publish estimates it cannot source. */
 export const COST_STUDY_NOTE =

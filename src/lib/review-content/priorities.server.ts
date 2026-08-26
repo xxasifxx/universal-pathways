@@ -126,10 +126,10 @@ export const PRIORITY_DETAIL: Priority[] = [
     number: "01",
     title: "Affordable for All",
     summary:
-      "Remove school fees and lower healthcare costs for staff.",
+      "Taking part in school shouldn't depend on what a family can pay, and staff shouldn't be priced out of their own health coverage.",
     points: [
       {
-        text: "Universally paid public full-day Pre-K.",
+        text: "Free full-day Pre-K for every family.",
         detail: {
           leverKind: "budget",
           lever: "Nothing in the general fund today",
@@ -142,7 +142,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Zero fees on student clubs & activities, including arts & sports.",
+        text: "No fees to join a club, a team, or an arts program.",
         detail: {
           leverKind: "budget",
           lever: "Athletics, cocurricular activities, miscellaneous revenue",
@@ -155,7 +155,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Fully funded schools so parents aren’t paying out of pocket for basic opportunities.",
+        text: "Schools funded well enough that parents aren't buying the basics themselves.",
         detail: {
           leverKind: "practice",
           lever: "Supply lists, activity fees, and trip costs, none of them itemized",
@@ -168,7 +168,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Hire teaching support staff in-house, not outside providers.",
+        text: "Hire teaching support staff in-house instead of contracting the work out.",
         detail: {
           leverKind: "budget",
           lever: "Student support services, out-of-district tuition",
@@ -203,7 +203,7 @@ export const PRIORITY_DETAIL: Priority[] = [
             "Bilingual education is budgeted at $1.5 million within the $73.0 million instruction total.",
           ],
           openQuestion:
-            "How many students arrive each year needing language support, and what a bridge program adds on top of the existing bilingual staffing.",
+            "How many students arrive each year needing language support, and what a bridge program would need beyond the bilingual staff already in place.",
           sources: [SRC.budget],
         },
       },
@@ -221,7 +221,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Better healthcare for school staff, through the choices the district actually makes.",
+        text: "Health coverage school staff can afford to use.",
         detail: {
           leverKind: "budget",
           lever: "Personal services — employee benefits, $40,357,120",
@@ -246,13 +246,13 @@ export const PRIORITY_DETAIL: Priority[] = [
       "Students should be able to take the courses they are ready for and earn grades based on their own work.",
     points: [
       {
-        text: "Use more than one measure to place students in advanced courses.",
+        text: "A student ready for an advanced course can take it, even if one grade says otherwise.",
         detail: {
           leverKind: "practice",
           lever: "Course placement criteria, published in the course guide",
           mechanism: [
-            "The district publishes placement criteria with its course guide. A prior-year grade can determine whether a student stays on a track or moves up. The board can direct the administration to revise these criteria.",
-            "The gifted and talented policy already requires multiple measures. It also covers English language learners and students with an IEP or 504 plan.",
+            "The district publishes placement criteria alongside its course guide. Under those criteria a single prior-year grade can decide whether a student stays on a track or moves up. The board can direct the administration to revise them.",
+            "The district's gifted and talented policy already calls for more than one measure, and it applies to English language learners and to students with an IEP or 504 plan. The promise is that placement decisions follow that same approach.",
           ],
           openQuestion:
             "How many students clear or miss each cutoff, and how that breaks down by school, income, and language background. The district has the data and does not publish it.",
@@ -260,13 +260,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Allow placement exams, including languages.",
+        text: "A student who already knows the material can test into the higher course, including in world languages.",
         detail: {
           leverKind: "practice",
           lever: "Placement criteria and the world language sequence",
           mechanism: [
-            "A placement exam can show skills that a transcript misses. This may apply to a student who learned a language at home or studied the material at another school.",
-            "The district would need to decide which exams to offer, who would administer them, and when. Families should receive the same information about the option.",
+            "A transcript does not always show what a student can do. A child who learned a language at home, or who covered the material at another school, has no way to demonstrate it if the only evidence considered is a prior grade. A placement exam gives them one.",
+            "Setting this up means deciding which subjects offer an exam, who gives it, and when. It also means telling every family the option exists, so it is not limited to those who know to ask.",
           ],
           openQuestion:
             "Which subjects already allow a challenge exam today. That is an administrative practice, not a published rule.",
@@ -274,13 +274,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Arts and science above grade level by request, with early access to instruments.",
+        text: "Arts and science above grade level for students who ask, and instruments earlier.",
         detail: {
           leverKind: "policy",
           lever: "Board Policy 2464, instructional adaptation",
           mechanism: [
-            "Policy 2464 defines an instructional adaptation as teaching at a student's instructional level. It directs the Superintendent to develop those adaptations. A 2019 state law requires districts to identify and serve gifted students in every grade from kindergarten up.",
-            "The district can use this policy to place a fourth grader in a higher-level science class or give a younger student access to an instrument.",
+            "Policy 2464 defines an instructional adaptation as teaching a student at their instructional level rather than their grade level, and it directs the Superintendent to see that those adaptations are designed. The 2019 state law behind it requires districts to identify and serve gifted students in every grade from kindergarten up.",
+            "The authority is already there. What is being asked is that it produce a schedule for a fourth grader ready for older science, and an instrument for a younger student ready to play one.",
           ],
           openQuestion:
             "How many students receive an above-grade placement now, in which buildings, and whether the answer is the same across the elementary schools.",
@@ -288,12 +288,12 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Language bridge program for new families.",
+        text: "A language bridge program for families arriving mid-year.",
         detail: {
           leverKind: "budget",
           lever: "Bilingual education, $1.5 million",
           mechanism: [
-            "Bilingual education is budgeted at $1.5 million inside the $73.0 million instruction total. A bridge program would help newly arrived families during their first weeks, provide translated material, and help place students correctly.",
+            "Bilingual education is budgeted at $1.5 million inside the $73.0 million instruction total. A bridge program is what sits around that: support during a new family's first weeks, translated material, and someone responsible for placing the student correctly.",
           ],
           openQuestion:
             "How many students arrive mid-year needing language support, and what the current caseload per teacher is.",
@@ -301,13 +301,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Grade students on their work, not their homes: more in-school assignments and performance, less homework for evaluation.",
+        text: "Less of a grade riding on homework, more on the work a student does in class.",
         detail: {
           leverKind: "policy",
           lever: "Board Policy 2624, Grading System",
           mechanism: [
-            "Policy 2624, last edited in September 2025, caps homework completion at ten percent of a grade. It says grades must reflect proficiency under state standards and district objectives. Students can appeal a grade to the principal and then the assistant superintendent.",
-            "The Superintendent sets the procedures used in each school. The board can ask whether schools follow the policy consistently.",
+            "Policy 2624, last edited in September 2025, caps homework completion at ten percent of a grade and requires that grades reflect proficiency against the state standards and the district's own objectives. A student who believes a grade is unjust can appeal to the principal and then to the assistant superintendent.",
+            "The Superintendent sets the procedures that put the policy into practice in each school, which is where the written rule and a student's actual experience can diverge. The board can ask, in public, whether they match.",
           ],
           openQuestion:
             "Whether the ten percent cap is being applied consistently across schools and departments. Nothing published tracks that.",
@@ -315,13 +315,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Teach students how to use AI responsibly on their own work.",
+        text: "Teach students to use AI on work that is their own.",
         detail: {
           leverKind: "policy",
           lever: "Local curriculum and acceptable use, with state guidance only",
           mechanism: [
-            "New Jersey publishes guidance on classroom AI use but leaves local rules to each district.",
-            "Teachers need clear rules. Students also need instruction on using AI without passing off generated work as their own.",
+            "New Jersey publishes guidance on classroom AI use and leaves the rules to each district, so East Brunswick's rule is whatever the board and administration adopt.",
+            "Teachers need to know what is allowed before they are asked to enforce it. Students need to be taught how to use these tools on work that stays theirs, instead of only being told when using them counts as cheating.",
           ],
           openQuestion:
             "What East Brunswick's current rule actually is, building by building, and whether staff have had training on it.",
@@ -329,13 +329,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Train staff and administration to spot bias and harassment in any form.",
+        text: "Train staff to recognize bias and harassment in any form.",
         detail: {
           leverKind: "state-rule",
           lever: "Mandated HIB training, and what the state does not require",
           mechanism: [
-            "New Jersey requires staff training on harassment, intimidation, and bullying.",
-            "The district can add broader training on bias and pay for it through professional development funds.",
+            "New Jersey already requires staff training on harassment, intimidation, and bullying, so East Brunswick does some of this by law.",
+            "Training on recognizing bias is not separately required. A district that wants it adds it, pays for it out of professional development, and decides who attends.",
           ],
           openQuestion:
             "What training staff currently receive beyond the state minimum, and how incidents are reported back to the board.",
@@ -343,13 +343,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "ICE out of schools. Police/SROs out of schools.",
+        text: "ICE out of schools. Police and SROs out of schools.",
         detail: {
           leverKind: "policy",
           lever: "The district's agreement with local law enforcement",
           mechanism: [
-            "The state's Immigrant Trust Directive limits how New Jersey law enforcement may assist federal immigration authorities. It bars stops or detention based only on immigration status. The district should give staff and families written procedures for enforcement requests at schools.",
-            "State rules also require the district and municipal police to sign an agreement. That agreement sets the rules for officers entering schools. The district can publish, review, and renegotiate it.",
+            "Immigration enforcement is governed by the state's Immigrant Trust Directive, which limits how New Jersey law enforcement may assist federal immigration authorities and bars stopping or detaining someone solely on immigration status. The district's part is knowing the rule, telling families it exists, and having a written answer ready before anyone shows up at a school office.",
+            "Police presence is set locally. Every district signs an agreement with its municipal police department, required by state regulation, and that agreement defines when officers enter a building and what happens when they do. Because it is signed by both sides, it can be read in public, questioned, and renegotiated.",
           ],
           openQuestion:
             "What East Brunswick's current agreement says. It is a public document and this campaign has not been able to obtain the signed version.",
@@ -357,13 +357,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Student oversight of mental health and facilities.",
+        text: "A standing student seat in mental health and facilities decisions.",
         detail: {
           leverKind: "policy",
           lever: "Board Bylaw 0143.2, student representatives to the board",
           mechanism: [
             "The board already seats at least one nonvoting student representative from grades nine to twelve, chosen by the student body, serving a one-year term. The bylaw gives that student three duties: attend meetings, bring student concerns to the board, and report back monthly to the student council.",
-            "The board can give student representatives a regular role in discussions about counseling and school buildings. This would require a bylaw or committee change.",
+            "Counseling and the condition of the buildings are the two things students feel first, so the ask is a standing place in those discussions instead of a report at the end. That is a bylaw and committee change the board makes on its own.",
           ],
           openQuestion:
             "Whether one representative for the whole district is enough, and how students are picked in practice.",
@@ -377,10 +377,10 @@ export const PRIORITY_DETAIL: Priority[] = [
     number: "03",
     title: "Reduce Our Costs",
     summary:
-      "Plan building repairs and replacements before they become more expensive.",
+      "Some buildings now cost more to keep patching than to replace. The board should compare the two in public before the bill arrives.",
     points: [
       {
-        text: "A new high school for 9th through 12th.",
+        text: "A new high school for ninth through twelfth grade.",
         detail: {
           leverKind: "budget",
           lever: "Outside the general fund, on the tax bill as debt service",
@@ -394,13 +394,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "State-of-the-art schools with better technology, facilities, and programs.",
+        text: "Better technology, facilities, and programs in the buildings we keep.",
         detail: {
           leverKind: "budget",
           lever: "Operations and maintenance, $21.1 million, and capital outlay, $8.4 million",
           mechanism: [
             "Maintenance runs $21.1 million a year and is down 3.9%, while capital outlay is down 28.3% in two years. When the repair budget and the replacement budget both shrink, the work does not disappear; it moves to next year at a higher price.",
-            "The board must compare the cost of continued repairs with the cost of a replacement plan that would go to voters.",
+            "So the comparison the board owes residents is the running cost of repairs against the cost of a replacement plan that would go to voters.",
           ],
           openQuestion:
             "What each building needs and when. That is a facilities condition assessment, and the district has not published one.",
@@ -408,13 +408,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Use state construction bonds to build better, more sustainable facilities with lower maintenance.",
+        text: "Apply for state construction grants, and build so the next twenty years of maintenance cost less.",
         detail: {
           leverKind: "budget",
           lever: "Capital outlay $8.4 million, capital reserve $256,697",
           mechanism: [
-            "The state classifies East Brunswick as a Regular Operating District. The Department of Education reviews a project for eligibility before it goes to voters. State support can come through debt-service aid or a grant. Under the current grant program, a district is eligible for at least 40 percent of approved eligible costs and must fund the rest locally.",
-            "Capital outlay is down 28.3% in two years. The capital reserve is projected at $256,697, down from $3.1 million.",
+            "The state classifies East Brunswick as a Regular Operating District. The Department of Education reviews a project for eligibility before it goes to voters, and state support then comes through debt-service aid or a grant. Under the current grant program a district is eligible for at least 40 percent of approved eligible costs and funds the rest locally.",
+            "The local share is the problem. Capital outlay is down 28.3% in two years and the capital reserve is projected at $256,697, down from $3.1 million.",
           ],
           openQuestion:
             "East Brunswick's own aid percentage, and therefore the state share of any specific project. That comes out of the eligibility review, not the budget filing.",
@@ -422,7 +422,7 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Remove lead and address TMAs.",
+        text: "Remove lead and deal with the temporary classroom units.",
         detail: {
           leverKind: "budget",
           lever: "Operations and maintenance, $21.1 million",
@@ -435,13 +435,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Design buildings around the programs students need.",
+        text: "Design buildings around the programs we want to offer.",
         detail: {
           leverKind: "practice",
           lever: "Program requirements written into the design",
           mechanism: [
-            "Board members discussed the high school's cafeteria and gym capacity, classroom conditions, roof, and plumbing on June 4. These limits affect which programs the school can offer.",
-            "The board should give the architect program and space requirements before design work begins.",
+            "On June 4 board members went through the high school's cafeteria and gym capacity, its classroom conditions, the roof, and the plumbing. Those limits decide what the school can offer, not just how it feels to walk through.",
+            "Which is why the program and space requirements have to reach the architect before design work starts, rather than being fitted into whatever gets drawn.",
           ],
           openQuestion:
             "Which programs are being turned away or capped today for lack of space. Nobody has published that list.",
@@ -449,13 +449,13 @@ export const PRIORITY_DETAIL: Priority[] = [
         },
       },
       {
-        text: "Review the master plan and publish the findings.",
+        text: "Review the master plan and publish what it finds.",
         detail: {
           leverKind: "practice",
           lever: "What the district publishes, and how",
           mechanism: [
-            "The adopted budget, district slides, and board meeting records contain the figures used here. Residents should not have to search a 64-page filing to find spending on out-of-district placements.",
-            "The district can publish the same figures in searchable tables and short summaries.",
+            "The figures used here come from the adopted budget, the district's own slides, and board meeting records. Finding spending on out-of-district placements means reading a 64-page filing, which is not a reasonable ask of a resident.",
+            "The same numbers can be published as searchable tables with short summaries, which costs the district nothing it has not already paid for.",
           ],
           openQuestion:
             "Which reports the district will publish and how often it will update them.",

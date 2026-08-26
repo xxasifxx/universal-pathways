@@ -90,8 +90,9 @@ export function BudgetMovement({ budget }: { budget: BudgetPayload }) {
           Both columns come from the FY2027 User Friendly Budget. The 2024-25 column contains the
           filing's prior-year actuals. Over two years, the tax levy rose 10.2% and regular classroom
           instruction rose 0.2%. Benefits, out-of-district placements, and charter transfers account
-          for much of the difference. State formula sets charter transfers. The board controls plan
-          design, purchasing, and which services the district provides in-house.
+          for much of the difference. Charter transfers are set by a state formula the board does
+          not control. Benefits, purchasing, and whether a service is provided in-house are choices
+          the board does make.
         </p>
 
         <ul className="mt-10 flex flex-col gap-3">
@@ -150,7 +151,7 @@ export function BudgetReserves({ budget }: { budget: BudgetPayload }) {
           The FY2027 filing lists two audited years and two estimated years. The unrestricted
           operating balance is projected to fall by half over three years. The legal reserve is
           projected to reach zero. The capital reserve fell from $3.1 million to an estimated
-          $257,000. Reserve funds cannot be spent twice.
+          $257,000. Money drawn from reserves to balance one year is not there for the next one.
         </p>
 
         <div className="mt-10 overflow-x-auto">

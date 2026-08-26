@@ -128,7 +128,7 @@ export const DRAFT_SECTIONS: DraftSection[] = [
       {
         heading: "Still open",
         body: [
-          "Occupancy dates for the corridor projects. Without them the enrollment series cannot be lined up against the buildings, which is why nothing here tries to.",
+          "Occupancy dates for the corridor projects. Without them the enrollment series cannot be lined up against the buildings, which is why this draft does not attempt that comparison.",
           "The statutory distribution of a PILOT service charge under N.J.S.A. 40A:20-12.",
           "The 2022 Statistical Forecasting enrollment projection the district commissioned, and any update to it.",
           "Building-level utilization figures. Districtwide enrollment being flat says nothing about whether a particular elementary school is full.",
@@ -139,7 +139,7 @@ export const DRAFT_SECTIONS: DraftSection[] = [
         heading: "Limits of this draft",
         body: [
           "This draft does not project enrollment or multiply per-pupil spending by an estimated student count. The available sources do not support those calculations.",
-          "The township reduced the original plan by 745 apartments and is also complying with state housing requirements.",
+          "This draft treats the Route 18 apartment count and the state housing obligation as separate processes. It does not combine them into one housing-growth estimate.",
           "The claim that school quality affects who stays in new housing is an opinion. It should remain labeled as one unless research supports it.",
         ],
       },
