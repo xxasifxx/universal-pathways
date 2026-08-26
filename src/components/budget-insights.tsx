@@ -45,11 +45,9 @@ export function BudgetRevenue({ budget }: { budget: BudgetPayload }) {
           Where the money comes from
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-          A spending chart on its own hides the part residents feel. Just over three quarters of
-          the general fund is raised from East Brunswick property owners. State aid covers about a
-          fifth, and it has not kept pace: the levy rose 10.2% over two years while total state aid
-          fell 1.3%. Equalization aid, the largest single aid category, dropped from $26.5 million
-          to $19.0 million and has recovered only part of the way, to $23.3 million.
+          East Brunswick property owners fund just over three quarters of the general fund. State
+          aid covers about one fifth. The levy rose 10.2% over two years while total state aid fell
+          1.3%. Equalization aid fell from $26.5 million to $19.0 million, then rose to $23.3 million.
         </p>
 
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -86,16 +84,14 @@ export function BudgetMovement({ budget }: { budget: BudgetPayload }) {
           FY2027 filing: 2024-25 actual column to 2026-27 proposed column
         </p>
         <h2 id="movement-heading" className="mt-3 max-w-3xl text-3xl leading-[1.1] sm:text-4xl">
-          What is growing, and what is not
+          Changes since 2024-25
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-          Both columns come from the FY2027 User Friendly Budget. The 2024-25 figures are that
-          filing's own prior-year actuals, not numbers carried over from an older budget. The tax
-          levy went up 10.2% across those two years. Regular classroom instruction
-          went up 0.2%. The difference went to benefits, to placements outside the district, and to
-          charter transfers. None of those move quickly in a single budget cycle, and the charter
-          transfer is set by state formula rather than by a board vote, but plan design, purchasing,
-          and what the district can serve in house are decisions the board does make.
+          Both columns come from the FY2027 User Friendly Budget. The 2024-25 column contains the
+          filing's prior-year actuals. Over two years, the tax levy rose 10.2% and regular classroom
+          instruction rose 0.2%. Benefits, out-of-district placements, and charter transfers account
+          for much of the difference. State formula sets charter transfers. The board controls plan
+          design, purchasing, and which services the district provides in-house.
         </p>
 
         <ul className="mt-10 flex flex-col gap-3">
@@ -151,12 +147,10 @@ export function BudgetReserves({ budget }: { budget: BudgetPayload }) {
           What is left in the bank
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-          All four columns below are printed in the FY2027 filing's recapitulation of balances: two
-          audited years the district has already closed, then two it estimates. They show savings
-          being spent down. The unrestricted operating balance is projected to fall by half over
-          three years, the legal reserve is projected to reach zero, and the capital reserve has
-          already gone from $3.1 million to an estimated $257,000. Using reserves to hold a levy
-          down is a legitimate choice; it is also a choice that can only be made once.
+          The FY2027 filing lists two audited years and two estimated years. The unrestricted
+          operating balance is projected to fall by half over three years. The legal reserve is
+          projected to reach zero. The capital reserve fell from $3.1 million to an estimated
+          $257,000. Reserve funds cannot be spent twice.
         </p>
 
         <div className="mt-10 overflow-x-auto">

@@ -40,10 +40,9 @@ function ReviewDashboard() {
           <p className="eyebrow text-primary">Research — not public</p>
           <h1 className="mt-3 max-w-4xl text-4xl leading-[1.05] sm:text-6xl">Where the money goes</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            East Brunswick adopted a $209,216,947 general fund budget for {budget.fy}. Everything below comes out
-            of the district's own state filing: what it spends, who pays for it, which lines are growing, and how
-            much is left in reserve. The categories are grouped from individual appropriation lines and reconcile
-            to the filing's own subtotals.
+            East Brunswick adopted a $209,216,947 general fund budget for {budget.fy}. The figures below come
+            from the district's state filing. Individual appropriation lines were grouped into categories that
+            match the filing's subtotals.
           </p>
           <Link
             to="/review/pilot"

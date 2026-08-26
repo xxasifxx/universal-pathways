@@ -57,12 +57,10 @@ function ReviewPilot() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <p className="eyebrow text-primary">The split</p>
           <h2 id="split-heading" className="mt-3 text-3xl sm:text-4xl">
-            The same site, two different divisions
+            How the revenue is divided
           </h2>
           <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
-            These are the figures township officials themselves use, as reported by TAPinto in January 2026. They
-            are approximate by the township's own description, and they are the clearest public statement of how
-            the money divides.
+            TAPinto reported these approximate figures from township officials in January 2026.
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {pilot.split.map((group) => (
@@ -90,7 +88,7 @@ function ReviewPilot() {
       <section aria-labelledby="explainer-heading" className="bg-secondary/50 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <h2 id="explainer-heading" className="text-3xl sm:text-4xl">
-            How a PILOT works, in plain English
+            How a PILOT works
           </h2>
           <ol className="mt-8 grid gap-6 sm:grid-cols-2">
             {pilot.steps.map((item) => (
@@ -108,7 +106,7 @@ function ReviewPilot() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <p className="eyebrow text-primary">The record</p>
           <h2 id="record-heading" className="mt-3 text-3xl sm:text-4xl">
-            What has actually happened here
+            East Brunswick records
           </h2>
           <div className="mt-8 flex flex-col gap-6">
             {pilot.record.map((item) => (
@@ -145,10 +143,11 @@ function ReviewPilot() {
       <section aria-labelledby="compare-heading" className="bg-secondary py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 id="compare-heading" className="text-center text-3xl sm:text-4xl">
-            Two ways to read the same deal
+            What each side emphasizes
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-center leading-relaxed text-muted-foreground">
-            Both accounts below are accurate. They disagree about which facts matter most.
+            Township officials focus on approved school funding and capital projects. Residents raise questions
+            about operating revenue, enrollment, and public access to the agreements.
           </p>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             <div className="rounded-2xl bg-card p-6 sm:p-8">
