@@ -2,21 +2,20 @@
 
 ## Photo
 
-Use the uploaded headshot, cropped to remove the dark file-viewer bar at the top and the two round arrow buttons at the sides. Crop to a clean portrait (roughly the image area below the bar, trimmed at left and right past the arrows), upload it as a CDN asset, and use it as the home page hero portrait in place of the current campaign graphic. The old hero asset pointer is removed once nothing references it.
+Keep the full frame — no cropping. Edit the uploaded image to remove the file-viewer chrome: the dark bar with the filename and Share/close buttons at the top, and the two round arrow buttons at the left and right edges. The removed areas are filled in to match the surrounding studio backdrop so the portrait reads as a clean photo at its original framing. The result is uploaded as a CDN asset and used as the home page hero portrait in place of the current campaign graphic; the old hero asset pointer is deleted once nothing references it.
 
 ## The statement
 
-The text supplied is used verbatim, no edits, no reordering, no added headings. It becomes the single source for both "About" and "Why I'm running".
+The supplied text is used verbatim — no edits, no reordering, no added headings — and it goes on the priorities page only.
 
-- Home page "About Saqeeb" section: shows the opening paragraphs (through "All I know is East Brunswick.") followed by a link, "Read why I'm running", to the priorities page. The short bullet row under it (raised in East Brunswick, EBPS graduate, data scientist, etc.) is removed, since the statement now says this in his own words.
-- Priorities page header: heading becomes "Why I'm running" and the full statement runs there, every paragraph, in order.
+- Priorities page header: eyebrow and heading become "Why I'm running", and every paragraph of the statement runs there in order, replacing the current two-paragraph excerpt and the "I went through these schools..." headline.
+- The home page is left alone apart from the hero photo. Its About section, bullet row, and links stay as they are.
 
-The current invented bio lines and the earlier special-education narrative are deleted, not kept alongside.
+The earlier special-education narrative currently feeding the priorities header is removed.
 
 ## Technical notes
 
-- `src/lib/campaign.ts`: replace `CANDIDATE_STORY` and `ABOUT_SAQEEB` with one exported `CANDIDATE_STATEMENT: string[]` holding the paragraphs verbatim; delete `WHY_SAQEEB`.
-- `src/routes/index.tsx`: About section renders the first three paragraphs plus the link; drop the `WHY_SAQEEB` list; swap the hero image import to the new asset.
-- `src/routes/priorities.tsx`: header renders the whole statement; heading and eyebrow updated.
+- `src/lib/campaign.ts`: add `CANDIDATE_STATEMENT: string[]` with the paragraphs verbatim; remove `CANDIDATE_STORY.long` usage from the priorities page. Keep `ABOUT_SAQEEB` and `WHY_SAQEEB` since the home page still uses them.
+- `src/routes/priorities.tsx`: header renders the full statement.
+- `src/routes/index.tsx`: only the hero image import changes.
 - New `src/assets/saqeeb-portrait-2026.jpg.asset.json`; delete `saqeeb-campaign-hero.jpg.asset.json`.
-- Check other references to the removed exports before building.
