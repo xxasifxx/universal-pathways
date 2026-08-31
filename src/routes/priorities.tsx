@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { CANDIDATE_STORY, PRIORITIES } from "@/lib/campaign";
+import { CANDIDATE_STATEMENT, PRIORITIES } from "@/lib/campaign";
 
 const TITLE = "Priorities | Muhammad Saqeeb for East Brunswick Schools";
 const DESCRIPTION =
