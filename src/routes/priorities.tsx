@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { CANDIDATE_STORY, PRIORITIES } from "@/lib/campaign";
+import { CANDIDATE_STATEMENT, PRIORITIES } from "@/lib/campaign";
 
 const TITLE = "Priorities | Muhammad Saqeeb for East Brunswick Schools";
 const DESCRIPTION =
@@ -27,12 +27,10 @@ function Priorities() {
     <>
       <header className="border-b border-border bg-primary py-12 text-primary-foreground sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="eyebrow text-primary-foreground/70">Why I'm running</p>
-          <h1 className="mt-3 max-w-3xl text-4xl leading-[1.05] sm:text-5xl">
-            I went through these schools, and I want to fix what they got wrong about me
-          </h1>
+          <p className="eyebrow text-primary-foreground/70">Muhammad Saqeeb</p>
+          <h1 className="mt-3 max-w-3xl text-4xl leading-[1.05] sm:text-5xl">Why I'm running</h1>
           <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-primary-foreground/90">
-            {CANDIDATE_STORY.long.slice(0, 2).map((para) => (
+            {CANDIDATE_STATEMENT.map((para) => (
               <p key={para.slice(0, 32)}>{para}</p>
             ))}
           </div>
