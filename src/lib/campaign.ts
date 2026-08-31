@@ -24,6 +24,26 @@ export const CANDIDATE_STORY = {
   ],
 } as const;
 
+/** Saqeeb's own statement, verbatim. Runs on the priorities page. */
+export const CANDIDATE_STATEMENT = [
+  "I'm running for the East Brunswick Board of Education because I care about everyone in our community, and I want to ensure our schools are putting students first. When I eventually have children, I want to ensure that they and any of their friends do not have to face the level of alienation that I felt when I was a student in East Brunswick.",
+  "I live here. I started at Memorial Elementary School and graduated from East Brunswick High School.",
+  "All I know is East Brunswick.",
+  "I was a student who struggled to communicate, took special education classes, and had speech therapy. I know how isolating school can feel sometimes, especially for students who may not feel connected to their peers or their school community. I know how much it means for someone to listen and speak for those who are still developing their own voice.",
+  "When schools become an environment that builds relationships across cultures, it raises their confidence, empathy, and willingness to challenge what they don't know. Our schools should best equip our students with material conditions they are coming into this age of AI technology where they need to differentiate between truths and lies more critically.",
+  "I've been involved in bringing youth voices forward. I've worked directly with student clubs to help conduct toy drives for other schools in need because I believe every one of our students deserves an opportunity. I have advocated for students locally and worked to build diverse connections.",
+  "Every student should feel that they are seen, supported, respected, and given the opportunity to succeed.",
+  "That is why I would focus on students' mental health, school climate, and making sure every student feels like they belong. We need to build an environment that encourages the social and emotional well-being of each student and listens empathetically to each student.",
+  "Even our technology policies must come back to the root issue: empathy.",
+  "At the same time, putting students first means recognizing the financial pressures facing both our school district and our community.",
+  "I was a college student during the COVID-19 pandemic, and I, like many other community members, have felt the rising cost of inflation and its impact on housing, childcare, our communities' physical and mental health, and the nearly unaffordable healthcare premiums we are currently facing statewide.",
+  "Families are already dealing with rising costs for housing, childcare, healthcare, and everyday necessities. At the same time, the district must continue providing high-quality education while managing increasing operational costs.",
+  "As a Board of Education member, I would try my best to work with the team to find innovative solutions to help reduce the impact of these costs on our school community. I believe the Board must continue looking for responsible ways to control costs, protect essential programs and sports, and make sure taxpayer dollars are being used effectively.",
+  "Finally, I would make it a priority to listen to students, parents, teachers, and residents and improve communication so people understand what the Board is doing and why.",
+  "My experience in East Brunswick taught me how important it is for students to feel supported and connected. I know how much it matters for someone to listen when a student is still developing their voice.",
+  "I want students from all backgrounds and needs to feel that East Brunswick is their home for generations.",
+];
+
 /**
  * The home page's About block. Four short lines a visitor can read cold,
  * written in the third person because a stranger is meeting him here.
