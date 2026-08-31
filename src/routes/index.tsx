@@ -15,7 +15,6 @@ import {
   PLATFORM_HIGHLIGHTS,
   REGISTRATION_DEADLINE,
   SOCIAL_LINKS,
-  WHY_SAQEEB,
 } from "@/lib/campaign";
 
 const TITLE = "A Voice for Excellence | Muhammad Saqeeb for East Brunswick BOE";
@@ -228,14 +227,9 @@ function Index() {
               </p>
             ))}
           </div>
-          <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-center">
-            {WHY_SAQEEB.map((item) => (
-              <li key={item} className="flex items-center gap-2 text-sm font-semibold text-foreground/90">
-                <span aria-hidden="true" className="size-1.5 rounded-full bg-primary" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-8 text-center text-sm font-semibold text-foreground/90">
+            20+ years a part of the EB community
+          </p>
           <p className="mt-8 text-center">
             <Link
               to="/priorities"

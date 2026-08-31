@@ -104,14 +104,6 @@ export const SOCIAL_LINKS: { id: string; label: string; url: string | null }[] =
   { id: "linkedin", label: "LinkedIn", url: null },
 ];
 
-/** Short snippets about Saqeeb — shown at the top of the home page. */
-export const WHY_SAQEEB = [
-  "Raised in East Brunswick, working-class immigrant family",
-  "East Brunswick Public Schools graduate",
-  "Data scientist",
-  "Reads the district's budget filings",
-  "Attends board meetings",
-];
 
 /** Core pitch from the campaign mailer. Used on the home page and priorities page. */
 export const PITCH = {
