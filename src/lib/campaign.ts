@@ -45,14 +45,14 @@ export const CANDIDATE_STATEMENT = [
 ];
 
 /**
- * The home page's About block. Four short lines a visitor can read cold,
- * written in the third person because a stranger is meeting him here.
+ * The home page's About block. Written in the first person because Saqeeb
+ * is introducing himself directly to a visitor meeting him for the first time.
  */
 export const ABOUT_SAQEEB = [
-  "Muhammad Saqeeb grew up in East Brunswick, the son of working-class immigrants, and went through East Brunswick Public Schools from elementary school through graduation.",
-  "He spent close to six years of that as a special education student, worked his way out of the placement, and graduated summa cum laude in psychology before finishing a master's in data science.",
-  "He analyzes data for a living, and he has spent the past year at board meetings and in the district's budget filings learning where the money goes.",
-  "He is running for the East Brunswick Board of Education, Column #1.",
+  "I started at Memorial in special needs and remedial classes before graduating EBHS class of 2016 with honors and APs. I went to Rowan University to study Psychology, graduating summa cum laude and earning my degree partially through independent study. Recently I earned my Master's degree in Data Science at NJIT.",
+  "I'm a proud chachu. That means uncle in Urdu.",
+  "I support our family business right here in East Brunswick, and I believe in getting to know your neighbors.",
+  "In my spare time you will see me at the gym, at a cafe, at local community events, listening.",
 ];
 
 /** The first candidates' debate. Referenced publicly as a date, nothing more. */

@@ -219,7 +219,7 @@ function Index() {
       <section aria-labelledby="about-heading" className="bg-secondary py-14 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 id="about-heading" className="text-center text-3xl uppercase text-primary sm:text-4xl">
-            About Saqeeb
+            About Me
           </h2>
           <div className="mt-6 space-y-3">
             {ABOUT_SAQEEB.map((line) => (
