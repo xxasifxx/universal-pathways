@@ -50,6 +50,7 @@ export const CANDIDATE_STATEMENT = [
  */
 export const ABOUT_SAQEEB = [
   "I started at Memorial in special needs and remedial classes before graduating EBHS class of 2016 with honors and APs. I went to Rowan University to study Psychology, graduating summa cum laude and earning my degree partially through independent study. Recently I earned my Master's degree in Data Science at NJIT.",
+  "I have been involved with several South Asian community advocacy groups, including briefly serving as a youth director with a local non profit. I lead civic advocacy efforts locally and across New Jersey to serve all individuals regardless of race, religion, or nationality.",
   "I'm a proud chachu. That means uncle in Urdu.",
   "I support our family business right here in East Brunswick, and I believe in getting to know your neighbors.",
   "In my spare time you will see me at the gym, at a cafe, at local community events, listening.",
