@@ -146,64 +146,66 @@ export type Priority = {
   id: string;
   number: string;
   title: string;
-  summary: string;
-  points: string[];
+  paragraphs: string[];
 };
 
 /**
- * The public platform: three priorities and the promises under them. The
- * budget lines, mechanisms, and sources behind each promise live in the
- * review room, not here.
+ * The six public priorities, in the candidate's own words. The budget lines,
+ * mechanisms, and sources behind them live in the review room, not here.
  */
 export const PRIORITIES: Priority[] = [
   {
-    id: "affordable-for-all",
+    id: "full-day-pre-k",
     number: "01",
-    title: "Affordable for All",
-    summary:
-      "Taking part in school shouldn't depend on what a family can pay, and staff shouldn't be priced out of their own health coverage.",
-    points: [
-      "Free full-day Pre-K for every family.",
-      "No fees to join a club, a team, or an arts program.",
-      "Schools funded well enough that parents aren't buying the basics themselves.",
-      "Hire teaching support staff in-house instead of contracting the work out.",
-      "Protect special education, mental health, and early intervention when the budget gets tight.",
-      "Better language programs for incoming families.",
-      "End lunch debt.",
-      "Health coverage school staff can afford to use.",
+    title: "Free, Universal Full-Day Pre-K",
+    paragraphs: [
+      "Every 3- to 4-year-old should be guaranteed access to preschool. When our family first came to East Brunswick, we had to homeschool our sister because the district only offered a half-day program. Working families should not have to choose between losing work hours and paying for private full-day preschool.",
+      "New Jersey already provides a path for districts to expand preschool through district classrooms, qualified providers, Head Start, and State funding. East Brunswick should use that flexibility to build toward universal full-day Pre-K.",
     ],
   },
   {
-    id: "students-first",
+    id: "high-school-capital-project",
     number: "02",
-    title: "Students First",
-    summary:
-      "Students should be able to take the courses they are ready for and earn grades based on their own work.",
-    points: [
-      "A student ready for an advanced course can take it, even if one grade says otherwise.",
-      "A student who already knows the material can test into the higher course, including in world languages.",
-      "Arts and science above grade level for students who ask, and instruments earlier.",
-      "A language bridge program for families arriving mid-year.",
-      "Less of a grade riding on homework, more on the work a student does in class.",
-      "Teach students to use AI on work that is their own.",
-      "Train staff to recognize bias and harassment in any form.",
-      "ICE out of schools. Police and SROs out of schools.",
-      "A standing student seat in mental health and facilities decisions.",
+    title: "Move the 9–12 High School Capital Project Forward",
+    paragraphs: [
+      "Our high school was built in 1957. We cannot keep spending money on temporary fixes and aging infrastructure. We were already talking about the need for a new high school when I graduated in 2016, yet we have continued relying on temporary solutions.",
+      "We should move the capital project forward, scrutinize every change order, and make sure the design is built for decades ahead.",
     ],
   },
   {
-    id: "reduce-our-costs",
+    id: "no-activity-fees",
     number: "03",
-    title: "Reduce Our Costs",
-    summary:
-      "Some buildings now cost more to keep patching than to replace. The board should compare the two in public before the bill arrives.",
-    points: [
-      "A new high school for ninth through twelfth grade.",
-      "Better technology, facilities, and programs in the buildings we keep.",
-      "Apply for state construction grants, and build so the next twenty years of maintenance cost less.",
-      "Remove lead and deal with the temporary classroom units.",
-      "Design buildings around the programs we want to offer.",
-      "Review the master plan and publish what it finds.",
+    title: "No Fees for Student Clubs & Activities",
+    paragraphs: [
+      "Clubs, athletics, music, trips, and extracurricular programs are where students build friendships, confidence, talents, and a sense of belonging. These are not extras.",
+      "Students can already face hundreds of dollars in participation costs before equipment, clothing, and trips. Access to school activities should not depend on whether a family can afford another fee.",
+    ],
+  },
+  {
+    id: "healthcare-students-staff",
+    number: "04",
+    title: "Better Healthcare for Students & Staff",
+    paragraphs: [
+      "Every child in East Brunswick deserves access to healthcare. When students are struggling physically, socially, or emotionally, it affects attendance, learning, and the resources schools need to support them.",
+      "We should partner with healthcare and mental-health providers and, where feasible, provide services on school property. Earlier access can reduce avoidable claims and delayed-care costs for staff while we also review insurance, pharmacy, and prescription contracts to lower the district’s overall healthcare costs.",
+    ],
+  },
+  {
+    id: "expand-special-education",
+    number: "05",
+    title: "Expand Special Education in East Brunswick",
+    paragraphs: [
+      "As a student who spent years in classrooms alongside students with very different needs, one of the first things you learn is kindness. We should bring more specialized programs and services into East Brunswick where we can provide them effectively.",
+      "We get there in phases—use the space we already have, add specialists and programs that fit, and design future facilities with in-district special-education space from the beginning.",
+    ],
+  },
+  {
+    id: "responsible-ai",
+    number: "06",
+    title: "Responsible AI + Technology",
+    paragraphs: [
+      "Students need to develop reading, writing, creativity, research, and critical-thinking skills before relying on generative AI.",
+      "Before implementing a district-wide AI policy, we need to understand the technology and infrastructure we already have and how we will protect student privacy and prevent exposure to inappropriate or misleading material. A phone ban will not functionally stop students from using AI. The sooner we understand where AI is useful, where it creates risks, and how students are already using it, the sooner we can protect our children and prepare them for the world outside school.",
     ],
   },
 ];

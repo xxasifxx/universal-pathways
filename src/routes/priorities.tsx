@@ -4,7 +4,7 @@ import { CANDIDATE_STATEMENT, PRIORITIES } from "@/lib/campaign";
 
 const TITLE = "Priorities | Muhammad Saqeeb for East Brunswick Schools";
 const DESCRIPTION =
-  "What Muhammad Saqeeb wants the East Brunswick Board of Education to work on: affordability, fair access for students, and facilities decisions made in public.";
+  "Muhammad Saqeeb's six priorities for East Brunswick schools: full-day Pre-K, the 9–12 high school capital project, no activity fees, healthcare for students and staff, special education, and responsible AI.";
 
 export const Route = createFileRoute("/priorities")({
   head: () => ({
@@ -73,19 +73,13 @@ function Priorities() {
                 <h2 id={`${p.id}-heading`} className="mt-3 text-3xl leading-tight sm:text-4xl">
                   {p.title}
                 </h2>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground">{p.summary}</p>
               </div>
 
-              <ul className="flex flex-col gap-3">
-                {p.points.map((point) => (
-                  <li
-                    key={point.slice(0, 40)}
-                    className="border-l-4 border-gold pl-5 text-lg leading-snug"
-                  >
-                    {point}
-                  </li>
+              <div className="max-w-2xl space-y-4 text-lg leading-relaxed">
+                {p.paragraphs.map((para) => (
+                  <p key={para.slice(0, 32)}>{para}</p>
                 ))}
-              </ul>
+              </div>
             </div>
           </section>
         ))}
