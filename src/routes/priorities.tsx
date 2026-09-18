@@ -76,16 +76,11 @@ function Priorities() {
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground">{p.summary}</p>
               </div>
 
-              <ul className="flex flex-col gap-3">
-                {p.points.map((point) => (
-                  <li
-                    key={point.slice(0, 40)}
-                    className="border-l-4 border-gold pl-5 text-lg leading-snug"
-                  >
-                    {point}
-                  </li>
+              <div className="max-w-2xl space-y-4 text-lg leading-relaxed">
+                {p.paragraphs.map((para) => (
+                  <p key={para.slice(0, 32)}>{para}</p>
                 ))}
-              </ul>
+              </div>
             </div>
           </section>
         ))}
