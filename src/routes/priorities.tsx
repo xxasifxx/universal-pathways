@@ -4,7 +4,7 @@ import { CANDIDATE_STATEMENT, PRIORITIES } from "@/lib/campaign";
 
 const TITLE = "Priorities | Muhammad Saqeeb for East Brunswick Schools";
 const DESCRIPTION =
-  "What Muhammad Saqeeb wants the East Brunswick Board of Education to work on: affordability, fair access for students, and facilities decisions made in public.";
+  "Muhammad Saqeeb's six priorities for East Brunswick schools: full-day Pre-K, the 9–12 high school capital project, no activity fees, healthcare for students and staff, special education, and responsible AI.";
 
 export const Route = createFileRoute("/priorities")({
   head: () => ({
