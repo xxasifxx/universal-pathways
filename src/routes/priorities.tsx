@@ -73,7 +73,6 @@ function Priorities() {
                 <h2 id={`${p.id}-heading`} className="mt-3 text-3xl leading-tight sm:text-4xl">
                   {p.title}
                 </h2>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground">{p.summary}</p>
               </div>
 
               <div className="max-w-2xl space-y-4 text-lg leading-relaxed">
