@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 const NAV = [
   { to: "/", key: "nav.home" },
   { to: "/priorities", key: "nav.priorities" },
+  { to: "/tapinto", key: "nav.tapinto" },
   { to: "/volunteer", key: "nav.volunteer" },
 ] as const;
 
