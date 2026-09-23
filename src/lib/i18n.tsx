@@ -29,6 +29,7 @@ export type LocaleCode = (typeof LOCALES)[number]["code"];
 const en = {
   "nav.home": "Home",
   "nav.priorities": "Priorities",
+  "nav.tapinto": "Q&A",
   "nav.volunteer": "Volunteer",
   "nav.donate": "Donate",
   "nav.menu": "Open menu",

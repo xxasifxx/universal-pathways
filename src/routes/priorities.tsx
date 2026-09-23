@@ -1,10 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { CANDIDATE_STATEMENT, PRIORITIES } from "@/lib/campaign";
+import {
+  CANDIDATE_STATEMENT,
+  PRIORITIES,
+  PRIORITIES_INTRO,
+  PRIORITIES_TITLE,
+} from "@/lib/campaign";
 
 const TITLE = "Priorities | Muhammad Saqeeb for East Brunswick Schools";
 const DESCRIPTION =
-  "Muhammad Saqeeb's six priorities for East Brunswick schools: full-day Pre-K, the 9–12 high school capital project, no activity fees, healthcare for students and staff, special education, and responsible AI.";
+  "Muhammad Saqeeb's sourced five-year plan for better East Brunswick schools at lower cost.";
 
 export const Route = createFileRoute("/priorities")({
   head: () => ({
@@ -29,13 +34,35 @@ function Priorities() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="eyebrow text-primary-foreground/70">Muhammad Saqeeb</p>
           <h1 className="mt-3 max-w-3xl text-4xl leading-[1.05] sm:text-5xl">Why I'm running</h1>
-          <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-primary-foreground/90">
-            {CANDIDATE_STATEMENT.map((para) => (
-              <p key={para.slice(0, 32)}>{para}</p>
-            ))}
+          <div className="mt-8 max-w-3xl space-y-7 font-sans text-lg leading-8 text-primary-foreground/90 sm:text-xl sm:leading-9">
+            {CANDIDATE_STATEMENT.map((para, index) => {
+              const emphasized = index === 2 || index === 6 || index === 8 || index === 14;
+              return (
+                <p
+                  key={para.slice(0, 32)}
+                  className={
+                    emphasized
+                      ? "max-w-2xl border-l-4 border-gold pl-5 font-display text-3xl leading-tight text-primary-foreground sm:text-4xl"
+                      : "max-w-[68ch]"
+                  }
+                >
+                  {para}
+                </p>
+              );
+            })}
           </div>
         </div>
       </header>
+
+      <section className="border-b border-border bg-secondary py-12 sm:py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <p className="eyebrow text-muted-foreground">Our platform</p>
+          <h2 className="mt-3 max-w-4xl text-4xl leading-tight sm:text-5xl">{PRIORITIES_TITLE}</h2>
+          <p className="mt-5 max-w-3xl font-sans text-lg italic leading-8 text-foreground/80">
+            {PRIORITIES_INTRO}
+          </p>
+        </div>
+      </section>
 
       <nav
         aria-label="Priorities"
@@ -75,10 +102,31 @@ function Priorities() {
                 </h2>
               </div>
 
-              <div className="max-w-2xl space-y-4 text-lg leading-relaxed">
-                {p.paragraphs.map((para) => (
-                  <p key={para.slice(0, 32)}>{para}</p>
+              <div className="max-w-3xl space-y-7 font-sans text-lg leading-8">
+                {p.sections.map((section) => (
+                  <div key={section.label} className="grid gap-1 sm:grid-cols-[5rem_1fr] sm:gap-5">
+                    <h3 className="font-display text-xl text-primary sm:text-2xl">{section.label}</h3>
+                    <p>{section.text}</p>
+                  </div>
                 ))}
+                <div className="border-t border-border pt-5">
+                  <h3 className="font-display text-xl text-primary">Sources</h3>
+                  <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-base">
+                    {p.sources.map((source) => (
+                      <li key={`${source.label}-${source.href}`}>
+                        <a
+                          href={source.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
+                        >
+                          {source.label}
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </section>
