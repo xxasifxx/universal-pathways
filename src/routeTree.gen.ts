@@ -14,6 +14,7 @@ import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ReviewRouteImport } from './routes/review'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TapintoRouteImport } from './routes/tapinto'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminCanvassRouteImport } from './routes/admin/canvass'
@@ -64,6 +65,11 @@ const ReviewRoute = ReviewRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TapintoRoute = TapintoRouteImport.update({
+  id: '/tapinto',
+  path: '/tapinto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VolunteerRoute = VolunteerRouteImport.update({
@@ -204,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/review': typeof ReviewRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tapinto': typeof TapintoRoute
   '/volunteer': typeof VolunteerRoute
   '/admin/canvass': typeof AdminCanvassRoute
   '/admin/drafts': typeof AdminDraftsRoute
@@ -236,6 +243,7 @@ export interface FileRoutesByTo {
   '/priorities': typeof PrioritiesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tapinto': typeof TapintoRoute
   '/volunteer': typeof VolunteerRoute
   '/admin/canvass': typeof AdminCanvassRoute
   '/admin/drafts': typeof AdminDraftsRoute
@@ -270,6 +278,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/review': typeof ReviewRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tapinto': typeof TapintoRoute
   '/volunteer': typeof VolunteerRoute
   '/admin/canvass': typeof AdminCanvassRoute
   '/admin/drafts': typeof AdminDraftsRoute
@@ -305,6 +314,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/review'
     | '/sitemap.xml'
+    | '/tapinto'
     | '/volunteer'
     | '/admin/canvass'
     | '/admin/drafts'
@@ -337,6 +347,7 @@ export interface FileRouteTypes {
     | '/priorities'
     | '/reset-password'
     | '/sitemap.xml'
+    | '/tapinto'
     | '/volunteer'
     | '/admin/canvass'
     | '/admin/drafts'
@@ -370,6 +381,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/review'
     | '/sitemap.xml'
+    | '/tapinto'
     | '/volunteer'
     | '/admin/canvass'
     | '/admin/drafts'
@@ -404,6 +416,7 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   ReviewRoute: typeof ReviewRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TapintoRoute: typeof TapintoRoute
   VolunteerRoute: typeof VolunteerRoute
   AdminCanvassRoute: typeof AdminCanvassRoute
   AdminDraftsRoute: typeof AdminDraftsRoute
@@ -461,6 +474,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tapinto': {
+      id: '/tapinto'
+      path: '/tapinto'
+      fullPath: '/tapinto'
+      preLoaderRoute: typeof TapintoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/volunteer': {
@@ -675,6 +695,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   ReviewRoute: ReviewRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TapintoRoute: TapintoRoute,
   VolunteerRoute: VolunteerRoute,
   AdminCanvassRoute: AdminCanvassRoute,
   AdminDraftsRoute: AdminDraftsRoute,
