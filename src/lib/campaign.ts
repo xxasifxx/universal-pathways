@@ -146,67 +146,110 @@ export type Priority = {
   id: string;
   number: string;
   title: string;
-  paragraphs: string[];
+  sections: { label: "What" | "Why" | "How" | "Result"; text: string }[];
+  sources: { label: string; href: string }[];
 };
 
-/**
- * The six public priorities, in the candidate's own words. The budget lines,
- * mechanisms, and sources behind them live in the review room, not here.
- */
+export const PRIORITIES_TITLE = "A Five-Year Plan for Better Schools at Lower Cost";
+export const PRIORITIES_INTRO =
+  "As funding gets cut, the solution to budget constraints starts with replacing inefficient programs with better-quality, cost-reducing ones, expanding access and opportunities for students while saving money. Here's how we will do it:";
+
+/** The seven sourced priorities from the candidate's reference sheet. */
 export const PRIORITIES: Priority[] = [
   {
     id: "full-day-pre-k",
     number: "01",
     title: "Free, Universal Full-Day Pre-K",
-    paragraphs: [
-      "Every 3- to 4-year-old should be guaranteed access to preschool. When our family first came to East Brunswick, we had to homeschool our sister because the district only offered a half-day program. Working families should not have to choose between losing work hours and paying for private full-day preschool.",
-      "New Jersey already provides a path for districts to expand preschool through district classrooms, qualified providers, Head Start, and State funding. East Brunswick should use that flexibility to build toward universal full-day Pre-K.",
+    sections: [
+      { label: "What", text: "Expand towards free full-day preschool for all East Brunswick’s estimated 824 preschool-age children, with the State requiring districts to work toward serving at least 90%, or about 742 children, through district classrooms, Head Start, and qualified providers." },
+      { label: "Why", text: "A local full-time private preschool costs about $1,280/month. At that price, preschool for all 824 children represents about $10.55M/year in family costs." },
+      { label: "How", text: "Have the Board direct the district to apply for NJ Preschool Expansion Aid. NJDOE calculates the preschool universe as 2× first-grade enrollment; East Brunswick reported 412 first-graders, producing an 824-child universe, and State rules call for plans to reach at least 90%. At Middlesex County’s $16,806 district-seat planning rate, 742 seats equal about $12.47M. Using the illustrative 40% State-share assumption, about $4.99M would come from PEA, with existing preschool spending and Head Start/provider configurations reducing the remaining local cost. North Brunswick already uses district, private-provider, and Head Start classrooms for free full-day preschool." },
+      { label: "Result", text: "Hundreds more children get full-day early education regardless of family income, enter kindergarten better prepared, and families no longer have to choose between preschool and thousands of dollars in annual childcare costs. Up to $10.55M/year in private family preschool costs is displaced, with an upper-end local planning estimate of about $337/year on the average assessed home before additional offsets." },
+    ],
+    sources: [
+      { label: "Winnie", href: "https://winnie.com/place/crossroads-early-learning-center-east-brunswick" },
+      { label: "NJDOE PEA Notice", href: "https://www.nj.gov/education/earlychildhood/preschool/docs/2026-2027PreschoolExpansionNoticeOfFundingOpportunity.pdf" },
+      { label: "NJ Preschool Regulations", href: "https://www.state.nj.us/education/code/current/title6a/chap13a.pdf" },
     ],
   },
   {
-    id: "high-school-capital-project",
+    id: "affordable-for-all",
     number: "02",
-    title: "Move the 9–12 High School Capital Project Forward",
-    paragraphs: [
-      "Our high school was built in 1957. We cannot keep spending money on temporary fixes and aging infrastructure. We were already talking about the need for a new high school when I graduated in 2016, yet we have continued relying on temporary solutions.",
-      "We should move the capital project forward, scrutinize every change order, and make sure the design is built for decades ahead.",
+    title: "Affordable for All",
+    sections: [
+      { label: "What", text: "Eliminate participation fees, reduce required school-supply costs, and end student lunch debt." },
+      { label: "Why", text: "Families already pay taxes for public schools but are still charged for activities, supplies, meals, and private enrichment." },
+      { label: "How", text: "Have the Board replace approximately $359,000 in annual participation-fee revenue, centrally purchase basic supplies only where bulk pricing beats family retail costs, and maximize State/federal meal assistance before covering remaining lunch debt. Monroe already provides grades 7–12 athletics and co-curricular activities without a participation fee." },
+      { label: "Result", text: "No student is priced out of sports, clubs, music, or activities because their family cannot afford the fee; families also face fewer school-supply and meal costs. $0 participation fees would cost about $18/year on the average assessed home if the entire $359,000 were replaced through the levy, before savings elsewhere." },
     ],
-  },
-  {
-    id: "no-activity-fees",
-    number: "03",
-    title: "No Fees for Student Clubs & Activities",
-    paragraphs: [
-      "Clubs, athletics, music, trips, and extracurricular programs are where students build friendships, confidence, talents, and a sense of belonging. These are not extras.",
-      "Students can already face hundreds of dollars in participation costs before equipment, clothing, and trips. Access to school activities should not depend on whether a family can afford another fee.",
-    ],
-  },
-  {
-    id: "healthcare-students-staff",
-    number: "04",
-    title: "Better Healthcare for Students & Staff",
-    paragraphs: [
-      "Every child in East Brunswick deserves access to healthcare. When students are struggling physically, socially, or emotionally, it affects attendance, learning, and the resources schools need to support them.",
-      "We should partner with healthcare and mental-health providers and, where feasible, provide services on school property. Earlier access can reduce avoidable claims and delayed-care costs for staff while we also review insurance, pharmacy, and prescription contracts to lower the district’s overall healthcare costs.",
+    sources: [
+      { label: "Monroe Student Handbook", href: "https://www.monroe.k12.nj.us/cms/lib/NJ01000268/Centricity/domain/113/site_shortcuts/23-2024/2023-2024%20MTHS%20Student%20Handbook%20%205-23-24.pdf" },
+      { label: "East Brunswick Budget", href: "https://www.ebnet.org/departments/financial-services/budget-information/2026-2027-budget-info" },
     ],
   },
   {
     id: "expand-special-education",
-    number: "05",
+    number: "03",
     title: "Expand Special Education in East Brunswick",
-    paragraphs: [
-      "As a student who spent years in classrooms alongside students with very different needs, one of the first things you learn is kindness. We should bring more specialized programs and services into East Brunswick where we can provide them effectively.",
-      "We get there in phases—use the space we already have, add specialists and programs that fit, and design future facilities with in-district special-education space from the beginning.",
+    sections: [
+      { label: "What", text: "Bring more specialized programs and services into East Brunswick where the district can provide them effectively." },
+      { label: "Why", text: "East Brunswick budgets about $6.61M/year for outside special-education tuition, before transportation." },
+      { label: "How", text: "Direct the superintendent to compare every potential in-district program against avoided tuition + avoided transportation + potential tuition revenue from neighboring districts. Build programs only where serving students locally produces better service and a stronger financial result." },
+      { label: "Result", text: "More students receive specialized instruction, therapies, and support inside their own school district, closer to their families and peers, with less time spent traveling to outside placements. At the same time, bringing appropriate placements in-house can reduce the district’s $6.61M+ outside-placement bill and potentially generate tuition revenue from neighboring districts." },
     ],
+    sources: [{ label: "East Brunswick Budget", href: "https://www.ebnet.org/departments/financial-services/budget-information/2026-2027-budget-info" }],
+  },
+  {
+    id: "healthcare-costs-care",
+    number: "04",
+    title: "Lower Healthcare Costs + Expand Care",
+    sections: [
+      { label: "What", text: "Combine employee health-cost reform with expanded student and staff medical, mental-health, dental, and prescription access." },
+      { label: "Why", text: "East Brunswick employee benefits cost about $40.36M/year. Even small percentage reductions therefore produce substantial savings." },
+      { label: "How", text: "Direct the administration to pursue FQHC, hospital, or community-provider partnerships; bill eligible care through Medicaid/private insurance; and competitively review insurance, pharmacy, PBM, rebate, and prescription contracts. South Brunswick already separately procures both operation of a district health center and brokerage for health and prescription benefits." },
+      { label: "Result", text: "Students get mental-health and healthcare services closer to where they already go to school, while staff gain easier access to care and lower-cost treatment options. Problems can be addressed earlier instead of families having to navigate outside providers on their own. The goal is $0 net new recurring tax cost, while a 3–5% reduction in benefits costs would save roughly $1.21M–$2.02M/year." },
+    ],
+    sources: [
+      { label: "South Brunswick RFPs", href: "https://www.sbschools.org/page/content-rfps-and-bids" },
+      { label: "NJ Department of Health – FQHCs", href: "https://www.nj.gov/health/fhs/fqhc/" },
+      { label: "East Brunswick Budget", href: "https://www.ebnet.org/departments/financial-services/budget-information/2026-2027-budget-info" },
+    ],
+  },
+  {
+    id: "new-high-school",
+    number: "05",
+    title: "Build the New 9–12 High School",
+    sections: [
+      { label: "What", text: "Build a permanent 9–12 high school instead of continuing to layer temporary fixes onto the existing building." },
+      { label: "Why", text: "Preliminary estimates put major work on the existing high school at $300M+, existing school plus temporary-capacity changes around $323M, existing school plus a Ninth Grade Academy around $386M, and a new four-grade high school around $385M–$425M." },
+      { label: "How", text: "Have the Board develop one permanent proposal, maximize available State construction/debt-service aid, match borrowing against retiring debt, and publish the real homeowner tax impact before any referendum." },
+      { label: "Result", text: "Students and staff get a safer, healthier, modern school with enough space for grades 9–12, modern labs and classrooms, and fewer temporary or overcrowded learning environments. It also gives taxpayers one permanent facilities solution instead of repeatedly paying for partial fixes. No homeowner tax figure should be promised until State aid, financing, retiring debt, and eligible costs are known." },
+    ],
+    sources: [{ label: "Patch", href: "https://patch.com/new-jersey/eastbrunswick/amp/34695585/east-brunswick-weighs-300m-in-repairs-vs-425m-new-building" }],
   },
   {
     id: "responsible-ai",
     number: "06",
     title: "Responsible AI + Technology",
-    paragraphs: [
-      "Students need to develop reading, writing, creativity, research, and critical-thinking skills before relying on generative AI.",
-      "Before implementing a district-wide AI policy, we need to understand the technology and infrastructure we already have and how we will protect student privacy and prevent exposure to inappropriate or misleading material. A phone ban will not functionally stop students from using AI. The sooner we understand where AI is useful, where it creates risks, and how students are already using it, the sooner we can protect our children and prepare them for the world outside school.",
+    sections: [
+      { label: "What", text: "Keep generative AI out of assigned Pre-K–8 work except approved accommodations, while teaching responsible AI research in grades 9–12." },
+      { label: "Why", text: "Students need to develop reading, writing, research, and critical-thinking skills before relying on AI-generated work." },
+      { label: "How", text: "Have the Board establish grade-level rules and integrate source verification, hallucinations, citations, deepfakes, bias, and privacy into existing curriculum and professional development." },
+      { label: "Result", text: "Younger students develop their own reading, writing, creativity, and reasoning first; older students graduate knowing how to research with AI, detect false information and deepfakes, verify sources, and use the technology responsibly. No major new recurring expenditure is required." },
     ],
+    sources: [{ label: "East Brunswick Public Schools", href: "https://www.ebnet.org/" }],
+  },
+  {
+    id: "hib-inclusivity",
+    number: "07",
+    title: "HIB + Inclusivity Built Around East Brunswick",
+    sections: [
+      { label: "What", text: "Make anti-bullying and inclusion policy reflect East Brunswick’s actual students, demographics, languages, and reported incidents." },
+      { label: "Why", text: "Generic training cannot address discrimination effectively if it does not reflect the problems students are actually reporting." },
+      { label: "How", text: "Strengthen Board policy and use HIB reports, demographic data, climate surveys, and student/family feedback to update training annually while improving consistency in investigations." },
+      { label: "Result", text: "Students have a clearer, more reliable process when they report bullying or discrimination, staff receive training based on problems actually occurring in East Brunswick, and the district gets measurable data showing which student communities feel safe, included, or underserved. This can largely use existing HIB and professional-development resources." },
+    ],
+    sources: [{ label: "East Brunswick Public Schools", href: "https://www.ebnet.org/" }],
   },
 ];
 
