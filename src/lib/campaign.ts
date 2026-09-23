@@ -175,7 +175,7 @@ export const PRIORITIES: Priority[] = [
   {
     id: "affordable-for-all",
     number: "02",
-    title: "Affordable for All",
+    title: "Affordable School Supplies, Clubs & Activities for All",
     sections: [
       { label: "What", text: "Eliminate participation fees, reduce required school-supply costs, and end student lunch debt." },
       { label: "Why", text: "Families already pay taxes for public schools but are still charged for activities, supplies, meals, and private enrichment." },
@@ -194,7 +194,7 @@ export const PRIORITIES: Priority[] = [
     sections: [
       { label: "What", text: "Bring more specialized programs and services into East Brunswick where the district can provide them effectively." },
       { label: "Why", text: "East Brunswick budgets about $6.61M/year for outside special-education tuition, before transportation." },
-      { label: "How", text: "Direct the superintendent to compare every potential in-district program against avoided tuition + avoided transportation + potential tuition revenue from neighboring districts. Build programs only where serving students locally produces better service and a stronger financial result." },
+      { label: "How", text: "Direct the superintendent to compare every potential in-district program against avoided tuition + avoided transportation + potential tuition revenue from neighboring districts. Build programs only where serving students locally produces better service and a stronger financial result. We'll do this in phases: first identify which needs can be met locally with our current space, then determine which programs require hiring specialists to fit within existing space, and in the long term, build new facilities to house those programs in-house." },
       { label: "Result", text: "More students receive specialized instruction, therapies, and support inside their own school district, closer to their families and peers, with less time spent traveling to outside placements. At the same time, bringing appropriate placements in-house can reduce the district’s $6.61M+ outside-placement bill and potentially generate tuition revenue from neighboring districts." },
     ],
     sources: [{ label: "East Brunswick Budget", href: "https://www.ebnet.org/departments/financial-services/budget-information/2026-2027-budget-info" }],
